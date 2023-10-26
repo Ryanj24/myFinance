@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
-import { getUsers } from './database.js'
+import { getUsers } from './database/database.js'
 
 const app = express();
 
