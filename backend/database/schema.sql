@@ -94,11 +94,12 @@ DELIMITER ;
 
 DELIMITER //
 CREATE PROCEDURE stock_transaction_procedure(
-    IN portfolio_id INT, 
-    IN company_ticker VARCHAR(4),
-    IN transaction_type ENUM("Buy", "Sell"),
-    IN transaction_date DATE,
-    IN quantity INT,
+    IN id_of_portfolio INT, 
+    IN name_of_company VARCHAR(64),
+    IN ticker_symbol VARCHAR(4),
+    IN purchase_or_sale ENUM("Buy", "Sell"),
+    IN date_of_transaction DATE,
+    IN quantity_of_shares INT,
     IN price_per_share DECIMAL(8, 2)
     )
 BEGIN
@@ -109,19 +110,49 @@ BEGIN
     END;
 
     START TRANSACTION;
-        IF transaction_type = "Buy" THEN
-            UPDATE `stock_portfolio` SET `balance` = `balance` - amount
-            WHERE `account_id` = account_id;
+        IF purchase_or_sale = "Buy" THEN
+            UPDATE `stock_portfolio` SET `balance` = `balance` - (quantity_of_shares * price_per_share)
+            WHERE `id` = id_of_portfolio;
 
-            INSERT INTO `bank_transactions` (account_id, type, category, transaction_date, amount)
-            VALUES (account_id, transaction_type, category, transaction_date, amount);
+            IF (SELECT (SELECT COUNT(`company_ticker`) FROM `stock_holdings` WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol)) = 1 THEN
+                UPDATE `stock_holdings` SET `quantity` = `quantity` + quantity_of_shares WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol;
+            ELSE
+                INSERT INTO `stock_holdings` (portfolio_id, company_name, company_ticker, quantity) 
+                VALUES (id_of_portfolio, name_of_company, ticker_symbol, quantity_of_shares);
+            END IF;
+
+
+            -- INSERT INTO `stock_transactions` () VALUES (); 
         ELSE
-            UPDATE `bank_accounts` SET `balance` = `balance` - amount
-            WHERE `account_id` = account_id;
+            UPDATE `stock_portfolio` SET `balance` = `balance` + (quantity * price_per_share)
+            WHERE `id` = id_of_portfolio;
 
-            INSERT INTO `bank_transactions` (account_id, type, category, transaction_date, amount)
-            VALUES (account_id, transaction_type, category, transaction_date, amount);
+            UPDATE `stock_holdings` SET `quantity` = `quantity` - VALUES(quantity)
+            WHERE `id` = id_of_portfolio AND `company_ticker` = ticker_symbol;
         END IF;
     COMMIT;
+END//
+DELIMITER ;
+
+
+
+DELIMITER //
+CREATE PROCEDURE test_procedure(
+    IN id INT, 
+    IN ticker VARCHAR(4)
+    )
+BEGIN
+    DECLARE testVar INT DEFAULT 0;
+
+    SELECT COUNT(`company_ticker`) INTO testVar FROM `stock_holdings` WHERE `portfolio_id` = id AND `company_ticker` = ticker;
+
+
+    IF (SELECT testVar) = 1 THEN
+        SELECT "1" AS "";
+    ELSE
+        SELECT "0" AS "";
+    END IF;
+    -- SELECT testVar;
+
 END//
 DELIMITER ;
