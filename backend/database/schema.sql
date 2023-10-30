@@ -141,7 +141,12 @@ BEGIN
                 WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol;      
             ELSE
                 UPDATE `stock_holdings` 
-                SET `avg_purchase_price` = ROUND((SELECT (SUM(`total_amount`) - (quantity_of_shares * share_price)) / (SUM(`quantity`) - quantity_of_shares) FROM `stock_transactions` WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol), 2), `quantity` = `quantity` - quantity_of_shares
+                SET `avg_purchase_price` = ROUND(
+                    (SELECT (SUM(`total_amount`) - (quantity_of_shares * share_price)) / (SUM(`quantity`) - quantity_of_shares)
+                     FROM `stock_transactions` 
+                     WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol AND `type` = "Buy"
+                    ), 2),
+                    `quantity` = `quantity` - quantity_of_shares
                 WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol;
             END IF;
 
@@ -156,5 +161,30 @@ DELIMITER ;
 
 
 DELIMITER //
+CREATE PROCEDURE bank_transfer_procedure(
+    IN sender_account_id INT,
+    IN receiver_account_id INT,
+    IN amount_to_transfer DECIMAL(10, 2),
+    IN transaction_date DATE
+)
+BEGIN
 
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+    END;
+
+    START TRANSACTION;
+        UPDATE `bank_accounts`
+        SET `balance` = `balance` + amount_to_transfer
+        WHERE `id` = receiver_account_id;
+
+        UPDATE `bank_accounts`
+        SET `balance` = `balance` - amount_to_transfer
+        WHERE `id` = sender_account_id;
+
+        INSERT INTO `bank_transactions` (account_id, type, category, transaction_date, amount) 
+        VALUES (receiver_account_id, "Deposit", "Personal", transaction_date, amount_to_transfer), (sender_account_id, "Withdrawl", "Personal", transaction_date, amount_to_transfer);
+    COMMIT;
+END//
 DELIMITER ;
