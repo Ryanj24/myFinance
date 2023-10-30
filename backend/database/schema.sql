@@ -110,12 +110,15 @@ BEGIN
         ROLLBACK;
     END;
 
+    SET @sharesCurrentlyHeld = (SELECT COUNT(`company_ticker`) FROM `stock_holdings` WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol);
+    SET @currentQuantityOfSharesHeld = (SELECT `quantity` FROM `stock_holdings` WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol);
+
     START TRANSACTION;
         IF purchase_or_sale = "Buy" THEN
             UPDATE `stock_portfolio` SET `balance` = `balance` - (quantity_of_shares * share_price)
             WHERE `id` = id_of_portfolio;
 
-            IF (SELECT (SELECT COUNT(`company_ticker`) FROM `stock_holdings` WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol)) = 1 THEN
+            IF (SELECT @sharesCurrentlyHeld) = 1 THEN
                 UPDATE `stock_holdings` 
                 SET `quantity` = `quantity` + quantity_of_shares, `avg_purchase_price` = ROUND((SELECT SUM(`total_amount` + (quantity_of_shares * share_price)) / SUM(`quantity` + quantity_of_shares) FROM `stock_transactions` WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol), 2)
                 WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol;
@@ -133,7 +136,10 @@ BEGIN
             UPDATE `stock_portfolio` SET `balance` = `balance` + (quantity_of_shares * share_price)
             WHERE `id` = id_of_portfolio;
 
-            IF (SELECT (SELECT COUNT(`company_ticker`) FROM `stock_holdings` WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol)) = 1 THEN
+            IF (SELECT @sharesCurrentlyHeld) = 1 AND (SELECT @currentQuantityOfSharesHeld) - quantity_of_shares = 0 THEN
+                DELETE FROM `stock_holdings`                
+                WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol;      
+            ELSE
                 UPDATE `stock_holdings` 
                 SET `avg_purchase_price` = ROUND((SELECT (SUM(`total_amount`) - (quantity_of_shares * share_price)) / (SUM(`quantity`) - quantity_of_shares) FROM `stock_transactions` WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol), 2), `quantity` = `quantity` - quantity_of_shares
                 WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol;
