@@ -49,6 +49,7 @@ CREATE TABLE bank_transactions (
 CREATE TABLE stock_transactions (
     `id` INT unsigned NOT NULL AUTO_INCREMENT,
     `portfolio_id` INT unsigned,
+    `company_name` VARCHAR(64),
     `company_ticker` VARCHAR(4),
     `type` ENUM("Buy", "Sell"),
     `purchase_date` DATE,
@@ -100,7 +101,7 @@ CREATE PROCEDURE stock_transaction_procedure(
     IN purchase_or_sale ENUM("Buy", "Sell"),
     IN date_of_transaction DATE,
     IN quantity_of_shares INT,
-    IN price_per_share DECIMAL(8, 2)
+    IN share_price DECIMAL(8, 2)
     )
 BEGIN
 
@@ -111,24 +112,36 @@ BEGIN
 
     START TRANSACTION;
         IF purchase_or_sale = "Buy" THEN
-            UPDATE `stock_portfolio` SET `balance` = `balance` - (quantity_of_shares * price_per_share)
+            UPDATE `stock_portfolio` SET `balance` = `balance` - (quantity_of_shares * share_price)
             WHERE `id` = id_of_portfolio;
 
             IF (SELECT (SELECT COUNT(`company_ticker`) FROM `stock_holdings` WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol)) = 1 THEN
-                UPDATE `stock_holdings` SET `quantity` = `quantity` + quantity_of_shares WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol;
+                UPDATE `stock_holdings` 
+                SET `quantity` = `quantity` + quantity_of_shares, `avg_purchase_price` = ROUND((SELECT SUM(`total_amount` + (quantity_of_shares * share_price)) / SUM(`quantity` + quantity_of_shares) FROM `stock_transactions` WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol), 2)
+                WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol;
             ELSE
-                INSERT INTO `stock_holdings` (portfolio_id, company_name, company_ticker, quantity) 
-                VALUES (id_of_portfolio, name_of_company, ticker_symbol, quantity_of_shares);
+                INSERT INTO `stock_holdings` (portfolio_id, company_name, company_ticker, quantity, avg_purchase_price) 
+                VALUES (id_of_portfolio, name_of_company, ticker_symbol, quantity_of_shares, ROUND((quantity_of_shares * share_price) / quantity_of_shares, 2));
             END IF;
 
 
-            -- INSERT INTO `stock_transactions` () VALUES (); 
+            INSERT INTO `stock_transactions` (portfolio_id, company_name, company_ticker, type, purchase_date, quantity, price_per_share, total_amount)
+            VALUES (id_of_portfolio, name_of_company, ticker_symbol, "Buy", date_of_transaction, quantity_of_shares, share_price, ROUND(quantity_of_shares * share_price, 2));
+
+
         ELSE
-            UPDATE `stock_portfolio` SET `balance` = `balance` + (quantity * price_per_share)
+            UPDATE `stock_portfolio` SET `balance` = `balance` + (quantity_of_shares * share_price)
             WHERE `id` = id_of_portfolio;
 
-            UPDATE `stock_holdings` SET `quantity` = `quantity` - VALUES(quantity)
-            WHERE `id` = id_of_portfolio AND `company_ticker` = ticker_symbol;
+            IF (SELECT (SELECT COUNT(`company_ticker`) FROM `stock_holdings` WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol)) = 1 THEN
+                UPDATE `stock_holdings` 
+                SET `avg_purchase_price` = ROUND((SELECT (SUM(`total_amount`) - (quantity_of_shares * share_price)) / (SUM(`quantity`) - quantity_of_shares) FROM `stock_transactions` WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol), 2), `quantity` = `quantity` - quantity_of_shares
+                WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol;
+            END IF;
+
+
+            INSERT INTO `stock_transactions` (portfolio_id, company_name, company_ticker, type, purchase_date, quantity, price_per_share, total_amount)
+            VALUES (id_of_portfolio, name_of_company, ticker_symbol, "Sell", date_of_transaction, quantity_of_shares, share_price, ROUND(quantity_of_shares * share_price, 2));
         END IF;
     COMMIT;
 END//
@@ -137,22 +150,5 @@ DELIMITER ;
 
 
 DELIMITER //
-CREATE PROCEDURE test_procedure(
-    IN id INT, 
-    IN ticker VARCHAR(4)
-    )
-BEGIN
-    DECLARE testVar INT DEFAULT 0;
 
-    SELECT COUNT(`company_ticker`) INTO testVar FROM `stock_holdings` WHERE `portfolio_id` = id AND `company_ticker` = ticker;
-
-
-    IF (SELECT testVar) = 1 THEN
-        SELECT "1" AS "";
-    ELSE
-        SELECT "0" AS "";
-    END IF;
-    -- SELECT testVar;
-
-END//
 DELIMITER ;
