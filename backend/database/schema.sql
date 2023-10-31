@@ -60,6 +60,26 @@ CREATE TABLE stock_transactions (
     FOREIGN KEY(`portfolio_id`) REFERENCES `stock_portfolio`(`id`)
 );
 
+CREATE TABLE monthly_budgets (
+    `id` INT unsigned NOT NULL AUTO_INCREMENT,
+    `user_id` INT unsigned,
+    `budget_amount` DECIMAL(10, 2) CHECK(`budget_amount` >= 0),
+    `month` ENUM("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"),
+    `year` YEAR,
+    PRIMARY KEY(`id`),
+    FOREIGN KEY(`user_id`) REFERENCES `users`(`id`)
+);
+
+CREATE TABLE goals (
+    `id` INT unsigned NOT NULL AUTO_INCREMENT,
+    `user_id` INT unsigned,
+    `goal_name` VARCHAR(64),
+    `current_progress` DECIMAL(10, 2),
+    `end_goal` DECIMAL(10, 2),
+    PRIMARY KEY(`id`),
+    FOREIGN KEY(`user_id`) REFERENCES `users`(`id`)
+);
+
 DELIMITER //
 CREATE PROCEDURE bank_transaction_procedure(
     IN account_id INT, 
@@ -157,7 +177,6 @@ BEGIN
     COMMIT;
 END//
 DELIMITER ;
-
 
 
 DELIMITER //
