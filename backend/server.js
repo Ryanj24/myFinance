@@ -1,7 +1,10 @@
 import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
-import { getUsers } from './database/database.js'
+import { getUsers } from './controllers/userControllers.js';
+import { userRouter } from './routes/userRoutes.js';
+import { stockRouter } from './routes/stockRoutes.js';
+import { accountsRouter } from './routes/accountsRoutes.js';
 
 const app = express();
 
@@ -10,13 +13,11 @@ app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-app.get("/", async (req, res) => {
-
-    const users = await getUsers();
-    res.send(users);
-})
+app.use('/api/users', userRouter);
+app.use('/api/accounts', accountsRouter);
+app.use('/api/stock', stockRouter);
 
 
-app.listen("3000", () => {
-    console.log("Listening for requests")
+app.listen(process.env.PORT_NUMBER, () => {
+    console.log(`Listening for requests on port ${process.env.PORT_NUMBER}`)
 })
