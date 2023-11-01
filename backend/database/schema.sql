@@ -3,7 +3,7 @@ CREATE TABLE users (
     `first_name` VARCHAR(20),
     `last_name` VARCHAR(20),
     `email` VARCHAR(32),
-    `password` VARCHAR(32),
+    `password` VARCHAR(255),
     `date_of_birth` DATE,
     PRIMARY KEY(`id`)
 );

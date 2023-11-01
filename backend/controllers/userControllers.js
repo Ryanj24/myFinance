@@ -1,5 +1,6 @@
 import { db } from "../database/database.js";
 import { validateUserCredentials } from "../utilityFunctions/validateUserCredentials.js";
+import bcrypt from 'bcrypt'
 
 export const getUsers = async () => {
 
@@ -26,5 +27,19 @@ export const registerUser = async (req, res) => {
         return res.json({error: true, message: validCredentials.message})
     }
 
-    return res.json({error: false, message: "Successfully registered"})
+    const salt = await bcrypt.genSalt(15);
+
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+    try {
+        const response = await db.query(
+            `INSERT INTO users (first_name, last_name, email, password, date_of_birth)
+             VALUES (?, ?, ?, ?, ?)`,
+             [req.body.first_name, req.body.last_name, req.body.email, hashedPassword, req.body.date_of_birth]
+        );
+
+        return res.json(response);
+    } catch (error) {
+        return res.json(error)
+    }
 }
