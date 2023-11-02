@@ -208,3 +208,12 @@ BEGIN
     COMMIT;
 END//
 DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER deleteBankAccount
+BEFORE DELETE ON bank_accounts
+FOR EACH ROW
+BEGIN
+    DELETE FROM `bank_transactions` WHERE `account_id` = OLD.id;
+END//
+DELIMITER ;
