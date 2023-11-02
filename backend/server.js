@@ -1,7 +1,6 @@
 import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
-import { getUsers } from './controllers/userControllers.js';
 import { userRouter } from './routes/userRoutes.js';
 import { stockRouter } from './routes/stockRoutes.js';
 import { accountsRouter } from './routes/accountsRoutes.js';

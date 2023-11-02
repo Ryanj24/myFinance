@@ -11,7 +11,8 @@ CREATE TABLE users (
 CREATE TABLE bank_accounts (
     `id` INT unsigned NOT NULL AUTO_INCREMENT,
     `account_name` VARCHAR(20),
-    `balance` DECIMAL(10, 2) CHECK(`balance` >= 0),
+    `account_number` INT unsigned,
+    `balance` DECIMAL(10, 2) CHECK(`balance` >= 0) DEFAULT 0,
     `account_owner_id` INT unsigned,
     PRIMARY KEY(`id`),
     FOREIGN KEY(`account_owner_id`) REFERENCES users(`id`)
