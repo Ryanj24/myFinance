@@ -73,16 +73,16 @@ export const accountTransaction = async (req, res) => {
 
     try {
         // Call the bank_transaction_procedure, passing in the relevant arguments
-        const transaction = await db.query(
+        const procedureCall = await db.query(
             `CALL bank_transaction_procedure(?, ?, ?, ?, ?, ?)`, 
             [req.params.id, req.body.transactionType, id, req.body.amount, req.body.category, dateOfTransaction]
         )
 
         // Select the account where the transaction was made
-        const account = await db.query(`SELECT * FROM bank_accounts WHERE id = ?`, [req.params.id])
+        const transaction = await db.query(`SELECT id, type, category, transaction_date, amount FROM bank_transactions WHERE account_id = ? ORDER BY id DESC LIMIT 1`,  [req.params.id]);
 
         // Return the account
-        return res.json(account[0][0]);
+        return res.json(transaction[0][0]);
 
     } catch (error) {
         // Return any errors

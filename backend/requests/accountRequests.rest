@@ -47,3 +47,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZmlyc3Rfb
 }
 
 ###
+
+POST http://localhost:3000/api/accounts/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZmlyc3RfbmFtZSI6IlJ5YW4iLCJsYXN0X25hbWUiOiJKYWNrc29uIiwiZW1haWwiOiJyeWFuQGdtYWlsLmNvbSIsImRhdGVfb2ZfYmlydGgiOiIyMDIzLTExLTAxVDAwOjAwOjAwLjAwMFoiLCJpYXQiOjE2OTg5MTIxNzZ9.bnJ20hASqZm0KjdQbHKvSLTWWLpAILF1zaJMM_hDqsE
+
+{
+    "transactionType": "Expense",
+    "amount": 500.00,
+    "category": "Transportation"
+}
+
+###
