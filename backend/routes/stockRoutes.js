@@ -1,7 +1,10 @@
 import express from 'express'
 import {getPortfolios, createPortfolio, getSinglePortoflio, stockTransaction, updatePortfolio, deletePortfolio} from '../controllers/stockControllers.js'
+import { authorizeUser } from '../middleware/authorizeUser.js';
 
 const router = express.Router();
+
+router.use(authorizeUser);
 
 router.get("/", getPortfolios)
 
