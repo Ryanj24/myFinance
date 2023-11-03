@@ -11,7 +11,7 @@ CREATE TABLE users (
 CREATE TABLE bank_accounts (
     `id` INT unsigned NOT NULL AUTO_INCREMENT,
     `account_name` VARCHAR(20),
-    `account_number` INT unsigned,
+    `account_number` INT unsigned UNIQUE,
     `balance` DECIMAL(10, 2) CHECK(`balance` >= 0) DEFAULT 0,
     `account_owner_id` INT unsigned,
     PRIMARY KEY(`id`),
@@ -20,8 +20,8 @@ CREATE TABLE bank_accounts (
 
 CREATE TABLE stock_portfolio (
     `id` INT unsigned NOT NULL AUTO_INCREMENT,
-    `portfolio_name` VARCHAR(20),
-    `balance` DECIMAL(10, 2) CHECK(`balance` >= 0),
+    `portfolio_name` VARCHAR(64),
+    `balance` DECIMAL(10, 2) CHECK(`balance` >= 0) DEFAULT 0,
     `portfolio_owner_id` INT unsigned,
     PRIMARY KEY(`id`),
     FOREIGN KEY(`portfolio_owner_id`) REFERENCES `users`(`id`)
@@ -53,7 +53,7 @@ CREATE TABLE stock_transactions (
     `company_name` VARCHAR(64),
     `company_ticker` VARCHAR(4),
     `type` ENUM("Buy", "Sell"),
-    `purchase_date` DATE,
+    `transaction_date` DATE,
     `quantity` INT unsigned CHECK(`quantity` > 0),
     `price_per_share` DECIMAL(8, 2) unsigned CHECK(`price_per_share` > 0),
     `total_amount` DECIMAL(10, 2) unsigned CHECK(`total_amount` >= 0),
@@ -149,7 +149,7 @@ BEGIN
             END IF;
 
 
-            INSERT INTO `stock_transactions` (portfolio_id, company_name, company_ticker, type, purchase_date, quantity, price_per_share, total_amount)
+            INSERT INTO `stock_transactions` (portfolio_id, company_name, company_ticker, type, transaction_date, quantity, price_per_share, total_amount)
             VALUES (id_of_portfolio, name_of_company, ticker_symbol, "Buy", date_of_transaction, quantity_of_shares, share_price, ROUND(quantity_of_shares * share_price, 2));
 
 
@@ -172,7 +172,7 @@ BEGIN
             END IF;
 
 
-            INSERT INTO `stock_transactions` (portfolio_id, company_name, company_ticker, type, purchase_date, quantity, price_per_share, total_amount)
+            INSERT INTO `stock_transactions` (portfolio_id, company_name, company_ticker, type, transaction_date, quantity, price_per_share, total_amount)
             VALUES (id_of_portfolio, name_of_company, ticker_symbol, "Sell", date_of_transaction, quantity_of_shares, share_price, ROUND(quantity_of_shares * share_price, 2));
         END IF;
     COMMIT;
@@ -215,5 +215,15 @@ BEFORE DELETE ON bank_accounts
 FOR EACH ROW
 BEGIN
     DELETE FROM `bank_transactions` WHERE `account_id` = OLD.id;
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER deletePortfolio
+BEFORE DELETE ON stock_portfolio
+FOR EACH ROW
+BEGIN
+    DELETE FROM `stock_holdings` WHERE `portfolio_id` = OLD.id;
+    DELETE FROM `stock_transactions` WHERE `portfolio_id` = OLD.id;
 END//
 DELIMITER ;

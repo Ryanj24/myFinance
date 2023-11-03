@@ -17,13 +17,15 @@ export const createNewAccount = async (req, res) => {
     const {id} = jwt.decode(token)
 
     try {
-        const account = await db.query(
+        const query = await db.query(
             `INSERT INTO bank_accounts (account_name, account_number, account_owner_id)
              VALUES (?, ?, ?)
             `, [req.body.accountName, req.body.accountNumber, id]
         )
 
-        return res.json(account)
+        const account = await db.query(`SELECT * FROM bank_accounts WHERE account_number = ?`, [req.body.accountNumber])
+
+        return res.json(account[0][0]);
         
     } catch (error) {
         return res.json(error)
@@ -47,21 +49,24 @@ export const getSingleAccount = async (req, res) => {
 
 }
 
-export const depositFunds = async (req, res) => {
+export const accountTransaction = async (req, res) => {
 
     const token = req.headers.authorization.split(" ")[1]
     const {id} = jwt.decode(token)
 
-    let dateOfDeposit = new Date();
-    dateOfDeposit = dateOfDeposit.toISOString().split("T")[0];
+    let dateOfTransaction = new Date();
+    dateOfTransaction = dateOfTransaction.toISOString().split("T")[0];
 
     try {
-        const deposit = await db.query(
-            `CALL bank_transaction_procedure(?, "Deposit", ?, ?, ?, ?)`, 
-            [req.params.id, id, req.body.depositAmount, req.body.category, dateOfDeposit]
+        const transaction = await db.query(
+            `CALL bank_transaction_procedure(?, ?, ?, ?, ?, ?)`, 
+            [req.params.id, req.body.transactionType, id, req.body.amount, req.body.category, dateOfTransaction]
         )
 
-        res.json(deposit);
+        const account = await db.query(`SELECT * FROM bank_accounts WHERE id = ?`, [req.params.id])
+
+        return res.json(account[0][0]);
+
     } catch (error) {
         res.json(error);
     }
@@ -78,7 +83,10 @@ export const updateAccount = async (req, res) => {
             [req.body.accountName, req.body.accountNumber, req.params.id, id]
         )
 
-        return res.json(update)
+        const updatedAccount = await db.query(`SELECT * FROM bank_accounts WHERE account_number = ?`, [req.body.accountNumber])
+
+        return res.json(updatedAccount[0][0]);
+
     } catch (error) {
         return res.json(error)
     }
@@ -91,9 +99,12 @@ export const deleteAccount = async (req, res) => {
     const {id} = jwt.decode(token)
 
     try {
-        const account = await db.query(`DELETE FROM bank_accounts WHERE id = ?`, [req.params.id])
 
-        return res.json(account)
+        const deletedAccount = await db.query(`SELECT * FROM bank_accounts WHERE id = ?`, [req.params.id])
+
+        const deleteReq = await db.query(`DELETE FROM bank_accounts WHERE id = ?`, [req.params.id])
+
+        return res.json(deletedAccount)
     } catch (error) {
         return res.json(error)
     }

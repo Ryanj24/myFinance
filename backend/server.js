@@ -14,7 +14,7 @@ app.use(express.urlencoded({extended: true}))
 
 app.use('/api/users', userRouter);
 app.use('/api/accounts', accountsRouter);
-app.use('/api/stock', stockRouter);
+app.use('/api/portfolios', stockRouter);
 
 
 app.listen(process.env.PORT_NUMBER, () => {

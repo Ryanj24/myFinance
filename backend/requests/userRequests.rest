@@ -1,0 +1,26 @@
+# Register User
+POST http://localhost:3000/api/users/register
+Content-Type: application/json
+
+{
+    "first_name": "Ryan",
+    "last_name": "Jackson",
+    "email": "rec@gmail.com",
+    "password": "Inf!nity_x1!",
+    "date_of_birth": "2023-11-01"
+}
+
+###
+
+# Login User
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+    "first_name": "Ryan",
+    "last_name": "Jackson",
+    "email": "ryan@gmail.com",
+    "password": "Inf!nity_x1!"
+}
+
+### 
