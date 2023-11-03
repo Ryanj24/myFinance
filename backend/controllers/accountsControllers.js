@@ -47,6 +47,26 @@ export const getSingleAccount = async (req, res) => {
 
 }
 
+export const depositFunds = async (req, res) => {
+
+    const token = req.headers.authorization.split(" ")[1]
+    const {id} = jwt.decode(token)
+
+    let dateOfDeposit = new Date();
+    dateOfDeposit = dateOfDeposit.toISOString().split("T")[0];
+
+    try {
+        const deposit = await db.query(
+            `CALL bank_transaction_procedure(?, "Deposit", ?, ?, ?, ?)`, 
+            [req.params.id, id, req.body.depositAmount, req.body.category, dateOfDeposit]
+        )
+
+        res.json(deposit);
+    } catch (error) {
+        res.json(error);
+    }
+}
+
 export const updateAccount = async (req, res) => {
 
     const token = req.headers.authorization.split(" ")[1]
