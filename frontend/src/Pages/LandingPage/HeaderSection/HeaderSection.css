@@ -3,11 +3,7 @@
     justify-content: space-around;
     align-items: center;
     padding: 20px;
-    background-color: green;
-}
-
-.header-section > .image-container {
-    /* background-color: aqua; */
+    /* background-color: green; */
 }
 
 .header-section > .header-text {
