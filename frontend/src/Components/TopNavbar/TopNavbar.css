@@ -1,0 +1,22 @@
+.top-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: yellow;
+    height: 10%;
+}
+
+.top-navbar > .nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.top-navbar > .nav-links > .nav-link {
+    list-style: none;
+    margin: 0 30px;
+}
+
+.top-navbar > .nav-links > .nav-link > a {
+    text-decoration: none;
+}

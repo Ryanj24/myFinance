@@ -1,0 +1,23 @@
+.header-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    background-color: green;
+}
+
+.header-section > .image-container {
+    /* background-color: aqua; */
+}
+
+.header-section > .header-text {
+    max-width: 30%;
+    text-wrap: pretty;
+    /* background-color: lightcoral; */
+}
+
+.header-section > .header-text > .sub-header-text {
+    font-size: large;
+    line-height: 1.75rem;
+    margin-top: 40px;
+}
