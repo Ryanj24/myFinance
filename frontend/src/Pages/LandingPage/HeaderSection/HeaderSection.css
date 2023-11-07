@@ -3,13 +3,11 @@
     justify-content: space-around;
     align-items: center;
     padding: 20px;
-    /* background-color: green; */
 }
 
 .header-section > .header-text {
     max-width: 30%;
     text-wrap: pretty;
-    /* background-color: lightcoral; */
 }
 
 .header-section > .header-text > .sub-header-text {
