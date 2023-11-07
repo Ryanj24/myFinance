@@ -33,7 +33,7 @@ const FeatureSection = () => {
                 imageSource={savingsGoals}
                 imageAlt="A man looking through a telescope to the top of a mountain that has a coin at its peak"
                 cardHeader="Set Savings Goals"
-                cardDescription="The ability to set individual savings goals. Perhaps it's a holiday? or a new car? Keep track of your current progress towards your goals!"
+                cardDescription="The ability to set individual savings goals. Perhaps it's a holiday? or a new car? Keep track of progress towards your goals!"
             />
         </Box>
     </Container>
