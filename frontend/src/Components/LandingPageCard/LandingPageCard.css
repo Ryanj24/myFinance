@@ -16,3 +16,9 @@
 .card-container > p {
     text-align: center;
 }
+
+@media screen and (max-width: 850px) {
+    .card-container {
+        margin-bottom: 30px;
+    }
+}

@@ -25,7 +25,7 @@ const FAQSection = () => {
             </Accordion>
             <Accordion className='faq-accordion'>
                 <AccordionSummary expandIcon={<ExpandMoreIcon sx={{color: "var(--primary-col)"}}/>}>
-                    <p>I don't have a portfolio of stocks but want to just manage my money, can I use your platform?</p>
+                    <p>Can I use the platform if I don't have a portfolio of stocks?</p>
                 </AccordionSummary>
                 <AccordionDetails>
                     <p>Absolutely, there is no requirement to own a portfolio of stocks in order to use the platform</p>

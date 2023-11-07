@@ -14,7 +14,7 @@ const TopNavbar = () => {
                 <Link to="/login">Login</Link>
             </li>
             <li className="nav-link">
-                <Button variant='contained' href='/register' sx={{textTransform: "none"}}>Create an Account</Button>
+                <Button variant='contained' href='/register' sx={{textTransform: "none", borderRadius: "10px"}}>Create Account</Button>
             </li>
         </ul>
     </nav>

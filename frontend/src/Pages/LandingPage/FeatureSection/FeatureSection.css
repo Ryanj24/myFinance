@@ -13,3 +13,12 @@
     justify-content: space-evenly;
     margin-bottom: 50px;
 }
+
+@media screen and (max-width: 850px) {
+    .feature-section > .feature-cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+}

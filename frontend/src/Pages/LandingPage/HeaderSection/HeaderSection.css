@@ -17,3 +17,23 @@
     line-height: 1.75rem;
     margin-top: 40px;
 }
+
+@media screen and (max-width: 900px) {
+    .header-section {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .header-section > .image-container {
+        max-width: 100%;
+    }
+
+    .header-section > .image-container > img {
+        max-width: 100%;
+    }
+
+    .header-section > .header-text {
+        max-width: 100%;
+        text-align: center;
+    }
+}
