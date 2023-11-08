@@ -1,3 +1,20 @@
-export const loginUser = async (req, res) => {
-    
+export const loginUser = async (data) => {
+
+    try {
+        const request = await fetch(`http://localhost:3000/api/users/login`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+
+        const response = await request.json()
+
+        return response
+    } catch (error) {
+        return error
+    }
+
 }
