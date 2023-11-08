@@ -3,13 +3,23 @@ import './LoginRegisterForm.css'
 import { Box, Button, Container, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form' 
+import { registerUser } from '../../utilityFunctions/registerUser.js'
+import { loginUser } from '../../utilityFunctions/loginUser.js'
 
 const LoginRegisterForm = ({formType}) => {
 
   const {register, handleSubmit} = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    if (formType === "Register") {
+      const response = await registerUser(data)
+
+      console.log(response);
+    } else {
+      const response = await loginUser(data)
+
+      console.log(response);
+    }
   }
 
   return (
@@ -41,8 +51,8 @@ const LoginRegisterForm = ({formType}) => {
                 </div>
 
                 <div className="dob-input">
-                  <label htmlFor='dob'>Date of Birth</label>
-                  <input type="date" id='dob' {...register("dob")}/>
+                  <label htmlFor='date_of_birth'>Date of Birth</label>
+                  <input type="date" id='date_of_birth' {...register("date_of_birth")}/>
                 </div>
               </Box>
               <Button variant='contained' sx={{textTransform: "none", borderRadius: "10px"}} type='submit'>Create Account</Button>
