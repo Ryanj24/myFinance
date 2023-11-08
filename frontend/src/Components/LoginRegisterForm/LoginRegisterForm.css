@@ -1,35 +1,57 @@
-#login-register-form {
+.form-layout-container > form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#login-register-form > .form-inputs {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(2, 1fr);
+.form-layout-container > .login-register-link {
+    position: absolute;
+    bottom: 20px;
+    font-size: larger;
+}
+
+.form-inputs {
     margin-bottom: 30px;
 }
 
-#login-register-form > .form-inputs > div {
+.form-inputs > div {
     display: flex;
     flex-direction: column;
 }
 
-#login-register-form > .form-inputs > div > label {
+
+.form-inputs > div > label {
     font-size: x-large;
     margin-bottom: 5px;
 }
 
-#login-register-form > .form-inputs > div > input {
+.form-inputs > div > input {
     padding: 5px 0 5px 5px;
     font-size: larger;
     border-radius: 5px;
     border: 1px solid #e3e3e3;
 }
 
-#login-register-form > .form-inputs > div > input:focus {
+.form-inputs > div > input:focus {
     outline: none;
     border: none;
     box-shadow: 1px 1px 8px 2px var(--primary-col);
 }
+
+/* Register form styles */
+
+#register-form > .form-inputs {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 30px;
+}
+
+
+/* Login form styles */
+
+#login-form > .form-inputs > div {
+    margin: 20px;
+}
+
+
