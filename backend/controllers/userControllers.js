@@ -54,7 +54,7 @@ export const registerUser = async (req, res) => {
     }
     
     // Check that the email and password provided by the user in the register form are valid
-    const validCredentials = validateUserCredentials("Register", req.body.email, req.body.password);
+    const validCredentials = validateUserCredentials("Register", req.body.email, req.body.password, req.body.date_of_birth);
 
     // If the credentials are not valid, alert the user as to the reason why
     if (!validCredentials.validated) {
