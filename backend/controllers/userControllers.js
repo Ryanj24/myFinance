@@ -50,7 +50,7 @@ export const registerUser = async (req, res) => {
 
     // If a user exists, alert the user that a user with the email they have provided already exists in the database 
     if (userExists[0][0]) {
-        return res.json({error: true, message: "User with that email already exists"})
+        return res.json({error: true, field: "email", message: "User with that email already exists"})
     }
     
     // Check that the email and password provided by the user in the register form are valid
@@ -58,7 +58,7 @@ export const registerUser = async (req, res) => {
 
     // If the credentials are not valid, alert the user as to the reason why
     if (!validCredentials.validated) {
-        return res.json({error: true, message: validCredentials.message})
+        return res.json({error: true, field: validCredentials.field, message: validCredentials.message})
     }
 
     // Create a salt to be used in the password hash

@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './LoginRegisterForm.css'
-import { Box, Button, Container, Typography } from '@mui/material'
+import { Box, Button, Container, Typography, Alert } from '@mui/material'
+import {Cancel} from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form' 
 import { registerUser } from '../../utilityFunctions/registerUser.js'
@@ -8,11 +9,15 @@ import { loginUser } from '../../utilityFunctions/loginUser.js'
 
 const LoginRegisterForm = ({formType}) => {
 
-  const {register, handleSubmit} = useForm();
+  const {register, handleSubmit, formState: {isSubmitSuccessful, errors}, setError, clearErrors, reset} = useForm();
 
   const onSubmit = async (data) => {
     if (formType === "Register") {
       const response = await registerUser(data)
+
+      if (response.error) {
+        setError(`${response.field}`, {message: response.message})
+      }
 
       console.log(response);
     } else {
@@ -22,9 +27,30 @@ const LoginRegisterForm = ({formType}) => {
     }
   }
 
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful])
+
   return (
     <Container component="div" className="form-layout-container" sx={{display: "flex", flexDirection: "column", alignItems: "center"}} maxWidth="sm">
 
+        {errors.email && 
+          <Alert variant='filled' severity='error' icon={<Cancel fontSize='inherit' />} sx={{marginTop: "20px", marginBottom: "20px"}}>
+            {errors.email?.message}
+          </Alert>
+        }
+        {errors.password && 
+          <Alert variant='filled' severity='error' icon={<Cancel fontSize='inherit' />} sx={{marginTop: "20px", marginBottom: "20px"}}>
+            {errors.password?.message}
+          </Alert>
+        }
+        {errors.date_of_birth && 
+          <Alert variant='filled' severity='error' icon={<Cancel fontSize='inherit' />} sx={{marginTop: "20px", marginBottom: "20px"}}>
+            {errors.date_of_birth?.message}
+          </Alert>
+        }
         {formType === "Register"
         ?
           <>
