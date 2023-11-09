@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './LoginRegisterForm.css'
 import { Box, Button, Container, Typography, Alert } from '@mui/material'
-import {Cancel} from '@mui/icons-material'
-import { Link } from 'react-router-dom'
+import { Cancel, CheckCircleRounded } from '@mui/icons-material'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form' 
 import { registerUser } from '../../utilityFunctions/registerUser.js'
 import { loginUser } from '../../utilityFunctions/loginUser.js'
@@ -10,6 +10,8 @@ import { loginUser } from '../../utilityFunctions/loginUser.js'
 const LoginRegisterForm = ({formType}) => {
 
   const {register, handleSubmit, formState: {isSubmitSuccessful, errors}, setError, clearErrors, reset} = useForm();
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const navigation = useNavigate();
 
   const onSubmit = async (data) => {
     if (formType === "Register") {
@@ -30,6 +32,8 @@ const LoginRegisterForm = ({formType}) => {
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset();
+      setRegistrationSuccess(true);
+      setTimeout(() => {navigation("/login")}, 2000)
     }
   }, [isSubmitSuccessful])
 
@@ -49,6 +53,13 @@ const LoginRegisterForm = ({formType}) => {
         {errors.date_of_birth && 
           <Alert variant='filled' severity='error' icon={<Cancel fontSize='inherit' />} sx={{marginTop: "20px", marginBottom: "20px"}}>
             {errors.date_of_birth?.message}
+          </Alert>
+        }
+
+        {
+          registrationSuccess && 
+          <Alert variant='filled' severity='success' icon={<CheckCircleRounded fontSize='inherit' />} sx={{marginTop: "20px", marginBottom: "20px"}}>
+            <p>Registration successful! Redirecting to Login page</p>
           </Alert>
         }
         {formType === "Register"
