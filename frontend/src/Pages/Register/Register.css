@@ -20,3 +20,14 @@
 .form-container > .form-header {
     margin-bottom: 50px;
 }
+
+
+@media screen and (max-width: 600px) {
+    .register-illustration-container {
+        display: none;
+    }
+
+    .form-container {
+        min-width: 100%;
+    }
+}

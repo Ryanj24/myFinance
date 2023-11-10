@@ -53,7 +53,7 @@ export const registerUser = async (req, res) => {
         return res.json({error: true, field: "email", message: "User with that email already exists"})
     }
     
-    // Check that the email and password provided by the user in the register form are valid
+    // Check that the email, password & date of birth provided by the user in the register form are valid
     const validCredentials = validateUserCredentials("Register", req.body.email, req.body.password, req.body.date_of_birth);
 
     // If the credentials are not valid, alert the user as to the reason why

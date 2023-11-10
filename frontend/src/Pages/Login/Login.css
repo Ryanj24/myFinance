@@ -20,3 +20,13 @@
 .form-container > .form-header {
     margin-bottom: 50px;
 }
+
+@media screen and (max-width: 600px) {
+    .login-illustration-container {
+        display: none;
+    }
+
+    .form-container {
+        min-width: 100%;
+    }
+}

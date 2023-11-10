@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 100%;
+    margin-bottom: 40px;
 }
 
 .form-layout-container > .login-register-link {
@@ -43,6 +45,7 @@
 #register-form > .form-inputs {
     display: grid;
     gap: 2rem;
+    max-width: 100%;
     grid-template-columns: repeat(2, 1fr);
     margin-bottom: 30px;
 }
@@ -55,3 +58,11 @@
 }
 
 
+/* Media queries */
+@media screen and (max-width: 900px) {
+    #register-form > .form-inputs {
+        gap: 1.5rem;
+        grid-template-columns: 1fr;
+        margin-bottom: 30px;
+    }
+}
