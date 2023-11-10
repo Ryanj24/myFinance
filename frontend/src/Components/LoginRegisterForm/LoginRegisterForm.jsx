@@ -30,10 +30,14 @@ const LoginRegisterForm = ({formType}) => {
   }
 
   useEffect(() => {
-    if (isSubmitSuccessful) {
+    if (isSubmitSuccessful && formType === "Register") {
       reset();
       setRegistrationSuccess(true);
       setTimeout(() => {navigation("/login")}, 2000)
+    }
+
+    if (isSubmitSuccessful && formType === "Login") {
+      navigation("/dashboard")
     }
   }, [isSubmitSuccessful])
 
