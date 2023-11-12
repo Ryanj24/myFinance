@@ -5,7 +5,7 @@ import { ArrowCircleLeft } from '@mui/icons-material'
 import NavHeader from './NavHeader.jsx'
 import NavLinks from './NavLinks.jsx'
 
-const sideNavbar = () => {
+const SideNavbar = () => {
 
   const navRef = useRef();
   const minBtnRef = useRef();
@@ -33,4 +33,4 @@ const sideNavbar = () => {
   )
 }
 
-export default sideNavbar
+export default SideNavbar
