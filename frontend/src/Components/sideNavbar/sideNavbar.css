@@ -6,7 +6,8 @@
     position: relative;
     border-radius: 0 20px 20px 0;
     display: grid;
-    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-rows: 25% 65% 10%;
+    transition: width 0.2s;
 }
 
 .side-navbar.min {
@@ -17,11 +18,15 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    grid-row: 0 / 1;
 }
 
 .side-navbar.min > .nav-minimise {
-    right: 35px;
+    position: relative;
+    top: 20px;
+    left: 20px;
+    height: fit-content;
+    width: fit-content;
+    grid-row: 1/ 2;
 }
 
 .side-navbar > .nav-minimise > .minimise-btn {
@@ -41,7 +46,7 @@
 }
 
 .side-navbar.min > .user-header {
-    display: none
+    display: none;
 }
 
 
@@ -62,13 +67,16 @@
 }
 
 .side-navbar > .nav-links {
+    grid-row: 2 / 3;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
-    grid-row: 2 / 3;
+    justify-content: space-evenly;
 }
 
 .side-navbar > .nav-links > .nav-link {
     list-style: none;
+    max-width: 100%;
 }
 
 .side-navbar > .nav-links > .nav-link:hover {

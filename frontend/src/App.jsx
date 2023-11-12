@@ -3,6 +3,7 @@ import LandingPage from './Pages/LandingPage/LandingPage.jsx'
 import Register from './Pages/Register/Register.jsx'
 import Login from './Pages/Login/Login.jsx'
 import Dashboard from './Pages/Dashboard/Dashboard.jsx'
+import MainLayout from './Components/MainLayout/MainLayout.jsx'
 
 function App() {
   return (
@@ -12,7 +13,10 @@ function App() {
           <Route path="/landing" element={<LandingPage />}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
-          <Route path="/dashboard" element={<Dashboard />}/>
+          {/* <Route path="/dashboard" element={<Dashboard />}/> */}
+          <Route path='home' element={<MainLayout />}>
+            <Route path="dashboard" element={<Dashboard />}/>
+          </Route>
 
           {/* <Route path="/dashboard" element={<Dashboard />}/>
           <Route path="/profile" element={<UserProfile />}/>

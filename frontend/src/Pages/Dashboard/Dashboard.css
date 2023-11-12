@@ -1,0 +1,51 @@
+.dashboard-grid {
+    width: 100%;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    padding: 1.5rem;
+}
+
+
+.dashboard-grid > div {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.dashboard-grid > .income-chart {
+    background-color: yellow;
+    grid-row: 1 / 3;
+    grid-column: 1 / 5;
+}
+
+.dashboard-grid > .goals {
+    background-color: red;
+    grid-row: 1 / 3;
+    grid-column: 5 / -1;
+}
+
+.dashboard-grid > .budget {
+    background-color: green;
+    grid-row: 3 / -1;
+    grid-column: 1 / 3;
+}
+
+.dashboard-grid > .transactions {
+    background-color: blueviolet;
+    grid-row: 3 / -1;
+    grid-column: 3 / 5;
+}
+
+.dashboard-grid > .accounts {
+    background-color: darkorange;
+    grid-row: 3 / -1;
+    grid-column: 5 / -1;
+}
+
+/* @media screen and (max-width: 900px) {
+    .dashboard-grid {
+        display: flex;
+        flex-direction: column;
+    }
+} */

@@ -6,31 +6,31 @@ const NavLinks = () => {
   return (
     <ul className='nav-links'>
         <li className='nav-link'>
-          <Link to="/dashboard">
+          <Link to="/home/dashboard">
             <Dashboard />
             <p>Dashboard</p>
           </Link>
         </li>
         <li className='nav-link'>
-          <Link to="/profile">
+          <Link to="/home/profile">
             <AccountCircle />
             <p>Profile</p>
           </Link>
         </li>
         <li className='nav-link'>
-          <Link to="/accounts">
+          <Link to="/home/accounts">
             <AccountBalance />
             <p>Accounts</p>
           </Link>
         </li>
         <li className='nav-link'>
-          <Link to="/portfolio">
+          <Link to="/home/portfolio">
             <CandlestickChart />
             <p>Stock Portfolio</p>
           </Link>
         </li>
         <li className='nav-link'>
-          <Link to="/settings">
+          <Link to="/home/settings">
             <Settings />
             <p>Settings</p>
           </Link>
