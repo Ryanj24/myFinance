@@ -43,9 +43,9 @@
     grid-column: 5 / -1;
 }
 
-/* @media screen and (max-width: 900px) {
+@media screen and (max-width: 1224px) {
     .dashboard-grid {
         display: flex;
         flex-direction: column;
     }
-} */
+}

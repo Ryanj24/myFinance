@@ -3,7 +3,7 @@ import './LandingPageNavbar.css'
 import { Link } from 'react-router-dom'
 import {Button, Container} from '@mui/material'
 
-const TopNavbar = () => {
+const LandingPageNavbar = () => {
   return (
     <nav className='top-navbar'>
         <header className='title-logo'>
@@ -21,4 +21,4 @@ const TopNavbar = () => {
   )
 }
 
-export default TopNavbar
+export default LandingPageNavbar
