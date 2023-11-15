@@ -1,8 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Dashboard, AccountCircle, AccountBalance, CandlestickChart, Settings, Logout} from '@mui/icons-material/'
+import { useDispatch } from 'react-redux'
+import { removeUser } from '../../redux/userSlice.js'
 
 const NavLinks = () => {
+
+  const dispatch = useDispatch();
+  
   return (
     <ul className='nav-links'>
         <li className='nav-link'>
@@ -36,7 +41,7 @@ const NavLinks = () => {
           </Link>
         </li>
         <li className='nav-link'>
-          <Link to="/">
+          <Link to="/" onClick={() => dispatch(removeUser())}>
             <Logout />
             <p>Log out</p>
           </Link>
