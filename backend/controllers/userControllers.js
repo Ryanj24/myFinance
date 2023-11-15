@@ -11,7 +11,7 @@ export const loginUser = async (req, res) => {
 
     // If the credentials provided aren't valid, send the reason why back to the user
     if (!validCredentials.validated) {
-        return res.json({error: true, message: validCredentials.message})
+        return res.json({error: true, field: validCredentials.field, message: validCredentials.message})
     }
 
     // Check to see if a user with the email provided exists in the database
@@ -19,7 +19,7 @@ export const loginUser = async (req, res) => {
 
     // If no user exists with that email, alert the user that this is the case
     if (!user[0][0]) {
-        return res.json({error: true, message: "No User exists with that email"})
+        return res.json({error: true, field: "email", message: "No User exists with that email"})
     }
 
     // Get & store the password from the user object returned from the database and then remove it from the object to be used in the jwt
@@ -31,7 +31,7 @@ export const loginUser = async (req, res) => {
 
     // If passwords don't match, alert the user that the password provided is incorrect
     if (!passwordsMatch) {
-        return res.json({error: true, message: "Incorrect password"})
+        return res.json({error: true, field: "password", message: "Incorrect password"})
     }
 
     // Create a jsonwebtoken using the user object retreived from the database minus the password field

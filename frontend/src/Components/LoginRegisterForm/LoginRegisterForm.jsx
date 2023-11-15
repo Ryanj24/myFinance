@@ -6,12 +6,16 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form' 
 import { registerUser } from '../../utilityFunctions/registerUser.js'
 import { loginUser } from '../../utilityFunctions/loginUser.js'
+import { useDispatch } from 'react-redux'
+import { setUser } from '../../redux/userSlice.js'
 
 const LoginRegisterForm = ({formType}) => {
 
   const {register, handleSubmit, formState: {isSubmitSuccessful, errors}, setError, clearErrors, reset} = useForm();
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const navigation = useNavigate();
+  
+  const dispatch = useDispatch(); 
 
   const onSubmit = async (data) => {
     if (formType === "Register") {
@@ -25,6 +29,14 @@ const LoginRegisterForm = ({formType}) => {
     } else {
       const response = await loginUser(data)
 
+      if (response.error) {
+        setError(`${response.field}`, {message: response.message})
+        return
+      }
+
+      dispatch(setUser({user: response.user, token: response.token}))
+
+
       console.log(response);
     }
   }
@@ -37,7 +49,7 @@ const LoginRegisterForm = ({formType}) => {
     }
 
     if (isSubmitSuccessful && formType === "Login") {
-      navigation("/dashboard")
+      navigation("/home/dashboard")
     }
   }, [isSubmitSuccessful])
 
