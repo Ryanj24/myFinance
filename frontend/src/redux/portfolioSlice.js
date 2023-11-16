@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const portfolioSlice = createSlice({
-    name: 'portfolio',
+    name: 'portfolios',
     initialState: {
         portfolios: []
     },

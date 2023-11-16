@@ -13,6 +13,12 @@ import { useSelector } from 'react-redux'
 function App() {
 
   const user = useSelector((state) => state.user.user)
+  // const accounts = useSelector((state) => state.accounts)
+  // const portfolios = useSelector((state) => state.portfolios)
+
+  console.log("User: " + user)
+  // console.log("Accounts: " + accounts)
+  // console.log("Portfolios: " + portfolios);
 
   return (
     <>
