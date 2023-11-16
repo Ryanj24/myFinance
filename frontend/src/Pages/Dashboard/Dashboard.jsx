@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { fetchUserData } from '../../utilityFunctions/fetchUserData.js'
 import { useDispatch } from 'react-redux'
 import { setAccounts } from '../../redux/accountSlice.js'
+import IncomeChart from '../../Components/DashboardCards/IncomeChart.jsx'
 
 
 const Dashboard = () => {
@@ -24,7 +25,7 @@ const Dashboard = () => {
 
   return (
     <section className='dashboard-grid'>
-      <div className="income-chart">Yearly Income</div>
+      <IncomeChart />
       <div className="goals">Current Goals</div>
       <div className="budget">Monthly Budget</div>
       <div className="transactions">Recent Transactions</div>
