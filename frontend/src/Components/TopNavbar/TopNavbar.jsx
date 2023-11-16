@@ -11,17 +11,17 @@ const TopNavbar = () => {
   const minBtnRef = useRef();
 
   const handleMinimiseClick = () => {
-    if (navRef.current.className === "top-navbar") {
-      navRef.current.className = "top-navbar expanded"
+    if (navRef.current.className === "main-top-navbar") {
+      navRef.current.className = "main-top-navbar expanded"
       minBtnRef.current.style.rotate = "180deg"
     } else {
       minBtnRef.current.style.rotate = null
-      navRef.current.className = "top-navbar"
+      navRef.current.className = "main-top-navbar"
     }
   }
 
   return (
-    <nav className='top-navbar' ref={navRef}>
+    <nav className='main-top-navbar' ref={navRef}>
       <NavHeader />
       <NavLinks />
       <div className="nav-minimise">
