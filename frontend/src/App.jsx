@@ -12,20 +12,21 @@ import { useSelector } from 'react-redux'
 
 function App() {
 
+  const user = useSelector((state) => state.user.user)
 
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/landing" index element={<LandingPage />}/>
-          <Route path="/login" element={<Login />}/>
-          <Route path="/register" element={<Register />}/>
-          <Route path='/home' element={<MainLayout />}>
-            <Route path="dashboard" element={<Dashboard />}/>
-            <Route path="profile" element={<Profile />}/>
-            <Route path="accounts" element={<Accounts />}/>
-            <Route path="portfolio" element={<Portfolio />}/>
-            <Route path="settings" element={<Settings />}/>
+          <Route path="/" index element={<LandingPage />}/>
+          <Route path="/login" element={!user ? <Login /> : <Navigate to="/home/dashboard"/>}/>
+          <Route path="/register" element={!user ? <Register /> : <Navigate to="/home/dashboard"/>}/>
+          <Route path='/home' element={user ? <MainLayout /> : <Navigate to="/login"/>}>
+            <Route path="dashboard" element={user ? <Dashboard /> : <Navigate to="/login"/>}/>
+            <Route path="profile" element={user ? <Profile /> : <Navigate to="/login"/>}/>
+            <Route path="accounts" element={user ? <Accounts /> : <Navigate to="/login"/>}/>
+            <Route path="portfolio" element={user ? <Portfolio /> : <Navigate to="/login"/>}/>
+            <Route path="settings" element={user ? <Settings /> : <Navigate to="/login"/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
