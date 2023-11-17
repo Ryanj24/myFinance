@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { fetchUserData } from '../../utilityFunctions/fetchUserData.js'
 import { useDispatch } from 'react-redux'
 import { setAccounts } from '../../redux/accountSlice.js'
+import { setPortfolios } from '../../redux/portfolioSlice.js'
 import IncomeChart from '../../Components/DashboardCards/IncomeChart.jsx'
 
 
@@ -17,9 +18,15 @@ const Dashboard = () => {
 
 
   useEffect(() => {
-    fetchUserData(userToken)
-    .then((data) => dispatch(setAccounts(data)))
-    .catch((error) => console.log(error))
+
+    if (accounts === null) {
+      fetchUserData(userToken)
+      .then((data) => {
+        dispatch(setAccounts(data.accounts))
+        dispatch(setPortfolios(data.portfolios))
+      })
+      .catch((error) => console.log(error))
+    }
 
   }, [])
 

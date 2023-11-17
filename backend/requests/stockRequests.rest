@@ -3,7 +3,16 @@ GET http://localhost:3000/api/portfolios/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZmlyc3RfbmFtZSI6IlJ5YW4iLCJsYXN0X25hbWUiOiJKYWNrc29uIiwiZW1haWwiOiJyeWFuQGdtYWlsLmNvbSIsImRhdGVfb2ZfYmlydGgiOiIyMDIzLTExLTAxVDAwOjAwOjAwLjAwMFoiLCJpYXQiOjE2OTg5MTIxNzZ9.bnJ20hASqZm0KjdQbHKvSLTWWLpAILF1zaJMM_hDqsE
 
-### 
+
+###
+
+GET http://localhost:3000/api/portfolios/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImZpcnN0X25hbWUiOiJBbXkiLCJsYXN0X25hbWUiOiJTbWl0aCIsImVtYWlsIjoiYW15Uzc0NUBnbWFpbC5jb20iLCJkYXRlX29mX2JpcnRoIjoiMTk5MC0wMi0xNFQwMDowMDowMC4wMDBaIiwicHJvZmlsZV9pbWciOm51bGwsImlhdCI6MTcwMDIwODg3N30.8Ot8o_0InsouYk_0wgDXaHMGyXRvgfOuLVvxnnmW1nE
+
+
+
+###
 
 # Create new portfolio
 POST http://localhost:3000/api/portfolios/

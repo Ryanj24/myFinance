@@ -8,10 +8,12 @@ export const getUserAccounts = async (req, res) => {
     const {id} = jwt.decode(token)
 
     // Get all bank accounts belonging to the user making the request
-    const accounts = await db.query(`SELECT account_name, account_number, balance FROM bank_accounts WHERE account_owner_id = ?`, [id])
+    const accounts = await db.query(`SELECT id, account_name, account_number, balance FROM bank_accounts WHERE account_owner_id = ?`, [id])
+
+    const transactions = await db.query(`SELECT account_id, type, category, transaction_date, amount FROM bank_transactions WHERE account_id IN (SELECT id FROM bank_accounts WHERE account_owner_id = ?)`, [id])
 
     // Return the array of accounts
-    return res.json(accounts[0])
+    return res.json({bankAccounts: accounts[0], bankTransactions: transactions[0]})
 }
 
 export const createNewAccount = async (req, res) => {

@@ -3,15 +3,17 @@ import jwt from 'jsonwebtoken'
 
 export const getPortfolios = async (req, res) => {
 
-    // // Get the user object from the request headers
-    // const token = req.headers.authorization.split(" ")[1]
-    // const user = jwt.decode(token)
+    // Get the user object from the request headers
+    const token = req.headers.authorization.split(" ")[1]
+    const user = jwt.decode(token)
 
     // Get the names and balances of the users' stock portfolios
-    const portfolios = await db.query(`SELECT portfolio_name, balance FROM stock_portfolio WHERE portfolio_owner_id = ?`, [user.id])
+    const portfolios = await db.query(`SELECT id, portfolio_name, balance FROM stock_portfolio WHERE portfolio_owner_id = ?`, [user.id])
+
+    const portfolioTransactions = await db.query(`SELECT portfolio_id, company_name, company_ticker, type, transaction_date, quantity, price_per_share, total_amount FROM stock_transactions WHERE portfolio_id IN (SELECT id FROM stock_portfolio WHERE portfolio_owner_id = ?)`, [user.id])
 
     // Return the array of portfolios
-    return res.json(portfolios[0])
+    return res.json({stockPortfolios: portfolios[0], stockTransactions: portfolioTransactions[0]})
 }
 
 export const createPortfolio = async (req, res) => {
