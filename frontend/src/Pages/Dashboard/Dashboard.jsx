@@ -4,7 +4,9 @@ import { useSelector } from 'react-redux'
 import { fetchUserData } from '../../utilityFunctions/fetchUserData.js'
 import { useDispatch } from 'react-redux'
 import { setAccounts } from '../../redux/accountSlice.js'
+import { setBankTransactions } from '../../redux/bankTransactionSlice.js'
 import { setPortfolios } from '../../redux/portfolioSlice.js'
+import { setStockTransactions } from '../../redux/stockTransactionSlice.js'
 import IncomeChart from '../../Components/DashboardCards/IncomeChart.jsx'
 
 
@@ -22,8 +24,11 @@ const Dashboard = () => {
     if (accounts === null) {
       fetchUserData(userToken)
       .then((data) => {
-        dispatch(setAccounts(data.accounts))
-        dispatch(setPortfolios(data.portfolios))
+        dispatch(setAccounts(data.accounts.bankAccounts))
+        dispatch(setBankTransactions(data.accounts.bankTransactions))
+        dispatch(setPortfolios(data.portfolios.stockPortfolios))
+        dispatch(setStockTransactions(data.portfolios.stockTransactions))
+
       })
       .catch((error) => console.log(error))
     }
