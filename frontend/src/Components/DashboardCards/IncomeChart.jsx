@@ -1,5 +1,7 @@
-import React from 'react'
-import {Bar, BarChart, Rectangle, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend} from 'recharts'
+import React, { useEffect } from 'react'
+import {Bar, BarChart, Rectangle, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, Text} from 'recharts'
+import { useSelector } from 'react-redux'
+import { incomeDataPreprocessor } from '../../utilityFunctions/incomeDataPreprocessor'
 
 const data = [
     {
@@ -54,6 +56,12 @@ const data = [
 ]
 
 const IncomeChart = () => {
+
+    // .filter(transaction => transaction.type === "Income").map(obj => incomeDataPreprocessor(obj))
+    const transactions = useSelector((state) => state.bankTransactions.transactions)  
+
+    console.log(transactions.filter(transaction => transaction.type === "Income").map(obj => incomeDataPreprocessor(obj)))
+
   return (
     <div className='income-chart'>
         <header className='income-chart-header'>
@@ -67,8 +75,8 @@ const IncomeChart = () => {
                 margin={{top: 50}}
                 
             >
-                <XAxis dataKey="name" />
-                <YAxis />
+                <XAxis dataKey="name"/>
+                <YAxis/>
                 <Tooltip />
                 <Bar dataKey="income" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
             </BarChart>
