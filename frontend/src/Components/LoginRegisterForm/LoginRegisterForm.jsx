@@ -36,8 +36,6 @@ const LoginRegisterForm = ({formType}) => {
 
       dispatch(setUser({user: response.user, token: response.token}))
 
-
-      console.log(response);
     }
   }
 

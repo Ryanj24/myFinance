@@ -5,62 +5,83 @@ import { incomeDataPreprocessor } from '../../utilityFunctions/incomeDataPreproc
 
 const data = [
     {
-        name: "Jan",
-        income: 2000
+        month: "Jan",
+        amount: 0
     },
     {
-        name: "Feb",
-        income: 3000
+        month: "Feb",
+        amount: 0
     },
     {
-        name: "Mar",
-        income: 1000
+        month: "Mar",
+        amount: 0
     },
     {
-        name: "Apr",
-        income: 2500
+        month: "Apr",
+        amount: 0
     },
     {
-        name: "May",
-        income: 1950
+        month: "May",
+        amount: 0
     },
     {
-        name: "Jun",
-        income: 2200
+        month: "Jun",
+        amount: 0
     },
     {
-        name: "Jul",
-        income: 2000
+        month: "Jul",
+        amount: 0
     },
     {
-        name: "Aug",
-        income: 2500
+        month: "Aug",
+        amount: 0
     },
     {
-        name: "Sep",
-        income: 3000
+        month: "Sep",
+        amount: 0
     },
     {
-        name: "Oct",
-        income: 1900
+        month: "Oct",
+        amount: 0
     },
     {
-        name: "Nov",
-        income: 2100
+        month: "Nov",
+        amount: 0
     },
     {
-        name: "Dec",
-        income: 1750
+        month: "Dec",
+        amount: 0
     }
 
 ]
 
+const yearlyIncome = [
+    {
+        month: "Jan",
+        amount: 0
+    },
+    {
+        month: "Feb",
+        amount: 0
+    },
+    {
+        month: "Mar",
+        amount: 0
+    }
+]
+
 const IncomeChart = () => {
 
-    // .filter(transaction => transaction.type === "Income").map(obj => incomeDataPreprocessor(obj))
-    const transactions = useSelector((state) => state.bankTransactions.transactions)  
+    const transactions = useSelector(state => state.bankTransactions.transactions)
 
-    console.log(transactions.filter(transaction => transaction.type === "Income").map(obj => incomeDataPreprocessor(obj)))
+    if (transactions === null) {
+        return (
+            <h1>Loading...</h1>
+        )
+    }
+
+    const yearlyIncome = incomeDataPreprocessor(transactions)
+
 
   return (
     <div className='income-chart'>
@@ -75,10 +96,10 @@ const IncomeChart = () => {
                 margin={{top: 50}}
                 
             >
-                <XAxis dataKey="name"/>
+                <XAxis dataKey="month"/>
                 <YAxis/>
                 <Tooltip />
-                <Bar dataKey="income" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
+                <Bar dataKey="amount" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
             </BarChart>
         </ResponsiveContainer>
     </div>
