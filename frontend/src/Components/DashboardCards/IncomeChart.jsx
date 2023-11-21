@@ -3,72 +3,6 @@ import {Bar, BarChart, Rectangle, ResponsiveContainer, XAxis, YAxis, Tooltip, Le
 import { useSelector } from 'react-redux'
 import { incomeDataPreprocessor } from '../../utilityFunctions/incomeDataPreprocessor'
 
-const data = [
-    {
-        month: "Jan",
-        amount: 0
-    },
-    {
-        month: "Feb",
-        amount: 0
-    },
-    {
-        month: "Mar",
-        amount: 0
-    },
-    {
-        month: "Apr",
-        amount: 0
-    },
-    {
-        month: "May",
-        amount: 0
-    },
-    {
-        month: "Jun",
-        amount: 0
-    },
-    {
-        month: "Jul",
-        amount: 0
-    },
-    {
-        month: "Aug",
-        amount: 0
-    },
-    {
-        month: "Sep",
-        amount: 0
-    },
-    {
-        month: "Oct",
-        amount: 0
-    },
-    {
-        month: "Nov",
-        amount: 0
-    },
-    {
-        month: "Dec",
-        amount: 0
-    }
-
-]
-
-const yearlyIncome = [
-    {
-        month: "Jan",
-        amount: 0
-    },
-    {
-        month: "Feb",
-        amount: 0
-    },
-    {
-        month: "Mar",
-        amount: 0
-    }
-]
 
 const IncomeChart = () => {
 
@@ -92,12 +26,12 @@ const IncomeChart = () => {
             <BarChart 
                 width="100%"
                 height="100%"
-                data={data}
+                data={yearlyIncome}
                 margin={{top: 50}}
                 
             >
                 <XAxis dataKey="month"/>
-                <YAxis/>
+                <YAxis domain={[0, 5000]}/>
                 <Tooltip />
                 <Bar dataKey="amount" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
             </BarChart>

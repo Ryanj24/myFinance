@@ -1,3 +1,5 @@
+
+// Define an initial map for the data
 let dataMap = new Map([
     ["Jan", 0],
     ["Feb", 0],
@@ -15,24 +17,21 @@ let dataMap = new Map([
 
 export const incomeDataPreprocessor = (data) => {
 
+    // Reset the dataMap to prevent values being accumulated
     resetDataMap();
 
+    // Filter the data to only show transactions that are Income and format the data into a new array
     const filteredData = data.filter(transaction => transaction.type === "Income").map(obj => dataFormatter(obj))
 
-    
-    filteredData.forEach(obj => {
-        if (dataMap.has(obj.month)) {
-            dataMap.set(obj.month, dataMap.get(obj.month) + obj.amount)
-        } else {
-            dataMap.set(obj.month, obj.amount)
-        }
-    });
+    // For each object in the filtered data, update the corresponding month's value in the hash map with the objects amount value
+    filteredData.forEach(obj => dataMap.set(obj.month, dataMap.get(obj.month) + obj.amount))
 
-    
+    // Create an array of objects with each object having a month property and an amount property
     const dataArray = Array.from(dataMap, (item) => {
         return {month: item[0], amount: item[1]}
     })
 
+    // Return the array
     return dataArray
 
 }
@@ -91,11 +90,10 @@ const dataFormatter = (obj) => {
             break;
     }
 
-
-    // return (({amount, transaction_date}) => ({amount, transaction_date.slice(6, 8)}))(obj);
     return {amount, month: transaction_date}
 }
 
+// Function to reset the hash map back to an original state
 const resetDataMap = () => {
     dataMap = new Map([
         ["Jan", 0],
