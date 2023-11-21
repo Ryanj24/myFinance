@@ -76,6 +76,7 @@ CREATE TABLE goals (
     `id` INT unsigned NOT NULL AUTO_INCREMENT,
     `user_id` INT unsigned,
     `goal_name` VARCHAR(64),
+    `goal_desc` TEXT,
     `current_progress` DECIMAL(10, 2),
     `end_goal` DECIMAL(10, 2),
     PRIMARY KEY(`id`),

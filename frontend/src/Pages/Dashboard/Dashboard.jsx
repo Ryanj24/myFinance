@@ -8,6 +8,7 @@ import { setBankTransactions } from '../../redux/bankTransactionSlice.js'
 import { setPortfolios } from '../../redux/portfolioSlice.js'
 import { setStockTransactions } from '../../redux/stockTransactionSlice.js'
 import IncomeChart from '../../Components/DashboardCards/IncomeChart.jsx'
+import Goals from '../../Components/DashboardCards/Goals.jsx'
 
 
 const Dashboard = () => {
@@ -38,7 +39,7 @@ const Dashboard = () => {
   return (
     <section className='dashboard-grid'>
       <IncomeChart />
-      <div className="goals">Current Goals</div>
+      <Goals />
       <div className="budget">Monthly Budget</div>
       <div className="transactions">Recent Transactions</div>
       <div className="accounts">Accounts Overview</div>
