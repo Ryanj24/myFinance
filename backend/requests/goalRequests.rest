@@ -1,0 +1,60 @@
+# Login User
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+    "email": "amyS745@gmail.com",
+    "password": "4p3x_N!nj4_W4rRi0R"
+}
+
+###
+
+# Get goals
+GET http://localhost:3000/api/goals/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImZpcnN0X25hbWUiOiJBbXkiLCJsYXN0X25hbWUiOiJTbWl0aCIsImVtYWlsIjoiYW15Uzc0NUBnbWFpbC5jb20iLCJkYXRlX29mX2JpcnRoIjoiMTk5MC0wMi0xNFQwMDowMDowMC4wMDBaIiwicHJvZmlsZV9pbWciOm51bGwsImlhdCI6MTcwMDY0MDc4N30.R4OfjjmiPwayk9hcsU1XKgkdZSbcuyOUwOIQDh7FenA
+
+###
+
+# Create new goal
+
+POST http://localhost:3000/api/goals/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImZpcnN0X25hbWUiOiJBbXkiLCJsYXN0X25hbWUiOiJTbWl0aCIsImVtYWlsIjoiYW15Uzc0NUBnbWFpbC5jb20iLCJkYXRlX29mX2JpcnRoIjoiMTk5MC0wMi0xNFQwMDowMDowMC4wMDBaIiwicHJvZmlsZV9pbWciOm51bGwsImlhdCI6MTcwMDY0MDc4N30.R4OfjjmiPwayk9hcsU1XKgkdZSbcuyOUwOIQDh7FenA
+
+{
+    "goalName": "Wedding",
+    "goalDesc": "Saving for wedding venue payment",
+    "currProg": 0,
+    "endGoal": 10000
+}
+
+###
+
+# Get a single goal
+
+GET http://localhost:3000/api/goals/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImZpcnN0X25hbWUiOiJBbXkiLCJsYXN0X25hbWUiOiJTbWl0aCIsImVtYWlsIjoiYW15Uzc0NUBnbWFpbC5jb20iLCJkYXRlX29mX2JpcnRoIjoiMTk5MC0wMi0xNFQwMDowMDowMC4wMDBaIiwicHJvZmlsZV9pbWciOm51bGwsImlhdCI6MTcwMDY0MDc4N30.R4OfjjmiPwayk9hcsU1XKgkdZSbcuyOUwOIQDh7FenA 
+
+###
+
+# Update a goal
+
+PATCH http://localhost:3000/api/goals/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImZpcnN0X25hbWUiOiJBbXkiLCJsYXN0X25hbWUiOiJTbWl0aCIsImVtYWlsIjoiYW15Uzc0NUBnbWFpbC5jb20iLCJkYXRlX29mX2JpcnRoIjoiMTk5MC0wMi0xNFQwMDowMDowMC4wMDBaIiwicHJvZmlsZV9pbWciOm51bGwsImlhdCI6MTcwMDY0MDc4N30.R4OfjjmiPwayk9hcsU1XKgkdZSbcuyOUwOIQDh7FenA 
+
+{
+    "goalName": "Wedding",
+    "goalDesc": "Saving for wedding venue payment",
+    "currProg": 1000,
+    "endGoal": 10000
+}
+###
+
+# Delete a goal
+
+DELETE http://localhost:3000/api/goals/5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImZpcnN0X25hbWUiOiJBbXkiLCJsYXN0X25hbWUiOiJTbWl0aCIsImVtYWlsIjoiYW15Uzc0NUBnbWFpbC5jb20iLCJkYXRlX29mX2JpcnRoIjoiMTk5MC0wMi0xNFQwMDowMDowMC4wMDBaIiwicHJvZmlsZV9pbWciOm51bGwsImlhdCI6MTcwMDY0MDc4N30.R4OfjjmiPwayk9hcsU1XKgkdZSbcuyOUwOIQDh7FenA 

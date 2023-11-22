@@ -23,7 +23,7 @@ export const createGoal = async (req, res) => {
 
     try {
         const query = await db.query(
-            `INSERT INTO goals (user_id, goal_name, goal_desc, current_progress, end_goal VALUES (?, ?, ?, ?, ?))`, [id, req.body.goalName, req.body.goalDesc, req.body.currProg, req.body.endGoal]
+            `INSERT INTO goals (user_id, goal_name, goal_desc, current_progress, end_goal) VALUES (?, ?, ?, ?, ?)`, [id, req.body.goalName, req.body.goalDesc, req.body.currProg, req.body.endGoal]
         )
 
         const newGoal = await db.query(`SELECT * FROM goals WHERE goal_name = ?`, [req.body.goalName])
@@ -41,7 +41,7 @@ export const getSingleGoal = async (req, res) => {
 
 
     // Return the goal
-    return res.json(goal[0])
+    return res.json(goal[0][0])
 }
 
 
@@ -50,7 +50,7 @@ export const updateGoal = async (req, res) => {
     try {
         // Update the goal in the database
         const query = await db.query(
-            `UPDATE goals SET goal_name = ?, goal_desc = ?, current_progess = ?, end_goal = ? WHERE id = ?`,
+            `UPDATE goals SET goal_name = ?, goal_desc = ?, current_progress = ?, end_goal = ? WHERE id = ?`,
             [req.body.goalName, req.body.goalDesc, req.body.currProg, req.body.endGoal, req.params.id]
         )
 
@@ -70,7 +70,14 @@ export const deleteGoal = async (req, res) => {
     
     try {
 
-        
+        // Before deletion, get the portfolio that is to be deleted
+        const deletedGoal = await db.query(`SELECT * FROM goals WHERE id = ?`, [req.params.id])
+
+        // Delete the portfolio
+        const deleteRequest = await db.query(`DELETE FROM goals WHERE id = ?`, [req.params.id])
+
+        // Return the deleted portfolio object
+        return res.json(deletedGoal[0][0])
     } catch (error) {
         // Return any errors
         return res.json(error)
