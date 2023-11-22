@@ -23,7 +23,18 @@ export const fetchUserData = async (userToken) => {
 
         const portfolios = await portfolioRequest.json()
 
-        return {accounts, portfolios}
+        const goalRequest = await fetch(`http://localhost:3000/api/goals/`, {
+            method: "GET",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${userToken}`
+            }
+        })
+
+        const goals = await goalRequest.json()
+
+        return {accounts, portfolios, goals}
     } catch (error) {
         return error
     }

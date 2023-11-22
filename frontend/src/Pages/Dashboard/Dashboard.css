@@ -28,6 +28,10 @@
     grid-column: 5 / -1;
 }
 
+.dashboard-grid > .goals > .goal-table {
+    background-color: yellow;
+}
+
 .dashboard-grid > .budget {
     background-color: green;
     grid-row: 3 / -1;

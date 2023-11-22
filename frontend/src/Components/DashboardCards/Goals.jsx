@@ -1,8 +1,44 @@
-
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import { useSelector } from 'react-redux'
+import { roundNumbers} from '../../utilityFunctions/roundNumbers.js';
 
 const Goals = () => {
+
+  const goals = useSelector(state => state.goals.goals)
+
+  if (goals === null) {
+    return (
+      <h1>Loading...</h1>
+    )
+  } 
+
   return (
-    <div className="goals">Current Goals</div>
+    <div className="goals">
+      <Table sx={{ maxWidth: "100%" }} aria-label="goal table" className='goal-table'>
+        <TableHead>
+          <TableRow>
+            <TableCell>Goal Name</TableCell>
+            <TableCell align="right">Progress</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {goals.map(goal => (
+            <TableRow key={goal.goal_name}>
+              <TableCell component="th" scope="row">
+                {goal.goal_name}
+              </TableCell>
+              {/* <TableCell align="right">{goal.current_progress / goal.end_goal * 100}%</TableCell> */}
+              <TableCell align="right">{roundNumbers(goal.current_progress / goal.end_goal, 3) * 100}%</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   )
 }
 

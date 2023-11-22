@@ -7,6 +7,7 @@ import { setAccounts } from '../../redux/accountSlice.js'
 import { setBankTransactions } from '../../redux/bankTransactionSlice.js'
 import { setPortfolios } from '../../redux/portfolioSlice.js'
 import { setStockTransactions } from '../../redux/stockTransactionSlice.js'
+import { setGoals } from '../../redux/goalSlice.js'
 import IncomeChart from '../../Components/DashboardCards/IncomeChart.jsx'
 import Goals from '../../Components/DashboardCards/Goals.jsx'
 
@@ -29,6 +30,8 @@ const Dashboard = () => {
         dispatch(setBankTransactions(data.accounts.bankTransactions))
         dispatch(setPortfolios(data.portfolios.stockPortfolios))
         dispatch(setStockTransactions(data.portfolios.stockTransactions))
+        dispatch(setGoals(data.goals))
+
 
       })
       .catch((error) => console.log(error))
