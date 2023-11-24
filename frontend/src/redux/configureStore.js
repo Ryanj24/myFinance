@@ -5,6 +5,7 @@ import portfolioReducer from './portfolioSlice.js'
 import bankTransactionReducer from './bankTransactionSlice.js'
 import stockTransactionReducer from './stockTransactionSlice.js'
 import goalReducer from './goalSlice.js'
+import budgetReducer from './budgetSlice.js'
 
 export const reduxStore = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const reduxStore = configureStore({
     portfolios: portfolioReducer,
     bankTransactions: bankTransactionReducer,
     stockTransactions: stockTransactionReducer,
-    goals: goalReducer
+    goals: goalReducer,
+    budgets: budgetReducer
   },
 })
