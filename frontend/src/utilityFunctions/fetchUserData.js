@@ -34,18 +34,18 @@ export const fetchUserData = async (userToken) => {
 
         const goals = await goalRequest.json()
 
-        // const budgetRequest = await fetch(`http://localhost:3000/api/budgets/`, {
-        //     method: "GET",
-        //     mode: "cors",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         "Authorization": `Bearer ${userToken}`
-        //     }
-        // })
+        const budgetRequest = await fetch(`http://localhost:3000/api/budgets/`, {
+            method: "GET",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${userToken}`
+            }
+        })
 
-        // const budgets = await budgetRequest.json()
+        const budgets = await budgetRequest.json()
 
-        return {accounts, portfolios, goals}
+        return {accounts, portfolios, goals, budgets}
     } catch (error) {
         return error
     }
