@@ -21,7 +21,7 @@ app.use('/api/users', userRouter);
 app.use('/api/accounts', accountsRouter);
 app.use('/api/portfolios', stockRouter);
 app.use('/api/goals', goalRouter);
-app.use('/api/budget', budgetRouter);
+app.use('/api/budgets', budgetRouter);
 
 
 app.listen(process.env.PORT_NUMBER, () => {

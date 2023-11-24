@@ -1,0 +1,46 @@
+# Get budgets 
+GET http://localhost:3000/api/budgets/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImZpcnN0X25hbWUiOiJBbXkiLCJsYXN0X25hbWUiOiJTbWl0aCIsImVtYWlsIjoiYW15Uzc0NUBnbWFpbC5jb20iLCJkYXRlX29mX2JpcnRoIjoiMTk5MC0wMi0xNFQwMDowMDowMC4wMDBaIiwicHJvZmlsZV9pbWciOm51bGwsImlhdCI6MTcwMDgxNjQxNn0.FL3Khh4TV7B_ol9SL3ERH4gq8mjK-EGoWZGNDSJ-dMo
+
+###
+
+# Set budget
+POST http://localhost:3000/api/budgets/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImZpcnN0X25hbWUiOiJBbXkiLCJsYXN0X25hbWUiOiJTbWl0aCIsImVtYWlsIjoiYW15Uzc0NUBnbWFpbC5jb20iLCJkYXRlX29mX2JpcnRoIjoiMTk5MC0wMi0xNFQwMDowMDowMC4wMDBaIiwicHJvZmlsZV9pbWciOm51bGwsImlhdCI6MTcwMDgxNjQxNn0.FL3Khh4TV7B_ol9SL3ERH4gq8mjK-EGoWZGNDSJ-dMo
+
+{
+    "month": "November",
+    "year": "2023",
+    "totalBudget": 2500,
+    "housing": 600,
+    "transportation": 300,
+    "food": 250,
+    "utils": 250,
+    "health": 350,
+    "personal": 200,
+    "entertainment": 350,
+    "other": 200
+}
+
+###
+
+# Update budget
+PATCH http://localhost:3000/api/budgets/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImZpcnN0X25hbWUiOiJBbXkiLCJsYXN0X25hbWUiOiJTbWl0aCIsImVtYWlsIjoiYW15Uzc0NUBnbWFpbC5jb20iLCJkYXRlX29mX2JpcnRoIjoiMTk5MC0wMi0xNFQwMDowMDowMC4wMDBaIiwicHJvZmlsZV9pbWciOm51bGwsImlhdCI6MTcwMDgxNjQxNn0.FL3Khh4TV7B_ol9SL3ERH4gq8mjK-EGoWZGNDSJ-dMo
+
+{
+    "month": "November",
+    "year": "2023",
+    "totalBudget": 3000,
+    "housing": 800,
+    "transportation": 400,
+    "food": 250,
+    "utils": 300,
+    "health": 350,
+    "personal": 250,
+    "entertainment": 400,
+    "other": 250
+}
