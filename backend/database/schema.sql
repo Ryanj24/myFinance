@@ -62,15 +62,26 @@ CREATE TABLE stock_transactions (
     FOREIGN KEY(`portfolio_id`) REFERENCES `stock_portfolio`(`id`)
 );
 
+
 CREATE TABLE monthly_budgets (
     `id` INT unsigned NOT NULL AUTO_INCREMENT,
     `user_id` INT unsigned,
-    `budget_amount` DECIMAL(10, 2) CHECK(`budget_amount` >= 0),
     `month` ENUM("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"),
     `year` YEAR,
+    `total_budget` DECIMAL(10,2),
+    `housing` DECIMAL(10, 2),
+    `transportation` DECIMAL(10, 2),
+    `food` DECIMAL(10, 2),
+    `utilities` DECIMAL(10, 2),
+    `medical_healthcare` DECIMAL(10, 2),
+    `personal` DECIMAL(10, 2),
+    `entertainment` DECIMAL(10, 2),
+    `other` DECIMAL(10, 2),
+    CHECK (`total_budget` = `housing` + `transportation` + `food` + `utilities` + `medical_healthcare` + `personal` + `entertainment` + `other`),
     PRIMARY KEY(`id`),
     FOREIGN KEY(`user_id`) REFERENCES `users`(`id`)
 );
+
 
 CREATE TABLE goals (
     `id` INT unsigned NOT NULL AUTO_INCREMENT,
