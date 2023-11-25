@@ -2,13 +2,15 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { ArrowRightAlt } from '@mui/icons-material';
 
-const DashboardBudgetForm = () => {
+const DashboardBudgetForm = ({setSelectedMonth, setSelectedYear}) => {
 
-    const {register, handleSubmit, formState} = useForm();
+    const {register, handleSubmit} = useForm();
 
     const onSubmit = async (data, e) => {
         e.preventDefault();
-        console.log(data)
+        setSelectedMonth(data["month-selector"])
+        setSelectedYear(parseInt(data["year-selector"], 10))
+        // console.log(data)
     }
 
   return (
