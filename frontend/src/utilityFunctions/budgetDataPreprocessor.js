@@ -15,6 +15,19 @@ export const budgetDataPreprocessor = (data, month, year) => {
 
     const filteredData = data.filter(obj => obj.month === month && obj.year == year)[0]
 
+    if (filteredData === undefined) {
+        return [
+            { name: 'Housing', value: 0},
+            { name: 'Transportation', value: 0},
+            { name: 'Food', value: 0},
+            { name: 'Utilities', value: 0},
+            { name: 'Medical & Healthcare', value: 0},
+            { name: 'Personal', value: 0},
+            { name: 'Entertainment', value: 0},
+            { name: 'Other', value: 0},
+        ]
+    }
+
     for (const [key, value] of Object.entries(filteredData)) {
         if (dataMap.has(formatColumnNames(key))) {
             dataMap.set(formatColumnNames(key), parseInt(value))
