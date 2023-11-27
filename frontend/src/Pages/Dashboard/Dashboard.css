@@ -72,6 +72,36 @@
     cursor: pointer;
 }
 
+.dashboard-grid > .budget > .budget-breakdown {
+    margin-top: 10px;
+    background-color: yellow;
+}
+
+.dashboard-grid > .budget > .budget-breakdown > .budget-categories {
+    padding: 10px;
+}
+
+.dashboard-grid > .budget > .budget-breakdown > .budget-categories > .budget-category {
+    margin: 10px 0;
+    background-color: #fff;
+    list-style: none;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard-grid > .budget > .budget-breakdown > .budget-categories > .budget-category > .category-name {
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-grid > .budget > .budget-breakdown > .budget-categories > .budget-category > .category-name > svg {
+    margin-right: 10px;
+    color: var(--primary-col);
+}
+
 .dashboard-grid > .transactions {
     background-color: blueviolet;
     grid-row: 4 / -1;

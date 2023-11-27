@@ -9,39 +9,7 @@ let dataMap = new Map([
     ["Other", 0],
 ])
 
-export const budgetDataPreprocessor = (data, month, year) => {
-
-    resetDataMap();
-
-    const filteredData = data.filter(obj => obj.month === month && obj.year == year)[0]
-
-    if (filteredData === undefined) {
-        return [
-            { name: 'Housing', value: 0},
-            { name: 'Transportation', value: 0},
-            { name: 'Food', value: 0},
-            { name: 'Utilities', value: 0},
-            { name: 'Medical & Healthcare', value: 0},
-            { name: 'Personal', value: 0},
-            { name: 'Entertainment', value: 0},
-            { name: 'Other', value: 0},
-        ]
-    }
-
-    for (const [key, value] of Object.entries(filteredData)) {
-        if (dataMap.has(formatColumnNames(key))) {
-            dataMap.set(formatColumnNames(key), parseInt(value))
-        }
-    }
-
-    const dataArray = Array.from(dataMap, (item) => {
-        return {name: item[0], value: item[1]}
-    })
-
-    return dataArray
-}
-
-const resetDataMap = () => {
+export const resetDataMap = () => {
     dataMap = new Map([
         ["Housing", 0],
         ["Transportation", 0],
@@ -52,9 +20,11 @@ const resetDataMap = () => {
         ["Entertainment", 0],
         ["Other", 0],
     ])
+
+    return dataMap
 }
 
-const formatColumnNames = (name) => {
+export const formatColumnNames = (name) => {
 
     let formattedName = "";
 
@@ -87,4 +57,36 @@ const formatColumnNames = (name) => {
             break;
     }
     return formattedName
+}
+
+export const budgetDataPreprocessor = (data, month, year) => {
+
+    dataMap = resetDataMap();
+
+    const filteredData = data.filter(obj => obj.month === month && obj.year == year)[0]
+
+    if (filteredData === undefined) {
+        return [
+            { name: 'Housing', value: 0},
+            { name: 'Transportation', value: 0},
+            { name: 'Food', value: 0},
+            { name: 'Utilities', value: 0},
+            { name: 'Medical & Healthcare', value: 0},
+            { name: 'Personal', value: 0},
+            { name: 'Entertainment', value: 0},
+            { name: 'Other', value: 0},
+        ]
+    }
+
+    for (const [key, value] of Object.entries(filteredData)) {
+        if (dataMap.has(formatColumnNames(key))) {
+            dataMap.set(formatColumnNames(key), parseInt(value))
+        }
+    }
+
+    const dataArray = Array.from(dataMap, (item) => {
+        return {name: item[0], value: item[1]}
+    })
+
+    return dataArray
 }

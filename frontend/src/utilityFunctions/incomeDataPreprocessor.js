@@ -36,10 +36,10 @@ export const incomeDataPreprocessor = (data) => {
 
 }
 
-const dataFormatter = (obj) => {
+export const dataFormatter = (obj) => {
     
     // Get amount and transaction date from object
-    let {amount, transaction_date} = obj;
+    let {amount, transaction_date, category, type} = obj;
 
     
     // Convert amount from string to number
@@ -90,7 +90,7 @@ const dataFormatter = (obj) => {
             break;
     }
 
-    return {amount, month: transaction_date}
+    return {amount, month: transaction_date, category, type}
 }
 
 // Function to reset the hash map back to an original state
