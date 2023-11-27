@@ -7,14 +7,14 @@ import { transactionDataPreprocessor } from '../../utilityFunctions/transactionD
 import { Home, Commute, Fastfood, HomeRepairService, HealthAndSafety, DevicesOther, ConfirmationNumber, MoreHoriz } from '@mui/icons-material';
 
 let chartData = [
-  { name: 'Housing', value: 0},
-  { name: 'Transportation', value: 0},
-  { name: 'Food', value: 0},
-  { name: 'Utilities', value: 0},
-  { name: 'Medical & Healthcare', value: 0},
-  { name: 'Personal', value: 0},
-  { name: 'Entertainment', value: 0},
-  { name: 'Other', value: 0},
+  { category: 'Housing', amount: 0},
+  { category: 'Transportation', amount: 0},
+  { category: 'Food', amount: 0},
+  { category: 'Utilities', amount: 0},
+  { category: 'Medical & Healthcare', amount: 0},
+  { category: 'Personal', amount: 0},
+  { category: 'Entertainment', amount: 0},
+  { category: 'Other', amount: 0},
 ]
 
 const budgetIconArray = [<Home />, <Commute />, <Fastfood />, <HomeRepairService />, <HealthAndSafety />, <DevicesOther />, <ConfirmationNumber />, <MoreHoriz />]
@@ -51,7 +51,9 @@ const Budget = () => {
   const doughnutChartData = budgetDataPreprocessor(budgets, selectedMonth, selectedYear)
   const breakdownData = transactionDataPreprocessor(transactions, selectedMonth, selectedYear)
 
-  console.log(breakdownData)
+  const joinedData = doughnutChartData.concat(breakdownData)
+
+  console.log(joinedData)
 
   return (
     <div className='budget'>
@@ -61,7 +63,7 @@ const Budget = () => {
         <DashboardBudgetForm setSelectedMonth={setSelectedMonth} setSelectedYear={setSelectedYear}/>
         <ResponsiveContainer maxHeight="80%">
           <PieChart width="100%" height="80%">
-            <Pie data={doughnutChartData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={80} outerRadius={110} fill="#8884d8">
+            <Pie data={doughnutChartData} dataKey="amount" nameKey="category" cx="50%" cy="50%" innerRadius={80} outerRadius={110} fill="#8884d8">
               <Label content={<CustomLabel budget={budgets.filter(obj => obj.month === selectedMonth && obj.year == selectedYear)[0]["total_budget"]}/>} position="center"/>
             </Pie>
             <Tooltip />

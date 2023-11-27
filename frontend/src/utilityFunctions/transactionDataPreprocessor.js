@@ -16,6 +16,7 @@ export const transactionDataPreprocessor = (data, month, year) => {
 
     dataMap = resetDataMap("budgetCategories");
 
+    // Filter the data to get expense transactions for the specified month and year
     const filteredData = data.map(obj => transactionFormatter(obj)).filter(obj => obj.type === "Expense" && obj.year === year && obj.month === month.slice(0, 3))
 
     // For each object in the filtered data, update the corresponding categories value in the hash map with the objects amount value
@@ -23,7 +24,7 @@ export const transactionDataPreprocessor = (data, month, year) => {
 
     // Create an array of objects with each object having a category property and an amount property
     const dataArray = Array.from(dataMap, (item) => {
-        return {category: item[0], amount: item[1]}
+        return {category: item[0], amountSpent: item[1]}
     })
 
     // Return the array

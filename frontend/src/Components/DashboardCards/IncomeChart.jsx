@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Bar, BarChart, Rectangle, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, Text} from 'recharts'
 import { useSelector } from 'react-redux'
 import { incomeDataPreprocessor } from '../../utilityFunctions/incomeDataPreprocessor'
@@ -8,15 +8,18 @@ const IncomeChart = () => {
 
     const transactions = useSelector(state => state.bankTransactions.transactions)
 
+
     if (transactions === null) {
         return (
             <h1>Loading...</h1>
         )
     }
 
-    const yearlyIncome = incomeDataPreprocessor(transactions)
+    const [selectedYear, setSelectedYear] = useState(2023);
 
-    console.log(yearlyIncome)
+    const yearlyIncome = incomeDataPreprocessor(transactions, selectedYear)
+
+    // console.log(yearlyIncome)
 
 
   return (

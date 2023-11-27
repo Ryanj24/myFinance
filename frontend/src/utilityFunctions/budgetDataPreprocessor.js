@@ -19,14 +19,14 @@ export const budgetDataPreprocessor = (data, month, year) => {
 
     if (filteredData === undefined) {
         return [
-            { name: 'Housing', value: 0},
-            { name: 'Transportation', value: 0},
-            { name: 'Food', value: 0},
-            { name: 'Utilities', value: 0},
-            { name: 'Medical & Healthcare', value: 0},
-            { name: 'Personal', value: 0},
-            { name: 'Entertainment', value: 0},
-            { name: 'Other', value: 0},
+            { category: 'Housing', total: 0},
+            { category: 'Transportation', total: 0},
+            { category: 'Food', total: 0},
+            { category: 'Utilities', total: 0},
+            { category: 'Medical & Healthcare', total: 0},
+            { category: 'Personal', total: 0},
+            { category: 'Entertainment', total: 0},
+            { category: 'Other', total: 0},
         ]
     }
 
@@ -37,7 +37,7 @@ export const budgetDataPreprocessor = (data, month, year) => {
     }
 
     const dataArray = Array.from(dataMap, (item) => {
-        return {name: item[0], value: item[1]}
+        return {category: item[0], total: item[1]}
     })
 
     return dataArray
