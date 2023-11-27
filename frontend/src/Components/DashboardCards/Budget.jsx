@@ -15,9 +15,24 @@ let chartData = [
   { name: 'Other', value: 0},
 ]
 
+const CustomLabel = ({viewBox, budget}) => {
+  const {cx, cy} = viewBox;
+
+  return (
+    <g>
+      <text x={cx} y={cy - 10} textAnchor='middle'>
+        Total Budget:
+      </text>
+      <text x={cx} y={cy + 10} textAnchor='middle'>
+        £{budget}
+      </text>
+    </g>
+  )
+}
+
 const Budget = () => {
 
-  const [selectedMonth, setSelectedMonth] = useState("January");
+  const [selectedMonth, setSelectedMonth] = useState("November");
   const [selectedYear, setSelectedYear] = useState(2023);
 
   const budgets = useSelector(state => state.budgets.budgets);
@@ -30,8 +45,6 @@ const Budget = () => {
 
   const chartData2 = budgetDataPreprocessor(budgets, selectedMonth, selectedYear)
 
-  console.log(chartData2)
-
 
   return (
     <div className='budget'>
@@ -41,8 +54,8 @@ const Budget = () => {
         <DashboardBudgetForm setSelectedMonth={setSelectedMonth} setSelectedYear={setSelectedYear}/>
         <ResponsiveContainer maxHeight="80%">
           <PieChart width="100%" height="80%">
-            <Pie data={chartData2} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={100} outerRadius={120} fill="#8884d8">
-              <Label value={"Total Budget: £" + budgets.filter(obj => obj.month === selectedMonth && obj.year == selectedYear)[0]["total_budget"]} position="center"/>
+            <Pie data={chartData2} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={80} outerRadius={110} fill="#8884d8">
+              <Label content={<CustomLabel budget={budgets.filter(obj => obj.month === selectedMonth && obj.year == selectedYear)[0]["total_budget"]}/>} position="center"/>
             </Pie>
             <Tooltip />
           </PieChart>
