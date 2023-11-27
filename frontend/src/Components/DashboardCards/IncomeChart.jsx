@@ -16,6 +16,8 @@ const IncomeChart = () => {
 
     const yearlyIncome = incomeDataPreprocessor(transactions)
 
+    console.log(yearlyIncome)
+
 
   return (
     <div className='income-chart'>
