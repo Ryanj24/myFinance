@@ -1,7 +1,7 @@
 .dashboard-grid {
     width: 100%;
     display: grid;
-    gap: 1.5rem;
+    gap: 1rem;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(6, 1fr);
     padding: 1.5rem;
@@ -29,6 +29,30 @@
     flex-direction: column; */
 }
 
+.dashboard-grid > .income-chart > #income-year-selector-form {
+    display: flex;
+    padding: 10px 0;
+}
+
+.dashboard-grid > .income-chart > #income-year-selector-form > select {
+    padding: 5px;
+    font-size: medium;
+    margin: 0 10px;
+}
+
+.dashboard-grid > .income-chart > #income-year-selector-form > button {
+    background: none;
+    border: none;
+}
+
+.dashboard-grid > .income-chart > #income-year-selector-form > button:hover {
+    cursor: pointer;
+}
+
+.dashboard-grid > .income-chart > #income-year-selector-form > button > svg{
+    color: var(--primary-col);
+}
+
 .dashboard-grid > .goals {
     background-color: red;
     grid-row: 1 / 4;
@@ -52,12 +76,12 @@
 
 .dashboard-grid > .budget > #budget-date-selector-form {
     display: flex;
-    background-color: aqua;
     padding: 10px 0;
 }
 
 .dashboard-grid > .budget > #budget-date-selector-form > select {
     padding: 5px;
+    font-size: medium;
 }
 
 .dashboard-grid > .budget > #budget-date-selector-form > select:nth-child(2) {
@@ -73,9 +97,12 @@
     cursor: pointer;
 }
 
+.dashboard-grid > .budget > #budget-date-selector-form > button > svg{
+    color: var(--primary-col);
+}
+
 .dashboard-grid > .budget > .budget-breakdown {
     margin-top: 10px;
-    background-color: yellow;
 }
 
 .dashboard-grid > .budget > .budget-breakdown > .budget-categories {
@@ -100,7 +127,6 @@
 
 .dashboard-grid > .budget > .budget-breakdown > .budget-categories > .budget-category > .category-name > svg {
     margin-right: 10px;
-    /* color: var(--primary-col); */
 }
 
 .dashboard-grid > .transactions {

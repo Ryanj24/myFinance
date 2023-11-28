@@ -39,8 +39,8 @@ const chartColours = ['#FD3C17', '#407BFF', '#FFA500', '#17FDE0', '#4EFD17', '#8
 
 const Budget = () => {
 
-  const [selectedMonth, setSelectedMonth] = useState("November");
-  const [selectedYear, setSelectedYear] = useState(2023);
+  const [selectedMonth, setSelectedMonth] = useState("January");
+  const [selectedYear, setSelectedYear] = useState(2020);
 
   const budgets = useSelector(state => state.budgets.budgets);
   const transactions = useSelector(state => state.bankTransactions.transactions)  
@@ -78,7 +78,6 @@ const Budget = () => {
                     <Cell key={`cell-${index}`} fill={chartColours[index]}/>
                   ))}
                 </Pie>
-                <Tooltip />
               </PieChart>
             }
         </ResponsiveContainer>
@@ -93,7 +92,7 @@ const Budget = () => {
                   {budgetIconArray[index]}{obj.category}
                 </div>
                 <div className="category-spending">
-                  £{obj.amountSpent}/£{obj.total}
+                  £{obj.amountSpent}
                 </div>
               </li>
             ))}
