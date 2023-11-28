@@ -6,6 +6,7 @@ import { incomeDataPreprocessor } from '../../utilityFunctions/incomeDataPreproc
 
 const IncomeChart = () => {
 
+    const [selectedYear, setSelectedYear] = useState(2023);
     const transactions = useSelector(state => state.bankTransactions.transactions)
 
 
@@ -14,8 +15,6 @@ const IncomeChart = () => {
             <h1>Loading...</h1>
         )
     }
-
-    const [selectedYear, setSelectedYear] = useState(2023);
 
     const yearlyIncome = incomeDataPreprocessor(transactions, selectedYear)
 
@@ -38,7 +37,8 @@ const IncomeChart = () => {
                 <XAxis dataKey="month"/>
                 <YAxis domain={[0, 5000]}/>
                 <Tooltip />
-                <Bar dataKey="amount" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
+                {/* <Bar dataKey="amount" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} /> */}
+                <Bar dataKey="amount" fill="#407BFF" activeBar={<Rectangle/>} />
             </BarChart>
         </ResponsiveContainer>
     </div>

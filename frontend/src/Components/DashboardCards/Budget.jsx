@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import DashboardBudgetForm from '../DashboardBudgetForm/DashboardBudgetForm';
-import { ResponsiveContainer, PieChart, Pie, Tooltip, Label } from 'recharts';
+import { ResponsiveContainer, PieChart, Pie, Tooltip, Label, Cell } from 'recharts';
 import { budgetDataPreprocessor } from '../../utilityFunctions/budgetDataPreprocessor.js';
 import { transactionDataPreprocessor } from '../../utilityFunctions/transactionDataPreprocessor.js';
 import { Home, Commute, Fastfood, HomeRepairService, HealthAndSafety, DevicesOther, ConfirmationNumber, MoreHoriz } from '@mui/icons-material';
+import { joinArraysOfObjects } from '../../utilityFunctions/joinArraysOfObjects.js';
 
 let chartData = [
   { category: 'Housing', amount: 0},
@@ -17,7 +18,7 @@ let chartData = [
   { category: 'Other', amount: 0},
 ]
 
-const budgetIconArray = [<Home />, <Commute />, <Fastfood />, <HomeRepairService />, <HealthAndSafety />, <DevicesOther />, <ConfirmationNumber />, <MoreHoriz />]
+const budgetIconArray = [<Home sx={{color: '#FD3C17'}}/>, <Commute sx={{color: '#407BFF'}}/>, <Fastfood sx={{color: '#FFA500'}}/>, <HomeRepairService sx={{color: '#17FDE0'}}/>, <HealthAndSafety sx={{color: '#4EFD17'}}/>, <DevicesOther sx={{color: '#808080'}}/>, <ConfirmationNumber sx={{color: '#FD17F6'}}/>, <MoreHoriz sx={{color: '#C0C0C0'}}/>]
 
 const CustomLabel = ({viewBox, budget}) => {
   const {cx, cy} = viewBox;
@@ -25,7 +26,7 @@ const CustomLabel = ({viewBox, budget}) => {
   return (
     <g>
       <text x={cx} y={cy - 10} textAnchor='middle'>
-        Total Budget:
+        Total Spent:
       </text>
       <text x={cx} y={cy + 10} textAnchor='middle'>
         £{budget}
@@ -33,6 +34,8 @@ const CustomLabel = ({viewBox, budget}) => {
     </g>
   )
 }
+
+const chartColours = ['#FD3C17', '#407BFF', '#FFA500', '#17FDE0', '#4EFD17', '#808080', '#FD17F6', '#C0C0C0'];
 
 const Budget = () => {
 
@@ -48,13 +51,13 @@ const Budget = () => {
     )
   }
 
-  const doughnutChartData = budgetDataPreprocessor(budgets, selectedMonth, selectedYear)
-  const breakdownData = transactionDataPreprocessor(transactions, selectedMonth, selectedYear)
+  const categoryTotalBudget = budgetDataPreprocessor(budgets, selectedMonth, selectedYear)
+  const categoryAmountSpent = transactionDataPreprocessor(transactions, selectedMonth, selectedYear)
 
-  const joinedData = doughnutChartData.concat(breakdownData)
+  const joinedData = joinArraysOfObjects(categoryTotalBudget, categoryAmountSpent)
+  // console.log(joinedData)
 
-  console.log(joinedData)
-
+  // budgets.filter(obj => obj.month === selectedMonth && obj.year == selectedYear)[0]["total_budget"]
   return (
     <div className='budget'>
         <header className='budget-header'>
@@ -63,8 +66,11 @@ const Budget = () => {
         <DashboardBudgetForm setSelectedMonth={setSelectedMonth} setSelectedYear={setSelectedYear}/>
         <ResponsiveContainer maxHeight="80%">
           <PieChart width="100%" height="80%">
-            <Pie data={doughnutChartData} dataKey="amount" nameKey="category" cx="50%" cy="50%" innerRadius={80} outerRadius={110} fill="#8884d8">
-              <Label content={<CustomLabel budget={budgets.filter(obj => obj.month === selectedMonth && obj.year == selectedYear)[0]["total_budget"]}/>} position="center"/>
+            <Pie data={joinedData} dataKey="amountSpent" nameKey="category" cx="50%" cy="50%" innerRadius={80} outerRadius={110} fill="#8884d8">
+              <Label content={<CustomLabel budget={categoryAmountSpent.reduce((acc, currVal) => acc + currVal.amountSpent, 0)}/>} position="center"/>
+              {joinedData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={chartColours[index]}/>
+              ))}
             </Pie>
             <Tooltip />
           </PieChart>
@@ -74,13 +80,13 @@ const Budget = () => {
             Budget Breakdown
           </h3>
           <ul className='budget-categories'>
-            {doughnutChartData.map((category, index) => (
+            {joinedData.map((obj, index) => (
               <li className='budget-category'>
                 <div className="category-name">
-                  {budgetIconArray[index]}{category.name}
+                  {budgetIconArray[index]}{obj.category}
                 </div>
                 <div className="category-spending">
-                  £{category.value}
+                  £{obj.amountSpent}/£{obj.total}
                 </div>
               </li>
             ))}
