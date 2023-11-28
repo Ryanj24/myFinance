@@ -55,9 +55,7 @@ const Budget = () => {
   const categoryAmountSpent = transactionDataPreprocessor(transactions, selectedMonth, selectedYear)
 
   const joinedData = joinArraysOfObjects(categoryTotalBudget, categoryAmountSpent)
-  // console.log(joinedData)
 
-  // budgets.filter(obj => obj.month === selectedMonth && obj.year == selectedYear)[0]["total_budget"]
   return (
     <div className='budget'>
         <header className='budget-header'>
@@ -65,15 +63,24 @@ const Budget = () => {
         </header>
         <DashboardBudgetForm setSelectedMonth={setSelectedMonth} setSelectedYear={setSelectedYear}/>
         <ResponsiveContainer maxHeight="80%">
-          <PieChart width="100%" height="80%">
-            <Pie data={joinedData} dataKey="amountSpent" nameKey="category" cx="50%" cy="50%" innerRadius={80} outerRadius={110} fill="#8884d8">
-              <Label content={<CustomLabel budget={categoryAmountSpent.reduce((acc, currVal) => acc + currVal.amountSpent, 0)}/>} position="center"/>
-              {joinedData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={chartColours[index]}/>
-              ))}
-            </Pie>
-            <Tooltip />
-          </PieChart>
+            {categoryAmountSpent.reduce((acc, currVal) => acc + currVal.amountSpent, 0) === 0
+            ?
+              <PieChart width="100%" height="80%">
+                <Pie data={[{category: "No Data", amountSpent: 1}]} dataKey="amountSpent" nameKey="category" cx="50%" cy="50%" innerRadius={80} outerRadius={110} fill="#8884d8">
+                  <Label content={<CustomLabel budget={0}/>} position="center"/>
+                </Pie>
+              </PieChart>
+            :
+              <PieChart width="100%" height="80%">
+                <Pie data={joinedData} dataKey="amountSpent" nameKey="category" cx="50%" cy="50%" innerRadius={80} outerRadius={110} fill="#8884d8">
+                  <Label content={<CustomLabel budget={categoryAmountSpent.reduce((acc, currVal) => acc + currVal.amountSpent, 0)}/>} position="center"/>
+                  {joinedData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={chartColours[index]}/>
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            }
         </ResponsiveContainer>
         <section className='budget-breakdown'>
           <h3>
