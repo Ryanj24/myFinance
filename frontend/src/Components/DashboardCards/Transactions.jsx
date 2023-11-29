@@ -18,7 +18,6 @@ const Transactions = () => {
 
     const recentTransactions = transactions.slice().sort((a, b) => b.id - a.id).slice(0, 5).map(obj => transactionIcon(obj))
 
-    console.log(recentTransactions)
   return (
     <div className="transactions">
         <header className='transactions-header'>

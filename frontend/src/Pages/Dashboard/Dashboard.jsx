@@ -13,6 +13,7 @@ import IncomeChart from '../../Components/DashboardCards/IncomeChart.jsx'
 import Goals from '../../Components/DashboardCards/Goals.jsx'
 import Budget from '../../Components/DashboardCards/Budget.jsx'
 import Transactions from '../../Components/DashboardCards/Transactions.jsx'
+import Accounts from '../../Components/DashboardCards/Accounts.jsx'
 
 
 const Dashboard = () => {
@@ -47,7 +48,7 @@ const Dashboard = () => {
       <Goals />
       <Budget />
       <Transactions />
-      <div className="accounts">Accounts Overview</div>
+      <Accounts />
     </section>
   )
 }

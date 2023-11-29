@@ -14,6 +14,7 @@ CREATE TABLE bank_accounts (
     `account_name` VARCHAR(20),
     `account_number` INT unsigned UNIQUE,
     `balance` DECIMAL(10, 2) CHECK(`balance` >= 0) DEFAULT 0,
+    `account_provider` ENUM("Barclays", "HSBC", "Lloyds", "Monzo", "NatWest", "Other", "Royal Bank of Scotland", "Santander", "Starling Bank", "Virgin Money")
     `account_owner_id` INT unsigned,
     PRIMARY KEY(`id`),
     FOREIGN KEY(`account_owner_id`) REFERENCES users(`id`)

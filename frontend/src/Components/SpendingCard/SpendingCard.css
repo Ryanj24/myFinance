@@ -14,6 +14,10 @@
     align-items: center;
 }
 
+.spending-card > .card-name > span {
+    margin-right: 10px;
+}
+
 .spending-card > .card-name > svg {
     margin-right: 10px;
 }
