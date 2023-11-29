@@ -42,6 +42,7 @@ CREATE TABLE bank_transactions (
     `account_id` INT unsigned,
     `type` ENUM("Income", "Expense", "Deposit", "Withdrawl"),
     `category` ENUM("Housing", "Transportation", "Food", "Utilities", "Medical & Healthcare", "Personal", "Entertainment", "Other"),
+    `description` VARCHAR(255),
     `transaction_date` DATE,
     `amount` DECIMAL(7, 2) CHECK(`amount` >= 0),
     PRIMARY KEY(`id`),

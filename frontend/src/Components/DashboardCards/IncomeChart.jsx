@@ -8,7 +8,7 @@ import { incomeDataPreprocessor } from '../../utilityFunctions/incomeDataPreproc
 
 const IncomeChart = () => {
 
-    const [selectedYear, setSelectedYear] = useState(2023);
+    const [selectedYear, setSelectedYear] = useState(2020);
     const {register, handleSubmit} = useForm();
     const transactions = useSelector(state => state.bankTransactions.transactions)
 
@@ -49,13 +49,12 @@ const IncomeChart = () => {
                 width="100%"
                 height="100%"
                 data={yearlyIncome}
-                margin={{top: 20, bottom: 10}}
+                margin={{top: 20, bottom: 10, left: 20, right: 20}}
                 
             >
                 <XAxis dataKey="month"/>
-                <YAxis domain={[0, 5000]}/>
+                <YAxis domain={[0, 5000]} ticks={[0, 1000, 2000, 3000, 4000, 5000]} label={{value: "GBP (£)", angle: -90, position: "insideLeft"}}/>
                 <Tooltip />
-                {/* <Bar dataKey="amount" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} /> */}
                 <Bar dataKey="amount" fill="#407BFF" activeBar={<Rectangle/>} />
             </BarChart>
         </ResponsiveContainer>

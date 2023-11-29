@@ -12,6 +12,7 @@ import { setBudgets } from '../../redux/budgetSlice.js'
 import IncomeChart from '../../Components/DashboardCards/IncomeChart.jsx'
 import Goals from '../../Components/DashboardCards/Goals.jsx'
 import Budget from '../../Components/DashboardCards/Budget.jsx'
+import Transactions from '../../Components/DashboardCards/Transactions.jsx'
 
 
 const Dashboard = () => {
@@ -45,7 +46,7 @@ const Dashboard = () => {
       <IncomeChart />
       <Goals />
       <Budget />
-      <div className="transactions">Recent Transactions</div>
+      <Transactions />
       <div className="accounts">Accounts Overview</div>
     </section>
   )

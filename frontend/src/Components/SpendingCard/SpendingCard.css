@@ -1,0 +1,19 @@
+.spending-card {
+    margin: 10px 0;
+    background-color: #fff;
+    list-style: none;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.spending-card > .card-name {
+    display: flex;
+    align-items: center;
+}
+
+.spending-card > .card-name > svg {
+    margin-right: 10px;
+}
