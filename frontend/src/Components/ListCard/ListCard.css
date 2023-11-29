@@ -1,4 +1,4 @@
-.spending-card {
+.list-card {
     margin: 10px 0;
     background-color: #fff;
     list-style: none;
@@ -9,15 +9,15 @@
     justify-content: space-between;
 }
 
-.spending-card > .card-name {
+.list-card > .card-name {
     display: flex;
     align-items: center;
 }
 
-.spending-card > .card-name > span {
+.list-card > .card-name > span {
     margin-right: 10px;
 }
 
-.spending-card > .card-name > svg {
+.list-card > .card-name > svg {
     margin-right: 10px;
 }

@@ -6,7 +6,7 @@ import { budgetDataPreprocessor } from '../../utilityFunctions/budgetDataPreproc
 import { transactionDataPreprocessor } from '../../utilityFunctions/transactionDataPreprocessor.js';
 import { Home, Commute, Fastfood, HomeRepairService, HealthAndSafety, DevicesOther, ConfirmationNumber, MoreHoriz } from '@mui/icons-material';
 import { joinArraysOfObjects } from '../../utilityFunctions/joinArraysOfObjects.js';
-import SpendingCard from '../SpendingCard/SpendingCard.jsx';
+import ListCard from '../ListCard/ListCard.jsx';
 
 const budgetIconArray = [<Home sx={{color: '#FD3C17'}}/>, <Commute sx={{color: '#407BFF'}}/>, <Fastfood sx={{color: '#FFA500'}}/>, <HomeRepairService sx={{color: '#17FDE0'}}/>, <HealthAndSafety sx={{color: '#4EFD17'}}/>, <DevicesOther sx={{color: '#808080'}}/>, <ConfirmationNumber sx={{color: '#FD17F6'}}/>, <MoreHoriz sx={{color: '#C0C0C0'}}/>]
 
@@ -77,7 +77,7 @@ const Budget = () => {
           </h3>
           <ul className='budget-categories'>
             {joinedData.map((obj, index) => (
-              <SpendingCard 
+              <ListCard 
                 key={obj.category} 
                 icon={budgetIconArray[index]}
                 name={obj.category}

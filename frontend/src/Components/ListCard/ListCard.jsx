@@ -1,9 +1,9 @@
 import React from 'react'
-import './SpendingCard.css'
+import './ListCard.css'
 
-const SpendingCard = ({icon, name, amount}) => {
+const ListCard = ({icon, name, amount}) => {
   return (
-    <li className='spending-card'>
+    <li className='list-card'>
         <div className="card-name">
             {icon}{name}
         </div>
@@ -14,4 +14,4 @@ const SpendingCard = ({icon, name, amount}) => {
   )
 }
 
-export default SpendingCard
+export default ListCard

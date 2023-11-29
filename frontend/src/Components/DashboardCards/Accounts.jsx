@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import SpendingCard from '../SpendingCard/SpendingCard.jsx'
+import ListCard from '../ListCard/ListCard.jsx'
 
 import Barclays from '../../assets/bank-logo-icons/Barclays_icon.svg'
 import HSBC from '../../assets/bank-logo-icons/HSBC_icon.svg'
@@ -38,7 +38,7 @@ const Accounts = () => {
         </header>
         <ul className='accounts-list'>
           {updatedAccounts.map((account, index) => (
-            <SpendingCard 
+            <ListCard 
               key={account.id}
               icon={<Icon><img src={bankIcons[account.iconIndex]} alt={account.account_provider + " Logo"} height="100%" width="100%"/></Icon>}
               name={account.account_name}
