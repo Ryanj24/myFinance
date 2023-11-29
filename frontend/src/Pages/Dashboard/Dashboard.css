@@ -119,6 +119,7 @@
     background-color: darkorange;
     grid-row: 4 / -1;
     grid-column: 5 / -1;
+    overflow-y: scroll;
 }
 
 @media screen and (max-width: 1224px) {

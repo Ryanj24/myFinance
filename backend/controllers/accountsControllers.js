@@ -8,7 +8,7 @@ export const getUserAccounts = async (req, res) => {
     const {id} = jwt.decode(token)
 
     // Get all bank accounts belonging to the user making the request
-    const accounts = await db.query(`SELECT id, account_name, account_number, balance FROM bank_accounts WHERE account_owner_id = ?`, [id])
+    const accounts = await db.query(`SELECT id, account_name, account_number, account_provider,balance FROM bank_accounts WHERE account_owner_id = ?`, [id])
 
     const transactions = await db.query(`SELECT * FROM bank_transactions WHERE account_id IN (SELECT id FROM bank_accounts WHERE account_owner_id = ?)`, [id])
 
