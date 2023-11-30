@@ -23,16 +23,21 @@ const Transactions = () => {
         <header className='transactions-header'>
           <h3>Recent Transactions</h3>
         </header>
-        <ul className='recent-transactions'>
-          {recentTransactions.map((obj, index) => (
-              <ListCard 
-                key={obj.id}
-                icon={budgetIconArray[obj.iconIndex]}
-                name={obj.description === null ? "No Description": obj.description}
-                amount={obj.type === "Expense" || obj.type === "Withdrawl" ? "-£" + obj.amount : "+£" + obj.amount}
-              />
-          ))}
-        </ul>
+        {recentTransactions.length === 0
+        ?
+          <p style={{textAlign: "center", marginTop: "10px"}}>No recent transactions</p>
+        :
+          <ul className='recent-transactions'>
+            {recentTransactions.map((obj, index) => (
+                <ListCard 
+                  key={obj.id}
+                  icon={budgetIconArray[obj.iconIndex]}
+                  name={obj.description === null ? "No Description": obj.description}
+                  amount={obj.type === "Expense" || obj.type === "Withdrawl" ? <p style={{color: "#FF1B1B"}}>-£{obj.amount}</p> : <p style={{color: "#09FF05"}}>+£{obj.amount}</p>}
+                />
+            ))}
+          </ul>
+        }
     </div>
   )
 }

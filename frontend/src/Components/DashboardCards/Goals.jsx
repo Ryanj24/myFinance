@@ -21,24 +21,29 @@ const Goals = () => {
       <header className='goals-header'>
           <h3>Goals</h3>
       </header>
-      <Table sx={{ maxWidth: "100%" }} aria-label="goal table" className='goal-table'>
-        <TableHead>
-          <TableRow>
-            <TableCell>Goal Name</TableCell>
-            <TableCell align="right">Progress</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {goals.map(goal => (
-            <TableRow key={goal.goal_name}>
-              <TableCell component="th" scope="row">
-                {goal.goal_name}
-              </TableCell>
-              <TableCell align="right">{roundNumbers(goal.current_progress / goal.end_goal, 3) * 100}%</TableCell>
+      {goals.length === 0
+      ?
+        <p style={{textAlign: "center", marginTop: "10px"}}>No goals set</p>
+      :
+        <Table sx={{ maxWidth: "100%" }} aria-label="goal table" className='goal-table'>
+          <TableHead>
+            <TableRow>
+              <TableCell>Goal Name</TableCell>
+              <TableCell align="right">Progress</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {goals.map(goal => (
+              <TableRow key={goal.goal_name}>
+                <TableCell component="th" scope="row">
+                  {goal.goal_name}
+                </TableCell>
+                <TableCell align="right">{roundNumbers(goal.current_progress / goal.end_goal, 3) * 100}%</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      }
     </div>
   )
 }

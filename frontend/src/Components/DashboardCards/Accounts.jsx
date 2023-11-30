@@ -36,17 +36,21 @@ const Accounts = () => {
         <header className='accounts-header'>
           <h3>Accounts Overview</h3>
         </header>
-        <ul className='accounts-list'>
-          {updatedAccounts.map((account, index) => (
-            <ListCard 
-              key={account.id}
-              icon={<Icon><img src={bankIcons[account.iconIndex]} alt={account.account_provider + " Logo"} height="100%" width="100%"/></Icon>}
-              name={account.account_name}
-              amount={"£" + account.balance}
-            />
-          ))}
-            {/* <SpendingCard icon={<Icon><img src={VirginMoney} alt='Logo' height="100%" width="100%"/></Icon>} name={"Test Account"} amount={5000}/> */}
-        </ul>
+        {updatedAccounts.length === 0
+        ?
+          <p style={{textAlign: "center", marginTop: "10px"}}>No accounts</p>
+        :
+          <ul className='accounts-list'>
+            {updatedAccounts.map((account, index) => (
+              <ListCard 
+                key={account.id}
+                icon={<Icon><img src={bankIcons[account.iconIndex]} alt={account.account_provider + " Logo"} height="100%" width="100%"/></Icon>}
+                name={account.account_name}
+                amount={"£" + account.balance}
+              />
+            ))}
+          </ul>
+        }
 
     </div>
   )

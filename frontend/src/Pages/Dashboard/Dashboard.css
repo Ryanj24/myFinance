@@ -14,15 +14,22 @@
     padding: 10px;
     -ms-overflow-style: none; 
     scrollbar-width: none;  
+    background-color: #fff;
+    box-shadow: 1px 2px 5px #5c5c5c;
+    z-index: 10;
 }
 
 .dashboard-grid > div::-webkit-scrollbar {
     display: none;
 }
 
+.dashboard-grid header > h3 {
+    color: var(--primary-col);
+}
+
 
 .dashboard-grid > .income-chart {
-    background-color: yellow;
+    /* background-color: yellow; */
     grid-row: 1 / 4;
     grid-column: 1 / 5;
     /* display: flex;
@@ -38,6 +45,8 @@
     padding: 5px;
     font-size: medium;
     margin: 0 10px;
+    border: none;
+    border-radius: 5px;
 }
 
 .dashboard-grid > .income-chart > #income-year-selector-form > button {
@@ -54,7 +63,7 @@
 }
 
 .dashboard-grid > .goals {
-    background-color: red;
+    /* background-color: red; */
     grid-row: 1 / 4;
     grid-column: 5 / -1;
     /* height: 330px; */
@@ -66,7 +75,7 @@
 
 
 .dashboard-grid > .budget {
-    background-color: green;
+    /* background-color: green; */
     grid-row: 4 / -1;
     grid-column: 1 / 3;
     overflow-y: scroll;
@@ -81,6 +90,8 @@
 .dashboard-grid > .budget > #budget-date-selector-form > select {
     padding: 5px;
     font-size: medium;
+    border-radius: 5px;
+    border: none;
 }
 
 .dashboard-grid > .budget > #budget-date-selector-form > select:nth-child(2) {
@@ -109,14 +120,14 @@
 }
 
 .dashboard-grid > .transactions {
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     grid-row: 4 / -1;
     grid-column: 3 / 5;
     overflow-y: scroll;
 }
 
 .dashboard-grid > .accounts {
-    background-color: darkorange;
+    /* background-color: darkorange; */
     grid-row: 4 / -1;
     grid-column: 5 / -1;
     overflow-y: scroll;
