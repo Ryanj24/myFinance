@@ -45,7 +45,6 @@
     padding: 5px;
     font-size: medium;
     margin: 0 10px;
-    border: none;
     border-radius: 5px;
 }
 
@@ -91,7 +90,6 @@
     padding: 5px;
     font-size: medium;
     border-radius: 5px;
-    border: none;
 }
 
 .dashboard-grid > .budget > #budget-date-selector-form > select:nth-child(2) {

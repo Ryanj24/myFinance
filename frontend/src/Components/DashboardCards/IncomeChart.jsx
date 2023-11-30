@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {useForm} from 'react-hook-form'
-import {ArrowRightAlt} from '@mui/icons-material'
+import { Search } from '@mui/icons-material'
 import {Bar, BarChart, Rectangle, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, Text} from 'recharts'
 import { useSelector } from 'react-redux'
 import { incomeDataPreprocessor } from '../../utilityFunctions/incomeDataPreprocessor'
@@ -41,7 +41,7 @@ const IncomeChart = () => {
                 <option value="2023">2023</option>
             </select>
             <button type="submit">
-                <ArrowRightAlt />
+                <Search />
             </button>
         </form>
         <ResponsiveContainer width="100%" height="80%">

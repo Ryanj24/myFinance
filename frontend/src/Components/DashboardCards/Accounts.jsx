@@ -30,7 +30,6 @@ const Accounts = () => {
 
     const updatedAccounts = accounts.slice().map(obj => accountIcon(obj))
 
-    console.log(accounts)
   return (
     <div className="accounts">
         <header className='accounts-header'>

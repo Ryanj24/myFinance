@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { ArrowRightAlt } from '@mui/icons-material';
+import { Search } from '@mui/icons-material';
 
 const DashboardBudgetForm = ({setSelectedMonth, setSelectedYear}) => {
 
@@ -36,7 +36,7 @@ const DashboardBudgetForm = ({setSelectedMonth, setSelectedYear}) => {
             <option value="2023">2023</option>
         </select>
         <button type="submit">
-            <ArrowRightAlt />
+            <Search />
         </button>
     </form>
   )

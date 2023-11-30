@@ -1,0 +1,58 @@
+.profile-container {
+    padding: 1.5rem;
+    /* background-color: yellow; */
+    width: 100%;
+}
+
+.profile-container > .profile-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-container > .profile-page-header > h1 {
+    color: var(--primary-col);
+}
+
+.profile-container > .profile-page-header > button {
+    background: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: orange;
+}
+
+.profile-container > .profile-page-header > button:hover {
+    cursor: pointer;
+}
+
+.profile-container > .profile-page-header > button > svg {
+    margin-right: 5px;
+}
+
+.profile-container > .user-profile {
+    padding: 1.5rem;
+}
+
+.profile-container > .user-profile > .user-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+}
+
+.profile-container > .user-profile > .user-header > .profile-picture-container{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: yellow;
+    padding: 10px;
+    border: 1px solid #000;
+    margin-right: 20px;
+}
+
+.profile-container > .user-profile > .user-header > .profile-picture-container > img{
+    max-height: 100%;
+    max-width: 100%;
+}
