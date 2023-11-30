@@ -1,6 +1,5 @@
 .profile-container {
     padding: 1.5rem;
-    /* background-color: yellow; */
     width: 100%;
 }
 
@@ -39,7 +38,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 1.5rem;
-    padding: 1rem;
+    padding: 0 1rem;
 }
 
 .profile-container > .user-profile > .user-header > .profile-picture-container{

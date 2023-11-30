@@ -1,7 +1,9 @@
 import { db } from "../database/database.js";
 import { validateUserCredentials } from "../utilityFunctions/validateUserCredentials.js";
+import { validateUpdatedCredentials } from "../utilityFunctions/validateUpdatedCredentials.js";
 import { createToken } from "../utilityFunctions/createJWT.js";
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 // User login controller function
 export const loginUser = async (req, res) => {
@@ -80,6 +82,37 @@ export const registerUser = async (req, res) => {
     } catch (error) {
 
         // Return any error message
+        return res.json(error)
+    }
+}
+
+export const updateUser = async (req, res) => {
+
+    // Get the user id from the request headers
+    const token = req.headers.authorization.split(" ")[1]
+    const {id} = jwt.decode(token)
+
+    const validateCredentials = validateUpdatedCredentials(req.body.first_name, req.body.last_name, req.body.email, req.body.date_of_birth)
+
+    if (!validateCredentials.validated) {
+        return res.json({error: true, field: validateCredentials.field, message: validateCredentials.message})
+    }
+
+    try {
+        // Update the user in the database
+        const query = await db.query(
+            `UPDATE users SET first_name = ?, last_name = ?, email = ?, date_of_birth = ? WHERE id = ?`,
+            [req.body.first_name, req.body.last_name, req.body.email, req.body.date_of_birth, id]
+        )
+
+        // Retrieve the updated user object
+        const updatedUser = await db.query(`SELECT id, first_name, last_name, email, date_of_birth, profile_img FROM users WHERE id = ?`, [id])
+
+        // Return the updated user
+        return res.json(updatedUser[0][0]);
+
+    } catch (error) {
+        // Return any errors
         return res.json(error)
     }
 }
