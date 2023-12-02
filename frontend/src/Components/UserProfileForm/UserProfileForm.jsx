@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import './UserProfileForm.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
@@ -8,12 +8,15 @@ import { updateUserDetails } from '../../utilityFunctions/updateUserDetails.js'
 import { setUser } from '../../redux/userSlice.js'
 
 
-const UserProfileForm = () => {
+
+const UserProfileForm = ({profileImg}) => {
 
     const [updateSuccess, setUpdateSuccess] = useState(false)
+    const saveBtnRef = useRef();
+
     const {user, token} = useSelector(state => state.user.user)
 
-    const {register, handleSubmit, formState: {errors, isSubmitSuccessful}, setError} = useForm({
+    const {register, handleSubmit, formState: {errors, isSubmitSuccessful, isDirty}, setError} = useForm({
         defaultValues: {
             first_name: user.first_name,
             last_name: user.last_name,
@@ -24,7 +27,7 @@ const UserProfileForm = () => {
     const dispatch = useDispatch()
 
     const onSubmit = async (data) => {
-        const response = await updateUserDetails(data, token)
+        const response = await updateUserDetails(data, profileImg, token)
 
         if (response.error) {
             setError(`${response.field}`, {message: response.message})
@@ -32,6 +35,7 @@ const UserProfileForm = () => {
         }
         
         dispatch(setUser({user: response, token}))
+        // console.log({...data, profileImg})
     }
 
     useEffect(() => {
@@ -89,7 +93,7 @@ const UserProfileForm = () => {
                 <input type="date" id='date_of_birth' {...register("date_of_birth")}/>
             </div>
             <div className="save-btn-container">
-                <Button variant='contained' sx={{textTransform: "none", borderRadius: "10px"}} type='submit'>Save Changes</Button>
+                <Button variant='contained' sx={{textTransform: "none", borderRadius: "10px"}} type='submit' ref={saveBtnRef}>Save Changes</Button>
             </div>
         </form>
     </>

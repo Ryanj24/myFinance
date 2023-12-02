@@ -1,0 +1,84 @@
+.editor-modal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    pointer-events: all;
+}
+
+.editor-modal-container > .editor-modal {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 40px;
+    border-radius: 20px;
+    position: relative;
+    height: 400px;
+    width: 400px;
+}
+
+.editor-modal button:not(#picture-save-btn) {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.editor-modal button:hover {
+    cursor: pointer;
+}
+
+.editor-modal > .modal-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.editor-modal > .modal-header > h2{
+    color: var(--primary-col);
+    margin-bottom: 10px;
+}
+
+
+.editor-modal > .modal-header > .modal-close-btn-container {
+    position: absolute;
+    top: 20;
+    right: 0;
+    padding-right: 20px;
+}
+
+.editor-modal > .modal-header > .modal-close-btn-container > button > svg {
+    color: var(--primary-col);
+}
+
+.editor-modal > .modal-picture-edit-container {
+    margin: 20px 0;
+    height: 150px;
+    width: 150px;
+    border: 1px solid;
+    border-radius: 50%;
+}
+
+.editor-modal > .modal-picture-edit-container > img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.editor-modal > .image-file-input {
+    background-color: pink;
+}
+
+.editor-modal > .modal-save-btn-container {
+    margin-top: 20px;
+}

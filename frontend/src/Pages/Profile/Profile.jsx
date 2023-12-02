@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import './Profile.css'
 import profileImg from '../../assets/Login-illustration.svg'
 import { useSelector } from 'react-redux'
-import { Edit } from '@mui/icons-material'
+import { CameraAlt, Edit } from '@mui/icons-material'
 import { Typography } from '@mui/material'
 import UserProfileForm from '../../Components/UserProfileForm/UserProfileForm'
+import UserProfilePicture from '../../Components/UserProfilePicture/UserProfilePicture'
 
 const Profile = () => {
 
   const [editing, setEditing] = useState(false);
+  const [profileImage, setProfileImage] = useState(profileImg);
   const user = useSelector(state => state.user.user.user)
 
   // console.log(user)
@@ -23,14 +25,11 @@ const Profile = () => {
 
       <section className='user-profile'>
         <section className='user-header'>
-          <div className="profile-picture-container">
-              <img src={profileImg} alt="Profile Picture" />
-          </div>
-          <Typography variant='h4'>{user.first_name} {user.last_name}</Typography>
+          <UserProfilePicture profileImage={profileImage} setProfileImage={setProfileImage} editing={editing}/>
         </section>
 
         <section className='user-details'>
-          <UserProfileForm />
+          <UserProfileForm profileImg={profileImage}/>
         </section>
       </section>
     </section>
