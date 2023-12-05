@@ -9,9 +9,10 @@ import UserProfilePicture from '../../Components/UserProfilePicture/UserProfileP
 
 const Profile = () => {
 
-  const [editing, setEditing] = useState(false);
-  const [profileImage, setProfileImage] = useState(profileImg);
   const user = useSelector(state => state.user.user.user)
+
+  const [editing, setEditing] = useState(false);
+  const [profileImage, setProfileImage] = useState(user.profile_img);
 
   // console.log(user)
   return (

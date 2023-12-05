@@ -2,16 +2,18 @@ import React, { useRef } from 'react'
 import './PictureEditor.css'
 import { Button } from '@mui/material'
 import { Close } from '@mui/icons-material'
-// import AvatarEditor from 'react-avatar-editor'
+import { appStorage } from '../../firebaseConfig'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
-const PictureEditor = ({profileImage, setProfileImage, setEditorOpen}) => {
+const PictureEditor = ({profileImage, setProfileImage, setEditorOpen, user}) => {
 
 
     const imgPreviewRef = useRef(null);
+    let image_file;
 
     const handleImageChange = (e) => {
         // Get the image object from the input field
-        const image_file = e.target.files["0"]
+        image_file = e.target.files[0]
         
         // If the image is present
         if (image_file) {
@@ -30,6 +32,24 @@ const PictureEditor = ({profileImage, setProfileImage, setEditorOpen}) => {
 
     const handleSaveChanges = () => {
         setProfileImage(imgPreviewRef.current.src);
+
+
+        const storageRef = ref(appStorage, `profile_images/${user.first_name + "-" + user.last_name + "-" + user.id}`)
+
+        uploadBytes(storageRef, image_file)
+        .then(() => {
+            getDownloadURL(storageRef)
+            .then((url) => {
+                setProfileImage(url)
+            })
+            .catch(() => {
+                console.log("Error getting image url")
+            })
+        })
+        .catch((error) => {
+            console.log(error.message)
+        })
+
         setEditorOpen(false);
     }
 
@@ -51,7 +71,7 @@ const PictureEditor = ({profileImage, setProfileImage, setEditorOpen}) => {
             </section>
 
             <div className="image-file-input">
-                <input type='file' accept='image/*' multiple="false" onChange={handleImageChange}/>
+                <input type='file' accept='image/*' multiple={false} onChange={handleImageChange}/>
             </div>
 
             <div className="modal-save-btn-container">

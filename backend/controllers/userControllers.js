@@ -101,8 +101,8 @@ export const updateUser = async (req, res) => {
     try {
         // Update the user in the database
         const query = await db.query(
-            `UPDATE users SET first_name = ?, last_name = ?, email = ?, date_of_birth = ? WHERE id = ?`,
-            [req.body.first_name, req.body.last_name, req.body.email, req.body.date_of_birth, id]
+            `UPDATE users SET first_name = ?, last_name = ?, email = ?, date_of_birth = ?, profile_img = ? WHERE id = ?`,
+            [req.body.first_name, req.body.last_name, req.body.email, req.body.date_of_birth, req.body.profile_img, id]
         )
 
         // Retrieve the updated user object
