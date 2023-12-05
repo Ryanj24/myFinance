@@ -9,7 +9,7 @@ const NavHeader = () => {
   return (
     <header className='user-header'>
         <div className="user-picture-container">
-            <img src={profileImg} alt='user profile image'/>
+            <img src={user.profile_img} alt='user profile image'/>
         </div>
         <div className="name-email">
             <Typography variant='h4' component="h4">{user.first_name} {user.last_name}</Typography>

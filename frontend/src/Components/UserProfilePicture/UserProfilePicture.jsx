@@ -8,22 +8,24 @@ import PictureEditor from '../PictureEditor/PictureEditor'
 const UserProfilePicture = ({profileImage, setProfileImage, editing}) => {
 
     const {user} = useSelector(state => state.user.user)
-    const [editorOpen, setEditorOpen] = useState(false)
+    const [imageEditorOpen, setImageEditorOpen] = useState(false)
 
     const onClickEdit = () => {
-        setEditorOpen(true)
+        setImageEditorOpen(true)
     }
 
   return (
     <>
-        {editorOpen && <PictureEditor profileImage={profileImage} setProfileImage={setProfileImage} setEditorOpen={setEditorOpen} user={user}/>}
+        {imageEditorOpen && <PictureEditor profileImage={profileImage} setProfileImage={setProfileImage} setImageEditorOpen={setImageEditorOpen} user={user}/>}
         <div className="profile-picture-container">
             <img src={profileImage} alt="Profile Picture" />
-            <div className="profile-pic-edit">
-            <button onClick={onClickEdit}>
-                <CameraAlt />
-            </button> 
-            </div>
+            {editing &&
+                <div className="profile-pic-edit">
+                    <button onClick={onClickEdit}>
+                        <CameraAlt />
+                    </button> 
+                </div>
+            }
         </div>
         <Typography variant='h4'>{user.first_name} {user.last_name}</Typography>
     </>

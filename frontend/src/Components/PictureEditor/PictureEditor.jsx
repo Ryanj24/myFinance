@@ -5,7 +5,7 @@ import { Close, CloudUpload } from '@mui/icons-material'
 import { appStorage } from '../../firebaseConfig'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
-const PictureEditor = ({profileImage, setProfileImage, setEditorOpen, user}) => {
+const PictureEditor = ({profileImage, setProfileImage, setImageEditorOpen, user}) => {
 
 
     const imgPreviewRef = useRef(null);
@@ -50,7 +50,7 @@ const PictureEditor = ({profileImage, setProfileImage, setEditorOpen, user}) => 
             console.log(error.message)
         })
 
-        setEditorOpen(false);
+        setImageEditorOpen(false);
     }
 
   return (
@@ -60,7 +60,7 @@ const PictureEditor = ({profileImage, setProfileImage, setEditorOpen, user}) => 
                 <h2>Edit Profile Picture</h2>
                 <p>Upload an image below</p>
                 <div className="modal-close-btn-container">
-                    <button onClick={() => setEditorOpen(false)}>
+                    <button onClick={() => setImageEditorOpen(false)}>
                         <Close />
                     </button>
                 </div>

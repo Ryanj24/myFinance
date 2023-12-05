@@ -6,6 +6,7 @@ import { CameraAlt, Edit } from '@mui/icons-material'
 import { Typography } from '@mui/material'
 import UserProfileForm from '../../Components/UserProfileForm/UserProfileForm'
 import UserProfilePicture from '../../Components/UserProfilePicture/UserProfilePicture'
+import UserProfileDetails from '../../Components/UserProfileDetails/UserProfileDetails'
 
 const Profile = () => {
 
@@ -19,7 +20,7 @@ const Profile = () => {
     <section className='profile-container'>
       <header className='profile-page-header'>
         <h1>Profile</h1>
-        <button className='profile-edit-btn'>
+        <button className='profile-edit-btn' onClick={() => setEditing(!editing)}>
           <Edit /> Edit Profile
         </button>
       </header>
@@ -30,7 +31,13 @@ const Profile = () => {
         </section>
 
         <section className='user-details'>
-          <UserProfileForm profileImg={profileImage}/>
+          {editing 
+          ?
+            <UserProfileForm profileImg={profileImage}/>
+          :
+            <UserProfileDetails />
+          }
+          
         </section>
       </section>
     </section>

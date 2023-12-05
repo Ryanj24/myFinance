@@ -1,0 +1,29 @@
+#user-profile-details {
+    display: grid;
+    gap: 3rem;
+    padding: 1.5rem;
+    margin: 0 auto;
+    width: fit-content;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 30px;
+}
+
+#user-profile-details > div {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#user-profile-details > div > label {
+    font-size: x-large;
+    margin-top: 5px;
+
+}
+
+
+@media screen and (max-width: 600px){
+    #user-profile-details {
+        display: flex;
+        flex-direction: column;
+    }
+}
