@@ -5,7 +5,7 @@ CREATE TABLE users (
     `email` VARCHAR(32),
     `password` VARCHAR(255),
     `date_of_birth` DATE,
-    `profile_img` TEXT,        
+    `profile_img` TEXT DEFAULT "/src/assets/user.png",        
     PRIMARY KEY(`id`)
 );
 
