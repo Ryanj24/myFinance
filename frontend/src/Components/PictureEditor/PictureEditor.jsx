@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import './PictureEditor.css'
 import { Button } from '@mui/material'
-import { Close } from '@mui/icons-material'
+import { Close, CloudUpload } from '@mui/icons-material'
 import { appStorage } from '../../firebaseConfig'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
@@ -71,10 +71,14 @@ const PictureEditor = ({profileImage, setProfileImage, setEditorOpen, user}) => 
             </section>
 
             <div className="image-file-input">
-                <input type='file' accept='image/*' multiple={false} onChange={handleImageChange}/>
+                <input type='file' accept='image/*' multiple={false} onChange={handleImageChange} id='image-input'/>
             </div>
 
-            <div className="modal-save-btn-container">
+            <div className="modal-btn-container">
+                <label htmlFor='image-input' className='upload-img-btn'>
+                        <CloudUpload />
+                        Upload Image
+                </label>
                 <Button id='picture-save-btn' variant='contained' sx={{textTransform: "none", borderRadius: "10px"}} onClick={handleSaveChanges}>Save Changes</Button> 
             </div>
         </div>

@@ -76,9 +76,30 @@
 }
 
 .editor-modal > .image-file-input {
-    background-color: pink;
+    display: none;
 }
 
-.editor-modal > .modal-save-btn-container {
-    margin-top: 20px;
+.editor-modal > .modal-btn-container > .upload-img-btn {
+    margin-right: 20px;
+    border: 2px dashed;
+    font-size: 0.875rem;
+    border-radius: 10px;
+    padding: 6px 16px;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+}
+
+.editor-modal > .modal-btn-container > .upload-img-btn:hover {
+    cursor: pointer;
+}
+
+.editor-modal > .modal-btn-container > .upload-img-btn > svg{
+    margin-right: 10px;
+}
+
+.editor-modal > .modal-btn-container {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
 }
