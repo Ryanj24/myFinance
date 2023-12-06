@@ -14,7 +14,28 @@ const Accounts = () => {
     )
   }
 
-  const accountsWithIcon = accountsArray.map((account) => accountIcon(account))
+  let accountsWithIcon = accountsArray.map((account) => accountIcon(account)).sort((a, b) => a.balance > b.balance)
+  console.log(accountsWithIcon)
+
+  const handleOnChange = (e) => {
+    switch(e.target.value) {
+      case "nameAtoZ":
+        accountsWithIcon.sort((a, b) => a.balance - b.balance)
+        break;
+      case "nameZtoA":
+        accountsWithIcon.sort((a, b) => a.balance < b.balance)
+        break;
+      case "balanceLtoH":
+        accountsWithIcon.sort((a, b) => a.account_name < b.account_name)
+        break;
+      case "balanceHtoL":
+        accountsWithIcon.sort((a, b) => a.account_name < b.account_name)
+        break;
+      default:
+        break;
+    }
+    console.log(accountsWithIcon)
+  }
 
   return (
     <section className='accounts-container'>
@@ -26,7 +47,7 @@ const Accounts = () => {
         <p>You currently have {accountsWithIcon.length} accounts</p>
         <div className="accounts-sort">
           <label htmlFor='accounts-sort-selector'>sort by: </label>
-          <select id='accounts-sort-selector'>
+          <select id='accounts-sort-selector' onChange={handleOnChange}>
             <option value="nameAtoZ">Name (A to Z)</option>
             <option value="nameZtoA">Name (Z to A)</option>
             <option value="balanceLtoH">Balance (low to high)</option>
