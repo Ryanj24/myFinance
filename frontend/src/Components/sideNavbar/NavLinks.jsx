@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Dashboard, AccountCircle, AccountBalance, CandlestickChart, Settings, Logout} from '@mui/icons-material/'
+import {Dashboard, AccountCircle, AccountBalance, CandlestickChart, EmojiEvents, Logout} from '@mui/icons-material/'
 import { useDispatch } from 'react-redux'
 import { removeUser } from '../../redux/userSlice.js'
 
@@ -29,15 +29,15 @@ const NavLinks = () => {
           </Link>
         </li>
         <li className='nav-link'>
-          <Link to="/home/portfolio">
-            <CandlestickChart />
-            <p>Stock Portfolio</p>
+          <Link to="/home/goals">
+            <EmojiEvents />
+            <p>Goals</p>
           </Link>
         </li>
         <li className='nav-link'>
-          <Link to="/home/settings">
-            <Settings />
-            <p>Settings</p>
+          <Link to="/home/portfolio">
+            <CandlestickChart />
+            <p>Stock Portfolio</p>
           </Link>
         </li>
         <li className='nav-link'>

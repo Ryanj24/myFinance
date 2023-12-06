@@ -1,0 +1,43 @@
+.account-card {
+    display: grid;
+    grid-template-columns: 1fr 6fr 2fr 1fr;
+    background-color: rgba(80, 78, 78, 0.1);
+    padding: 20px;
+    margin: 40px 0;
+    border-radius: 10px;
+    z-index: 10;
+    box-shadow: rgba(128, 133, 138, 0.2) 0px 5px 10px;
+}
+
+.account-card:hover {
+    transform: scale(1.01);
+    transition: transform ease 0.2s;
+}
+
+.account-card > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.account-card > .account-logo-container {
+    align-items: center;
+}
+
+.account-card > .account-balance {
+    align-items: center;
+}
+
+.account-card > .view-account-icon-container {
+    align-items: flex-end;
+    padding-right: 20px;
+}
+
+.account-card > .view-account-icon-container > .view-account-btn {
+    border: none;
+    background: none;
+}
+
+.account-card > .view-account-icon-container > .view-account-btn:hover {
+    cursor: pointer;
+}

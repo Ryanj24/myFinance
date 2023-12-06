@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import './Profile.css'
-import profileImg from '../../assets/Login-illustration.svg'
 import { useSelector } from 'react-redux'
-import { CameraAlt, Edit } from '@mui/icons-material'
-import { Typography } from '@mui/material'
+import { Edit } from '@mui/icons-material'
 import UserProfileForm from '../../Components/UserProfileForm/UserProfileForm'
 import UserProfilePicture from '../../Components/UserProfilePicture/UserProfilePicture'
 import UserProfileDetails from '../../Components/UserProfileDetails/UserProfileDetails'
-import defaultUserAvatar from '../../assets/user.png'
 
 const Profile = () => {
 
@@ -16,7 +13,6 @@ const Profile = () => {
   const [editing, setEditing] = useState(false);
   const [profileImage, setProfileImage] = useState(user.profile_img);
 
-  // console.log(user)
   return (
     <section className='profile-container'>
       <header className='profile-page-header'>

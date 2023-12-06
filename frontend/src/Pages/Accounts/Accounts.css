@@ -1,0 +1,31 @@
+.accounts-container {
+    padding: 1.5rem;
+    width: 100%;
+}
+
+.accounts-container > .accounts-header > h1{
+    color: var(--primary-col);
+}
+
+.accounts-container > .accounts-count-sort {
+    display: flex;
+    align-items: center;
+    background-color: yellow;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 1.5rem;
+}
+
+.accounts-container > .accounts-list {
+    padding: 1.5rem;
+    overflow-y: scroll;
+}
+
+.accounts-container > .accounts-list {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+}
+
+.accounts-container > .accounts-list::-webkit-scrollbar {
+    display: none;
+}

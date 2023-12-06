@@ -16,7 +16,7 @@ import { accountIcon } from '../../utilityFunctions/accountIcon.js'
 import { AccountBalance } from '@mui/icons-material'
 import { Icon } from '@mui/material'
 
-const bankIcons = [Barclays, HSBC, Lloyds, Monzo, NatWest, RBS, Santander, Starling, VirginMoney, <AccountBalance />]
+export const bankIcons = [Barclays, HSBC, Lloyds, Monzo, NatWest, RBS, Santander, Starling, VirginMoney, <AccountBalance />]
 
 const Accounts = () => {
 
