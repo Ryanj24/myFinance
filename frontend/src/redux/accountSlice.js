@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { sortStrings } from "../utilityFunctions/sortStrings";
 
 export const accountSlice = createSlice({
     name: 'accounts',
@@ -17,10 +18,28 @@ export const accountSlice = createSlice({
         },
         deleteAccount: (state, action) => {
             state.accounts = state.accounts.filter(account => account.id != action.payload.id)
+        },
+        sortAccounts: (state, action) => {
+            switch(action.payload) {
+                case "nameAtoZ":
+                  state.accounts = state.accounts.sort((a, b) => sortStrings(a.account_name, b.account_name))
+                  break;
+                case "nameZtoA":
+                  state.accounts = state.accounts.sort((a, b) => sortStrings(a.account_name, b.account_name)).reverse()
+                  break;
+                case "balanceLtoH":
+                  state.accounts = state.accounts.sort((a, b) => a.balance - b.balance)
+                  break;
+                case "balanceHtoL":
+                  state.accounts = state.accounts.sort((a, b) => b.balance - a.balance)
+                  break;
+                default:
+                  break;
+            }
         }
     }
 })
 
-export const {setAccounts, addAccount, updateAccount, deleteAccount} = accountSlice.actions
+export const {setAccounts, addAccount, updateAccount, deleteAccount, sortAccounts} = accountSlice.actions
 
 export default accountSlice.reducer
