@@ -1,0 +1,41 @@
+.account-details-container {
+    padding: 1.5rem;
+    width: 100%;
+}
+
+.account-details-container > .account-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.account-details-container > .account-header > h1{
+    color: var(--primary-col);
+}
+
+.account-details-container > .account-header > .account-action-btns {
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.account-details-container > .account-header > .account-action-btns > button {
+    background: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: orange;
+}
+
+.account-details-container > .account-header > .account-action-btns > button:first-child {
+    margin-right: 10px;
+}
+
+.account-details-container > .account-header > .account-action-btns > button:hover {
+    cursor: pointer;
+}
+
+.account-details-container > .account-header > .account-action-btns > button > svg {
+    margin-right: 5px;
+}

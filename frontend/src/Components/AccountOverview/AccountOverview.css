@@ -1,0 +1,25 @@
+.details-section {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.details-section > .provider-logo-container {
+    height: 200px;
+    width: 300px;
+    margin-right: 20px;
+}
+
+.details-section > .provider-logo-container > img{
+    height: 100%;
+    width: 100%;
+}
+
+.details-section > .account-info > div{
+    margin: 10px 0;
+}
+
+.details-section > .account-info > div > p{
+    padding-left: 15px;
+    font-size: large;
+}

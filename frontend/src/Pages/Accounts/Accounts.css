@@ -34,11 +34,12 @@
 .accounts-container > .accounts-list {
     padding: 1.5rem;
     overflow-y: scroll;
-}
-
-.accounts-container > .accounts-list {
     -ms-overflow-style: none; 
     scrollbar-width: none;  
+}
+
+.accounts-container > .accounts-list > p{
+    text-align: center;
 }
 
 .accounts-container > .accounts-list::-webkit-scrollbar {

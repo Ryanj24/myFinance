@@ -46,10 +46,7 @@ const Accounts = () => {
           accounts.map((account) => accountIcon(account)).map((account) => (
             <AccountCard 
               key={account.id}
-              provider={account.iconIndex}
-              name={account.account_name}
-              number={account.account_number}
-              balance={account.balance}
+              account={account}
             />
           ))
         :
