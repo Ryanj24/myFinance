@@ -1,0 +1,34 @@
+.transaction-card {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 0.5fr 6fr 1fr 1fr;
+    margin: 20px 0;
+    padding: 10px;
+    /* width: 80%; */
+}
+
+.transaction-card > div {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.transaction-card > .transaction-category {
+    /* background-color: yellow; */
+    grid-column: span 1;
+}
+
+.transaction-card > .transaction-desc {
+    /* background-color: blue; */
+    grid-column: 2 /3;
+}
+
+.transaction-card > .transaction-date {
+    /* background-color: green; */
+    grid-column: 3 / 4;
+}
+
+.transaction-card > .transaction-amount {
+    /* background-color: purple; */
+    grid-column: 4 / -1;
+}

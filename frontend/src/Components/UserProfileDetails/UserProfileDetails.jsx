@@ -33,7 +33,7 @@ const UserProfileDetails = () => {
             <Typography variant='h5' component="h5">
                 Date of Birth
             </Typography>
-            <label>{dateFormatter(user.date_of_birth)}</label>
+            <label>{dateFormatter(user.date_of_birth, "full date")}</label>
         </div>
     </section>
   )

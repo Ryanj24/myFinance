@@ -1,9 +1,16 @@
-export const dateFormatter = (dateInput) => {
+export const dateFormatter = (dateInput, dateFormat) => {
     const date = new Date(dateInput);
 
-    const dateSuffix = dateSuffixes(date.getDate())
+    if (dateFormat === "full date") {
+        const dateSuffix = dateSuffixes(date.getDate())
 
-    return `${date.getDate()}${dateSuffix} ${dateMonth(date.getMonth())} ${date.getFullYear()}`
+        return `${date.getDate()}${dateSuffix} ${dateMonth(date.getMonth())} ${date.getFullYear()}`
+    } else if (dateFormat === "ddmmyy") {
+
+        const day = padZeros(date.getDate())
+        const month = padZeros(date.getMonth() + 1)
+        return `${day}/${month}/${date.getFullYear().toString().substring(2)}`
+    }
 }
 
 const dateSuffixes = (dateNumber) => {
@@ -51,4 +58,11 @@ const dateMonth = (monthNumber) => {
         default:
             break;
     }
+}
+
+const padZeros = (num) => {
+    if (num < 10) {
+        return "0" + num.toString()
+    }
+    return num
 }
