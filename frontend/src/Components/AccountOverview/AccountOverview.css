@@ -2,11 +2,14 @@
     display: flex;
     align-items: center;
     padding: 20px;
+    border-radius: 20px;
+    margin: 20px 0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
 
 .details-section > .provider-logo-container {
-    height: 200px;
-    width: 300px;
+    height: 150px;
+    width: 250px;
     margin-right: 20px;
 }
 
@@ -15,11 +18,63 @@
     width: 100%;
 }
 
+.details-section > .account-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+}
+
 .details-section > .account-info > div{
     margin: 10px 0;
+    width: 100%;
 }
 
 .details-section > .account-info > div > p{
-    padding-left: 15px;
     font-size: large;
+}
+
+/* .details-section > .account-info > .account-name{
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.details-section > .account-info > .account-number{
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+.details-section > .account-info > .account-balance{
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+} */
+
+@media screen and (max-width: 900px) {
+    .details-section {
+        flex-direction: column;
+    }
+
+    /* .details-section > .account-info {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+    } */
+
+    .details-section > .account-info {
+        justify-content: space-between;
+    }
+
+    .details-section > .provider-logo-container {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .details-section > .account-info {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+    }
 }

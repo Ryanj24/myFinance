@@ -1,6 +1,7 @@
 import React from 'react'
 import './Accounts.css'
 import { useSelector, useDispatch } from 'react-redux'
+import { Add } from '@mui/icons-material'
 import AccountCard from '../../Components/AccountCard/AccountCard'
 import { accountIcon } from '../../utilityFunctions/accountIcon'
 import { sortStrings } from '../../utilityFunctions/sortStrings'
@@ -25,6 +26,11 @@ const Accounts = () => {
     <section className='accounts-container'>
       <header className='accounts-header'>
         <h1>Accounts</h1>
+        <div className="accounts-action-btn">
+          <button className='create-account-btn'>
+            <Add /> Create Account
+          </button>
+        </div>
       </header>
 
       <section className='accounts-count-sort'>
