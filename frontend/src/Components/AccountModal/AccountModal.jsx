@@ -3,19 +3,19 @@ import './AccountModal.css'
 import { Close } from '@mui/icons-material'
 import AccountForm from '../AccountForm/AccountForm'
 
-const AccountModal = ({setAccountModal}) => {
+const AccountModal = ({modalType, toggleModal}) => {
   return (
     <div className='account-modal-container'>
         <div className="account-modal">
             <header className='modal-header'>
-                <h2>Add Account</h2>
+                {modalType === "Add Account" ? <h2>Add Account</h2> : <h2>Edit Account</h2>}
                 <div className="modal-close-btn-container">
-                    <button onClick={() => setAccountModal(false)}>
+                    <button onClick={() => toggleModal(false)}>
                         <Close />
                     </button>
                 </div>
             </header>
-            <AccountForm />
+            {modalType === "Add Account" ?  <AccountForm formType="Add Account"/> :  <AccountForm formType="Edit Account"/>}
         </div>
     </div>
   )

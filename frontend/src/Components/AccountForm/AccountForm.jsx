@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button } from '@mui/material'
 
-const AccountForm = () => {
+const AccountForm = ({formType}) => {
 
     const {register, handleSubmit} = useForm()
     const dispatch = useDispatch();
@@ -30,7 +30,13 @@ const AccountForm = () => {
             <input type="number" id='account_balance' {...register("account_balance")} min={0}/>
         </div>
         <div className="save-btn-container">
-            <Button variant='contained' sx={{textTransform: "none", borderRadius: "10px"}} type='submit'>Create Account</Button>
+            {formType === "Add Account"
+            ?
+                <Button variant='contained' sx={{textTransform: "none", borderRadius: "10px"}} type='submit'>Create Account</Button>
+            :
+                <Button variant='contained' sx={{textTransform: "none", borderRadius: "10px"}} type='submit'>Update Account</Button>
+            }
+            
         </div>
     </form>
   )

@@ -24,18 +24,14 @@ const Accounts = () => {
     dispatch(sortAccounts(e.target.value))
   }
 
-  const handleNewAccount = () => {
-    setAccountModal(!accountModal);
-  }
-
   return (
     <>
-      {accountModal && <AccountModal setAccountModal={setAccountModal}/>}
+      {accountModal && <AccountModal modalType="Add Account" toggleModal={setAccountModal}/>}
       <section className='accounts-container'>
         <header className='accounts-header'>
           <h1>Accounts</h1>
           <div className="accounts-action-btn">
-            <button className='create-account-btn' onClick={handleNewAccount}>
+            <button className='create-account-btn' onClick={() => setAccountModal(!accountModal)}>
               <Add /> Create Account
             </button>
           </div>
