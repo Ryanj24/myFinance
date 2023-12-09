@@ -34,32 +34,10 @@
     font-size: large;
 }
 
-/* .details-section > .account-info > .account-name{
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-}
-
-.details-section > .account-info > .account-number{
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-}
-
-.details-section > .account-info > .account-balance{
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-} */
-
 @media screen and (max-width: 900px) {
     .details-section {
         flex-direction: column;
     }
-
-    /* .details-section > .account-info {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: fit-content;
-    } */
 
     .details-section > .account-info {
         justify-content: space-between;

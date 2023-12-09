@@ -21,10 +21,16 @@
 .accounts-container > .accounts-header > .accounts-action-btn > button {
     background: none;
     border-radius: 10px;
+    border: none;
+    color: #fff;
     display: flex;
     align-items: center;
     padding: 5px 10px;
-    background-color: orange;
+    background-color: var(--primary-col);
+}
+
+.accounts-container > .accounts-header > .accounts-action-btn > button:hover {
+    cursor: pointer;
 }
 
 .accounts-container > .accounts-count-sort {

@@ -1,0 +1,33 @@
+#account-modal-form {
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#account-modal-form > div:not(.save-btn-container) {
+    display: flex;
+    flex-direction: column;
+}
+
+#account-modal-form > div:not(.account-name) {
+    margin: 10px 0;
+}
+
+
+#account-modal-form > div > label {
+    font-size: x-large;
+    margin-bottom: 5px;
+}
+
+#account-modal-form > div > input {
+    padding: 5px 0 5px 5px;
+    font-size: larger;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #e3e3e3;
+}
+
+#account-modal-form > .save-btn-container {
+    margin-top: 30px;
+}
