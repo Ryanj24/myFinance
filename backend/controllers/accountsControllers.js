@@ -25,13 +25,13 @@ export const createNewAccount = async (req, res) => {
     try {
         // Insert the account name and number into the bank accounts table and specify the owner of the account is the user making the request
         const query = await db.query(
-            `INSERT INTO bank_accounts (account_name, account_number, account_owner_id)
-             VALUES (?, ?, ?)
-            `, [req.body.accountName, req.body.accountNumber, id]
+            `INSERT INTO bank_accounts (account_name, account_number, balance, account_provider, account_owner_id)
+             VALUES (?, ?, ?, ?, ?)
+            `, [req.body.account_name, req.body.account_number, req.body.account_balance, req.body.account_provider, id]
         )
 
         // Retrieve the newly inserted account 
-        const account = await db.query(`SELECT * FROM bank_accounts WHERE account_number = ?`, [req.body.accountNumber])
+        const account = await db.query(`SELECT * FROM bank_accounts WHERE account_number = ?`, [req.body.account_number])
 
         // Return the new account
         return res.json(account[0][0]);
@@ -101,12 +101,12 @@ export const updateAccount = async (req, res) => {
     try {
         // Update the details of the specified account in the database
         const update = await db.query(
-            `UPDATE bank_accounts SET account_name = ?, account_number = ? WHERE id = ? AND account_owner_id = ?`,
-            [req.body.accountName, req.body.accountNumber, req.params.id, id]
+            `UPDATE bank_accounts SET account_name = ?, account_number = ?, balance = ?, account_provider = ? WHERE id = ? AND account_owner_id = ?`,
+            [req.body.account_name, req.body.account_number, req.body.account_balance, req.body.account_provider, req.params.id, id]
         )
 
         // Retrieve that account that has been updated
-        const updatedAccount = await db.query(`SELECT * FROM bank_accounts WHERE account_number = ?`, [req.body.accountNumber])
+        const updatedAccount = await db.query(`SELECT * FROM bank_accounts WHERE account_number = ?`, [req.body.account_number])
 
         // Return the newly updated account to the user
         return res.json(updatedAccount[0][0]);

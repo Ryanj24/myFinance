@@ -1,6 +1,7 @@
 .accounts-container {
     padding: 1.5rem;
     width: 100%;
+    max-height: 100vh;
 }
 
 .accounts-container > .accounts-header {
@@ -58,10 +59,11 @@
 }
 
 .accounts-container > .accounts-list {
-    padding: 1.5rem;
+    padding: 1rem;
     overflow-y: scroll;
     -ms-overflow-style: none; 
     scrollbar-width: none;  
+    max-height: 500px;
 }
 
 .accounts-container > .accounts-list > p{
@@ -70,4 +72,10 @@
 
 .accounts-container > .accounts-list::-webkit-scrollbar {
     display: none;
+}
+
+@media screen and (max-width: 1224px) {
+    .accounts-container {
+        height: fit-content;
+    }
 }

@@ -3,21 +3,36 @@ import './AccountForm.css'
 import { useForm } from 'react-hook-form'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button } from '@mui/material'
+import { createAccount } from '../../utilityFunctions/createAccount'
+import { addAccount, updateAccount } from '../../redux/accountSlice.js'
+import { editAccount } from '../../utilityFunctions/editAccount.js'
+import { useParams } from 'react-router-dom'
 
 const AccountForm = ({formType}) => {
 
     const {register, handleSubmit} = useForm()
+    const {token} = useSelector(state => state.user.user)
     const dispatch = useDispatch();
+    const {id} = useParams();
+
 
 
     const onSubmit = async (data) => {
-        console.log(data)
+        if (formType === "Add Account") {
+            const response = await createAccount(data, token)
+
+            dispatch(addAccount(response))
+        } else {
+            const response = await editAccount(id, data, token)
+
+            dispatch(updateAccount(response))
+        }
     }
   return (
     <form id='account-modal-form' onSubmit={handleSubmit(onSubmit)}>
         <div className="account-name">
             <label htmlFor='account_name'>Account Name</label>
-            <input type="text" id='account' {...register("account_name")}/>
+            <input type="text" id='account_name' {...register("account_name")}/>
         </div>  
 
         <div className="account-number">
@@ -26,8 +41,24 @@ const AccountForm = ({formType}) => {
         </div>
 
         <div className="account-balance">
-            <label htmlFor='account_balance'>Account Balance</label>
+            {formType === "Add Account" ? <label htmlFor='account_balance'>Initial Balance</label> : <label htmlFor='account_balance'>Account Balance</label>}
             <input type="number" id='account_balance' {...register("account_balance")} min={0}/>
+        </div>
+
+        <div className="account-provider">
+            <label htmlFor='account_provider'>Account Provider</label>
+            <select id='account_provider' {...register("account_provider")}>
+                <option value="Barclays">Barclays</option>
+                <option value="HSBC">HSBC</option>
+                <option value="Lloyds">Lloyds Bank</option>
+                <option value="Monzo">Monzo</option>
+                <option value="NatWest">NatWest</option>
+                <option value="Royal Bank of Scotland">Royal Bank of Scotland</option>
+                <option value="Santander">Santander</option>
+                <option value="Starling Bank">Starling Bank</option>
+                <option value="Virgin Money">Virgin Money</option>
+                <option value="Other">Other</option>
+            </select>
         </div>
         <div className="save-btn-container">
             {formType === "Add Account"
