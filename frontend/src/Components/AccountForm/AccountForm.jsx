@@ -8,13 +8,17 @@ import { addAccount, updateAccount } from '../../redux/accountSlice.js'
 import { editAccount } from '../../utilityFunctions/editAccount.js'
 import { useParams } from 'react-router-dom'
 
-const AccountForm = ({formType}) => {
+const AccountForm = ({formType, account}) => {
 
-    const {register, handleSubmit} = useForm()
-    const {token} = useSelector(state => state.user.user)
+    const {user, token} = useSelector(state => state.user.user)
+    const {register, handleSubmit} = useForm({defaultValues: {
+        account_name: formType === "Edit Account" ? account.account_name : "",
+        account_number: formType === "Edit Account" ? account.account_number : "",
+        account_balance: formType === "Edit Account" ? account.balance : "",
+        account_provider: formType === "Edit Account" ? account.account_provider : ""
+    }})
     const dispatch = useDispatch();
     const {id} = useParams();
-
 
 
     const onSubmit = async (data) => {

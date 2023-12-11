@@ -3,7 +3,7 @@ import './AccountModal.css'
 import { Close } from '@mui/icons-material'
 import AccountForm from '../AccountForm/AccountForm'
 
-const AccountModal = ({modalType, toggleModal}) => {
+const AccountModal = ({modalType, toggleModal, account}) => {
   return (
     <div className='account-modal-container'>
         <div className="account-modal">
@@ -15,7 +15,7 @@ const AccountModal = ({modalType, toggleModal}) => {
                     </button>
                 </div>
             </header>
-            {modalType === "Add Account" ?  <AccountForm formType="Add Account"/> :  <AccountForm formType="Edit Account"/>}
+            {modalType === "Add Account" ?  <AccountForm formType="Add Account"/> :  <AccountForm formType="Edit Account" account={account}/>}
         </div>
     </div>
   )

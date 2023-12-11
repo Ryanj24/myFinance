@@ -13,10 +13,13 @@ import { useSelector, useDispatch } from 'react-redux'
 const AccountDetails = () => {
 
   const [editModal, setEditModal] = useState(false);
-  const {token} = useSelector(state => state.user.user)
   const {id} = useParams();
+  const {token} = useSelector(state => state.user.user)
   const nav = useNavigate();
   const dispatch = useDispatch();
+
+  const {accounts} = useSelector(state => state.accounts)
+  const account = accounts.filter(acc => acc.id == id)[0];
 
   const handleDelete = async () => {
     const response = await removeAccount(id, token);
@@ -27,7 +30,7 @@ const AccountDetails = () => {
 
   return (
     <>
-      {editModal && <AccountModal modalType="Edit Account" toggleModal={setEditModal}/>}
+      {editModal && <AccountModal modalType="Edit Account" toggleModal={setEditModal} account={account}/>}
       <section className='account-details-container'>
         <header className='account-header'>
           <h1>
