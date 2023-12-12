@@ -1,31 +1,39 @@
-.account-transactions-section {
-    /* background-color: blue; */
+.account-transactions-section > .account-transactions-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .account-transactions-section > .account-transactions-header > h2 {
     color: var(--primary-col);
 }
 
+.account-transactions-section > .account-transactions-header > .transactions-sort > label{
+    font-size: large;
+    margin-right: 10px;
+}
+
+.account-transactions-section > .account-transactions-header > .transactions-sort > select {
+    padding: 5px;
+    font-size: medium;
+    margin: 0 10px;
+    border-radius: 5px;
+}
+
 .account-transactions-section > .transactions-container {
-    padding: 1.5rem;
-    height: 300px;
+    height: 400px;
     overflow-y: scroll;
     -ms-overflow-style: none; 
     scrollbar-width: none;  
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 10px;
 }
 
 .account-transactions-section > .transactions-container > p{
     text-align: center;
     font-size: large;
-}
-
-.account-transactions-section > .transactions-container > .account-transactions {
-    /* overflow-y: scroll;
-    -ms-overflow-style: none; 
-    scrollbar-width: none;   */
 }
 
 .account-transactions-section > .transactions-container::-webkit-scrollbar {

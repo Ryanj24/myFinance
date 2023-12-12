@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './AccountForm.css'
 import { useForm } from 'react-hook-form'
 import { useSelector, useDispatch } from 'react-redux'
@@ -8,10 +8,10 @@ import { addAccount, updateAccount } from '../../redux/accountSlice.js'
 import { editAccount } from '../../utilityFunctions/editAccount.js'
 import { useParams } from 'react-router-dom'
 
-const AccountForm = ({formType, account}) => {
+const AccountForm = ({formType, account, toggleModal}) => {
 
     const {user, token} = useSelector(state => state.user.user)
-    const {register, handleSubmit} = useForm({defaultValues: {
+    const {register, handleSubmit, formState: {isSubmitSuccessful}} = useForm({defaultValues: {
         account_name: formType === "Edit Account" ? account.account_name : "",
         account_number: formType === "Edit Account" ? account.account_number : "",
         account_balance: formType === "Edit Account" ? account.balance : "",
@@ -32,6 +32,13 @@ const AccountForm = ({formType, account}) => {
             dispatch(updateAccount(response))
         }
     }
+
+    useEffect(() => {
+        if (isSubmitSuccessful) {
+            toggleModal(false)
+        }
+    }, [isSubmitSuccessful])
+    
   return (
     <form id='account-modal-form' onSubmit={handleSubmit(onSubmit)}>
         <div className="account-name">

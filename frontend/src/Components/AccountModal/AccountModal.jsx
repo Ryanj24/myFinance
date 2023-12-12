@@ -15,7 +15,18 @@ const AccountModal = ({modalType, toggleModal, account}) => {
                     </button>
                 </div>
             </header>
-            {modalType === "Add Account" ?  <AccountForm formType="Add Account"/> :  <AccountForm formType="Edit Account" account={account}/>}
+            {modalType === "Add Account"
+            ?
+              <AccountForm 
+                formType="Add Account" 
+                toggleModal={toggleModal}
+              />
+            : <AccountForm 
+                formType="Edit Account" 
+                account={account}
+                toggleModal={toggleModal}
+              />
+            }
         </div>
     </div>
   )
