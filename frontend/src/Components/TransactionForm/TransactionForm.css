@@ -1,0 +1,60 @@
+#transaction-modal-form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#transaction-modal-form > div {
+    width: 100%;
+}
+
+#transaction-modal-form > div:not(.save-btn-container) {
+    display: flex;
+    flex-direction: column;
+}
+
+#transaction-modal-form > div:not(.transaction-category) {
+    margin: 10px 0;
+}
+
+
+#transaction-modal-form > div > label {
+    font-size: larger;
+    margin-bottom: 5px;
+}
+
+#transaction-modal-form > div > input {
+    padding: 5px 0 5px 5px;
+    font-size: larger;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #e3e3e3;
+}
+
+#transaction-modal-form > .transaction-category {
+    margin-bottom: 10px;
+}
+
+
+#transaction-modal-form > .transaction-category > select {
+    padding: 5px;
+    font-size: medium;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #e3e3e3;
+}
+
+#transaction-modal-form > .transaction-type > select {
+    padding: 5px;
+    font-size: medium;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #e3e3e3;
+}
+
+#transaction-modal-form > .save-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}

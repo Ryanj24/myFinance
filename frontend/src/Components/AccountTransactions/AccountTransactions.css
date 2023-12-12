@@ -4,6 +4,21 @@
     justify-content: space-between;
 }
 
+.account-transactions-section > .account-transactions-header > .add-transaction-btn-container > button {
+    background: none;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: var(--primary-col);
+}
+
+.account-transactions-section > .account-transactions-header > .add-transaction-btn-container > button:hover {
+    cursor: pointer;
+}
+
 .account-transactions-section > .account-transactions-header > h2 {
     color: var(--primary-col);
 }

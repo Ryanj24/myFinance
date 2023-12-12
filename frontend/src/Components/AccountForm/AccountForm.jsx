@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom'
 
 const AccountForm = ({formType, account, toggleModal}) => {
 
-    const {user, token} = useSelector(state => state.user.user)
+    const {token} = useSelector(state => state.user.user)
     const {register, handleSubmit, formState: {isSubmitSuccessful}} = useForm({defaultValues: {
         account_name: formType === "Edit Account" ? account.account_name : "",
         account_number: formType === "Edit Account" ? account.account_number : "",
