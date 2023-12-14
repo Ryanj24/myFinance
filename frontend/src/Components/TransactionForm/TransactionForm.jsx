@@ -25,9 +25,17 @@ const TransactionForm = ({formType, transaction, toggleModal}) => {
 
 
     const onSubmit = async (data) => {
-        const response = await addTransaction(id, data, token)
+        if (formType === "Add Transaction") {
+            const response = await addTransaction(id, data, token)
+            console.log(response)
 
-        dispatch(addBankTransaction(response))
+            dispatch(addBankTransaction(response))
+            if (response.type === "Deposit" || response.type === "Income") {
+                dispatch(incrementAccountBalance(response))
+            } else {
+                dispatch(decrementAccountBalance(response))
+            }
+        }
     }
 
     useEffect(() => {

@@ -17,10 +17,10 @@ export const accountSlice = createSlice({
             state.accounts = state.accounts.map(account => account.id === action.payload.id ? action.payload : account)
         },
         incrementAccountBalance: (state, action) => {
-            state.accounts = state.accounts.map(account => account.id === action.payload.id ? account.balance += action.payload.amount : account)
+            state.accounts = state.accounts.map(account => account.id === action.payload.account_id ? {...account, balance: parseFloat(account.balance) + parseFloat(action.payload.amount)} : account)
         },
         decrementAccountBalance: (state, action) => {
-          state.accounts = state.accounts.map(account => account.id === action.payload.id ? account.balance -= action.payload.amount : account)
+            state.accounts = state.accounts.map(account => account.id === action.payload.account_id ? {...account, balance: parseFloat(account.balance) - parseFloat(action.payload.amount)} : account)
         },
         deleteAccount: (state, action) => {
             state.accounts = state.accounts.filter(account => account.id != action.payload.id)

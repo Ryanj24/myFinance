@@ -13,7 +13,6 @@ import { useSelector, useDispatch } from 'react-redux'
 const AccountDetails = () => {
 
   const [editModal, setEditModal] = useState(false);
-  const [addTransactionModal, setAddTransactionModal] = useState(false)
 
   const {id} = useParams();
   const {token} = useSelector(state => state.user.user)
@@ -33,16 +32,12 @@ const AccountDetails = () => {
   return (
     <>
       {editModal && <AccountModal modalType="Edit Account" toggleModal={setEditModal} account={account}/>}
-      {addTransactionModal && <AccountModal modalType="Add Transaction" toggleModal={setAddTransactionModal}/>}
       <section className='account-details-container'>
         <header className='account-header'>
           <h1>
             Account Overview
           </h1>
           <div className="account-action-btns">
-            <button className='add-transaction-btn' onClick={() => setAddTransactionModal(!addTransactionModal)}>
-              <Add /> Add Transaction
-            </button>
             <button className='account-edit-btn' onClick={() => setEditModal(!editModal)}>
               <Edit /> Edit Account
             </button>

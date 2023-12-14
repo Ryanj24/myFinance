@@ -12,6 +12,7 @@ import AccountModal from '../AccountModal/AccountModal'
 
 const AccountTransactions = () => {
 
+  const [modalActive, setModalActive] = useState(false);
   const {id} = useParams()
   const transactions = useSelector(state => state.bankTransactions.transactions).filter(transaction => transaction.account_id == id)
   const dispatch = useDispatch()
@@ -20,21 +21,19 @@ const AccountTransactions = () => {
     dispatch(sortBankTransactions(e.target.value))
   }
 
-  console.log(transactions)
-
   return (
     <>
-      {/* {modalActive && <AccountModal modalType="Add Transaction" toggleModal={setModalActive}/>} */}
+      {modalActive && <AccountModal modalType="Add Transaction" toggleModal={setModalActive}/>}
       <section className='account-transactions-section'>
           <header className='account-transactions-header'>
               <h2>
                   Transactions
               </h2>
-              {/* <div className="add-transaction-btn-container">
+              <div className="add-transaction-btn-container">
                 <button className='add-transaction-btn' onClick={() => setModalActive(!modalActive)}>
                   <Add /> Add Transaction
                 </button>
-              </div> */}
+              </div>
               <div className="transactions-sort">
                 <label htmlFor='transactions-sort-selector'>Sort by: </label>
                 <select id='transactions-sort-selector' onChange={handleOnChange}>
