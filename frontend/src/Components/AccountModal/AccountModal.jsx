@@ -11,7 +11,7 @@ const AccountModal = ({modalType, toggleModal, account}) => {
             <header className='modal-header'>
               {modalType === "Add Account"
               ? <h2>Add Account</h2>
-              : (modalType === "Add Account") ? <h2>Edit Account</h2>
+              : (modalType === "Edit Account") ? <h2>Edit Account</h2>
               : (modalType === "Add Transaction") ? <h2>Add Transaction</h2>
               : <h2>Edit Transaction</h2>  
               }
@@ -34,8 +34,7 @@ const AccountModal = ({modalType, toggleModal, account}) => {
                 account={account}
                 toggleModal={toggleModal}
               />
-            :
-              (modalType === "Add Transaction")
+            : (modalType === "Add Transaction")
             ?
               <TransactionForm 
                 formType="Add Transaction"
@@ -43,7 +42,7 @@ const AccountModal = ({modalType, toggleModal, account}) => {
               />
             :
               <TransactionForm 
-                formType="Add Transaction"
+                formType="Edit Transaction"
                 toggleModal={toggleModal}
               />
             }

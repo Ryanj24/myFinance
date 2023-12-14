@@ -70,21 +70,21 @@ export const accountTransaction = async (req, res) => {
     const {id} = jwt.decode(token)
 
     // Get the date of the transaction in the format yyyy-mm-dd
-    let dateOfTransaction = new Date();
+    let dateOfTransaction = new Date(req.body.transaction_date);
     dateOfTransaction = dateOfTransaction.toISOString().split("T")[0];
 
     try {
         // Call the bank_transaction_procedure, passing in the relevant arguments
         const procedureCall = await db.query(
-            `CALL bank_transaction_procedure(?, ?, ?, ?, ?, ?)`, 
-            [req.params.id, req.body.transactionType, id, req.body.amount, req.body.category, dateOfTransaction]
+            `CALL bank_transaction_procedure(?, ?, ?, ?, ?, ?, ?)`, 
+            [req.params.id, req.body.transaction_type, id, req.body.transaction_amount, req.body.transaction_desc, req.body.transaction_category, dateOfTransaction]
         )
 
         // Select the account where the transaction was made
-        const transaction = await db.query(`SELECT id, type, category, transaction_date, amount FROM bank_transactions WHERE account_id = ? ORDER BY id DESC LIMIT 1`,  [req.params.id]);
+        const addedTransaction = await db.query(`SELECT * FROM bank_transactions WHERE account_id = ? ORDER BY id DESC LIMIT 1`, [req.params.id])
 
         // Return the account
-        return res.json(transaction[0][0]);
+        return res.json(addedTransaction[0][0]);
 
     } catch (error) {
         // Return any errors

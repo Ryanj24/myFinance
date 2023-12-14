@@ -3,7 +3,10 @@ import './TransactionForm.css'
 import {useForm} from 'react-hook-form'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { addTransaction } from '../../utilityFunctions/addTransaction'
+
 import { addBankTransaction, updateBankTransaction } from '../../redux/bankTransactionSlice'
+import { decrementAccountBalance, incrementAccountBalance, updateAccount } from '../../redux/accountSlice'
 import { Button } from '@mui/material'
 
 
@@ -22,16 +25,9 @@ const TransactionForm = ({formType, transaction, toggleModal}) => {
 
 
     const onSubmit = async (data) => {
-        if (formType === "Add Transaction") {
-            // const response = await addTransaction(data, token)
+        const response = await addTransaction(id, data, token)
 
-            // dispatch(addBankTransaction(response))
-            console.log(data)
-        } else {
-            // const response = await editTransaction(id, data, token)
-
-            // dispatch(updateBankTransaction(response))
-        }
+        dispatch(addBankTransaction(response))
     }
 
     useEffect(() => {

@@ -102,6 +102,7 @@ CREATE PROCEDURE bank_transaction_procedure(
     IN transaction_type ENUM("Income", "Expense", "Deposit", "Withdrawl"),
     IN account_owner_id INT,
     IN amount DECIMAL(8, 2),
+    IN transaction_desc VARCHAR(255),
     IN category VARCHAR(20),
     IN transaction_date DATE)
 BEGIN
@@ -116,14 +117,14 @@ BEGIN
             UPDATE `bank_accounts` SET `balance` = `balance` + amount
             WHERE `id` = `account_id` AND `account_owner_id` = account_owner_id;
 
-            INSERT INTO `bank_transactions` (account_id, type, category, transaction_date, amount)
-            VALUES (account_id, transaction_type, category, transaction_date, amount);
+            INSERT INTO `bank_transactions` (account_id, type, category, description, transaction_date, amount)
+            VALUES (account_id, transaction_type, category, transaction_desc, transaction_date, amount);
         ELSE
             UPDATE `bank_accounts` SET `balance` = `balance` - amount
             WHERE `id` = `account_id` AND `account_owner_id` = account_owner_id;
 
-            INSERT INTO `bank_transactions` (account_id, type, category, transaction_date, amount)
-            VALUES (account_id, transaction_type, category, transaction_date, amount);
+            INSERT INTO `bank_transactions` (account_id, type, category, description, transaction_date, amount)
+            VALUES (account_id, transaction_type, category, transaction_desc, transaction_date, amount);
         END IF;
     COMMIT;
 END//

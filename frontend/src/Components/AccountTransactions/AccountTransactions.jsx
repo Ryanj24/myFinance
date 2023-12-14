@@ -13,27 +13,28 @@ import AccountModal from '../AccountModal/AccountModal'
 const AccountTransactions = () => {
 
   const {id} = useParams()
-  const transactions = useSelector(state => state.bankTransactions.transactions).filter(transaction => transaction.account_id == id).map(obj => transactionIcon(obj))
+  const transactions = useSelector(state => state.bankTransactions.transactions).filter(transaction => transaction.account_id == id)
   const dispatch = useDispatch()
-
-  const [modalActive, setModalActive] = useState(false)
 
   const handleOnChange = (e) => {
     dispatch(sortBankTransactions(e.target.value))
   }
+
+  console.log(transactions)
+
   return (
     <>
-      {modalActive && <AccountModal modalType="Add Transaction" toggleModal={setModalActive}/>}
+      {/* {modalActive && <AccountModal modalType="Add Transaction" toggleModal={setModalActive}/>} */}
       <section className='account-transactions-section'>
           <header className='account-transactions-header'>
               <h2>
                   Transactions
               </h2>
-              <div className="add-transaction-btn-container">
+              {/* <div className="add-transaction-btn-container">
                 <button className='add-transaction-btn' onClick={() => setModalActive(!modalActive)}>
                   <Add /> Add Transaction
                 </button>
-              </div>
+              </div> */}
               <div className="transactions-sort">
                 <label htmlFor='transactions-sort-selector'>Sort by: </label>
                 <select id='transactions-sort-selector' onChange={handleOnChange}>
@@ -49,15 +50,15 @@ const AccountTransactions = () => {
           <section className="transactions-container">
             {transactions.length > 0
             ?
-                transactions.map((obj) => (
-                  <TransactionCard 
-                  key={obj.id}
-                  icon={budgetIconArray[obj.iconIndex]}
-                  desc={obj.description === null ? "No Description": obj.description}
-                  date={obj.transaction_date}
-                  amount={obj.type === "Expense" || obj.type === "Withdrawl" ? <p style={{color: "#FF1B1B"}}>-£{obj.amount}</p> : <p style={{color: "#09FF05"}}>+£{obj.amount}</p>}
-                  />  
-                ))
+              transactions.map(obj => transactionIcon(obj)).map(obj => (
+                <TransactionCard 
+                key={obj.id}
+                icon={budgetIconArray[obj.iconIndex]}
+                desc={obj.description === null ? "No Description": obj.description}
+                date={obj.transaction_date}
+                amount={obj.type === "Expense" || obj.type === "Withdrawl" ? <p style={{color: "#FF1B1B"}}>-£{obj.amount}</p> : <p style={{color: "#09FF05"}}>+£{obj.amount}</p>}
+                />  
+              ))
             :
               <p>No transactions added yet</p>
             }

@@ -16,6 +16,12 @@ export const accountSlice = createSlice({
         updateAccount: (state, action) => {
             state.accounts = state.accounts.map(account => account.id === action.payload.id ? action.payload : account)
         },
+        incrementAccountBalance: (state, action) => {
+            state.accounts = state.accounts.map(account => account.id === action.payload.id ? account.balance += action.payload.amount : account)
+        },
+        decrementAccountBalance: (state, action) => {
+          state.accounts = state.accounts.map(account => account.id === action.payload.id ? account.balance -= action.payload.amount : account)
+        },
         deleteAccount: (state, action) => {
             state.accounts = state.accounts.filter(account => account.id != action.payload.id)
         },
@@ -40,6 +46,6 @@ export const accountSlice = createSlice({
     }
 })
 
-export const {setAccounts, addAccount, updateAccount, deleteAccount, sortAccounts} = accountSlice.actions
+export const {setAccounts, addAccount, updateAccount, incrementAccountBalance, decrementAccountBalance, deleteAccount, sortAccounts} = accountSlice.actions
 
 export default accountSlice.reducer
