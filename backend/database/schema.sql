@@ -131,6 +131,79 @@ END//
 DELIMITER ;
 
 DELIMITER //
+CREATE PROCEDURE update_bank_transaction_procedure(
+    IN account_id INT, 
+    IN transaction_id INT,
+    IN transaction_type ENUM("Income", "Expense", "Deposit", "Withdrawl"),
+    IN old_amount DECIMAL(8, 2),
+    IN oldAmountHigher BOOLEAN,
+    IN typeChange BOOLEAN,
+    IN amount DECIMAL(8, 2),
+    IN transaction_desc VARCHAR(255),
+    IN category VARCHAR(20),
+    IN transaction_date DATE)
+BEGIN
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+    END;
+
+    START TRANSACTION;
+        IF transaction_type = "Income" OR transaction_type = "Deposit" AND typeChange = TRUE THEN
+            UPDATE `bank_accounts` SET `balance` = `balance` + old_amount + amount
+            WHERE `id` = account_id;
+
+            UPDATE `bank_transactions`
+            SET `type` = transaction_type, `category` = category, `description` = transaction_desc, `transaction_date` = transaction_date, `amount` = amount
+            WHERE `id` = transaction_id AND `account_id` = account_id;
+        ELSEIF transaction_type = "Income" OR transaction_type = "Deposit" AND typeChange = FALSE THEN
+            IF oldAmountHigher THEN
+                UPDATE `bank_accounts` SET `balance` = `balance` - (old_amount - amount)
+                WHERE `id` = account_id;
+
+                UPDATE `bank_transactions`
+                SET `type` = transaction_type, `category` = category, `description` = transaction_desc, `transaction_date` = transaction_date, `amount` = amount
+                WHERE `id` = transaction_id AND `account_id` = account_id;
+            ELSE 
+                UPDATE `bank_accounts` SET `balance` = `balance` + (amount - old_amount)
+                WHERE `id` = account_id;
+
+                UPDATE `bank_transactions`
+                SET `type` = transaction_type, `category` = category, `description` = transaction_desc, `transaction_date` = transaction_date, `amount` = amount
+                WHERE `id` = transaction_id AND `account_id` = account_id;
+            END IF;
+        ELSEIF transaction_type = "Expense" OR transaction_type = "Withdrawl" AND typeChange = TRUE THEN
+            UPDATE `bank_accounts` SET `balance` = `balance` - old_amount - amount
+            WHERE `id` = account_id;
+
+            UPDATE `bank_transactions`
+            SET `type` = transaction_type, `category` = category, `description` = transaction_desc, `transaction_date` = transaction_date, `amount` = amount
+            WHERE `id` = transaction_id AND `account_id` = account_id;
+        ELSEIF transaction_type = "Expense" OR transaction_type = "Withdrawl" AND typeChange = FALSE THEN
+
+            IF oldAmountHigher THEN
+                UPDATE `bank_accounts` SET `balance` = `balance` + (old_amount - amount)
+                WHERE `id` = account_id;
+
+                UPDATE `bank_transactions`
+                SET `type` = transaction_type, `category` = category, `description` = transaction_desc, `transaction_date` = transaction_date, `amount` = amount
+                WHERE `id` = transaction_id AND `account_id` = account_id;
+            ELSE 
+                UPDATE `bank_accounts` SET `balance` = `balance` - (amount - old_amount)
+                WHERE `id` = account_id;
+
+                UPDATE `bank_transactions`
+                SET `type` = transaction_type, `category` = category, `description` = transaction_desc, `transaction_date` = transaction_date, `amount` = amount
+                WHERE `id` = transaction_id AND `account_id` = account_id;
+            END IF;
+        END IF;
+    COMMIT;
+END//
+DELIMITER ;
+
+
+DELIMITER //
 CREATE PROCEDURE stock_transaction_procedure(
     IN id_of_portfolio INT, 
     IN name_of_company VARCHAR(64),

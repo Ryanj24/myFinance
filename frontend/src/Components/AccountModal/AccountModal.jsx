@@ -4,7 +4,7 @@ import { Close } from '@mui/icons-material'
 import AccountForm from '../AccountForm/AccountForm'
 import TransactionForm from '../TransactionForm/TransactionForm'
 
-const AccountModal = ({modalType, toggleModal, account}) => {
+const AccountModal = ({modalType, toggleModal, account, transaction}) => {
   return (
     <div className='account-modal-container'>
         <div className="account-modal">
@@ -44,6 +44,7 @@ const AccountModal = ({modalType, toggleModal, account}) => {
               <TransactionForm 
                 formType="Edit Transaction"
                 toggleModal={toggleModal}
+                transaction={transaction}
               />
             }
         </div>

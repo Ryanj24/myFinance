@@ -1,7 +1,7 @@
 .transaction-card {
     display: grid;
     align-items: center;
-    grid-template-columns: 0.5fr 6fr 1fr 1fr;
+    grid-template-columns: 0.5fr 5fr 1fr 1fr;
     margin: 20px 0;
     padding: 10px;
     width: 70%;
@@ -31,4 +31,17 @@
 .transaction-card > .transaction-amount {
     /* background-color: purple; */
     grid-column: 4 / -1;
+}
+
+.transaction-card > .transaction-action-btns {
+    grid-column: 5 / -1;
+}
+
+.transaction-card > .transaction-action-btns > button {
+    background: none;
+    border: none;
+}
+
+.transaction-card > .transaction-action-btns > button:hover {
+    cursor: pointer;
 }

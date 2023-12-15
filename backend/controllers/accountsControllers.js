@@ -43,27 +43,7 @@ export const createNewAccount = async (req, res) => {
     
 }
 
-export const getSingleAccount = async (req, res) => {
-
-    // Get the user object from the request headers
-    const token = req.headers.authorization.split(" ")[1]
-    const {id} = jwt.decode(token)
-
-    // Select the account specified along with all transactions related to that account
-    const account = await db.query(`SELECT account_name, account_number, balance FROM bank_accounts WHERE id = ? AND account_owner_id = ?`, [req.params.id, id])
-    const accountTransactions = await db.query(`SELECT type, category, transaction_date, amount FROM bank_transactions WHERE account_id = ?`, [req.params.id])
-
-    // If there is no account with the specified ID, alert this to the user
-    if (!account[0][0]) {
-        return res.json({error: true, message: `No account exists with the id ${req.params.id}`})
-    }
-
-    // Return an object containing the account and all its transactions
-    return res.json({account: account[0][0], transactions: accountTransactions[0]})
-
-}
-
-export const accountTransaction = async (req, res) => {
+export const createTransaction = async (req, res) => {
 
     // Get the user object from the request headers
     const token = req.headers.authorization.split(" ")[1]
@@ -90,6 +70,29 @@ export const accountTransaction = async (req, res) => {
         // Return any errors
         return res.json(error);
     }
+}
+
+export const updateTransaction = async (req, res) => {
+
+    // Get the user object from the request headers
+    const token = req.headers.authorization.split(" ")[1]
+    const {id} = jwt.decode(token)
+
+    try {
+        // Update the details of the specified transaction in the database
+        const update = await db.query()
+
+        // Retrieve that account that has been updated
+        const updatedTransaction = await db.query()
+
+        // Return the newly updated account to the user
+        return res.json(updatedTransaction[0][0]);
+
+    } catch (error) {
+        // Return any error
+        return res.json(error)
+    }
+    
 }
 
 export const updateAccount = async (req, res) => {
