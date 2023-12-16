@@ -144,21 +144,23 @@ CREATE PROCEDURE update_bank_transaction_procedure(
     IN transaction_date DATE)
 BEGIN
 
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-    END;
+    -- DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    -- BEGIN
+    --     ROLLBACK;
+    -- END;
 
     START TRANSACTION;
-        IF transaction_type = "Income" OR transaction_type = "Deposit" AND typeChange = TRUE THEN
+        IF (transaction_type = "Income" OR transaction_type = "Deposit") AND typeChange THEN
             UPDATE `bank_accounts` SET `balance` = `balance` + old_amount + amount
             WHERE `id` = account_id;
 
             UPDATE `bank_transactions`
             SET `type` = transaction_type, `category` = category, `description` = transaction_desc, `transaction_date` = transaction_date, `amount` = amount
             WHERE `id` = transaction_id AND `account_id` = account_id;
-        ELSEIF transaction_type = "Income" OR transaction_type = "Deposit" AND typeChange = FALSE THEN
-            IF oldAmountHigher THEN
+
+
+        ELSEIF (transaction_type = "Income" OR transaction_type = "Deposit") AND NOT typeChange THEN
+            IF oldAmountHigher = TRUE THEN
                 UPDATE `bank_accounts` SET `balance` = `balance` - (old_amount - amount)
                 WHERE `id` = account_id;
 
@@ -173,16 +175,24 @@ BEGIN
                 SET `type` = transaction_type, `category` = category, `description` = transaction_desc, `transaction_date` = transaction_date, `amount` = amount
                 WHERE `id` = transaction_id AND `account_id` = account_id;
             END IF;
-        ELSEIF transaction_type = "Expense" OR transaction_type = "Withdrawl" AND typeChange = TRUE THEN
+
+
+        ELSEIF (transaction_type = "Expense" OR transaction_type = "Withdrawl") AND typeChange THEN
+            -- UPDATE `bank_accounts` SET `balance` = `balance` - old_amount - amount
+            -- WHERE `id` = account_id;
             UPDATE `bank_accounts` SET `balance` = `balance` - old_amount - amount
             WHERE `id` = account_id;
 
             UPDATE `bank_transactions`
             SET `type` = transaction_type, `category` = category, `description` = transaction_desc, `transaction_date` = transaction_date, `amount` = amount
             WHERE `id` = transaction_id AND `account_id` = account_id;
-        ELSEIF transaction_type = "Expense" OR transaction_type = "Withdrawl" AND typeChange = FALSE THEN
 
-            IF oldAmountHigher THEN
+
+        ELSEIF (transaction_type = "Expense" OR transaction_type = "Withdrawl") AND NOT typeChange THEN
+
+            IF oldAmountHigher = TRUE THEN
+                -- UPDATE `bank_accounts` SET `balance` = `balance` + (old_amount - amount)
+                -- WHERE `id` = account_id;
                 UPDATE `bank_accounts` SET `balance` = `balance` + (old_amount - amount)
                 WHERE `id` = account_id;
 
@@ -190,6 +200,8 @@ BEGIN
                 SET `type` = transaction_type, `category` = category, `description` = transaction_desc, `transaction_date` = transaction_date, `amount` = amount
                 WHERE `id` = transaction_id AND `account_id` = account_id;
             ELSE 
+                -- UPDATE `bank_accounts` SET `balance` = `balance` - (amount - old_amount)
+                -- WHERE `id` = account_id;
                 UPDATE `bank_accounts` SET `balance` = `balance` - (amount - old_amount)
                 WHERE `id` = account_id;
 

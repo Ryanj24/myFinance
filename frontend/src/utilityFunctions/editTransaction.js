@@ -11,7 +11,7 @@ export const editTransaction = async (accountID, transaction, data, userToken) =
                 ...data,
                 old_amount: transaction.amount,
                 oldAmountHigher: transaction.amount - data.transaction_amount > 0 ? true : false,
-                typeChange: (transaction.type === "Deposit" || transaction.type === "Income" && data.transaction_type === "Expense" || data.transaction_type === "Withdrawl") ? true : (transaction.type === "Expense" || transaction.type === "Withdrawl" && data.transaction_type === "Income" || data.transaction_type === "Deposit") ? true : false 
+                typeChange: (transaction.type === "Deposit" || transaction.type === "Income") && (data.transaction_type === "Expense" || data.transaction_type === "Withdrawl") ? true : (transaction.type === "Expense" || transaction.type === "Withdrawl") && (data.transaction_type === "Income" || data.transaction_type === "Deposit") ? true : false 
             })
         })
 

@@ -80,13 +80,22 @@ export const updateTransaction = async (req, res) => {
 
     try {
         // Update the details of the specified transaction in the database
-        const update = await db.query()
+        const update = await db.query(
+            `CALL update_bank_transaction_procedure(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [
+                req.params.id, req.params.transactionID, req.body.transaction_type, 
+                req.body.old_amount, req.body.oldAmountHigher, req.body.typeChange, 
+                req.body.transaction_amount, req.body.transaction_desc, 
+                req.body.transaction_category, req.body.transaction_date 
+            ]
+        )
 
         // Retrieve that account that has been updated
-        const updatedTransaction = await db.query()
+        const updatedTransaction = await db.query(`SELECT * FROM bank_transactions WHERE id = ? AND account_id = ?`, [req.params.transactionID, req.params.id])
+        const updatedAccount = await db.query(`SELECT * FROM bank_accounts WHERE id = ?`, [req.params.id])
 
         // Return the newly updated account to the user
-        return res.json(updatedTransaction[0][0]);
+        return res.json({account: updatedAccount[0][0], transaction: updatedTransaction[0][0]});
 
     } catch (error) {
         // Return any error
