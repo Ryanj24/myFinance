@@ -43,6 +43,54 @@ export const createNewAccount = async (req, res) => {
     
 }
 
+export const updateAccount = async (req, res) => {
+
+    // Get the user object from the request headers
+    const token = req.headers.authorization.split(" ")[1]
+    const {id} = jwt.decode(token)
+
+    try {
+        // Update the details of the specified account in the database
+        const update = await db.query(
+            `UPDATE bank_accounts SET account_name = ?, account_number = ?, balance = ?, account_provider = ? WHERE id = ? AND account_owner_id = ?`,
+            [req.body.account_name, req.body.account_number, req.body.account_balance, req.body.account_provider, req.params.id, id]
+        )
+
+        // Retrieve that account that has been updated
+        const updatedAccount = await db.query(`SELECT * FROM bank_accounts WHERE account_number = ?`, [req.body.account_number])
+
+        // Return the newly updated account to the user
+        return res.json(updatedAccount[0][0]);
+
+    } catch (error) {
+        // Return any error
+        return res.json(error)
+    }
+    
+}
+
+export const deleteAccount = async (req, res) => {
+    
+    // Get the user object from the request headers
+    const token = req.headers.authorization.split(" ")[1]
+    const {id} = jwt.decode(token)
+
+    try {
+
+        // Before deletion, retrieve the account specified to be deleted
+        const deletedAccount = await db.query(`SELECT * FROM bank_accounts WHERE id = ?`, [req.params.id])
+
+        // Delete the account from the database
+        const deleteReq = await db.query(`DELETE FROM bank_accounts WHERE id = ?`, [req.params.id])
+
+        // Return the account object to the user
+        return res.json(deletedAccount[0][0])
+    } catch (error) {
+        // Return any errors
+        return res.json(error)
+    }
+}
+
 export const createTransaction = async (req, res) => {
 
     // Get the user object from the request headers
@@ -102,52 +150,4 @@ export const updateTransaction = async (req, res) => {
         return res.json(error)
     }
     
-}
-
-export const updateAccount = async (req, res) => {
-
-    // Get the user object from the request headers
-    const token = req.headers.authorization.split(" ")[1]
-    const {id} = jwt.decode(token)
-
-    try {
-        // Update the details of the specified account in the database
-        const update = await db.query(
-            `UPDATE bank_accounts SET account_name = ?, account_number = ?, balance = ?, account_provider = ? WHERE id = ? AND account_owner_id = ?`,
-            [req.body.account_name, req.body.account_number, req.body.account_balance, req.body.account_provider, req.params.id, id]
-        )
-
-        // Retrieve that account that has been updated
-        const updatedAccount = await db.query(`SELECT * FROM bank_accounts WHERE account_number = ?`, [req.body.account_number])
-
-        // Return the newly updated account to the user
-        return res.json(updatedAccount[0][0]);
-
-    } catch (error) {
-        // Return any error
-        return res.json(error)
-    }
-    
-}
-
-export const deleteAccount = async (req, res) => {
-    
-    // Get the user object from the request headers
-    const token = req.headers.authorization.split(" ")[1]
-    const {id} = jwt.decode(token)
-
-    try {
-
-        // Before deletion, retrieve the account specified to be deleted
-        const deletedAccount = await db.query(`SELECT * FROM bank_accounts WHERE id = ?`, [req.params.id])
-
-        // Delete the account from the database
-        const deleteReq = await db.query(`DELETE FROM bank_accounts WHERE id = ?`, [req.params.id])
-
-        // Return the account object to the user
-        return res.json(deletedAccount[0][0])
-    } catch (error) {
-        // Return any errors
-        return res.json(error)
-    }
 }

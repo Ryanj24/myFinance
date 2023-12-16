@@ -6,6 +6,15 @@
     height: 10%;
 }
 
+.top-navbar > .title-logo {
+    max-height: 100%;
+}
+
+.top-navbar > .title-logo > img {
+    width: 200px;
+    height: 100%;
+}
+
 .top-navbar > .nav-links {
     display: flex;
     align-items: center;

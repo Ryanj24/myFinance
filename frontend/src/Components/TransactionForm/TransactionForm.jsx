@@ -38,7 +38,9 @@ const TransactionForm = ({formType, transaction, toggleModal}) => {
         } else {
             const response = await editTransaction(id, transaction, data, token)
 
-            console.log(response)
+            dispatch(updateBankTransaction(response.transaction))
+            dispatch(updateAccount(response.account))
+
         }
     }
 
