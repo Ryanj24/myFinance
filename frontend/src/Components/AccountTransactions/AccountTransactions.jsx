@@ -1,11 +1,12 @@
 import React, { useRef, useState } from 'react'
 import './AccountTransactions.css'
 import { Typography } from '@mui/material'
-import { Add } from '@mui/icons-material'
+import { Add, MoreHoriz } from '@mui/icons-material'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { budgetIconArray } from '../DashboardCards/Transactions'
 import { transactionIcon } from '../../utilityFunctions/transactionIcon'
+import TransactionsDropdown from '../TransactionsDropdown/TransactionsDropdown'
 import TransactionCard from '../TransactionCard/TransactionCard'
 import { sortBankTransactions } from '../../redux/bankTransactionSlice'
 import AccountModal from '../AccountModal/AccountModal'
@@ -14,6 +15,7 @@ const AccountTransactions = () => {
 
   const [addTransactionModalActive, setAddTransactionModalActive] = useState(false);
   const [editTransactionModalActive, setEditTransactionModalActive] = useState(false);
+  const [dropdownActive, setDropdownActive] = useState(false);
 
   const [currentTransactionID, setCurrentTransactionID] = useState(null); 
 
@@ -28,6 +30,10 @@ const AccountTransactions = () => {
     dispatch(sortBankTransactions(e.target.value))
   }
 
+  const toggleDropdown = () => {
+    setDropdownActive(!dropdownActive)
+  }
+
   return (
     <>
       {addTransactionModalActive && <AccountModal modalType="Add Transaction" toggleModal={setAddTransactionModalActive}/>}
@@ -37,7 +43,18 @@ const AccountTransactions = () => {
               <h2>
                   Transactions
               </h2>
-              <div className="add-transaction-btn-container">
+              <button className='options-btn' onClick={toggleDropdown}>
+                <MoreHoriz sx={{fontSize: "xx-large"}} />
+              </button>
+              {dropdownActive && 
+                <TransactionsDropdown 
+                  addTransactionModalActive={addTransactionModalActive}
+                  setAddTransactionModalActive={setAddTransactionModalActive}
+                  handleSortChange={handleOnChange}
+                  toggleDropdown={setDropdownActive}
+                />
+              }
+              {/* <div className="add-transaction-btn-container">
                 <button className='add-transaction-btn' onClick={() => setAddTransactionModalActive(!addTransactionModalActive)}>
                   <Add /> Add Transaction
                 </button>
@@ -52,7 +69,7 @@ const AccountTransactions = () => {
                   <option value="amountLtoH">Amount (Lowest - Highest)</option>
                   <option value="amountHtoL">Amount (Highest - Lowest)</option>
                 </select>
-              </div>
+              </div> */}
           </header>
           <section className="transactions-container">
             {transactions.length > 0

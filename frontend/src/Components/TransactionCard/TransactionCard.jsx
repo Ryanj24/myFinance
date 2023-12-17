@@ -6,7 +6,7 @@ import { dateFormatter } from '../../utilityFunctions/dateFormatter'
 
 const TransactionCard = ({id, icon, desc, date, amount, toggleModal, setCurrentTransactionID}) => {
 
-    const [dropdownActive, setDropdownActive] = useState(true);
+    const [dropdownActive, setDropdownActive] = useState(false);
 
     const handleOnClick = (e) => {
         setDropdownActive(!dropdownActive)

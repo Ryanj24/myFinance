@@ -1,0 +1,43 @@
+.transactions-dropdown {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    background-color: #fff;
+    box-shadow: 1px 2px 8px rgba(95, 95, 95, 0.948);
+    border-radius: 10px;
+    z-index: 50;
+}
+
+.transactions-dropdown > .add-transaction-btn-container > button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    /* background-color: var(--primary-col); */
+    font-size: medium;
+    border-radius: 10px 10px 0 0;
+}
+
+.transactions-dropdown > .add-transaction-btn-container > button:hover {
+    cursor: pointer;
+}
+
+.transactions-dropdown > .transactions-sort {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.transactions-dropdown > .transactions-sort > label{
+    font-size: large;
+    margin: 10px 0;
+}
+
+.transactions-dropdown > .transactions-sort > select {
+    padding: 5px;
+    font-size: medium;
+    border-radius: 5px;
+}
