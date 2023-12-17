@@ -5,9 +5,10 @@
     margin: 20px 0;
     padding: 10px;
     width: 70%;
+    position: relative;
 }
 
-.transaction-card > div {
+.transaction-card > div:not(.transaction-action-btns) {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -33,15 +34,55 @@
     grid-column: 4 / -1;
 }
 
-.transaction-card > .transaction-action-btns {
+.transaction-card > .transaction-options {
     grid-column: 5 / -1;
 }
 
-.transaction-card > .transaction-action-btns > button {
+.transaction-card > .transaction-options > button {
     background: none;
     border: none;
 }
 
+.transaction-card > .transaction-options > button:hover {
+    cursor: pointer;
+}
+
+.transaction-card > .transaction-action-btns {
+    background-color: aqua;
+    position: absolute;
+    z-index: 10;
+    border-radius: 10px;
+    top: 45px;
+    right: 30px;
+    box-shadow: 1px 2px 8px rgb(156, 156, 156);
+}
+
+.transaction-card > .transaction-action-btns > button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    background-color: #fff;
+    font-size: medium;
+}
+
+.transaction-card > .transaction-action-btns > button > svg {
+    margin-right: 5px;
+}
+
 .transaction-card > .transaction-action-btns > button:hover {
     cursor: pointer;
+
+}
+
+.transaction-card > .transaction-action-btns > button:first-child {
+    border-bottom: 1px solid #b4b4b49a;
+    border-radius: 10px 10px 0 0;
+}
+
+.transaction-card > .transaction-action-btns > button:last-child {
+    border-radius: 0 0 10px 10px;
 }
