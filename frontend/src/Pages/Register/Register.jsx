@@ -1,6 +1,7 @@
 import React from 'react'
 import './Register.css'
 import {Box, Container, Typography} from '@mui/material'
+import Logo from '../../assets/myFinance-logo.png'
 import registerIllustration from '../../assets/Sign-up-illustration.svg'
 import LoginRegisterForm from '../../Components/LoginRegisterForm/LoginRegisterForm.jsx'
 
@@ -11,9 +12,7 @@ const Register = () => {
             <img src={registerIllustration} alt='Sign up illustration' height= "70%" width= "70%"/>
         </Box>
         <Box className="form-container">
-          <Typography variant='h3' component="h3" className='form-header'>
-            myFinance
-          </Typography>
+          <img src={Logo} alt='myFinance-Logo' />
           <LoginRegisterForm formType="Register"/>
         </Box>
     </Box>

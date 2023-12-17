@@ -1,6 +1,7 @@
 import loginIllustration from '../../assets/Login-illustration.svg'
 import LoginRegisterForm from '../../Components/LoginRegisterForm/LoginRegisterForm.jsx'
 import './Login.css'
+import Logo from '../../assets/myFinance-logo.png'
 import {Box, Typography} from '@mui/material'
 
 const Login = () => {
@@ -10,9 +11,7 @@ const Login = () => {
             <img src={loginIllustration} alt='Log in illustration' height= "70%" width= "70%"/>
         </Box>
         <Box className="form-container">
-          <Typography variant='h3' component="h3" className='form-header'>
-            myFinance
-          </Typography>
+          <img src={Logo} alt='myFinance-Logo' />
           <LoginRegisterForm formType="Login"/>
         </Box>
     </Box>
