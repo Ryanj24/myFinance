@@ -37,7 +37,6 @@ const TransactionCard = ({id, icon, desc, date, amount, toggleModal, setCurrentT
             dispatch(incrementAccountBalance(response))
         }
 
-        // console.log(response);
     }
   return (
     <Paper elevation={2} variant='elevation' className='transaction-card'>

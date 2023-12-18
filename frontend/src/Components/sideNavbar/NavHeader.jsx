@@ -1,6 +1,6 @@
-import profileImg from '../../assets/Financial-Data-illustration.svg'
 import { Typography } from '@mui/material'
 import { useSelector } from 'react-redux'
+import Logo from '../../assets/myFinance-white-logo.png'
 
 const NavHeader = () => {
 
@@ -8,8 +8,8 @@ const NavHeader = () => {
   
   return (
     <header className='user-header'>
-        <div className="user-picture-container">
-            <img src={user.profile_img} alt='user profile image'/>
+        <div className="logo-container">
+            <img src={Logo} alt='myFinance Logo'/>
         </div>
         <div className="name-email">
             <Typography variant='h4' component="h4" sx={{color: "#fff"}}>{user.first_name} {user.last_name}</Typography>

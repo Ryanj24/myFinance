@@ -1,9 +1,7 @@
 .main-top-navbar {
     width: 100%;
     background-color: var(--primary-col);
-    /* position: fixed; */
     border-radius: 0 0 20px 20px;
-    /* z-index: 100; */
     padding: 10px 20px;
 }
 
@@ -38,25 +36,27 @@
 
 .main-top-navbar.expanded > .user-header {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    width: fit-content;
-    /* background-color: red; */
+    width: 100%;
     margin-bottom: 20px;
 }
 
 
-.main-top-navbar.expanded > .user-header > .user-picture-container {
-    height: fit-content;
-    width: fit-content;
-    border-radius: 100%;
-    border: 2px solid;
-    margin-right: 15px;
+.main-top-navbar.expanded > .user-header > .name-email {
+    display: none;
 }
 
-.main-top-navbar.expanded > .user-header > .user-picture-container > img {
-    height: 100px;
-    width: 100px;
+.main-top-navbar.expanded > .user-header > .logo-container {
+    max-height: 90%;
+    max-width: 60%;
 }
+
+.main-top-navbar.expanded > .user-header > .logo-container > img {
+    height: 100%;
+    width: 100%;
+}
+
 
 .main-top-navbar > .nav-links {
     display: none;
@@ -67,7 +67,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     overflow-y: scroll;
     -ms-overflow-style: none; 
     scrollbar-width: none; 

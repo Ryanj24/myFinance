@@ -2,7 +2,6 @@
     width: 20%;
     height: 100vh;
     background-color: var(--primary-col);
-    /* background-color: pink; */
     position: relative;
     border-radius: 0 20px 20px 0;
     display: grid;
@@ -51,19 +50,13 @@
     display: none;
 }
 
-
-.side-navbar > .user-header > .user-picture-container {
-    max-height: 40%;
-    max-width: 20%;
-    border-radius: 100%;
-    border: 2px solid;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.side-navbar > .user-header > .logo-container {
+    max-height: 50%;
+    max-width: 80%;
+    margin-bottom: 25px;
 }
 
-.side-navbar > .user-header > .user-picture-container > img {
+.side-navbar > .user-header > .logo-container > img {
     max-height: 100%;
     max-width: 100%;
 }
