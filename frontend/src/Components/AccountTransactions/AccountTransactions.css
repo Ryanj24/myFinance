@@ -6,21 +6,6 @@
     padding-right: 20px;
 }
 
-/* .account-transactions-section > .account-transactions-header > .add-transaction-btn-container > button {
-    background: none;
-    border-radius: 10px;
-    border: none;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    padding: 5px 10px;
-    background-color: var(--primary-col);
-}
-
-.account-transactions-section > .account-transactions-header > .add-transaction-btn-container > button:hover {
-    cursor: pointer;
-} */
-
 .account-transactions-section > .account-transactions-header > h2 {
     color: var(--primary-col);
 }
@@ -34,18 +19,6 @@
 .account-transactions-section > .account-transactions-header > .options-btn:hover {
    cursor: pointer;
 }
-
-/* .account-transactions-section > .account-transactions-header > .transactions-sort > label{
-    font-size: large;
-    margin-right: 10px;
-}
-
-.account-transactions-section > .account-transactions-header > .transactions-sort > select {
-    padding: 5px;
-    font-size: medium;
-    margin: 0 10px;
-    border-radius: 5px;
-} */
 
 .account-transactions-section > .transactions-container {
     height: 400px;

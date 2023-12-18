@@ -75,6 +75,7 @@
 
 .transaction-card > .transaction-action-btns > button:hover {
     cursor: pointer;
+    background-color: #eaeaea;
 
 }
 

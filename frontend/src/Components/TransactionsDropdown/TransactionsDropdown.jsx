@@ -2,11 +2,16 @@ import React from 'react'
 import './TransactionsDropdown.css'
 import { Add } from '@mui/icons-material'
 
-const TransactionsDropdown = ({addTransactionModalActive, setAddTransactionModalActive, handleSortChange, toggleDropdown}) => {
+const TransactionsDropdown = ({addTransactionModalActive, setAddTransactionModalActive, handleSortChange, setDropdownActive}) => {
+
+    const handleClick = () => {
+        setAddTransactionModalActive(!addTransactionModalActive)
+        setDropdownActive(false)
+    }
   return (
     <div className='transactions-dropdown'>
         <div className="add-transaction-btn-container">
-            <button className='add-transaction-btn' onClick={() => setAddTransactionModalActive(!addTransactionModalActive)}>
+            <button className='add-transaction-btn' onClick={handleClick}>
                 <Add /> Add Transaction
             </button>
         </div>        

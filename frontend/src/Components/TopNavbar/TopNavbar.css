@@ -25,6 +25,7 @@
 .main-top-navbar > .nav-minimise > .minimise-btn {
     background: none;
     border: none;
+    color: #fff;
 }
 
 .main-top-navbar > .nav-minimise > .minimise-btn:hover {
@@ -95,6 +96,7 @@
     text-decoration: none;
     padding: 20px;
     font-size: x-large;
+    color: #fff;
 }
 
 .main-top-navbar.expanded > .nav-links > .nav-link > a > p {

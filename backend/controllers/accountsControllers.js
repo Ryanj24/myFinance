@@ -151,3 +151,22 @@ export const updateTransaction = async (req, res) => {
     }
     
 }
+
+export const deleteTransaction = async (req, res) => {
+
+    try {
+        // Get the transaction to be deleted
+        const transaction = await db.query(`SELECT * FROM bank_transactions WHERE id = ? AND account_id = ?`, [req.params.transactionID, req.params.id])
+
+        // Retrieve that account that has been updated
+        const deletedTransaction = await db.query(`DELETE FROM bank_transactions WHERE id = ? AND account_id = ?`, [transaction[0][0].id, transaction[0][0].account_id])
+
+        // Return the newly updated account to the user
+        return res.json(transaction[0][0]);
+
+    } catch (error) {
+        // Return any error
+        return res.json(error)
+    }
+    
+}

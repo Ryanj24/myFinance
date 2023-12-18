@@ -16,6 +16,9 @@ export const bankTransactionSlice = createSlice({
         updateBankTransaction: (state, action) => {
             state.transactions = state.transactions.map(transaction => transaction.id === action.payload.id ? action.payload : transaction)
         },
+        deleteBankTransaction: (state, action) => {
+            state.transactions = state.transactions.filter(transaction => transaction.id != action.payload.id)
+        },
         sortBankTransactions: (state, action) => {
             switch(action.payload) {
                 case "nameAtoZ":
@@ -43,6 +46,6 @@ export const bankTransactionSlice = createSlice({
     }
 })
 
-export const {setBankTransactions, addBankTransaction, updateBankTransaction, sortBankTransactions} = bankTransactionSlice.actions
+export const {setBankTransactions, addBankTransaction, updateBankTransaction, deleteBankTransaction, sortBankTransactions} = bankTransactionSlice.actions
 
 export default bankTransactionSlice.reducer

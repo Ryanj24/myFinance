@@ -6,19 +6,23 @@
     box-shadow: 1px 2px 8px rgba(95, 95, 95, 0.948);
     border-radius: 10px;
     z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
 }
 
 .transactions-dropdown > .add-transaction-btn-container > button {
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
     background: none;
     border: none;
-    /* background-color: var(--primary-col); */
+    color: #fff;
+    background-color: var(--primary-col);
     font-size: medium;
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px;
 }
 
 .transactions-dropdown > .add-transaction-btn-container > button:hover {
@@ -28,7 +32,6 @@
 .transactions-dropdown > .transactions-sort {
     display: flex;
     flex-direction: column;
-    padding: 10px;
 }
 
 .transactions-dropdown > .transactions-sort > label{

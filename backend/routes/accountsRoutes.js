@@ -1,5 +1,5 @@
 import express from 'express'
-import { getUserAccounts, createNewAccount, createTransaction, updateAccount, deleteAccount, updateTransaction } from '../controllers/accountsControllers.js';
+import { getUserAccounts, createNewAccount, createTransaction, updateAccount, deleteAccount, updateTransaction, deleteTransaction } from '../controllers/accountsControllers.js';
 import { authorizeUser } from '../middleware/authorizeUser.js';
 
 const router = express.Router();
@@ -17,5 +17,7 @@ router.patch("/:id", updateAccount)
 router.delete("/:id", deleteAccount)
 
 router.patch("/:id/transaction/:transactionID", updateTransaction)
+
+router.delete("/:id/transaction/:transactionID", deleteTransaction)
 
 export {router as accountsRouter}

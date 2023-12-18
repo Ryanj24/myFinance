@@ -33,6 +33,7 @@
 .side-navbar > .nav-minimise > .minimise-btn {
     background: none;
     border: none;
+    color: #fff;
 }
 
 .side-navbar > .nav-minimise > .minimise-btn:hover {
@@ -90,6 +91,7 @@
     align-items: center;
     text-decoration: none;
     padding: 20px;
+    color: #fff;
 }
 
 .side-navbar > .nav-links > .nav-link > a {

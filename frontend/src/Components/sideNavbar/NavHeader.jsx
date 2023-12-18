@@ -12,8 +12,8 @@ const NavHeader = () => {
             <img src={user.profile_img} alt='user profile image'/>
         </div>
         <div className="name-email">
-            <Typography variant='h4' component="h4">{user.first_name} {user.last_name}</Typography>
-            <Typography variant='body1' component="p">{user.email}</Typography>
+            <Typography variant='h4' component="h4" sx={{color: "#fff"}}>{user.first_name} {user.last_name}</Typography>
+            <Typography variant='body1' component="p" sx={{color: "#fff"}}>{user.email}</Typography>
         </div>
     </header>
   )
