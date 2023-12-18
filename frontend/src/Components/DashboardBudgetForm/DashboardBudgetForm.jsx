@@ -1,16 +1,17 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { Search } from '@mui/icons-material';
+import { populateYears } from '../../utilityFunctions/populateYears';
 
 const DashboardBudgetForm = ({setSelectedMonth, setSelectedYear}) => {
 
+    const yearOptions = populateYears();
     const {register, handleSubmit} = useForm();
 
     const onSubmit = async (data, e) => {
         e.preventDefault();
         setSelectedMonth(data["month-selector"])
         setSelectedYear(parseInt(data["year-selector"], 10))
-        // console.log(data)
     }
 
   return (
@@ -30,10 +31,9 @@ const DashboardBudgetForm = ({setSelectedMonth, setSelectedYear}) => {
             <option value="December">December</option>
         </select>
         <select name="year" id="year-selector" {...register("year-selector")}>
-            <option value="2020">2020</option>
-            <option value="2021">2021</option>
-            <option value="2022">2022</option>
-            <option value="2023">2023</option>
+            {yearOptions.map(year => (
+                <option value={year} key={year}>{year}</option>
+            ))}
         </select>
         <button type="submit">
             <Search />

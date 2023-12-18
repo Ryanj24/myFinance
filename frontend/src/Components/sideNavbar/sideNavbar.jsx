@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRef } from 'react'
 import './sideNavbar.css'
-import { ArrowCircleLeft } from '@mui/icons-material'
+import { ArrowCircleDown } from '@mui/icons-material'
 import NavHeader from './NavHeader.jsx'
 import NavLinks from './NavLinks.jsx'
 
@@ -24,7 +24,7 @@ const SideNavbar = () => {
     <nav className='side-navbar' ref={navRef}>
       <div className="nav-minimise">
         <button className='minimise-btn' onClick={handleMinimiseClick} ref={minBtnRef}>
-          <ArrowCircleLeft />
+          <ArrowCircleDown sx={{rotate:"90deg"}}/>
         </button>        
       </div>
       <NavHeader />

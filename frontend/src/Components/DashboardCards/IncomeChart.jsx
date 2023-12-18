@@ -4,10 +4,12 @@ import { Search } from '@mui/icons-material'
 import {Bar, BarChart, Rectangle, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, Text} from 'recharts'
 import { useSelector } from 'react-redux'
 import { incomeDataPreprocessor } from '../../utilityFunctions/incomeDataPreprocessor'
+import { populateYears } from '../../utilityFunctions/populateYears'
 
 
 const IncomeChart = () => {
 
+    const yearOptions = populateYears();
     const [selectedYear, setSelectedYear] = useState(2020);
     const {register, handleSubmit} = useForm();
     const transactions = useSelector(state => state.bankTransactions.transactions)
@@ -35,10 +37,9 @@ const IncomeChart = () => {
         </header>
         <form id='income-year-selector-form' onSubmit={handleSubmit(onSubmit)}>
             <select name="year" id="year-selector" {...register("year-selector")}>
-                <option value="2020">2020</option>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
-                <option value="2023">2023</option>
+                {yearOptions.map(year => (
+                    <option value={year} key={year}>{year}</option>
+                ))}
             </select>
             <button type="submit">
                 <Search />
