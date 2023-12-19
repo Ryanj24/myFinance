@@ -1,11 +1,13 @@
 .transaction-card {
     display: grid;
     align-items: center;
-    grid-template-columns: 0.5fr 5fr 1fr 1fr;
+    grid-template-columns: 0.5fr 3fr 1fr 1fr;
     margin: 20px 0;
     padding: 10px;
     width: 70%;
     position: relative;
+    background-color: #f5f5f5;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .transaction-card > div:not(.transaction-action-btns) {
@@ -15,23 +17,19 @@
 }
 
 .transaction-card > .transaction-category {
-    /* background-color: yellow; */
     grid-column: span 1;
 }
 
 .transaction-card > .transaction-desc {
-    /* background-color: blue; */
     grid-column: 2 /3;
 }
 
 .transaction-card > .transaction-date {
-    /* background-color: green; */
     grid-column: 3 / 4;
 }
 
 .transaction-card > .transaction-amount {
-    /* background-color: purple; */
-    grid-column: 4 / -1;
+    grid-column: 4 / 5;
 }
 
 .transaction-card > .transaction-options {
@@ -41,6 +39,7 @@
 .transaction-card > .transaction-options > button {
     background: none;
     border: none;
+    color: var(--primary-col);
 }
 
 .transaction-card > .transaction-options > button:hover {
@@ -48,7 +47,6 @@
 }
 
 .transaction-card > .transaction-action-btns {
-    background-color: aqua;
     position: absolute;
     z-index: 10;
     border-radius: 10px;
@@ -60,13 +58,24 @@
 .transaction-card > .transaction-action-btns > button {
     width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
     padding: 10px 20px;
     background: none;
     border: none;
     background-color: #fff;
+    /* color: #fff; */
     font-size: medium;
+}
+
+.transaction-card > .transaction-action-btns > .edit-transaction-btn {
+    /* background-color: var(--primary-col); */
+    color: var(--primary-col);
+    /* background-color: #fff; */
+}
+
+.transaction-card > .transaction-action-btns > .delete-transaction-btn {
+    /* background-color: #FF0000; */
+    color: #FF0000;
 }
 
 .transaction-card > .transaction-action-btns > button > svg {
@@ -86,4 +95,31 @@
 
 .transaction-card > .transaction-action-btns > button:last-child {
     border-radius: 0 0 10px 10px;
+}
+
+@media screen and (max-width: 800px) {
+    .transaction-card {
+        grid-template-columns: 0.5fr 3fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+
+    .transaction-card > .transaction-category {
+        grid-row: 1 / 2;
+        grid-column: span 1;
+    }
+    
+    .transaction-card > .transaction-desc {
+        grid-row: 1 / 2;
+        grid-column: 2 /3;
+    }
+    
+    .transaction-card > .transaction-date {
+        grid-row: 2 / 3;
+        grid-column: 1 / 4;
+    }
+    
+    .transaction-card > .transaction-amount {
+        grid-row: 3 / 4;
+        grid-column: 1 / 4;
+    }
 }

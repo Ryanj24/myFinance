@@ -1,0 +1,21 @@
+.portfolios-list {
+    padding: 1rem;
+    overflow-y: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+    max-height: 500px;
+}
+
+.portfolios-list > p{
+    text-align: center;
+}
+
+.portfolios-list::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (max-width: 1224px) {
+    .accounts-container {
+        height: fit-content;
+    }
+}

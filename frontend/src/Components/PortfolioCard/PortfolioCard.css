@@ -1,4 +1,4 @@
-.account-card {
+.portfolio-card {
     display: grid;
     grid-template-columns: 1fr 6fr 2fr 1fr;
     /* background-color: rgba(80, 78, 78, 0.1); */
@@ -10,67 +10,71 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.account-card:not(:nth-child(1)) {
+.portfolio-card:not(:nth-child(1)) {
     margin: 40px 0;
 }
 
-.account-card:hover {
+.portfolio-card:hover {
     transform: scale(1.01);
     transition: transform ease 0.2s;
 }
 
-.account-card > div {
+.portfolio-card > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.account-card > .account-logo-container {
+.portfolio-card > .portfolio-logo-container {
     align-items: center;
 }
 
-.account-card > .account-balance {
+.portfolio-card > .portfolio-logo-container > span{
+    font-size: 4rem;
+}
+
+.portfolio-card > .portfolio-value {
     align-items: center;
 }
 
-.account-card > .view-account-icon-container {
+.portfolio-card > .view-portfolio-icon-container {
     align-items: flex-end;
     padding-right: 20px;
 }
 
-.account-card > .view-account-icon-container > .view-account-btn {
+.portfolio-card > .view-portfolio-icon-container > .view-portfolio-btn {
     border: none;
     background: none;
     color: var(--primary-col);
 }
 
-.account-card > .view-account-icon-container > .view-account-btn:hover {
+.portfolio-card > .view-portfolio-icon-container > .view-portfolio-btn:hover {
     cursor: pointer;
 }
 
 @media screen and (max-width: 900px) {
-    .account-card {
+    .portfolio-card {
         grid-template-columns: 1fr 6fr 2fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
     }
 
-    .account-card > .account-logo-container {
+    .portfolio-card > .portfolio-logo-container {
         grid-row: 1 / 2;
         grid-column: span 1;
     }
     
-    .account-card > .account-name-number {
+    .portfolio-card > .portfolio-name {
         grid-row: 1 / 2;
         grid-column: 2 / 4;
         padding: 0 10px;
     }
     
-    .account-card > .account-balance {
+    .portfolio-card > .portfolio-value {
         grid-row: 2 / 4;
         grid-column: 1 / 5;
     }
     
-    .account-card > .view-account-icon-container {
+    .portfolio-card > .view-portfolio-icon-container {
         grid-row: 1 / 2;
         grid-column: 4 / 5;
     }

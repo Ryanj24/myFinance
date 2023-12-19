@@ -36,7 +36,7 @@ const FAQSection = () => {
                     <p>How much does it cost to use myFinance?</p>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <p>Since myFinance is and always will be a completely free platform for all users</p>
+                    <p>myFinance is and always will be a completely free platform for all users</p>
                 </AccordionDetails>
             </Accordion>
         </Box>

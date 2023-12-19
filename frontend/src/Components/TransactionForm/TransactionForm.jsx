@@ -17,7 +17,7 @@ const TransactionForm = ({formType, transaction, toggleModal}) => {
     const {register, handleSubmit, formState: {isSubmitSuccessful}} = useForm({defaultValues: {
         transaction_category: formType === "Edit Transaction" ? transaction.category : "",
         transaction_type: formType === "Edit Transaction" ? transaction.type : "",
-        transaction_date: formType === "Edit Transaction" ? transaction.transaction_date : "",
+        transaction_date: formType === "Edit Transaction" ? transaction.transaction_date.slice(0, 10) : "",
         transaction_amount: formType === "Edit Transaction" ? transaction.amount : "",
         transaction_desc: formType === "Edit Transaction" ? transaction.description : "",
     }})

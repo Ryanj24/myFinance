@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { sortStrings } from "../utilityFunctions/sortStrings";
 
 export const portfolioSlice = createSlice({
     name: 'portfolios',
@@ -17,10 +18,28 @@ export const portfolioSlice = createSlice({
         },
         deletePortfolio: (state, action) => {
             state.portfolios = state.portfolios.filter(portfolio => portfolio.id != action.payload.id)
+        },
+        sortPortfolios: (state, action) => {
+            switch (action.payload) {
+                case "nameAtoZ":
+                    state.portfolios = state.portfolios.sort((a, b) => sortStrings(a.portfolio_name, b.portfolio.name))
+                    break
+                case "nameZtoA":
+                    state.portfolios = state.portfolios.sort((a, b) => sortStrings(a.portfolio_name, b.portfolio.name)).reverse()
+                    break
+                case "valueLtoH":
+                    state.portfolios = state.portfolios.sort((a, b) => a.balance - b.balance)
+                    break
+                case "valueHtoL":
+                    state.portfolios = state.portfolios.sort((a, b) => b.balance - a.balance)
+                    break
+                default:
+                    break
+            }
         }
     }
 })
 
-export const {setPortfolios, addPortfolio, updatePortfolio, deletePortfolio} = portfolioSlice.actions
+export const {setPortfolios, addPortfolio, updatePortfolio, deletePortfolio, sortPortfolios} = portfolioSlice.actions
 
 export default portfolioSlice.reducer

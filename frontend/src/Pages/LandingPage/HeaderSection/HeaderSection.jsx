@@ -1,6 +1,6 @@
 import React from 'react'
 import './HeaderSection.css'
-import headerIllustration from '../../../assets/Lady-and-Wallet-illustration.svg'
+import headerIllustration from '../../../assets/illustrations/Lady-and-Wallet-illustration.svg'
 import { Typography } from '@mui/material'
 
 const HeaderSection = () => {

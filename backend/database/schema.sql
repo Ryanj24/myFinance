@@ -25,6 +25,7 @@ CREATE TABLE stock_portfolio (
     `portfolio_name` VARCHAR(64),
     `balance` DECIMAL(10, 2) CHECK(`balance` >= 0) DEFAULT 0,
     `portfolio_owner_id` INT unsigned,
+    `provider` VARCHAR(255),
     PRIMARY KEY(`id`),
     FOREIGN KEY(`portfolio_owner_id`) REFERENCES `users`(`id`)
 );

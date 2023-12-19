@@ -1,12 +1,14 @@
 .profile-container {
-    padding: 1.5rem;
+    padding: 1rem;
     width: 100%;
+    background-color: #e9e9e9;
 }
 
 .profile-container > .profile-page-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-right: 20px;
 }
 
 .profile-container > .profile-page-header > h1 {
@@ -15,11 +17,13 @@
 
 .profile-container > .profile-page-header > button {
     background: none;
+    border: none;
     border-radius: 10px;
     display: flex;
     align-items: center;
     padding: 5px 10px;
-    background-color: orange;
+    background-color: var(--primary-col);
+    color: #fff;
 }
 
 .profile-container > .profile-page-header > button:hover {

@@ -1,9 +1,9 @@
 import React from 'react'
 import './FeatureSection.css'
 
-import financialData from '../../../assets/Financial-Data-illustration.svg'
-import manageMoney from '../../../assets/Manage-Money-illustration.svg'
-import savingsGoals from '../../../assets/Savings-Goals-illustration.svg'
+import financialData from '../../../assets/illustrations/Financial-Data-illustration.svg'
+import manageMoney from '../../../assets/illustrations/Manage-Money-illustration.svg'
+import savingsGoals from '../../../assets/illustrations/Savings-Goals-illustration.svg'
 
 import { Box, Container, Typography } from '@mui/material'
 import LandingPageCard from '../../../Components/LandingPageCard/LandingPageCard.jsx'

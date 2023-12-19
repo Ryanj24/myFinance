@@ -59,10 +59,10 @@ const TransactionCard = ({id, icon, desc, date, amount, toggleModal, setCurrentT
         </div>
         {dropdownActive && 
             <div className="transaction-action-btns">
-                <button onClick={handleEditClick}>
+                <button onClick={handleEditClick} className='edit-transaction-btn'>
                     <Edit /> Edit Transaction
                 </button>
-                <button onClick={handleDeleteClick}>
+                <button onClick={handleDeleteClick} className='delete-transaction-btn'>
                     <Delete /> Delete Transaction
                 </button>
             </div>

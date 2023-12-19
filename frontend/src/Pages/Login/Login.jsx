@@ -1,4 +1,4 @@
-import loginIllustration from '../../assets/Login-illustration.svg'
+import loginIllustration from '../../assets/illustrations/Login-illustration.svg'
 import LoginRegisterForm from '../../Components/LoginRegisterForm/LoginRegisterForm.jsx'
 import './Login.css'
 import Logo from '../../assets/myFinance-logo.png'

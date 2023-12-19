@@ -2,7 +2,7 @@ import React from 'react'
 import './Register.css'
 import {Box, Container, Typography} from '@mui/material'
 import Logo from '../../assets/myFinance-logo.png'
-import registerIllustration from '../../assets/Sign-up-illustration.svg'
+import registerIllustration from '../../assets/illustrations/Sign-up-illustration.svg'
 import LoginRegisterForm from '../../Components/LoginRegisterForm/LoginRegisterForm.jsx'
 
 const Register = () => {
