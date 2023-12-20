@@ -8,7 +8,7 @@ export const getPortfolios = async (req, res) => {
     const user = jwt.decode(token)
 
     // Get the names and balances of the users' stock portfolios
-    const portfolios = await db.query(`SELECT id, portfolio_name, balance FROM stock_portfolio WHERE portfolio_owner_id = ?`, [user.id])
+    const portfolios = await db.query(`SELECT id, portfolio_name, balance, provider FROM stock_portfolio WHERE portfolio_owner_id = ?`, [user.id])
 
     const portfolioTransactions = await db.query(`SELECT * FROM stock_transactions WHERE portfolio_id IN (SELECT id FROM stock_portfolio WHERE portfolio_owner_id = ?)`, [user.id])
 
