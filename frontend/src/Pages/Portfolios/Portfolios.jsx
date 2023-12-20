@@ -3,7 +3,6 @@ import './Portfolios.css'
 import { Add } from '@mui/icons-material'
 import PortfoliosSort from '../../Components/PortfoliosSort/PortfoliosSort'
 import PortfoliosList from '../../Components/PortfoliosList/PortfoliosList'
-import AccountModal from '../../Components/AccountModal/AccountModal'
 import PortfolioModal from '../../Components/PortfolioModal/PortfolioModal'
 
 const Portfolios = () => {

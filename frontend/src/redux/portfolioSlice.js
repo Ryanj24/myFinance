@@ -22,10 +22,10 @@ export const portfolioSlice = createSlice({
         sortPortfolios: (state, action) => {
             switch (action.payload) {
                 case "nameAtoZ":
-                    state.portfolios = state.portfolios.sort((a, b) => sortStrings(a.portfolio_name, b.portfolio.name))
+                    state.portfolios = state.portfolios.sort((a, b) => sortStrings(a.portfolio_name, b.portfolio_name))
                     break
                 case "nameZtoA":
-                    state.portfolios = state.portfolios.sort((a, b) => sortStrings(a.portfolio_name, b.portfolio.name)).reverse()
+                    state.portfolios = state.portfolios.sort((a, b) => sortStrings(a.portfolio_name, b.portfolio_name)).reverse()
                     break
                 case "valueLtoH":
                     state.portfolios = state.portfolios.sort((a, b) => a.balance - b.balance)

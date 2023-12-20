@@ -25,13 +25,13 @@ export const createPortfolio = async (req, res) => {
     try {
         // Insert the new portfolio into the database
         const query = await db.query(
-            `INSERT INTO stock_portfolio (portfolio_name, portfolio_owner_id)
-             VALUES (?, ?)
-            `, [req.body.portfolioName, id]
+            `INSERT INTO stock_portfolio (portfolio_name, portfolio_owner_id, balance, provider)
+             VALUES (?, ?, ?, ?)
+            `, [req.body.portfolio_name, id, req.body.portfolio_balance, req.body.portfolio_provider]
         )
 
         // Retrieve the newly created portfolio from the database
-        const createdPortfolio = await db.query(`SELECT * FROM stock_portfolio WHERE portfolio_name = ?`, [req.body.portfolioName])
+        const createdPortfolio = await db.query(`SELECT * FROM stock_portfolio WHERE portfolio_owner_id = ? ORDER BY id DESC LIMIT 1`, [id])
 
         // Return the portfolio object
         return res.json(createdPortfolio[0][0]);

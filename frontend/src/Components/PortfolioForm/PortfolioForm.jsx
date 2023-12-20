@@ -4,8 +4,11 @@ import {useForm} from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { Button } from '@mui/material'
+import { createPortfolio } from '../../utilityFunctions/createPortfolio'
+import { editPortfolio } from '../../utilityFunctions/editPortfolio'
+import { addPortfolio, updatePortfolio } from '../../redux/portfolioSlice'
 
-const PortfolioForm = ({formType, toggleModal}) => {
+const PortfolioForm = ({formType, toggleModal, portfolio}) => {
 
     const {token} = useSelector(state => state.user.user)
     const {register, handleSubmit, formState: {isSubmitSuccessful}} = useForm({defaultValues: {
@@ -18,16 +21,16 @@ const PortfolioForm = ({formType, toggleModal}) => {
 
 
     const onSubmit = async (data) => {
-        // if (formType === "Add Portfolio") {
-        //     const response = await createAccount(data, token)
+        if (formType === "Add Portfolio") {
+            const response = await createPortfolio(data, token)
+            console.log(response)
 
-        //     dispatch(addAccount(response))
-        // } else {
-        //     const response = await editAccount(id, data, token)
+            dispatch(addPortfolio(response))
+        } else {
+            const response = await editPortfolio(data, id, token)
 
-        //     dispatch(updateAccount(response))
-        // }
-        console.log(data)
+            dispatch(updatePortfolio(response))
+        }
     }
 
     useEffect(() => {
