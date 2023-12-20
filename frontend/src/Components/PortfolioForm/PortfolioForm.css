@@ -1,0 +1,49 @@
+#portfolio-modal-form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#portfolio-modal-form > div:not(.save-btn-container) {
+    display: flex;
+    flex-direction: column;
+}
+
+#portfolio-modal-form > div:not(.portfolio-name) {
+    margin: 10px 0;
+}
+
+
+#portfolio-modal-form > div > label {
+    font-size: larger;
+    margin-bottom: 5px;
+}
+
+#portfolio-modal-form > div > input {
+    padding: 5px 0 5px 5px;
+    font-size: larger;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #e3e3e3;
+}
+
+#portfolio-modal-form > .portfolio-name {
+    margin-bottom: 10px;
+ }
+
+#portfolio-modal-form > .portfolio-provider {
+   width: 100%;
+}
+
+#portfolio-modal-form > .portfolio-provider > select {
+    padding: 5px;
+    font-size: medium;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #e3e3e3;
+ }
+
+#portfolio-modal-form > .save-btn-container {
+    margin-top: 30px;
+}
