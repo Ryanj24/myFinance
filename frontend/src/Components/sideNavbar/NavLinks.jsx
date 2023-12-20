@@ -51,9 +51,9 @@ const NavLinks = () => {
           </Link>
         </li>
         <li className='nav-link'>
-          <Link to="/home/portfolio">
+          <Link to="/home/portfolios">
             <CandlestickChart />
-            <p>Stock Portfolio</p>
+            <p>Portfolios</p>
           </Link>
         </li>
         <li className='nav-link'>

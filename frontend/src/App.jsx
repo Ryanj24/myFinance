@@ -5,7 +5,7 @@ import Login from './Pages/Login/Login.jsx'
 import Dashboard from './Pages/Dashboard/Dashboard.jsx'
 import Profile from './Pages/Profile/Profile.jsx'
 import Accounts from './Pages/Accounts/Accounts.jsx'
-import Portfolio from './Pages/Portfolio/Portfolio.jsx'
+import Portfolios from './Pages/Portfolios/Portfolios.jsx'
 import GoalsPage from './Pages/GoalsPage/GoalsPage.jsx'
 import MainLayout from './Components/MainLayout/MainLayout.jsx'
 import AccountDetails from './Pages/AccountDetails/AccountDetails.jsx'
@@ -30,7 +30,7 @@ function App() {
             <Route path="profile" element={user ? <Profile /> : <Navigate to="/login"/>}/>
             <Route path="accounts" element={user ? <Accounts /> : <Navigate to="/login"/>}/>
             <Route path="accounts/:id" element={user ? <AccountDetails /> : <Navigate to="/login"/>}/>
-            <Route path="portfolio" element={user ? <Portfolio /> : <Navigate to="/login"/>}/>
+            <Route path="portfolios" element={user ? <Portfolios /> : <Navigate to="/login"/>}/>
             <Route path="goals" element={user ? <GoalsPage /> : <Navigate to="/login"/>}/>
           </Route>
         </Routes>

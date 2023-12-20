@@ -36,7 +36,7 @@ const PortfolioCard = ({portfolio}) => {
             <Typography variant='body2' component="p">£{parseInt(portfolio.balance)}</Typography>
         </div>
         <div className="view-portfolio-icon-container">
-            <Link className='view-portfolio-btn' to={`/home/accounts/${portfolio.id}`}>
+            <Link className='view-portfolio-btn' to={`/home/portfolios/${portfolio.id}`}>
                 <ArrowForward />
             </Link>
         </div>

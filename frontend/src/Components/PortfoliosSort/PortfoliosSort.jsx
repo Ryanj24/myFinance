@@ -1,18 +1,21 @@
 import React from 'react'
-import './PortfolioSort.css'
-import { useDispatch } from 'react-redux'
+import './PortfoliosSort.css'
+import { useDispatch, useSelector } from 'react-redux'
 import { sortPortfolios } from '../../redux/portfolioSlice'
 
-const PortfolioSort = () => {
+const PortfoliosSort = () => {
 
+    const {portfolios} = useSelector(state => state.portfolios)
     const dispatch = useDispatch();
 
     const handleOnChange = (e) => {
         dispatch(sortPortfolios(e.target.value))
     }
+
+    console.log("Portfolio Sort re-render")
   return (
     <section className='portfolios-count-sort'>
-        <p>You currently have 0 portfolios</p>
+        <p>You currently have {portfolios.length} portfolios</p>
         <div className="portfolios-sort">
             <label htmlFor='portfolios-sort-selector'>Sort by: </label>
             <select id='portfolios-sort-selector' onChange={handleOnChange}>
@@ -26,4 +29,4 @@ const PortfolioSort = () => {
   )
 }
 
-export default PortfolioSort
+export default PortfoliosSort
