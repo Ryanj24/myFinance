@@ -29,6 +29,7 @@
     align-items: center;
     padding: 5px 10px;
     background-color: var(--primary-col);
+    box-shadow: 2px 2px 3px #737373;
 }
 
 .accounts-container > .accounts-header > .accounts-action-btn > button:hover {

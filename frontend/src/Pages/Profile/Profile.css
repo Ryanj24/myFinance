@@ -24,6 +24,7 @@
     padding: 5px 10px;
     background-color: var(--primary-col);
     color: #fff;
+    box-shadow: 2px 2px 3px #737373;
 }
 
 .profile-container > .profile-page-header > button:hover {

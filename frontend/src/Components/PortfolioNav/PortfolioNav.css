@@ -1,0 +1,33 @@
+.portfolio-nav-bar {
+    margin-top: 20px;
+    padding: 1.5rem;
+}
+
+.portfolio-nav-bar > .portfolio-nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portfolio-nav-bar > .portfolio-nav-links > .portfolio-nav-link {
+    list-style: none;
+}
+
+.portfolio-nav-bar > .portfolio-nav-links > .portfolio-nav-link >  a > button {
+    background: none;
+    border: none;
+    font-size: large;
+}
+
+.portfolio-nav-bar > .portfolio-nav-links > .portfolio-nav-link > a > button:hover {
+    cursor: pointer;
+}
+
+.portfolio-nav-bar > .portfolio-nav-links > .portfolio-nav-link > a > button:first-child {
+    margin-right: 40px;
+}
+
+.portfolio-nav-bar > .portfolio-nav-links > .portfolio-nav-link >  a > button.selected {
+    color: var(--primary-col);
+    border-bottom: 3px solid var(--primary-col);
+}

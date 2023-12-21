@@ -9,6 +9,7 @@ import Portfolios from './Pages/Portfolios/Portfolios.jsx'
 import GoalsPage from './Pages/GoalsPage/GoalsPage.jsx'
 import MainLayout from './Components/MainLayout/MainLayout.jsx'
 import AccountDetails from './Pages/AccountDetails/AccountDetails.jsx'
+import PortfolioDetails from './Pages/PortfolioDetails/PortfolioDetails.jsx'
 import { useSelector } from 'react-redux'
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="accounts" element={user ? <Accounts /> : <Navigate to="/login"/>}/>
             <Route path="accounts/:id" element={user ? <AccountDetails /> : <Navigate to="/login"/>}/>
             <Route path="portfolios" element={user ? <Portfolios /> : <Navigate to="/login"/>}/>
+            <Route path="portfolios/:id" element={user ? <PortfolioDetails /> : <Navigate to="/login"/>}/>
             <Route path="goals" element={user ? <GoalsPage /> : <Navigate to="/login"/>}/>
           </Route>
         </Routes>

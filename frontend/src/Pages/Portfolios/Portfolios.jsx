@@ -4,12 +4,14 @@ import { Add } from '@mui/icons-material'
 import PortfoliosSort from '../../Components/PortfoliosSort/PortfoliosSort'
 import PortfoliosList from '../../Components/PortfoliosList/PortfoliosList'
 import PortfolioModal from '../../Components/PortfolioModal/PortfolioModal'
+import PortfolioNav from '../../Components/PortfolioNav/PortfolioNav'
 
 const Portfolios = () => {
 
   const [portfolioModal, setPortfolioModal] = useState(false);
+  const [selectedTab, setSelectedTab] = useState("My Portfolios");
 
-  // console.log("Portfolio re-render")
+  console.log("Portfolio re-render")
   return (
     <>
       {portfolioModal && <PortfolioModal modalType="Add Portfolio" toggleModal={setPortfolioModal}/>}
@@ -23,8 +25,16 @@ const Portfolios = () => {
           </div>
         </header>
 
-        <PortfoliosSort />
-        <PortfoliosList />
+        <PortfolioNav selectedTab={selectedTab} setSelectedTab={setSelectedTab}/>
+        {selectedTab === "My Portfolios"
+        ?
+          <>
+            <PortfoliosSort />
+            <PortfoliosList />
+          </>
+        :
+          <p>Company Search</p>
+        }
 
       </section>
     </>
