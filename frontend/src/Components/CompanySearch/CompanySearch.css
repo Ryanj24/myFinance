@@ -1,0 +1,40 @@
+.company-search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.company-search-container > header {
+    margin-bottom: 20px;
+}
+
+.company-search-container > #company-search-form {
+    display: flex;
+    align-items: center;
+}
+
+.company-search-container > #company-search-form > input {
+    padding: 5px 0 5px 5px;
+    font-size: x-large;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #e3e3e3;
+    margin-right: 10px;
+}
+
+.company-search-container > #company-search-form > button {
+    padding: 5px;
+    border: none;
+    background: none;
+    border-radius: 10px;
+    background-color: var(--primary-col);
+}
+
+.company-search-container > #company-search-form > button:hover {
+    cursor: pointer;
+}
+
+.company-search-container > #company-search-form > button > svg{
+    color: #fff;
+}

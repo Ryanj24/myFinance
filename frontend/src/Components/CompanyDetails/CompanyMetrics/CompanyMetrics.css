@@ -1,0 +1,13 @@
+.company-metrics > div {
+    margin: 10px 0;
+}
+
+.company-metrics > div > h3{
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.company-metrics > div > p{
+    padding: 0 20px;
+    font-size: large;
+}

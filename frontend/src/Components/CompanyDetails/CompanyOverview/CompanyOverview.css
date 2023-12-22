@@ -1,0 +1,11 @@
+.company-overview > div {
+    margin: 10px 0;
+}
+
+.company-overview > div > h3{
+    padding: 0 10px;
+}
+
+.company-overview > div > p{
+    padding: 0 20px;
+}

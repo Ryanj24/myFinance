@@ -5,6 +5,7 @@ import PortfoliosSort from '../../Components/PortfoliosSort/PortfoliosSort'
 import PortfoliosList from '../../Components/PortfoliosList/PortfoliosList'
 import PortfolioModal from '../../Components/PortfolioModal/PortfolioModal'
 import PortfolioNav from '../../Components/PortfolioNav/PortfolioNav'
+import CompanySearch from '../../Components/CompanySearch/CompanySearch'
 
 const Portfolios = () => {
 
@@ -33,7 +34,7 @@ const Portfolios = () => {
             <PortfoliosList />
           </>
         :
-          <p>Company Search</p>
+          <CompanySearch />
         }
 
       </section>
