@@ -1,0 +1,9 @@
+.company-financials {
+    height: 100%;
+}
+
+.company-financials > .chart-container {
+    background-color: pink;
+    height: 90%;
+    padding: 10px;
+}

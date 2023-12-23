@@ -4,6 +4,7 @@ import { AttachMoney, Sell, HolidayVillage, Home, Cabin } from '@mui/icons-mater
 import GridCarousel from '../GridCarousel/GridCarousel'
 import CompanyOverview from './CompanyOverview/CompanyOverview'
 import CompanyMetrics from './CompanyMetrics/CompanyMetrics'
+import CompanyFinancials from './CompanyFinancials/CompanyFinancials'
 
 const CompanyDetails = ({info}) => {
   const companyInfo = [<CompanyOverview company={info}/>, <CompanyMetrics company={info}/>]
@@ -23,6 +24,7 @@ const CompanyDetails = ({info}) => {
         </header>
         <section className='company-details-grid'>
             <GridCarousel items={companyInfo}/>
+            <GridCarousel items={CompanyFinancials}/>
         </section>
     </section>
   )

@@ -1,3 +1,7 @@
+.company-metrics > h2 {
+    margin-bottom: 10px;
+}
+
 .company-metrics > div {
     margin: 10px 0;
 }
@@ -5,6 +9,14 @@
 .company-metrics > div > h3{
     padding: 0 10px;
     margin-bottom: 10px;
+    position: relative;
+}
+
+.company-metrics > div > h3 > svg{
+    font-size: medium;
+    position: absolute;
+    bottom: 15px;
+    color: #6a6a6a;
 }
 
 .company-metrics > div > p{

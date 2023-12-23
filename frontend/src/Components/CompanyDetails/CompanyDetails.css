@@ -87,6 +87,11 @@
     grid-row: 1 / 5;
 }
 
+.company-details-container > .company-details-grid > .grid-carousel:nth-child(2) {
+    grid-column: 3 / 5;
+    grid-row: 1 / 5;
+}
+
 /* .company-details-container > .company-details-grid > .grid-carousel:last-child {
     grid-column: 3 / 5;
     grid-row: 1 / 5;
