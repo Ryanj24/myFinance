@@ -9,15 +9,15 @@ const data = [
     "Overview", "Metrics"
 ]
 
-const GridCarousel = ({items}) => {
+const GridCarousel = ({companyData}) => {
 
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     const handleOnClick = (newIndex) => {
         if (newIndex < 0) {
             newIndex = 0
-        } else if (newIndex > items.length - 1) {
-            newIndex = items.length - 1
+        } else if (newIndex > companyData.length - 1) {
+            newIndex = companyData.length - 1
         }
         setSelectedIndex(newIndex)
     }
@@ -28,10 +28,7 @@ const GridCarousel = ({items}) => {
             <ArrowBackIosNew />
         </button>
         <div className="overview">
-            {/* {items[selectedIndex]} */}
-            {/* <CompanyOverview company={items}/> */}
-            {/* <CompanyMetrics company={items}/> */}
-            {<CompanyFinancials company={items}/>}
+            {companyData[selectedIndex]}
         </div>
         <button onClick={() => handleOnClick(selectedIndex + 1)} className='forward-button'>
             <ArrowBackIosNew sx={{rotate: "180deg"}} />

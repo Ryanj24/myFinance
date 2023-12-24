@@ -31,7 +31,7 @@ const CompanySearch = () => {
                 </form>
             </section>
         :
-            <CompanyDetails info={companyInfo}/>
+            <CompanyDetails data={companyInfo}/>
         }
     </>
   )

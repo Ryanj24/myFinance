@@ -6,13 +6,13 @@ import CompanyOverview from './CompanyOverview/CompanyOverview'
 import CompanyMetrics from './CompanyMetrics/CompanyMetrics'
 import CompanyFinancials from './CompanyFinancials/CompanyFinancials'
 
-const CompanyDetails = ({info}) => {
-  const companyInfo = [<CompanyOverview company={info}/>, <CompanyMetrics company={info}/>]
-  const companyFinancials = []
+const CompanyDetails = ({data}) => {
+  const companyData = [<CompanyOverview company={data}/>, <CompanyMetrics company={data}/>, <CompanyFinancials company={data} type="quarter"/>]
+
   return (
     <section className='company-details-container'>
         <header>
-            <h2 className='company-title-ticker'>{info[0].Name} ({info[0].Symbol})</h2>
+            <h2 className='company-title-ticker'>{data[0].Name} ({data[0].Symbol})</h2>
             <div className="action-btns">
               <button className='shares-buy-btn'>
                 <AttachMoney /> Buy Shares
@@ -23,8 +23,7 @@ const CompanyDetails = ({info}) => {
             </div>
         </header>
         <section className='company-details-grid'>
-            <GridCarousel items={companyInfo}/>
-            <GridCarousel items={CompanyFinancials}/>
+            <GridCarousel companyData={companyData}/>
         </section>
     </section>
   )

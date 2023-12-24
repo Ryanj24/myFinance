@@ -1,5 +1,13 @@
+.company-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.5fr 1fr 1fr 1fr;
+    height: 100%;
+}
+
 .company-metrics > h2 {
     margin-bottom: 10px;
+    grid-row: 1 / 2;
 }
 
 .company-metrics > div {
@@ -22,4 +30,34 @@
 .company-metrics > div > p{
     padding: 0 20px;
     font-size: large;
+}
+
+.company-metrics > .market-cap {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+.company-metrics > .pe-ratio {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+}
+
+.company-metrics > .pb-ratio {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+}
+
+.company-metrics > .eps {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+.company-metrics > .de-ratio {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+}
+
+.company-metrics > .roe {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
 }
