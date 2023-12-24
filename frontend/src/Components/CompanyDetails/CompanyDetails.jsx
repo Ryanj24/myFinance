@@ -7,7 +7,13 @@ import CompanyMetrics from './CompanyMetrics/CompanyMetrics'
 import CompanyFinancials from './CompanyFinancials/CompanyFinancials'
 
 const CompanyDetails = ({data}) => {
-  const companyData = [<CompanyOverview company={data}/>, <CompanyMetrics company={data}/>, <CompanyFinancials company={data} type="quarter"/>]
+  const companyData = [
+    <CompanyOverview company={data}/>, 
+    <CompanyMetrics company={data}/>, 
+    <CompanyFinancials company={data} selectedChart="Revenues"/>,
+    <CompanyFinancials company={data} selectedChart="Net Income"/>,
+    <CompanyFinancials company={data} selectedChart="Assets vs Liabilities"/>
+  ]
 
   return (
     <section className='company-details-container'>

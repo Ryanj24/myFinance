@@ -2,8 +2,41 @@
     height: 100%;
 }
 
+.company-financials > header{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 0.5fr 3fr 0.5fr;
+}
+
+.company-financials > header > h2{
+    grid-column: 1 / 2;
+}
+
+.company-financials > header > form {
+    display: flex;
+    justify-content: center;
+    grid-column: 2 / 3;
+}
+
+.company-financials > header > form > input {
+    height: 20px;
+    width: 20px;
+}
+
+.company-financials > header > form > label{
+    font-size: large;
+}
+
+.company-financials > header > form > #annual-label{
+    margin: 0 20px 0 5px;
+}
+
+.company-financials > header > form > #quarterly-label{
+    margin-left: 5px;
+}
+
 .company-financials > .chart-container {
     background-color: pink;
     height: 90%;
-    padding: 1.5rem;
+    /* padding: 1.5rem; */
 }

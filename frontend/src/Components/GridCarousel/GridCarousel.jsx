@@ -1,13 +1,6 @@
 import React, { useState } from 'react'
 import './GridCarousel.css'
 import { ArrowBackIosNew } from '@mui/icons-material'
-import CompanyOverview from '../CompanyDetails/CompanyOverview/CompanyOverview'
-import CompanyMetrics from '../CompanyDetails/CompanyMetrics/CompanyMetrics'
-import CompanyFinancials from '../CompanyDetails/CompanyFinancials/CompanyFinancials'
-
-const data = [
-    "Overview", "Metrics"
-]
 
 const GridCarousel = ({companyData}) => {
 

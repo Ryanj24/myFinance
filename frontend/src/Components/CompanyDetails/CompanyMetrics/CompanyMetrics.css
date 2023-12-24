@@ -12,10 +12,11 @@
 
 .company-metrics > div {
     margin: 10px 0;
+    padding: 0 20px;
 }
 
 .company-metrics > div > h3{
-    padding: 0 10px;
+    /* padding: 0 10px; */
     margin-bottom: 10px;
     position: relative;
 }
@@ -60,4 +61,12 @@
 .company-metrics > .roe {
     grid-column: 2 / 3;
     grid-row: 4 / 5;
+}
+
+@media screen and (max-width: 800px) {
+    .company-metrics {
+        display: flex;
+        flex-direction: column;
+    }
+    
 }
