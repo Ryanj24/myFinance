@@ -14,7 +14,7 @@ export const Revenues = (data, type) => {
 
         reports.forEach(obj => {
             if (!dataMap.has(obj.fiscalDateEnding.slice(0, 4))) {
-                dataMap.set(obj.fiscalDateEnding.slice(0, 4), +obj.totalRevenue)
+                dataMap.set(obj.fiscalDateEnding.slice(0, 4), +obj.totalRevenue / 1000000)
             }
         })
     
@@ -30,7 +30,7 @@ export const Revenues = (data, type) => {
         
         reports.forEach(obj => {
             if (!dataMap.has(obj.fiscalDateEnding)) {
-                dataMap.set(obj.fiscalDateEnding, +obj.totalRevenue)
+                dataMap.set(obj.fiscalDateEnding, +obj.totalRevenue / 1000000)
             }
         })
     
@@ -55,7 +55,7 @@ export const Profits = (data, type) => {
 
         reports.forEach(obj => {
             if (!dataMap.has(obj.fiscalDateEnding.slice(0, 4))) {
-                dataMap.set(obj.fiscalDateEnding.slice(0, 4), +obj.netIncome)
+                dataMap.set(obj.fiscalDateEnding.slice(0, 4), +obj.netIncome / 1000000)
             }
         })
     
@@ -71,7 +71,7 @@ export const Profits = (data, type) => {
         
         reports.forEach(obj => {
             if (!dataMap.has(obj.fiscalDateEnding)) {
-                dataMap.set(obj.fiscalDateEnding, +obj.netIncome)
+                dataMap.set(obj.fiscalDateEnding, +obj.netIncome / 1000000)
             }
         })
     
@@ -96,7 +96,7 @@ export const AssetsVsLiabilities = (data, type) => {
 
         reports.forEach(obj => {
             if (!dataMap.has(obj.fiscalDateEnding.slice(0, 4))) {
-                dataMap.set(obj.fiscalDateEnding.slice(0, 4), {totalAssets: +obj.totalAssets, totalLiabilities: +obj.totalLiabilities})
+                dataMap.set(obj.fiscalDateEnding.slice(0, 4), {totalAssets: obj.totalAssets / 1000000, totalLiabilities: obj.totalLiabilities / 1000000})
             }
         })
     
@@ -111,7 +111,7 @@ export const AssetsVsLiabilities = (data, type) => {
 
         reports.forEach(obj => {
             if (!dataMap.has(obj.fiscalDateEnding)) {
-                dataMap.set(obj.fiscalDateEnding, {totalAssets: +obj.totalAssets, totalLiabilities: +obj.totalLiabilities})
+                dataMap.set(obj.fiscalDateEnding, {totalAssets: obj.totalAssets / 1000000, totalLiabilities: obj.totalLiabilities / 1000000})
             }
         })
     

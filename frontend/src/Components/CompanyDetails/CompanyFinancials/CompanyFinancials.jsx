@@ -38,14 +38,14 @@ const CompanyFinancials = ({company, selectedChart}) => {
       </header>
       <div className="chart-container">
         <ResponsiveContainer height="100%" width="100%">
-          <BarChart height="100%" width="100%" data={data} margin={{left: 30, right: 30, bottom: 25, top: 25}}>
+          <BarChart height="100%" width="100%" data={data} margin={{left: 30, right: 10, bottom: 25, top: 25}}>
             {chartPeriod === "quarterly"
             ?
               <XAxis dataKey="quarter" angle={-45} tick={{dy: 20}}/>
             :
               <XAxis dataKey="year" />
             }
-            <YAxis label={{value: "Amount ($)", angle: -90, position: "insideLeft"}} />
+            <YAxis label={{value: "Millions ($USD)", angle: -90, position: "insideLeft", dy: 40, dx: -20}} />
             <Tooltip />
             {selectedChart === "Revenues"
             ? 
