@@ -8,6 +8,7 @@ import { companyInfo } from '../../companyExampleData'
 
 const CompanySearch = () => {
 
+    const [companyData, setCompanyData] = useState(null);
     const [searchSubmitted, setSearchSubmitted] = useState(false)
     const {register, handleSubmit, formState: {isSubmitSuccessful}} = useForm()
 

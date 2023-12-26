@@ -124,3 +124,23 @@ export const AssetsVsLiabilities = (data, type) => {
 
     return dataArray
 }
+
+export const SharePrice = (data) => {
+    dataMap = new Map();
+    let chartData;
+    let dataArray;
+
+    chartData = data["Time Series (Daily)"];
+
+    for (let date in chartData) {
+        dataMap.set(date, chartData[date])
+    }
+
+    dataArray = Array.from(dataMap, (item) => {
+        return {date: item[0], "Share Price": +item[1]["4. close"]}
+    })
+
+    dataArray.sort((a, b) => a.date - b.date)
+
+    return dataArray
+}

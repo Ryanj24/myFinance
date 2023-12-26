@@ -22,7 +22,7 @@ const CompanyMetrics = ({company}) => {
                     <Help />
                 </Tooltip>
             </h3>
-            <p>{company[0].ForwardPE}</p>
+            <p>{company[0].TrailingPE}</p>
         </div>
         <div className="pb-ratio">
             <h3>
