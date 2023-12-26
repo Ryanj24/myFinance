@@ -125,10 +125,12 @@ export const AssetsVsLiabilities = (data, type) => {
     return dataArray
 }
 
-export const SharePrice = (data) => {
+export const SharePrice = (data, period) => {
     dataMap = new Map();
     let chartData;
     let dataArray;
+    let filteredArray;
+    const currentDate = new Date();
 
     chartData = data["Time Series (Daily)"];
 
@@ -137,10 +139,19 @@ export const SharePrice = (data) => {
     }
 
     dataArray = Array.from(dataMap, (item) => {
+        // return {date: item[0].slice(5), "Share Price": +item[1]["4. close"]}
         return {date: item[0], "Share Price": +item[1]["4. close"]}
     })
 
-    dataArray.sort((a, b) => a.date - b.date)
+    if (period === "one-month") {
+        filteredArray = dataArray.filter(obj => obj.date.slice(0, 7) === `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}`)
+    } else if (period === "six-month") {
+        filteredArray = dataArray.filter(obj => (obj.date.slice(5, 7) >= currentDate.getMonth() - 5 && obj.date.slice(0, 4) == currentDate.getFullYear()) && (obj.date.slice(5, 7) <= currentDate.getMonth() + 1 && obj.date.slice(0, 4) == currentDate.getFullYear()))
+    } else {
+        filteredArray = dataArray.filter(obj => obj.date.slice(0, 4) == currentDate.getFullYear())
+    }
 
-    return dataArray
+    filteredArray.sort((a, b) => a.date - b.date).reverse()
+
+    return filteredArray
 }

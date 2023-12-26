@@ -37,7 +37,20 @@
     margin-left: 5px;
 }
 
+.company-financials > header > form > #one-month-label {
+    margin: 0 20px 0 5px;
+}
+
+.company-financials > header > form > #six-month-label {
+    margin: 0 20px 0 5px;
+}
+
+.company-financials > header > form > #one-year-label {
+    margin-left: 5px;
+}
+
 .company-financials > .chart-container {
     height: 90%;
     padding: 1rem;
+    background-color: pink;
 }

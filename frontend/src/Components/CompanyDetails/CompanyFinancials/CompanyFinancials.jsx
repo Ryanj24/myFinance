@@ -9,10 +9,11 @@ const CompanyFinancials = ({company, selectedChart}) => {
 
   let data;
   const [chartPeriod, setChartPeriod] = useState("annual");
+  const [sharePricePeriod, setSharePricePeriod] = useState("one-month")
 
   switch (selectedChart) {
     case "Share Price":
-      data = SharePrice(companySharePrice)
+      data = SharePrice(companySharePrice, sharePricePeriod)
       break
     case "Revenues":
       data = Revenues(companyIncomeStatements, chartPeriod)
@@ -43,18 +44,27 @@ const CompanyFinancials = ({company, selectedChart}) => {
             <label htmlFor="quarterly-choice" id='quarterly-label'>Quarterly</label>
           </form>
         :
-          null
+          <form>
+            <input type="radio" id='one-month-choice' value="one-month" name="chartPeriod" onClick={() => setSharePricePeriod("one-month")} defaultChecked/>
+            <label htmlFor="one-month-choice" id='one-month-label'>1 Month</label>
+
+            <input type="radio" id='six-month-choice' value="six-month" name="chartPeriod" onClick={() => setSharePricePeriod("six-month")}/>
+            <label htmlFor="six-month-choice" id='six-month-label'>6 Months</label>
+
+            <input type="radio" id='one-year-choice' value="one-year" name="chartPeriod" onClick={() => setSharePricePeriod("one-year")}/>
+            <label htmlFor="one-year-choice" id='one-year-label'>1 Year</label>
+          </form>
         }
       </header>
       <div className="chart-container">
         <ResponsiveContainer height="100%" width="100%">
           {selectedChart === "Share Price"
           ?
-            <LineChart height="100%" width="100%" data={data} margin={{left: 30, right: 10, bottom: 35, top: 25}}>
-              <XAxis dataKey="date" angle={-45} tick={{dy: 20}}/>
-              <YAxis domain={['dataMin - 10', 'dataMax + 10']}/>
+            <LineChart height="100%" width="100%" data={data} margin={{left: 10, right: 40, bottom: 50, top: 10}}>
+              <XAxis dataKey="date" angle={-45} tick={{dy: 35}}/>
+              <YAxis domain={['dataMin - 2', 'auto']} label={{value: "Price per Share ($USD)", angle: -90, position: "insideLeft", dy: 70}}/>
               <Tooltip />
-              <Line dataKey="Share Price" stroke="#407BFF"/>
+              <Line dataKey="Share Price" stroke="#407BFF" strokeWidth={2} dot={false}/>
             </LineChart>
           :
             <BarChart height="100%" width="100%" data={data} margin={{left: 30, right: 10, bottom: 25, top: 25}}>
