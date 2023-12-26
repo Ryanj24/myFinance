@@ -29,7 +29,7 @@ const CompanyFinancials = ({company, selectedChart}) => {
       <header>
         <h2>{selectedChart}</h2>
         <form>
-          <input type="radio" id='annual-choice' value="annual" name="chartPeriod" onClick={() => setChartPeriod("annual")}/>
+          <input type="radio" id='annual-choice' value="annual" name="chartPeriod" onClick={() => setChartPeriod("annual")} defaultChecked/>
           <label htmlFor="annual-choice" id='annual-label'>Annual</label>
 
           <input type="radio" id='quarterly-choice' value="quarter" name="chartPeriod" onClick={() => setChartPeriod("quarterly")}/>
@@ -49,15 +49,15 @@ const CompanyFinancials = ({company, selectedChart}) => {
             <Tooltip />
             {selectedChart === "Revenues"
             ? 
-              <Bar dataKey="revenue" fill="#407BFF" activeBar={<Rectangle />}/>
+              <Bar dataKey="Revenue" fill="#407BFF" activeBar={<Rectangle />}/>
             :
             (selectedChart === "Net Income")
             ?
-              <Bar dataKey="netIncome" fill="#407BFF" activeBar={<Rectangle />}/>
+              <Bar dataKey="Net Income" fill="#407BFF" activeBar={<Rectangle />}/>
             :
               <>
-                <Bar dataKey="totalAssets" fill="#407BFF" activeBar={<Rectangle />}/>
-                <Bar dataKey="totalLiabilities" fill="#FF0000" activeBar={<Rectangle />}/>
+                <Bar dataKey="Total Assets" fill="#407BFF" activeBar={<Rectangle />}/>
+                <Bar dataKey="Total Liabilities" fill="#FF0000" activeBar={<Rectangle />}/>
               </>
             }
           </BarChart>

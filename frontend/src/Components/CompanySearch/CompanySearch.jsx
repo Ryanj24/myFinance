@@ -15,6 +15,8 @@ const CompanySearch = () => {
         console.log(data)
         setSearchSubmitted(true)
     }
+
+    console.log("Company Search re-render")
   return (
     <>
         {searchSubmitted === false

@@ -19,7 +19,7 @@ export const Revenues = (data, type) => {
         })
     
         dataArray = Array.from(dataMap, (item) => {
-            return {year: item[0], revenue: item[1]}
+            return {year: item[0], Revenue: item[1]}
         })
 
         dataArray.sort((a, b) => a.year - b.year)
@@ -35,7 +35,7 @@ export const Revenues = (data, type) => {
         })
     
         dataArray = Array.from(dataMap, (item) => {
-            return {quarter: item[0], revenue: item[1]}
+            return {quarter: item[0], Revenue: item[1]}
         })
 
         dataArray.sort((a, b) => sortQuarters(a.quarter, b.quarter))
@@ -60,7 +60,7 @@ export const Profits = (data, type) => {
         })
     
         dataArray = Array.from(dataMap, (item) => {
-            return {year: item[0], netIncome: item[1]}
+            return {year: item[0], "Net Income": item[1]}
         })
 
         dataArray.sort((a, b) => a.year - b.year)
@@ -76,7 +76,7 @@ export const Profits = (data, type) => {
         })
     
         dataArray = Array.from(dataMap, (item) => {
-            return {quarter: item[0], netIncome: item[1]}
+            return {quarter: item[0], "Net Income": item[1]}
         })
 
         dataArray.sort((a, b) => sortQuarters(a.quarter, b.quarter))
@@ -101,7 +101,7 @@ export const AssetsVsLiabilities = (data, type) => {
         })
     
         dataArray = Array.from(dataMap, (item) => {
-            return {year: item[0], totalAssets: item[1].totalAssets, totalLiabilities: item[1].totalLiabilities}
+            return {year: item[0], "Total Assets": item[1].totalAssets, "Total Liabilities": item[1].totalLiabilities}
         })
 
         dataArray.sort((a, b) => a.year - b.year)
@@ -116,7 +116,7 @@ export const AssetsVsLiabilities = (data, type) => {
         })
     
         dataArray = Array.from(dataMap, (item) => {
-            return {quarter: item[0], totalAssets: item[1].totalAssets, totalLiabilities: item[1].totalLiabilities}
+            return {quarter: item[0], "Total Assets": item[1].totalAssets, "Total Liabilities": item[1].totalLiabilities}
         })
 
         dataArray.sort((a, b) => sortQuarters(a.quarter, b.quarter))

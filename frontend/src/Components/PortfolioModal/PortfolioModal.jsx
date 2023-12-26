@@ -2,6 +2,7 @@ import React from 'react'
 import './PortfolioModal.css'
 import { Close } from '@mui/icons-material'
 import PortfolioForm from '../PortfolioForm/PortfolioForm'
+import SharesForm from '../SharesForm/SharesForm'
 
 const PortfolioModal = ({modalType, toggleModal, portfolio}) => {
   return (

@@ -1,9 +1,14 @@
+.company-overview > h2 {
+    margin-bottom: 20px;
+}
+
 .company-overview > div {
     margin: 10px 0;
 }
 
 .company-overview > div > h3{
     padding: 0 10px;
+    color: var(--primary-col);
 }
 
 .company-overview > div > p{

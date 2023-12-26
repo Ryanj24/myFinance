@@ -13,7 +13,7 @@ const CompanyMetrics = ({company}) => {
                     <Help />
                 </Tooltip>
             </h3>
-            <p>${company[0].MarketCapitalization}</p>
+            <p>${new Intl.NumberFormat().format(company[0].MarketCapitalization)}</p>
         </div>
         <div className="pe-ratio">
             <h3>
