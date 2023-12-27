@@ -7,8 +7,28 @@
 
 .company-details-container > header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
+}
+
+.company-details-container > header > .company-title-price {
+    display: flex;
+    flex-direction: column;
+}
+
+.company-details-container > header > .company-title-price > .company-title-ticker {
+    margin-bottom: 10px;
+}
+
+.company-details-container > header > .company-title-price > .company-share-price {
+    display: flex;
+    align-items: center;
+}
+
+.company-details-container > header > .company-title-price > .company-share-price > p{
+    font-size: large;
+    margin-left: 10px;
 }
 
 .company-details-container > header > .action-btns {

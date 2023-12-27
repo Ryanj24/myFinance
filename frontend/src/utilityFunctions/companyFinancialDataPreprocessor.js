@@ -1,5 +1,6 @@
 import {sortQuarters} from './sortStrings.js'
 import { quarterDateFormatter } from './dateFormatter.js';
+import { dateFormatter } from './dateFormatter.js';
 
 let dataMap = new Map()
 
@@ -139,15 +140,24 @@ export const SharePrice = (data, period) => {
     }
 
     dataArray = Array.from(dataMap, (item) => {
-        return {date: item[0], "Share Price": +item[1]["4. close"]}
+        return {date: dateFormatter(item[0], "ddmmyy"), "Share Price": +item[1]["4. close"]}
     })
 
+
+    // if (period === "one-month") {
+    //     filteredArray = dataArray.filter(obj => obj.date.slice(0, 7) === `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}`)
+    // } else if (period === "six-month") {
+    //     filteredArray = dataArray.filter(obj => (obj.date.slice(5, 7) >= currentDate.getMonth() - 5 && obj.date.slice(0, 4) == currentDate.getFullYear()) && (obj.date.slice(5, 7) <= currentDate.getMonth() + 1 && obj.date.slice(0, 4) == currentDate.getFullYear()))
+    // } else {
+    //     filteredArray = dataArray.filter(obj => obj.date.slice(0, 4) == currentDate.getFullYear())
+    // }
+
     if (period === "one-month") {
-        filteredArray = dataArray.filter(obj => obj.date.slice(0, 7) === `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}`)
+        filteredArray = dataArray.filter(obj => obj.date.slice(3, 8) === `${currentDate.getMonth() + 1}/${currentDate.getFullYear() % 100}`)
     } else if (period === "six-month") {
-        filteredArray = dataArray.filter(obj => (obj.date.slice(5, 7) >= currentDate.getMonth() - 5 && obj.date.slice(0, 4) == currentDate.getFullYear()) && (obj.date.slice(5, 7) <= currentDate.getMonth() + 1 && obj.date.slice(0, 4) == currentDate.getFullYear()))
+        filteredArray = dataArray.filter(obj => (obj.date.slice(3, 5) >= currentDate.getMonth() - 5 && obj.date.slice(6, 8) == currentDate.getFullYear() % 100) && (obj.date.slice(3, 5) <= currentDate.getMonth() + 1 && obj.date.slice(6, 8) == currentDate.getFullYear() % 100))
     } else {
-        filteredArray = dataArray.filter(obj => obj.date.slice(0, 4) == currentDate.getFullYear())
+        filteredArray = dataArray.filter(obj => obj.date.slice(6, 8) == currentDate.getFullYear() % 100)
     }
 
     filteredArray.sort((a, b) => a.date - b.date).reverse()

@@ -6,6 +6,7 @@ import CompanyOverview from './CompanyOverview/CompanyOverview'
 import CompanyMetrics from './CompanyMetrics/CompanyMetrics'
 import CompanyFinancials from './CompanyFinancials/CompanyFinancials'
 import PortfolioModal from '../PortfolioModal/PortfolioModal'
+import { dateFormatter } from '../../utilityFunctions/dateFormatter'
 
 const CompanyDetails = ({data}) => {
 
@@ -22,26 +23,36 @@ const CompanyDetails = ({data}) => {
   ]
 
   // console.log(data)
+
+  // const mostRecentSharePrice = +Object.entries(data["sharePrice"]["Time Series (Daily)"])[0][1]["4. close"]
+  // console.log(mostRecentSharePrice)
+
   return (
     <>
       {sharesModalActive && <PortfolioModal modalType={modalType} toggleModal={setSharesModalActive}/>}
       <section className='company-details-container'>
           <header>
+            <div className="company-title-price">
               <h2 className='company-title-ticker'>{data["overviewData"].Name} ({data["overviewData"].Symbol})</h2>
-              <div className="action-btns">
-                <button className='shares-buy-btn' onClick={() => {
-                  setSharesModalActive(true)
-                  setModalType("Buy Shares")
-                }}>
-                  <AttachMoney /> Buy Shares
-                </button>
-                <button className='shares-sell-btn' onClick={() => {
-                  setSharesModalActive(true)
-                  setModalType("Sell Shares")
-                }}>
-                  <Sell /> Sell Shares
-                </button>
+              <div className="company-share-price">
+                <h3>${+Object.entries(data["sharePrice"]["Time Series (Daily)"])[0][1]["4. close"]}</h3>
+                <p>(As of {dateFormatter(Object.entries(data["sharePrice"]["Time Series (Daily)"])[0][0], "ddmmyy")})</p>
               </div>
+            </div>
+            <div className="action-btns">
+              <button className='shares-buy-btn' onClick={() => {
+                setSharesModalActive(true)
+                setModalType("Buy Shares")
+              }}>
+                <AttachMoney /> Buy Shares
+              </button>
+              <button className='shares-sell-btn' onClick={() => {
+                setSharesModalActive(true)
+                setModalType("Sell Shares")
+              }}>
+                <Sell /> Sell Shares
+              </button>
+            </div>
           </header>
           <section className='company-details-grid'>
               <GridCarousel companyData={companyData}/>
