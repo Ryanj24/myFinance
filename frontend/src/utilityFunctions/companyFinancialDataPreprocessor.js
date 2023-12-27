@@ -139,7 +139,6 @@ export const SharePrice = (data, period) => {
     }
 
     dataArray = Array.from(dataMap, (item) => {
-        // return {date: item[0].slice(5), "Share Price": +item[1]["4. close"]}
         return {date: item[0], "Share Price": +item[1]["4. close"]}
     })
 

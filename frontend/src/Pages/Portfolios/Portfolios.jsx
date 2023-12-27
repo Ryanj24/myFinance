@@ -12,7 +12,7 @@ const Portfolios = () => {
   const [portfolioModal, setPortfolioModal] = useState(false);
   const [selectedTab, setSelectedTab] = useState("My Portfolios");
 
-  console.log("Portfolio Page re-render")
+  // console.log("Portfolio Page re-render")
   return (
     <>
       {portfolioModal && <PortfolioModal modalType="Add Portfolio" toggleModal={setPortfolioModal}/>}

@@ -13,7 +13,7 @@ const CompanyMetrics = ({company}) => {
                     <Help />
                 </Tooltip>
             </h3>
-            <p>${new Intl.NumberFormat().format(company[0].MarketCapitalization)}</p>
+            <p>${new Intl.NumberFormat().format(company.MarketCapitalization)}</p>
         </div>
         <div className="pe-ratio">
             <h3>
@@ -22,7 +22,7 @@ const CompanyMetrics = ({company}) => {
                     <Help />
                 </Tooltip>
             </h3>
-            <p>{company[0].TrailingPE}</p>
+            <p>{company.TrailingPE}</p>
         </div>
         <div className="pb-ratio">
             <h3>
@@ -31,7 +31,7 @@ const CompanyMetrics = ({company}) => {
                     <Help />
                 </Tooltip>
             </h3>
-            <p>{company[0].PriceToBookRatio}</p>
+            <p>{company.PriceToBookRatio}</p>
         </div>
         <div className="eps">
             <h3>
@@ -40,7 +40,7 @@ const CompanyMetrics = ({company}) => {
                     <Help />
                 </Tooltip>
             </h3>
-            <p>{company[0].EPS}</p>
+            <p>{company.EPS}</p>
         </div>
         <div className="de-ratio">
             <h3>
@@ -58,7 +58,7 @@ const CompanyMetrics = ({company}) => {
                     <Help />
                 </Tooltip>
             </h3>
-            <p>{company[0].ReturnOnEquityTTM}</p>
+            <p>{company.ReturnOnEquityTTM}</p>
         </div>
     </div>
   )

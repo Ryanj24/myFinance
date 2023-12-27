@@ -13,21 +13,21 @@ const CompanyDetails = ({data}) => {
   const [modalType, setModalType] = useState("");
 
   const companyData = [
-    <CompanyOverview company={data}/>, 
-    <CompanyMetrics company={data}/>, 
-    <CompanyFinancials companyData={data} selectedChart="Share Price"/>,
-    <CompanyFinancials company={data} selectedChart="Revenues"/>,
-    <CompanyFinancials company={data} selectedChart="Net Income"/>,
-    <CompanyFinancials company={data} selectedChart="Assets vs Liabilities"/>
+    <CompanyOverview company={data["overviewData"]}/>, 
+    <CompanyMetrics company={data["overviewData"]}/>, 
+    <CompanyFinancials company={data["sharePrice"]} selectedChart="Share Price"/>,
+    <CompanyFinancials company={data["incomeStatement"]} selectedChart="Revenues"/>,
+    <CompanyFinancials company={data["incomeStatement"]} selectedChart="Net Income"/>,
+    <CompanyFinancials company={data["balanceSheet"]} selectedChart="Assets vs Liabilities"/>
   ]
 
-  console.log("Company Details re-render")
+  // console.log(data)
   return (
     <>
       {sharesModalActive && <PortfolioModal modalType={modalType} toggleModal={setSharesModalActive}/>}
       <section className='company-details-container'>
           <header>
-              <h2 className='company-title-ticker'>{data[0].Name} ({data[0].Symbol})</h2>
+              <h2 className='company-title-ticker'>{data["overviewData"].Name} ({data["overviewData"].Symbol})</h2>
               <div className="action-btns">
                 <button className='shares-buy-btn' onClick={() => {
                   setSharesModalActive(true)

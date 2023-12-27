@@ -5,6 +5,7 @@ import { Button } from '@mui/material'
 import { Search } from '@mui/icons-material'
 import CompanyDetails from '../CompanyDetails/CompanyDetails'
 import { companyInfo } from '../../companyExampleData'
+import { fetchCompanyData } from '../../utilityFunctions/fetchCompanyData'
 
 const CompanySearch = () => {
 
@@ -12,12 +13,16 @@ const CompanySearch = () => {
     const [searchSubmitted, setSearchSubmitted] = useState(false)
     const {register, handleSubmit, formState: {isSubmitSuccessful}} = useForm()
 
-    const handleOnSubmit = (data) => {
-        console.log(data)
+    const handleOnSubmit = async (data) => {
+
+        const response = await fetchCompanyData(data["company-ticker"].toUpperCase().trim());
+
+        console.log(response)
+        setCompanyData(response)
         setSearchSubmitted(true)
     }
 
-    console.log("Company Search re-render")
+    // console.log("Company Search re-render")
   return (
     <>
         {searchSubmitted === false
@@ -34,7 +39,7 @@ const CompanySearch = () => {
                 </form>
             </section>
         :
-            <CompanyDetails data={companyInfo}/>
+            <CompanyDetails data={companyData}/>
         }
     </>
   )

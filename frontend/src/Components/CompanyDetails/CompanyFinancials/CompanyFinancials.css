@@ -52,5 +52,5 @@
 .company-financials > .chart-container {
     height: 90%;
     padding: 1rem;
-    background-color: pink;
+    min-height: 350px;
 }

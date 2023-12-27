@@ -13,23 +13,22 @@ const CompanyFinancials = ({company, selectedChart}) => {
 
   switch (selectedChart) {
     case "Share Price":
-      data = SharePrice(companySharePrice, sharePricePeriod)
+      data = SharePrice(company, sharePricePeriod)
       break
     case "Revenues":
-      data = Revenues(companyIncomeStatements, chartPeriod)
+      data = Revenues(company, chartPeriod)
       break
     case "Net Income":
-      data = Profits(companyIncomeStatements, chartPeriod)
+      data = Profits(company, chartPeriod)
       break
     case "Assets vs Liabilities":    
-      data = AssetsVsLiabilities(companyBalanceSheet, chartPeriod)
+      data = AssetsVsLiabilities(company, chartPeriod)
       break
     default:
       break
   }
 
-  console.log(data)
-
+  // console.log(company)
   return (
     <div className='company-financials'>
       <header>

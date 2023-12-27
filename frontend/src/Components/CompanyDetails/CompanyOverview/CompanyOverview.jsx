@@ -7,19 +7,19 @@ const CompanyOverview = ({company}) => {
         <h2>Company Overview</h2>
         <div className="country">
             <h3>Country</h3>
-            <p>{company[0].Country}</p>
+            <p>{company.Country}</p>
         </div>
         <div className="sector">
             <h3>Sector</h3>
-            <p>{company[0].Sector}</p>
+            <p>{company.Sector}</p>
         </div>
         <div className="industry">
             <h3>Industry</h3>
-            <p>{company[0].Industry}</p>
+            <p>{company.Industry}</p>
         </div>
         <div className="description">
             <h3>Company Description</h3>
-            <p>{company[0].Description}</p>
+            <p>{company.Description}</p>
         </div>
     </div>
   )
