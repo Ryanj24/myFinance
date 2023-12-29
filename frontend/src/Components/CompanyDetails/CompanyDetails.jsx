@@ -13,7 +13,7 @@ const CompanyDetails = ({data}) => {
   const [sharesModalActive, setSharesModalActive] = useState(false)
   const [modalType, setModalType] = useState("");
   const [company, setCompany] = useState(
-    {name: data["overviewData"].Name, pricePerShare: +Object.entries(data["sharePrice"]["Time Series (Daily)"])[0][1]["4. close"]}
+    {name: data["overviewData"].Name, tickerSymbol: data["overviewData"].Symbol, pricePerShare: +Object.entries(data["sharePrice"]["Time Series (Daily)"])[0][1]["4. close"]}
   )
 
   const companyData = [

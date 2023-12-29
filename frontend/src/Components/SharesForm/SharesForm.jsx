@@ -5,12 +5,15 @@ import { Alert, Button } from '@mui/material'
 import { Cancel } from '@mui/icons-material'
 import { useSelector } from 'react-redux'
 import { validateSharesForm } from '../../utilityFunctions/validateSharesForm'
+import { sharesTransaction } from '../../utilityFunctions/sharesTransaction'
+import { calculateShareHolding } from '../../utilityFunctions/calculateShareHolding'
 
 const SharesForm = ({formType, toggleModal, company}) => {
 
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("")
 
+    const {token} = useSelector(state => state.user.user)
     const {register, handleSubmit, formState: {isSubmitSuccessful}, watch} = useForm({defaultValues: {
         company_name: company.name,
         shares_amount: 0
@@ -27,16 +30,35 @@ const SharesForm = ({formType, toggleModal, company}) => {
 
     const handleOnSubmit = async (data) => {
 
+        // Get the selected portfolio and the shares currently held of the company in that portfolio
         const selectedPortfolio = portfolios.filter(portfolio => portfolio.portfolio_name === data.portfolio_name)[0]
-        const currentSharesHeld = transactions.filter(transaction => transaction.company_name === company.name).reduce((acc, currVal) => acc + currVal.quantity, 0)
+        const currentSharesHeld = calculateShareHolding(transactions, company.name, selectedPortfolio.id)
 
-        const validateInputs = validateSharesForm(formType, {...data, transactionTotal: company.pricePerShare * data.shares_amount, currentSharesHeld}, selectedPortfolio)
+        // console.log(currentSharesHeld)
 
-        if (!validateInputs.valid) {
+        const dataObj = {
+            ...data,
+            tickerSymbol: company.tickerSymbol,
+            pricePerShare: company.pricePerShare,
+            currentSharesHeld
+        }
+        
+        // Validate the form inputs
+        const validateInputs = validateSharesForm(formType, dataObj, selectedPortfolio)
+
+        // if (!validateInputs.valid) {
+        //     setError(true)
+        //     setErrorMessage(validateInputs.reason)
+        // }
+
+        if (validateInputs.valid) {
+            const response = await sharesTransaction(formType, dataObj, selectedPortfolio.id, token)
+
+            console.log(response)
+            toggleModal(false)
+        } else {
             setError(true)
             setErrorMessage(validateInputs.reason)
-        } else {
-            toggleModal(false)
         }
     }
 
