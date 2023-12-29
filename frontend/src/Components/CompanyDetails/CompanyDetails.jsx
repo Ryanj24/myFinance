@@ -12,6 +12,9 @@ const CompanyDetails = ({data}) => {
 
   const [sharesModalActive, setSharesModalActive] = useState(false)
   const [modalType, setModalType] = useState("");
+  const [company, setCompany] = useState(
+    {name: data["overviewData"].Name, pricePerShare: +Object.entries(data["sharePrice"]["Time Series (Daily)"])[0][1]["4. close"]}
+  )
 
   const companyData = [
     <CompanyOverview company={data["overviewData"]}/>, 
@@ -22,14 +25,9 @@ const CompanyDetails = ({data}) => {
     <CompanyFinancials company={data["balanceSheet"]} selectedChart="Assets vs Liabilities"/>
   ]
 
-  // console.log(data)
-
-  // const mostRecentSharePrice = +Object.entries(data["sharePrice"]["Time Series (Daily)"])[0][1]["4. close"]
-  // console.log(mostRecentSharePrice)
-
   return (
     <>
-      {sharesModalActive && <PortfolioModal modalType={modalType} toggleModal={setSharesModalActive}/>}
+      {sharesModalActive && <PortfolioModal modalType={modalType} toggleModal={setSharesModalActive} company={company}/>}
       <section className='company-details-container'>
           <header>
             <div className="company-title-price">

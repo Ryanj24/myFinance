@@ -8,6 +8,7 @@
 #shares-modal-form > div:not(.save-btn-container) {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 #shares-modal-form > div:not(.company-name) {
@@ -30,6 +31,14 @@
 
 #shares-modal-form > .company-name {
     margin-bottom: 10px;
+}
+
+#shares-modal-form > .available-portfolios > select {
+    padding: 5px;
+    font-size: medium;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #e3e3e3;
 }
 
 #shares-modal-form > .save-btn-container {
