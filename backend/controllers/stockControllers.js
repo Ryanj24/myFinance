@@ -74,7 +74,7 @@ export const stockTransaction = async (req, res) => {
         )
 
         // Select the transaction from the database
-        const transaction = await db.query(`SELECT company_name, company_ticker, type, transaction_date, quantity, price_per_share, total_amount FROM stock_transactions WHERE portfolio_id = ? ORDER BY id DESC LIMIT 1`, [req.params.id])
+        const transaction = await db.query(`SELECT portfolio_id, company_name, company_ticker, type, transaction_date, quantity, price_per_share, total_amount FROM stock_transactions WHERE portfolio_id = ? ORDER BY id DESC LIMIT 1`, [req.params.id])
 
         // Return the transaction
         return res.json(transaction[0][0]);

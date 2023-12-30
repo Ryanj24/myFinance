@@ -3,7 +3,9 @@ import './SharesForm.css'
 import {useForm} from 'react-hook-form'
 import { Alert, Button } from '@mui/material'
 import { Cancel } from '@mui/icons-material'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { addStockTransaction } from '../../redux/stockTransactionSlice'
+import { incrementPortfolioBalance, decrementPortfolioBalance } from '../../redux/portfolioSlice'
 import { validateSharesForm } from '../../utilityFunctions/validateSharesForm'
 import { sharesTransaction } from '../../utilityFunctions/sharesTransaction'
 import { calculateShareHolding } from '../../utilityFunctions/calculateShareHolding'
@@ -14,6 +16,8 @@ const SharesForm = ({formType, toggleModal, company}) => {
     const [errorMessage, setErrorMessage] = useState("")
 
     const {token} = useSelector(state => state.user.user)
+    const dispatch = useDispatch()
+
     const {register, handleSubmit, formState: {isSubmitSuccessful}, watch} = useForm({defaultValues: {
         company_name: company.name,
         shares_amount: 0
@@ -34,7 +38,6 @@ const SharesForm = ({formType, toggleModal, company}) => {
         const selectedPortfolio = portfolios.filter(portfolio => portfolio.portfolio_name === data.portfolio_name)[0]
         const currentSharesHeld = calculateShareHolding(transactions, company.name, selectedPortfolio.id)
 
-        // console.log(currentSharesHeld)
 
         const dataObj = {
             ...data,
@@ -46,15 +49,16 @@ const SharesForm = ({formType, toggleModal, company}) => {
         // Validate the form inputs
         const validateInputs = validateSharesForm(formType, dataObj, selectedPortfolio)
 
-        // if (!validateInputs.valid) {
-        //     setError(true)
-        //     setErrorMessage(validateInputs.reason)
-        // }
-
         if (validateInputs.valid) {
             const response = await sharesTransaction(formType, dataObj, selectedPortfolio.id, token)
 
-            console.log(response)
+            dispatch(addStockTransaction(response))
+
+            if (formType === "Buy Shares") {
+                dispatch(decrementPortfolioBalance(response))
+            } else {
+                dispatch(incrementPortfolioBalance(response))
+            }
             toggleModal(false)
         } else {
             setError(true)

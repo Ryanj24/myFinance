@@ -16,6 +16,12 @@ export const portfolioSlice = createSlice({
         updatePortfolio: (state, action) => {
             state.portfolios = state.portfolios.map(portfolio => portfolio.id === action.payload.id ? action.payload : portfolio)
         },
+        incrementPortfolioBalance: (state, action) => {
+            state.portfolios = state.portfolios.map(portfolio => portfolio.id === action.payload.portfolio_id ? {...portfolio, balance: parseFloat(portfolio.balance) + parseFloat(action.payload.total_amount)} : portfolio)
+        },
+        decrementPortfolioBalance: (state, action) => {
+            state.portfolios = state.portfolios.map(portfolio => portfolio.id === action.payload.portfolio_id ? {...portfolio, balance: parseFloat(portfolio.balance) - parseFloat(action.payload.total_amount)} : portfolio)
+        },
         deletePortfolio: (state, action) => {
             state.portfolios = state.portfolios.filter(portfolio => portfolio.id != action.payload.id)
         },
@@ -40,6 +46,6 @@ export const portfolioSlice = createSlice({
     }
 })
 
-export const {setPortfolios, addPortfolio, updatePortfolio, deletePortfolio, sortPortfolios} = portfolioSlice.actions
+export const {setPortfolios, addPortfolio, updatePortfolio, incrementPortfolioBalance, decrementPortfolioBalance, deletePortfolio, sortPortfolios} = portfolioSlice.actions
 
 export default portfolioSlice.reducer
