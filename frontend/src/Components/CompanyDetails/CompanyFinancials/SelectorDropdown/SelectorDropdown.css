@@ -1,0 +1,34 @@
+.selector-dropdown {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    background-color: #fff;
+    box-shadow: 1px 2px 8px rgba(95, 95, 95, 0.948);
+    border-radius: 10px;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.selector-dropdown > h3{
+    margin-bottom: 10px;
+}
+
+.selector-dropdown > form {
+    display: flex;
+    flex-direction: column;
+}
+
+.selector-dropdown > form > div{
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.selector-dropdown > form > div > input{
+    margin-right: 5px;
+    height: 15px;
+    width: 15px;
+}

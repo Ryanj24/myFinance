@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './CompanyFinancials.css'
+import { MoreHoriz } from '@mui/icons-material';
+import { useMediaQuery } from 'react-responsive';
 import {Bar, BarChart, Line, LineChart, Rectangle, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts'
 import { Revenues, Profits, AssetsVsLiabilities, SharePrice } from '../../../utilityFunctions/companyFinancialDataPreprocessor';
-import { companyIncomeStatements, companyBalanceSheet, companySharePrice } from '../../../companyExampleData';
+import ChartPeriodSelectors from './ChartPeriodSelectors.jsx';
 
 
 const CompanyFinancials = ({company, selectedChart}) => {
@@ -10,6 +12,7 @@ const CompanyFinancials = ({company, selectedChart}) => {
   let data;
   const [chartPeriod, setChartPeriod] = useState("annual");
   const [sharePricePeriod, setSharePricePeriod] = useState("one-month")
+  const [dropdownActive, setDropdownActive] = useState(false)
 
   switch (selectedChart) {
     case "Share Price":
@@ -28,33 +31,35 @@ const CompanyFinancials = ({company, selectedChart}) => {
       break
   }
 
-  // console.log(company)
+  const smallerScreen = useMediaQuery({ query: '(max-width: 800px)' })
+
   return (
     <div className='company-financials'>
       <header>
         <h2>{selectedChart}</h2>
-        {selectedChart != "Share Price"
+        {smallerScreen 
         ?
-          <form>
-            <input type="radio" id='annual-choice' value="annual" name="chartPeriod" onClick={() => setChartPeriod("annual")} defaultChecked/>
-            <label htmlFor="annual-choice" id='annual-label'>Annual</label>
-
-            <input type="radio" id='quarterly-choice' value="quarter" name="chartPeriod" onClick={() => setChartPeriod("quarterly")}/>
-            <label htmlFor="quarterly-choice" id='quarterly-label'>Quarterly</label>
-          </form>
+          <button className='selector-dropdown-btn' onClick={() => setDropdownActive(!dropdownActive)}>
+            <MoreHoriz />
+          </button>
         :
-          <form>
-            <input type="radio" id='one-month-choice' value="one-month" name="chartPeriod" onClick={() => setSharePricePeriod("one-month")} defaultChecked/>
-            <label htmlFor="one-month-choice" id='one-month-label'>1 Month</label>
-
-            <input type="radio" id='six-month-choice' value="six-month" name="chartPeriod" onClick={() => setSharePricePeriod("six-month")}/>
-            <label htmlFor="six-month-choice" id='six-month-label'>6 Months</label>
-
-            <input type="radio" id='one-year-choice' value="one-year" name="chartPeriod" onClick={() => setSharePricePeriod("one-year")}/>
-            <label htmlFor="one-year-choice" id='one-year-label'>1 Year</label>
-          </form>
+          (selectedChart != "Share Price")
+        ?
+          <ChartPeriodSelectors chartPeriod={chartPeriod} setChartPeriod={setChartPeriod}/>
+        :
+          <ChartPeriodSelectors chartType="Share Price" sharePricePeriod={sharePricePeriod} setSharePricePeriod={setSharePricePeriod}/>
+        }
+        {dropdownActive && selectedChart != "Share Price"
+        ?
+          <ChartPeriodSelectors chartPeriod={chartPeriod} setChartPeriod={setChartPeriod}/>
+        : (dropdownActive && selectedChart === "Share Price")
+        ?
+          <ChartPeriodSelectors chartType="Share Price" sharePricePeriod={sharePricePeriod} setSharePricePeriod={setSharePricePeriod}/>
+        :
+          null
         }
       </header>
+
       <div className="chart-container">
         <ResponsiveContainer height="100%" width="100%">
           {selectedChart === "Share Price"

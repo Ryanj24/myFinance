@@ -84,3 +84,14 @@
 .company-details-container > .company-details-grid > .grid-carousel {
     height: 100%;
 }
+
+@media screen and (max-width: 600px) {
+    .company-details-container > header > .action-btns {
+        flex-direction: column;
+    }
+
+    .company-details-container > header > .action-btns > .shares-buy-btn {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}

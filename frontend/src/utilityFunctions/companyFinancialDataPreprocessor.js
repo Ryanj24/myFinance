@@ -143,15 +143,6 @@ export const SharePrice = (data, period) => {
         return {date: dateFormatter(item[0], "ddmmyy"), "Share Price": +item[1]["4. close"]}
     })
 
-
-    // if (period === "one-month") {
-    //     filteredArray = dataArray.filter(obj => obj.date.slice(0, 7) === `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}`)
-    // } else if (period === "six-month") {
-    //     filteredArray = dataArray.filter(obj => (obj.date.slice(5, 7) >= currentDate.getMonth() - 5 && obj.date.slice(0, 4) == currentDate.getFullYear()) && (obj.date.slice(5, 7) <= currentDate.getMonth() + 1 && obj.date.slice(0, 4) == currentDate.getFullYear()))
-    // } else {
-    //     filteredArray = dataArray.filter(obj => obj.date.slice(0, 4) == currentDate.getFullYear())
-    // }
-
     if (period === "one-month") {
         filteredArray = dataArray.filter(obj => obj.date.slice(3, 8) === `${currentDate.getMonth() + 1}/${currentDate.getFullYear() % 100}`)
     } else if (period === "six-month") {
