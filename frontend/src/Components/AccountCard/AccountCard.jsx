@@ -17,7 +17,7 @@ const AccountCard = ({account}) => {
         </div>
         <div className="account-balance">
             <Typography variant='h6' component="h6" gutterBottom>Available Balance</Typography>
-            <Typography variant='body2' component="p">£{parseInt(account.balance)}</Typography>
+            <Typography variant='body2' component="p">{Intl.NumberFormat("en-US", {style: "currency", currency: "GBP"}).format(account.balance)}</Typography>
         </div>
         <div className="view-account-icon-container">
             <Link className='view-account-btn' to={`/home/accounts/${account.id}`}>

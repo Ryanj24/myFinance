@@ -1,6 +1,8 @@
 import React from 'react'
 import './PortfolioDetails.css'
 import { Edit, Delete } from '@mui/icons-material'
+import PortfolioOverview from '../../Components/PortfolioOverview/PortfolioOverview'
+import PortfolioDetailsNav from '../../Components/PortfolioDetailsNav/PortfolioDetailsNav'
 
 const PortfolioDetails = () => {
   return (
@@ -18,6 +20,8 @@ const PortfolioDetails = () => {
           </button>
         </div>
       </header>
+      <PortfolioOverview />
+      <PortfolioDetailsNav />
     </section>
   )
 }

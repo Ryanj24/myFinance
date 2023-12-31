@@ -1,0 +1,33 @@
+.portfolio-details-nav-bar {
+    margin-top: 20px;
+    padding: 1.5rem;
+}
+
+.portfolio-details-nav-bar > .portfolio-details-nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portfolio-details-nav-bar > .portfolio-details-nav-links > .portfolio-details-nav-link {
+    list-style: none;
+}
+
+.portfolio-details-nav-bar > .portfolio-details-nav-links > .portfolio-details-nav-link >  a > button {
+    background: none;
+    border: none;
+    font-size: large;
+}
+
+.portfolio-details-nav-bar > .portfolio-details-nav-links > .portfolio-details-nav-link > a > button:hover {
+    cursor: pointer;
+}
+
+.portfolio-details-nav-bar > .portfolio-details-nav-links > .portfolio-details-nav-link > a > button:first-child {
+    margin-right: 40px;
+}
+
+.portfolio-details-nav-bar > .portfolio-details-nav-links > .portfolio-details-nav-link >  a > button.selected {
+    color: var(--primary-col);
+    border-bottom: 3px solid var(--primary-col);
+}

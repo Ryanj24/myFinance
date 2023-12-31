@@ -66,7 +66,7 @@ const AccountTransactions = () => {
                 icon={budgetIconArray[obj.iconIndex]}
                 desc={obj.description === null ? "No Description": obj.description}
                 date={obj.transaction_date}
-                amount={obj.type === "Expense" || obj.type === "Withdrawl" ? <p style={{color: "#FF1B1B"}}>-£{obj.amount}</p> : <p style={{color: "#0ADA06"}}>+£{obj.amount}</p>}
+                amount={obj.type === "Expense" || obj.type === "Withdrawl" ? <p style={{color: "#FF1B1B"}}>-{Intl.NumberFormat("en-US", {style: "currency", currency: "GBP"}).format(obj.amount)}</p> : <p style={{color: "#0ADA06"}}>+{Intl.NumberFormat("en-US", {style: "currency", currency: "GBP"}).format(obj.amount)}</p>}
                 toggleModal={setEditTransactionModalActive}
                 setCurrentTransactionID={setCurrentTransactionID}
                 />  

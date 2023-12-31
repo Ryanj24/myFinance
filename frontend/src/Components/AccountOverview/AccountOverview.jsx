@@ -51,7 +51,7 @@ const AccountOverview = () => {
               Account Balance
             </Typography>
             <Typography variant='body1' component="p">
-              £{account.balance}
+              {Intl.NumberFormat("en-US", {style: "currency", currency: "GBP"}).format(account.balance)}
             </Typography>
           </div>
         </div>

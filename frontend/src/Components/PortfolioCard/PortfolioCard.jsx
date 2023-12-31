@@ -20,7 +20,7 @@ import Trading212 from '../../assets/portfolio-logo-icons/Trading212-icon-logo.s
 import Vanguard from '../../assets/portfolio-logo-icons/Vanguard-icon-logo.svg'
 
 
-const portfolioIcons = [AJBell, Barclays, Fidelity, Freetrade, HL, HSBC, Lloyds, JPMorgan, MorganStanley, NatWest, RBS, Santander, Trading212, Vanguard]
+export const portfolioIcons = [AJBell, Barclays, Fidelity, Freetrade, HL, HSBC, Lloyds, JPMorgan, MorganStanley, NatWest, RBS, Santander, Trading212, Vanguard]
 
 const PortfolioCard = ({portfolio}) => {
   return (
@@ -33,7 +33,7 @@ const PortfolioCard = ({portfolio}) => {
         </div>
         <div className="portfolio-value">
             <Typography variant='h6' component="h6" gutterBottom>Total Value</Typography>
-            <Typography variant='body2' component="p">£{parseInt(portfolio.balance)}</Typography>
+            <Typography variant='body2' component="p">{Intl.NumberFormat("en-US", {style: "currency", currency: "GBP"}).format(portfolio.balance)}</Typography>
         </div>
         <div className="view-portfolio-icon-container">
             <Link className='view-portfolio-btn' to={`/home/portfolios/${portfolio.id}`}>
