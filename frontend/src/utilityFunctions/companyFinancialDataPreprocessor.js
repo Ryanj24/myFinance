@@ -140,18 +140,37 @@ export const SharePrice = (data, period) => {
     }
 
     dataArray = Array.from(dataMap, (item) => {
-        return {date: dateFormatter(item[0], "ddmmyy"), "Share Price": +item[1]["4. close"]}
+        return {date: item[0], "Share Price": +item[1]["4. close"]}
     })
 
+
     if (period === "one-month") {
-        filteredArray = dataArray.filter(obj => obj.date.slice(3, 8) === `${currentDate.getMonth() + 1}/${currentDate.getFullYear() % 100}`)
+        filteredArray = dataArray.filter(obj => {
+            const objDate = new Date(obj.date)
+
+            if ((currentDate.getTime() - objDate.getTime()) / (1000 * 60 * 60 * 24) <= 30) return true
+
+        })
+
+        
     } else if (period === "six-month") {
-        filteredArray = dataArray.filter(obj => (obj.date.slice(3, 5) >= currentDate.getMonth() - 5 && obj.date.slice(6, 8) == currentDate.getFullYear() % 100) && (obj.date.slice(3, 5) <= currentDate.getMonth() + 1 && obj.date.slice(6, 8) == currentDate.getFullYear() % 100))
+        filteredArray = dataArray.filter(obj => {
+            const objDate = new Date(obj.date)
+
+            if ((currentDate.getTime() - objDate.getTime()) / (1000 * 60 * 60 * 24) <= 180) return true
+
+        })
     } else {
-        filteredArray = dataArray.filter(obj => obj.date.slice(6, 8) == currentDate.getFullYear() % 100)
+        filteredArray = dataArray.filter(obj => {
+            const objDate = new Date(obj.date)
+
+            if ((currentDate.getTime() - objDate.getTime()) / (1000 * 60 * 60 * 24) <= 365) return true
+
+        })
     }
 
     filteredArray.sort((a, b) => a.date - b.date).reverse()
+    filteredArray = filteredArray.map(obj => ({...obj, date: dateFormatter(obj.date, "ddmmyy")}))
 
     return filteredArray
 }

@@ -1,3 +1,5 @@
+
+
 export const fetchCompanyData = async (ticker) => {
 
     try {
@@ -67,4 +69,19 @@ const companyIncomeStatement = async (ticker) => {
     } catch (error) {
         return error
     }
+}
+
+export const fetchCompanyLogo = async (ticker) => {
+
+    try {
+
+        const request = await fetch(`https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=${import.meta.env.VITE_API_KEY2}`)
+
+        const response = await request.json()
+
+        return response
+    } catch (error) {
+        return error
+    }
+
 }

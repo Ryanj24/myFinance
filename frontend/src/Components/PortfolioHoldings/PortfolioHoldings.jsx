@@ -30,7 +30,10 @@ const PortfolioHoldings = () => {
           {holdings.map(holding => (
             <PortfolioHoldingsCard 
               key={holding.id}
-              holding={holding}
+              companyName={holding.company_name}
+              companyTicker={holding.company_ticker}
+              sharesHeld={holding.shares}
+              avgPrice={holding.avgPurchasePrice}
             />
           ))}
         </section>

@@ -16,10 +16,10 @@ const CompanySearch = () => {
 
     const handleOnSubmit = async (data) => {
 
-        // const response = await fetchCompanyData(data["company-ticker"].toUpperCase().trim());
+        const response = await fetchCompanyData(data["company-ticker"].toUpperCase().trim());
 
         // console.log(response)
-        // setCompanyData(response)
+        setCompanyData(response)
         setSearchSubmitted(true)
     }
 
