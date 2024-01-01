@@ -1,0 +1,31 @@
+.holdings-sort {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.holdings-sort > label{
+    font-size: large;
+    margin: 10px 10px 10px 0;
+}
+
+.holdings-sort > select {
+    padding: 5px;
+    font-size: medium;
+    border-radius: 5px;
+}
+
+.portfolio-holdings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: green; */
+    height: 350px;
+    padding-right: 20px;
+    overflow-y: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+
+.portfolio-holdings::-webkit-scrollbar{
+    display: none;
+}

@@ -1,0 +1,45 @@
+.holding-card {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 2fr 1fr 2fr;
+    margin: 20px 0;
+    padding: 20px;
+    width: 70%;
+    position: relative;
+    background-color: #FFFF;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.holding-card > div:not(.holding-action-btns) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.holding-card > .holding-name {
+    grid-column: 1 / 2;
+}
+
+.holding-card > .holding-share-quantity {
+    grid-column: 2 /3;
+}
+
+.holding-card > .holding-avg-purchase-price {
+    grid-column: 3 / 4;
+}
+
+.holding-card > .holding-options {
+    grid-column: 4 / -1;
+    padding: 10px;
+}
+
+.holding-card > .holding-options > button {
+    background: none;
+    border: none;
+    color: var(--primary-col);
+}
+
+.holding-card > .holding-options > button:hover {
+    cursor: pointer;
+}

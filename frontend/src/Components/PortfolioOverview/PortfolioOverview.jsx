@@ -11,7 +11,6 @@ const PortfolioOverview = () => {
 
     const portfolio = useSelector(state => state.portfolios.portfolios).filter(portfolio => portfolio.id == id).map(portfolio => portfolioIcon(portfolio))[0];
 
-    console.log(portfolio)
   return (
     <section className='details-section'>
         <div className="provider-logo-container">

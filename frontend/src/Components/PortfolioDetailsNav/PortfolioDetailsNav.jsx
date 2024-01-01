@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './PortfolioDetailsNav.css'
 import { Link } from 'react-router-dom'
+import PortfolioHoldings from '../PortfolioHoldings/PortfolioHoldings'
 
 const PortfolioDetailsNav = () => {
 
@@ -29,11 +30,7 @@ const PortfolioDetailsNav = () => {
             </li>
         </ul>
     </section>
-    {/* {selectedTab === "Holdings"
-    ?
-
-    :
-    } */}
+    {selectedTab === "Holdings" && <PortfolioHoldings />}
     </>
   )
 }
