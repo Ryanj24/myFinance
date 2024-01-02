@@ -30,11 +30,16 @@ const CompanyDetails = ({data}) => {
       {sharesModalActive && <PortfolioModal modalType={modalType} toggleModal={setSharesModalActive} company={company}/>}
       <section className='company-details-container'>
           <header>
-            <div className="company-title-price">
-              <h2 className='company-title-ticker'>{data["overviewData"].Name} ({data["overviewData"].Symbol})</h2>
-              <div className="company-share-price">
-                <h3>${+Object.entries(data["sharePrice"]["Time Series (Daily)"])[0][1]["4. close"]}</h3>
-                <p>(As of {dateFormatter(Object.entries(data["sharePrice"]["Time Series (Daily)"])[0][0], "ddmmyy")})</p>
+            <div className="company-header">
+              <div className="company-logo">
+                <img src={data["logo"].logo} alt={`${data["overviewData"].Symbol} logo`} />
+              </div>
+              <div className="company-name-price">
+                <h2 className='company-name-ticker'>{data["overviewData"].Name} ({data["overviewData"].Symbol})</h2>
+                <div className="company-share-price">
+                  <h3>${+Object.entries(data["sharePrice"]["Time Series (Daily)"])[0][1]["4. close"]}</h3>
+                  <p>(As of {dateFormatter(Object.entries(data["sharePrice"]["Time Series (Daily)"])[0][0], "ddmmyy")})</p>
+                </div>
               </div>
             </div>
             <div className="action-btns">

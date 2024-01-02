@@ -12,21 +12,40 @@
     margin-bottom: 20px;
 }
 
-.company-details-container > header > .company-title-price {
-    display: flex;
-    flex-direction: column;
-}
-
-.company-details-container > header > .company-title-price > .company-title-ticker {
-    margin-bottom: 10px;
-}
-
-.company-details-container > header > .company-title-price > .company-share-price {
+.company-details-container > header > .company-header {
     display: flex;
     align-items: center;
 }
 
-.company-details-container > header > .company-title-price > .company-share-price > p{
+.company-details-container > header > .company-header > .company-logo {
+    max-width: 100px;
+    max-height: 100px;
+    margin-right: 10px;
+    background-color: green;
+    display: flex;
+    align-items: center;
+}
+
+.company-details-container > header > .company-header > .company-logo > img {
+    width: 100%;
+    height: 100%;
+}
+
+.company-details-container > header > .company-header > .company-name-price {
+    display: flex;
+    flex-direction: column;
+}
+
+.company-details-container > header > .company-header > .company-name-price > .company-name-ticker {
+    margin-bottom: 10px;
+}
+
+.company-details-container > header > .company-header > .company-name-price > .company-share-price {
+    display: flex;
+    align-items: center;
+}
+
+.company-details-container > header > .company-header > .company-name-price > .company-share-price > p{
     font-size: large;
     margin-left: 10px;
 }

@@ -1,5 +1,3 @@
-import { fetchCompanyLogo } from "../../../backend/utilityFunctions/fetchCompanyData";
-
 let sharesHeld = new Map()
 let totalPurchasePrices = new Map()
 
@@ -47,21 +45,5 @@ export const calculateHoldings = (portfolioID, allTransactions) => {
         return {id: item[1]["id"], company_name: item[0], company_ticker: item[1]["ticker"], shares: item[1]["quantity"], avgPurchasePrice: +(totalPurchasePrices.get(item[0]) / item[1]["quantity"]).toFixed(2)}
     })
 
-    // holdingsArray = await holdingsWithLogos(holdingsArray)
-
     return holdingsArray
-}
-
-const holdingsWithLogos = async (holdingsArr) => {
-    let returnArray = [];
-
-    for (let obj of holdingsArr) {
-        const logo = await fetchCompanyLogo(obj.company_ticker)
-
-        const json = await logo.json()
-
-        returnArray.push({...obj, logo: json})
-    }
-
-    return returnArray
 }

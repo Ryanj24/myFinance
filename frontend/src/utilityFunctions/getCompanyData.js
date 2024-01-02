@@ -1,7 +1,7 @@
 export const getCompanyData = async (ticker, userToken) => {
 
     const request = await fetch(`http://localhost:3000/api/portfolios/companySearch/${ticker}`, {
-        method: "GET",
+        method: "POST",
         mode: "cors",
         headers: {
             "Content-Type": "application/json",

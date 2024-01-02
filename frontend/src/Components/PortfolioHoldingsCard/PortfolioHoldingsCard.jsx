@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './PortfolioHoldingsCard.css'
 import { Paper, Typography } from '@mui/material'
 import { MoreHoriz } from '@mui/icons-material'
-import { fetchCompanyLogo } from '../../../../backend/utilityFunctions/fetchCompanyData'
 
 const PortfolioHoldingsCard = ({companyName, companyTicker, sharesHeld, avgPrice}) => {
 

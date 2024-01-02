@@ -18,6 +18,6 @@ router.patch("/:id", updatePortfolio)
 
 router.delete("/:id", deletePortfolio)
 
-router.get("/companySearch/:ticker", companyDataFetch)
+router.post("/companySearch/:ticker", companyDataFetch)
 
 export {router as stockRouter}
