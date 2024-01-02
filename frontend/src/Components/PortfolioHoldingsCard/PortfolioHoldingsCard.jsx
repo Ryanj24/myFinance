@@ -1,20 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './PortfolioHoldingsCard.css'
 import { Paper, Typography } from '@mui/material'
 import { MoreHoriz } from '@mui/icons-material'
-import { fetchCompanyLogo } from '../../utilityFunctions/fetchCompanyData'
+import { fetchCompanyLogo } from '../../../../backend/utilityFunctions/fetchCompanyData'
 
 const PortfolioHoldingsCard = ({companyName, companyTicker, sharesHeld, avgPrice}) => {
 
-    const getLogo = async () => {
-        const request = await fetchCompanyLogo(companyTicker)
-
-        console.log(request)
-    }
-
-    useEffect(() => {
-        // getLogo();
-    }, [])
 
   return (
     <Paper elevation={2} variant='elevation' className='holding-card'>

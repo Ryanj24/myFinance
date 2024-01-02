@@ -1,4 +1,4 @@
-import { fetchCompanyLogo } from "./fetchCompanyData";
+import { fetchCompanyLogo } from "../../../backend/utilityFunctions/fetchCompanyData";
 
 let sharesHeld = new Map()
 let totalPurchasePrices = new Map()

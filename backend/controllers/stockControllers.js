@@ -1,5 +1,6 @@
 import {db} from '../database/database.js'
 import jwt from 'jsonwebtoken'
+import { fetchCompanyData } from '../utilityFunctions/fetchCompanyData.js'
 
 export const getPortfolios = async (req, res) => {
 
@@ -127,4 +128,11 @@ export const deletePortfolio = async (req, res) => {
         // Return any errors
         return res.json(error)
     }
+}
+
+export const companyDataFetch = async (req, res) => {
+
+    const response = await fetchCompanyData(req.body.companyTicker)
+
+    return res.json(response)
 }

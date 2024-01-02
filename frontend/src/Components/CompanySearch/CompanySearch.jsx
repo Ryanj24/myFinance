@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import './CompanySearch.css'
 import {useForm} from 'react-hook-form'
+import { useSelector } from 'react-redux'
 import { Button } from '@mui/material'
 import { Search } from '@mui/icons-material'
 import CompanyDetails from '../CompanyDetails/CompanyDetails'
 import { companyInfo } from '../../companyExampleData'
-import { fetchCompanyData } from '../../utilityFunctions/fetchCompanyData'
+import { getCompanyData } from '../../utilityFunctions/getCompanyData'
 import { testData } from '../../testData'
 
 const CompanySearch = () => {
@@ -14,12 +15,17 @@ const CompanySearch = () => {
     const [searchSubmitted, setSearchSubmitted] = useState(false)
     const {register, handleSubmit, formState: {isSubmitSuccessful}} = useForm()
 
+    const userToken = useSelector((state) => state.user.user.token)
+
     const handleOnSubmit = async (data) => {
 
-        const response = await fetchCompanyData(data["company-ticker"].toUpperCase().trim());
+        // const response = await fetchCompanyData(data["company-ticker"].toUpperCase().trim());
+
+        // NEW!!!
+        // const response = await getCompanyData(data["company-ticker"], userToken)
 
         // console.log(response)
-        setCompanyData(response)
+        // setCompanyData(response)
         setSearchSubmitted(true)
     }
 

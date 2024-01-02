@@ -1,5 +1,5 @@
 import express from 'express'
-import {getPortfolios, createPortfolio, getSinglePortoflio, stockTransaction, updatePortfolio, deletePortfolio} from '../controllers/stockControllers.js'
+import {getPortfolios, createPortfolio, getSinglePortoflio, stockTransaction, updatePortfolio, deletePortfolio, companyDataFetch} from '../controllers/stockControllers.js'
 import { authorizeUser } from '../middleware/authorizeUser.js';
 
 const router = express.Router();
@@ -17,5 +17,7 @@ router.post("/:id", stockTransaction)
 router.patch("/:id", updatePortfolio)
 
 router.delete("/:id", deletePortfolio)
+
+router.get("/companySearch/:ticker", companyDataFetch)
 
 export {router as stockRouter}
