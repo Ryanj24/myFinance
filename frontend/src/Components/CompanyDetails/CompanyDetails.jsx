@@ -31,9 +31,14 @@ const CompanyDetails = ({data}) => {
       <section className='company-details-container'>
           <header>
             <div className="company-header">
-              <div className="company-logo">
-                <img src={data["logo"].logo} alt={`${data["overviewData"].Symbol} logo`} />
-              </div>
+              {data["logo"]
+              ?
+                <div className="company-logo">
+                  <img src={data["logo"].logo} alt={`${data["overviewData"].Symbol} logo`} />
+                </div>
+              :
+                null
+              }
               <div className="company-name-price">
                 <h2 className='company-name-ticker'>{data["overviewData"].Name} ({data["overviewData"].Symbol})</h2>
                 <div className="company-share-price">
