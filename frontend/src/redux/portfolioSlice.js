@@ -5,7 +5,7 @@ export const portfolioSlice = createSlice({
     name: 'portfolios',
     initialState: {
         portfolios: null,
-        holdings: null
+        holdings: []
     },
     reducers: {
         setPortfolios: (state, action) => {

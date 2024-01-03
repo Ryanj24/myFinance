@@ -6,12 +6,13 @@ import { setHoldings, sortHoldings } from '../../redux/portfolioSlice.js'
 import { calculateHoldings } from '../../utilityFunctions/calculateHoldings'
 import PortfolioHoldingsCard from '../PortfolioHoldingsCard/PortfolioHoldingsCard'
 import { sortStrings } from '../../utilityFunctions/sortStrings'
+import { Typography } from '@mui/material'
 
 const PortfolioHoldings = () => {
 
-  // const [holdings, setHoldings] = useState([]);
   const {id} = useParams()
   const dispatch = useDispatch()
+  const userToken = useSelector(state => state.user.user.token)
   const {holdings} = useSelector(state => state.portfolios)
   const {transactions} = useSelector(state => state.stockTransactions)
 
@@ -20,8 +21,11 @@ const PortfolioHoldings = () => {
   }
 
   useEffect(() => {
-    const holdingsArr = calculateHoldings(id, transactions)
-    dispatch(setHoldings(holdingsArr))
+    async function holdings() {
+      const holdingsArr = await calculateHoldings(id, userToken, transactions)
+      dispatch(setHoldings(holdingsArr))
+    }
+    holdings()
   }, [])
   return (
     <>
@@ -37,11 +41,12 @@ const PortfolioHoldings = () => {
             </select>
         </div>
         <section className='portfolio-holdings'>
-          {holdings
+          {holdings.length > 0
           ?
             holdings.map(holding => (
               <PortfolioHoldingsCard 
                 key={holding.id}
+                companyLogoSrc={holding.logoSrc}
                 companyName={holding.company_name}
                 companyTicker={holding.company_ticker}
                 sharesHeld={holding.shares}
@@ -49,7 +54,7 @@ const PortfolioHoldings = () => {
               />
             ))
           :
-            <p>You currently have no share holdings</p>
+            <Typography variant='body1' component="p" sx={{marginTop: "20px"}}>No current holdings</Typography>
           }
         </section>
     </>

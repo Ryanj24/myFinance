@@ -1,6 +1,6 @@
 import {db} from '../database/database.js'
 import jwt from 'jsonwebtoken'
-import { fetchCompanyData } from '../utilityFunctions/fetchCompanyData.js'
+import { fetchCompanyData, companyLogo } from '../utilityFunctions/fetchCompanyData.js'
 
 export const getPortfolios = async (req, res) => {
 
@@ -133,6 +133,13 @@ export const deletePortfolio = async (req, res) => {
 export const companyDataFetch = async (req, res) => {
 
     const response = await fetchCompanyData(req.body.companyTicker)
+
+    return res.json(response)
+}
+
+export const companyLogoFetch = async (req, res) => {
+
+    const response = await companyLogo(req.body.companyTicker)
 
     return res.json(response)
 }

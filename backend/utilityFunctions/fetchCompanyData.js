@@ -72,7 +72,7 @@ const companyIncomeStatement = async (ticker) => {
     }
 }
 
-const companyLogo = async (ticker) => {
+export const companyLogo = async (ticker) => {
 
     try {
 
