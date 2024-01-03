@@ -1,0 +1,16 @@
+.portfolio-transactions-section {
+    background-color: green;
+    height: 350px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.portfolio-transactions-section::-webkit-scrollbar {
+    display: none;
+}

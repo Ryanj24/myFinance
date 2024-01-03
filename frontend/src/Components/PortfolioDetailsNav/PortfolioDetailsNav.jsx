@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './PortfolioDetailsNav.css'
 import { Link } from 'react-router-dom'
 import PortfolioHoldings from '../PortfolioHoldings/PortfolioHoldings'
+import PortfolioTransactions from '../PortfolioTransactions/PortfolioTransactions'
 
 const PortfolioDetailsNav = () => {
 
@@ -30,7 +31,12 @@ const PortfolioDetailsNav = () => {
             </li>
         </ul>
     </section>
-    {selectedTab === "Holdings" && <PortfolioHoldings />}
+    {selectedTab === "Holdings"
+    ? 
+        <PortfolioHoldings />
+    :
+        <PortfolioTransactions />
+    }
     </>
   )
 }

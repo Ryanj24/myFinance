@@ -54,13 +54,13 @@ export const calculateHoldings = async (portfolioID, userToken, allTransactions)
     }).filter(holding => holding.shares > 0)
 
     
-    holdingsArray = await fetchLogos(holdingsArray)
+    holdingsArray = await fetchLogos(userToken, holdingsArray)
     
 
     return holdingsArray
 }
 
-const fetchLogos = async (holdings) => {
+const fetchLogos = async (userToken, holdings) => {
 
     for (let i = 0; i < holdings.length; i++) {
 
