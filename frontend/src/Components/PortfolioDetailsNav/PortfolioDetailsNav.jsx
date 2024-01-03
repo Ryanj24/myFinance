@@ -11,6 +11,8 @@ const PortfolioDetailsNav = () => {
     const handleOnClick = (e) => {
         setSelectedTab(`${e.target.innerHTML}`)
     }
+
+    console.log("Portfolio Details Nav Re-render")
   return (
     <>
     <section className='portfolio-details-nav-bar'>

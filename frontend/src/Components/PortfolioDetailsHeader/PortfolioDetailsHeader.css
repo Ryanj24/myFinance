@@ -1,0 +1,44 @@
+.portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.portfolio-header > h1{
+    color: var(--primary-col);
+}
+
+.portfolio-header > .portfolio-action-btns {
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.portfolio-header > .portfolio-action-btns > button {
+    background: none;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    box-shadow: 2px 2px 3px #737373;
+}
+
+.portfolio-header > .portfolio-action-btns > .portfolio-edit-btn {
+    margin-right: 10px;
+    background-color: var(--primary-col);
+    color: #fff;
+}
+
+.portfolio-header > .portfolio-action-btns > .portfolio-delete-btn {
+    background-color: #FF0000;
+    color: #fff;
+}
+
+.portfolio-header > .portfolio-action-btns > button:hover {
+    cursor: pointer;
+}
+
+.portfolio-header > .portfolio-action-btns > button > svg {
+    margin-right: 5px;
+}

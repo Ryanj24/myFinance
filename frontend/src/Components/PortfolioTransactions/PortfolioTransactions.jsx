@@ -13,6 +13,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 import { dateFormatter } from '../../utilityFunctions/dateFormatter';
+import { Typography } from '@mui/material';
 
 const PortfolioTransactions = () => {
 
@@ -35,19 +36,26 @@ const PortfolioTransactions = () => {
                 <TableCell align="center">Total Amount</TableCell>
             </TableRow>
             </TableHead>
-            <TableBody>
-                {portfolioTransactions.map(transaction => (
-                    <TableRow key={transaction.id}>
-                        <TableCell align="center">{transaction.company_ticker}</TableCell>
-                        <TableCell align="center">{transaction.company_name}</TableCell>
-                        <TableCell align="center">{transaction.type}</TableCell>
-                        <TableCell align="center">{dateFormatter(transaction.transaction_date, "ddmmyy")}</TableCell>
-                        <TableCell align="center">{transaction.quantity}</TableCell>
-                        <TableCell align="center">{Intl.NumberFormat("en-US", {style: "currency", currency: "USD"}).format(transaction.price_per_share)}</TableCell>
-                        <TableCell align="center">{Intl.NumberFormat("en-US", {style: "currency", currency: "USD"}).format(transaction.total_amount)}</TableCell>
-                    </TableRow>
-                ))}
-            </TableBody>
+            {portfolioTransactions.length > 0
+            ?
+                <TableBody>
+                    {portfolioTransactions.map(transaction => (
+                        <TableRow key={transaction.id}>
+                            <TableCell align="center">{transaction.company_ticker}</TableCell>
+                            <TableCell align="center">{transaction.company_name}</TableCell>
+                            <TableCell align="center">{transaction.type}</TableCell>
+                            <TableCell align="center">{dateFormatter(transaction.transaction_date, "ddmmyy")}</TableCell>
+                            <TableCell align="center">{transaction.quantity}</TableCell>
+                            <TableCell align="center">{Intl.NumberFormat("en-US", {style: "currency", currency: "USD"}).format(transaction.price_per_share)}</TableCell>
+                            <TableCell align="center">{Intl.NumberFormat("en-US", {style: "currency", currency: "USD"}).format(transaction.total_amount)}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            :
+                <TableBody>
+                    <Typography variant='body1' component="p">No previous transactions</Typography>
+                </TableBody>
+            }
         </Table>
     </TableContainer>
   )
