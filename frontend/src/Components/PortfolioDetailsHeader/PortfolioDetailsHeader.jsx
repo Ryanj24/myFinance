@@ -2,18 +2,29 @@ import React, { useState } from 'react'
 import './PortfolioDetailsHeader.css'
 import { Edit, Delete } from '@mui/icons-material'
 import PortfolioModal from '../PortfolioModal/PortfolioModal'
-import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { deletePortfolio } from '../../redux/portfolioSlice'
+import { removePortfolio } from '../../utilityFunctions/removePortfolio'
 
 const PortfolioDetailsHeader = () => {
 
     const [editModal, setEditModal] = useState(false)
     const {id} = useParams()
+    const nav = useNavigate()
+    const dispatch = useDispatch()
+    const {token} = useSelector(state => state.user.user)
     const {portfolios} = useSelector(state => state.portfolios)
+
 
     const selectedPortfolio = portfolios.filter(portfolio => portfolio.id == id)[0]
 
-    console.log("Portfolio Details Header Re-render")
+    const handleDelete = async () => {
+        const response = await removePortfolio(id, token);
+    
+        dispatch(deletePortfolio(response))
+        nav("/home/portfolios")
+    }
 
   return (
     <> 
@@ -26,7 +37,7 @@ const PortfolioDetailsHeader = () => {
             <button className='portfolio-edit-btn' onClick={() => setEditModal(true)}>
                 <Edit /> Edit Portfolio
             </button>
-            <button className='portfolio-delete-btn'>
+            <button className='portfolio-delete-btn' onClick={handleDelete}>
                 <Delete /> Delete Portfolio
             </button>
             </div>

@@ -18,10 +18,9 @@
 }
 
 .company-details-container > header > .company-header > .company-logo {
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 50px;
+    max-height: 50px;
     margin-right: 10px;
-    background-color: green;
     display: flex;
     align-items: center;
 }

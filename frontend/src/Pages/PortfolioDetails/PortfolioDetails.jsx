@@ -7,7 +7,6 @@ import PortfolioDetailsNav from '../../Components/PortfolioDetailsNav/PortfolioD
 
 const PortfolioDetails = () => {
 
-  console.log("Portfolio Details Re-render")
   return (
     <section className='portfolio-details-container'>
       <PortfolioDetailsHeader />

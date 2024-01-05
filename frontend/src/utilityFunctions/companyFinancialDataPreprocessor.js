@@ -133,14 +133,12 @@ export const SharePrice = (data, period) => {
     let filteredArray;
     const currentDate = new Date();
 
-    chartData = data["Time Series (Daily)"];
-
-    for (let date in chartData) {
-        dataMap.set(date, chartData[date])
+    for (let i = 0; i < data.length; i++) {
+        dataMap.set(data[i].date, data[i].close)
     }
 
     dataArray = Array.from(dataMap, (item) => {
-        return {date: item[0], "Share Price": +item[1]["4. close"]}
+        return {date: item[0], "Share Price": +item[1]}
     })
 
 

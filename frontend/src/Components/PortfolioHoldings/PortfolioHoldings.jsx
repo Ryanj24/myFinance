@@ -41,7 +41,7 @@ const PortfolioHoldings = () => {
             </select>
         </div>
         <section className='portfolio-holdings'>
-          {holdings.length > 0
+          {holdings
           ?
             holdings.map(holding => (
               <PortfolioHoldingsCard 

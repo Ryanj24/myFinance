@@ -12,24 +12,20 @@ const PortfolioDetailsNav = () => {
         setSelectedTab(`${e.target.innerHTML}`)
     }
 
-    console.log("Portfolio Details Nav Re-render")
   return (
     <>
     <section className='portfolio-details-nav-bar'>
         <ul className='portfolio-details-nav-links'>
             <li className='portfolio-details-nav-link'>
-                <Link>
-                    <button className={selectedTab === "Holdings" ? 'selected' : null} onClick={handleOnClick}>
-                        Holdings
-                    </button>
-                </Link>
+                <button className={selectedTab === "Holdings" ? 'selected' : null} onClick={handleOnClick}>
+                    Holdings
+                </button>
+
             </li>
             <li className='portfolio-details-nav-link'>
-                <Link>
-                    <button className={selectedTab === "Transaction History" ? 'selected' : null} onClick={handleOnClick}>
-                        Transaction History
-                    </button>
-                </Link>
+                <button className={selectedTab === "Transaction History" ? 'selected' : null} onClick={handleOnClick}>
+                    Transaction History
+                </button>
             </li>
         </ul>
     </section>

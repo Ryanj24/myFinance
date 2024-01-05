@@ -13,21 +13,21 @@
     list-style: none;
 }
 
-.portfolio-details-nav-bar > .portfolio-details-nav-links > .portfolio-details-nav-link >  a > button {
+.portfolio-details-nav-bar > .portfolio-details-nav-links > .portfolio-details-nav-link >  button {
     background: none;
     border: none;
     font-size: large;
 }
 
-.portfolio-details-nav-bar > .portfolio-details-nav-links > .portfolio-details-nav-link > a > button:hover {
+.portfolio-details-nav-bar > .portfolio-details-nav-links > .portfolio-details-nav-link > button:hover {
     cursor: pointer;
 }
 
-.portfolio-details-nav-bar > .portfolio-details-nav-links > .portfolio-details-nav-link > a > button:first-child {
+.portfolio-details-nav-bar > .portfolio-details-nav-links > .portfolio-details-nav-link > button:first-child {
     margin-right: 40px;
 }
 
-.portfolio-details-nav-bar > .portfolio-details-nav-links > .portfolio-details-nav-link >  a > button.selected {
+.portfolio-details-nav-bar > .portfolio-details-nav-links > .portfolio-details-nav-link >  button.selected {
     color: var(--primary-col);
     border-bottom: 3px solid var(--primary-col);
 }

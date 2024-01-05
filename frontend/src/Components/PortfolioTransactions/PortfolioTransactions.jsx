@@ -53,7 +53,11 @@ const PortfolioTransactions = () => {
                 </TableBody>
             :
                 <TableBody>
-                    <Typography variant='body1' component="p">No previous transactions</Typography>
+                    <TableRow>
+                        <TableCell colSpan={7} align="center" sx={{borderBottom: 0}}>
+                            <Typography variant='body1' component="p">No previous transactions</Typography>
+                        </TableCell>
+                    </TableRow>
                 </TableBody>
             }
         </Table>

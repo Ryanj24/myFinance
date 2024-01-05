@@ -96,8 +96,8 @@ export const updatePortfolio = async (req, res) => {
     try {
         // Update the name of the portfolio in the database
         const update = await db.query(
-            `UPDATE stock_portfolio SET portfolio_name = ? WHERE id = ? AND portfolio_owner_id = ?`,
-            [req.body.accountName, req.params.id, id]
+            `UPDATE stock_portfolio SET portfolio_name = ?, balance = ?, provider = ? WHERE id = ? AND portfolio_owner_id = ?`,
+            [req.body.portfolio_name, req.body.portfolio_balance, req.body.portfolio_provider, req.params.id, id]
         )
 
         // Retrieve the updated portfolio
