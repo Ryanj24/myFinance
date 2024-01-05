@@ -64,7 +64,7 @@ const fetchLogos = async (userToken, holdings) => {
 
     for (let i = 0; i < holdings.length; i++) {
 
-        const request = await fetch(`http://localhost:3000/api/portfolios/companySearch/${holdings[i].company_ticker}`, {
+        const request = await fetch(`http://localhost:3000/api/portfolios/companyLogo/${holdings[i].company_ticker}`, {
             method: "POST",
             mode: "cors",
             headers: {
@@ -78,7 +78,7 @@ const fetchLogos = async (userToken, holdings) => {
     
         const response = await request.json()
 
-        holdings[i].logoSrc = response.logo.logo
+        holdings[i].logoSrc = response.logo
     }
 
     return holdings

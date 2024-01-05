@@ -42,7 +42,7 @@ const SharesForm = ({formType, toggleModal, company}) => {
         const dataObj = {
             ...data,
             tickerSymbol: company.tickerSymbol,
-            pricePerShare: company.pricePerShare,
+            pricePerShare: company.pricePerShare.substring(1),
             currentSharesHeld
         }
         
@@ -66,6 +66,7 @@ const SharesForm = ({formType, toggleModal, company}) => {
         }
     }
 
+    console.log(company)
   return (
     <>
         {error && 
@@ -109,12 +110,12 @@ const SharesForm = ({formType, toggleModal, company}) => {
                 ?
                     <>
                         <h3>Purchase Total</h3>
-                        <p>{Intl.NumberFormat("en-US", {style: "currency", currency: "USD"}).format(watch("shares_amount") *company.pricePerShare)}</p>
+                        <p>{Intl.NumberFormat("en-US", {style: "currency", currency: "USD"}).format(watch("shares_amount") * company.pricePerShare.substring(1))}</p>
                     </>
                 :
                     <>
                         <h3>Sale Total</h3>
-                        <p>{Intl.NumberFormat("en-US", {style: "currency", currency: "USD"}).format(watch("shares_amount") *company.pricePerShare)}</p>
+                        <p>{Intl.NumberFormat("en-US", {style: "currency", currency: "USD"}).format(watch("shares_amount") * company.pricePerShare.substring(1))}</p>
                     </>
                 }
             </div>

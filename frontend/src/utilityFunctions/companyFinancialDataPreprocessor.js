@@ -133,6 +133,7 @@ export const SharePrice = (data, period) => {
     let filteredArray;
     const currentDate = new Date();
 
+
     for (let i = 0; i < data.length; i++) {
         dataMap.set(data[i].date, data[i].close)
     }

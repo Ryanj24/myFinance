@@ -19,10 +19,10 @@ const CompanySearch = () => {
 
     const handleOnSubmit = async (data) => {
 
-        // const response = await getCompanyData(data["company-ticker"], userToken)
+        const response = await getCompanyData(data["company-ticker"], userToken)
 
         // console.log(response)
-        // setCompanyData(response)
+        setCompanyData(response)
         setSearchSubmitted(true)
     }
 
