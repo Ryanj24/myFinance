@@ -2,31 +2,22 @@ import React, { useEffect, useState } from 'react'
 import './PortfolioHoldings.css'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { setHoldings, sortHoldings } from '../../redux/portfolioSlice.js'
-import { calculateHoldings } from '../../utilityFunctions/calculateHoldings'
+import { sortHoldings } from '../../redux/portfolioSlice.js'
 import PortfolioHoldingsCard from '../PortfolioHoldingsCard/PortfolioHoldingsCard'
-import { sortStrings } from '../../utilityFunctions/sortStrings'
 import { Typography } from '@mui/material'
 
 const PortfolioHoldings = () => {
 
   const {id} = useParams()
   const dispatch = useDispatch()
-  const userToken = useSelector(state => state.user.user.token)
   const {holdings} = useSelector(state => state.portfolios)
-  const {transactions} = useSelector(state => state.stockTransactions)
 
   const handleOnChange = (e) => {
     dispatch(sortHoldings(e.target.value))
   }
 
-  useEffect(() => {
-    async function holdings() {
-      const holdingsArr = await calculateHoldings(id, userToken, transactions)
-      dispatch(setHoldings(holdingsArr))
-    }
-    holdings()
-  }, [])
+  const currentHoldings = holdings.filter(holding => holding.portfolio_id == id);
+
   return (
     <>
         <div className="holdings-sort">
@@ -41,16 +32,16 @@ const PortfolioHoldings = () => {
             </select>
         </div>
         <section className='portfolio-holdings'>
-          {holdings
+          {currentHoldings.length > 0
           ?
-            holdings.map(holding => (
+            currentHoldings.map((holding, index) => (
               <PortfolioHoldingsCard 
-                key={holding.id}
-                companyLogoSrc={holding.logoSrc}
+                key={index}
+                companyLogoSrc={holding.logo_src}
                 companyName={holding.company_name}
                 companyTicker={holding.company_ticker}
-                sharesHeld={holding.shares}
-                avgPrice={holding.avgPurchasePrice}
+                sharesHeld={holding.quantity}
+                avgPrice={holding.avg_purchase_price}
               />
             ))
           :

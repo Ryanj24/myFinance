@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { setAccounts } from '../../redux/accountSlice.js'
 import { setBankTransactions } from '../../redux/bankTransactionSlice.js'
 import { setPortfolios } from '../../redux/portfolioSlice.js'
+import { setHoldings } from '../../redux/portfolioSlice.js'
 import { setStockTransactions } from '../../redux/stockTransactionSlice.js'
 import { setGoals } from '../../redux/goalSlice.js'
 import { setBudgets } from '../../redux/budgetSlice.js'
@@ -33,6 +34,7 @@ const Dashboard = () => {
         dispatch(setAccounts(data.accounts.bankAccounts))
         dispatch(setBankTransactions(data.accounts.bankTransactions))
         dispatch(setPortfolios(data.portfolios.stockPortfolios))
+        dispatch(setHoldings(data.portfolios.holdings))
         dispatch(setStockTransactions(data.portfolios.stockTransactions))
         dispatch(setGoals(data.goals))
         dispatch(setBudgets(data.budgets))

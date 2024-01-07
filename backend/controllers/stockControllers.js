@@ -13,8 +13,10 @@ export const getPortfolios = async (req, res) => {
 
     const portfolioTransactions = await db.query(`SELECT * FROM stock_transactions WHERE portfolio_id IN (SELECT id FROM stock_portfolio WHERE portfolio_owner_id = ?)`, [user.id])
 
+    const holdings = await db.query(`SELECT * FROM stock_holdings WHERE portfolio_id IN (SELECT id FROM stock_portfolio WHERE portfolio_owner_id = ?)`, [user.id])
+
     // Return the array of portfolios
-    return res.json({stockPortfolios: portfolios[0], stockTransactions: portfolioTransactions[0]})
+    return res.json({stockPortfolios: portfolios[0], stockTransactions: portfolioTransactions[0], holdings: holdings[0]})
 }
 
 export const createPortfolio = async (req, res) => {
@@ -70,15 +72,16 @@ export const stockTransaction = async (req, res) => {
     try {
         // Call the stock_transaction_procedure and provide the relevant parameters
         const query = await db.query(
-            `CALL stock_transaction_procedure(?, ?, ?, ?, ?, ?, ?)`, 
-            [req.params.id, req.body.companyName, req.body.companyTicker, req.body.transactionType, dateOfTransaction, req.body.shareQuantity, req.body.sharePrice]
+            `CALL stock_transaction_procedure(?, ?, ?, ?, ?, ?, ?, ?)`, 
+            [req.params.id, req.body.companyName, req.body.companyTicker, req.body.transactionType, dateOfTransaction, req.body.shareQuantity, req.body.logoSrc, req.body.sharePrice]
         )
 
+        const holding = await db.query(`SELECT * FROM stock_holdings WHERE portfolio_id = ? AND company_name = ?`, [req.params.id, req.body.companyName])
         // Select the transaction from the database
         const transaction = await db.query(`SELECT portfolio_id, company_name, company_ticker, type, transaction_date, quantity, price_per_share, total_amount FROM stock_transactions WHERE portfolio_id = ? ORDER BY id DESC LIMIT 1`, [req.params.id])
 
         // Return the transaction
-        return res.json(transaction[0][0]);
+        return res.json({holding: holding[0][0], transaction: transaction[0][0]});
 
     } catch (error) {
         // Return any errors

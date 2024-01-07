@@ -35,6 +35,7 @@ CREATE TABLE stock_holdings (
     `company_name` VARCHAR(64),
     `company_ticker` VARCHAR(4),
     `quantity` INT unsigned CHECK(`quantity` > 0),
+    `logo_src` VARCHAR(255),
     `avg_purchase_price` DECIMAL(6, 2),
     FOREIGN KEY(`portfolio_id`) REFERENCES `stock_portfolio`(`id`)
 );
@@ -218,6 +219,7 @@ CREATE PROCEDURE stock_transaction_procedure(
     IN purchase_or_sale ENUM("Buy", "Sell"),
     IN date_of_transaction DATE,
     IN quantity_of_shares INT,
+    IN company_logo_src VARCHAR(255),
     IN share_price DECIMAL(8, 2)
     )
 BEGIN
@@ -240,8 +242,8 @@ BEGIN
                 SET `quantity` = `quantity` + quantity_of_shares, `avg_purchase_price` = ROUND((SELECT SUM(`total_amount` + (quantity_of_shares * share_price)) / SUM(`quantity` + quantity_of_shares) FROM `stock_transactions` WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol), 2)
                 WHERE `portfolio_id` = id_of_portfolio AND `company_ticker` = ticker_symbol;
             ELSE
-                INSERT INTO `stock_holdings` (portfolio_id, company_name, company_ticker, quantity, avg_purchase_price) 
-                VALUES (id_of_portfolio, name_of_company, ticker_symbol, quantity_of_shares, ROUND((quantity_of_shares * share_price) / quantity_of_shares, 2));
+                INSERT INTO `stock_holdings` (portfolio_id, company_name, company_ticker, quantity, logo_src, avg_purchase_price) 
+                VALUES (id_of_portfolio, name_of_company, ticker_symbol, quantity_of_shares, company_logo_src, ROUND((quantity_of_shares * share_price) / quantity_of_shares, 2));
             END IF;
 
 

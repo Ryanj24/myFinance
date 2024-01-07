@@ -5,7 +5,7 @@ import { Alert, Button } from '@mui/material'
 import { Cancel } from '@mui/icons-material'
 import { useSelector, useDispatch } from 'react-redux'
 import { addStockTransaction } from '../../redux/stockTransactionSlice'
-import { incrementPortfolioBalance, decrementPortfolioBalance } from '../../redux/portfolioSlice'
+import { addHolding, increaseHoldingShares, decreaseHoldingShares, incrementPortfolioBalance, decrementPortfolioBalance } from '../../redux/portfolioSlice'
 import { validateSharesForm } from '../../utilityFunctions/validateSharesForm'
 import { sharesTransaction } from '../../utilityFunctions/sharesTransaction'
 import { calculateShareHolding } from '../../utilityFunctions/calculateShareHolding'
@@ -14,12 +14,13 @@ const SharesForm = ({formType, toggleModal, company}) => {
 
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("")
+    const [holdingsID, setHoldingsID] = useState(1);
 
     const {token} = useSelector(state => state.user.user)
     const dispatch = useDispatch()
 
-    const {register, handleSubmit, formState: {isSubmitSuccessful}, watch} = useForm({defaultValues: {
-        company_name: company.name,
+    const {register, handleSubmit, watch} = useForm({defaultValues: {
+        company_name: company.companyName,
         shares_amount: 0
     }});
 
@@ -36,13 +37,13 @@ const SharesForm = ({formType, toggleModal, company}) => {
 
         // Get the selected portfolio and the shares currently held of the company in that portfolio
         const selectedPortfolio = portfolios.filter(portfolio => portfolio.portfolio_name === data.portfolio_name)[0]
-        const currentSharesHeld = calculateShareHolding(transactions, company.name, selectedPortfolio.id)
-
+        const currentSharesHeld = calculateShareHolding(transactions, company.companyName, selectedPortfolio.id)
 
         const dataObj = {
             ...data,
-            tickerSymbol: company.tickerSymbol,
-            pricePerShare: company.pricePerShare.substring(1),
+            logoSrc: company.image,
+            tickerSymbol: company.symbol,
+            pricePerShare: company.price,
             currentSharesHeld
         }
         
@@ -52,12 +53,26 @@ const SharesForm = ({formType, toggleModal, company}) => {
         if (validateInputs.valid) {
             const response = await sharesTransaction(formType, dataObj, selectedPortfolio.id, token)
 
-            dispatch(addStockTransaction(response))
+
+            dispatch(addStockTransaction(response.transaction))
 
             if (formType === "Buy Shares") {
-                dispatch(decrementPortfolioBalance(response))
+                dispatch(decrementPortfolioBalance(response.transaction))
+
+                if (currentSharesHeld == 0) {
+
+                    dispatch(addHolding(response.holding))
+
+                    setHoldingsID(holdingsID + 1)
+
+                } else {
+
+                    dispatch(increaseHoldingShares(response.holding))
+                }
             } else {
-                dispatch(incrementPortfolioBalance(response))
+                dispatch(incrementPortfolioBalance(response.transaction))
+
+                dispatch(decreaseHoldingShares(response.holding))
             }
             toggleModal(false)
         } else {
@@ -66,7 +81,6 @@ const SharesForm = ({formType, toggleModal, company}) => {
         }
     }
 
-    console.log(company)
   return (
     <>
         {error && 
@@ -110,12 +124,12 @@ const SharesForm = ({formType, toggleModal, company}) => {
                 ?
                     <>
                         <h3>Purchase Total</h3>
-                        <p>{Intl.NumberFormat("en-US", {style: "currency", currency: "USD"}).format(watch("shares_amount") * company.pricePerShare.substring(1))}</p>
+                        <p>{Intl.NumberFormat("en-US", {style: "currency", currency: "USD"}).format(watch("shares_amount") * company.price)}</p>
                     </>
                 :
                     <>
                         <h3>Sale Total</h3>
-                        <p>{Intl.NumberFormat("en-US", {style: "currency", currency: "USD"}).format(watch("shares_amount") * company.pricePerShare.substring(1))}</p>
+                        <p>{Intl.NumberFormat("en-US", {style: "currency", currency: "USD"}).format(watch("shares_amount") * company.price)}</p>
                     </>
                 }
             </div>

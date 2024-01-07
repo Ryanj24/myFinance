@@ -23,6 +23,7 @@ const sharesPurchase = async (data, portfolioID, userToken) => {
                 "Authorization": `Bearer ${userToken}`
             },
             body: JSON.stringify({
+                logoSrc: data.logoSrc,
                 companyName: data.company_name,
                 companyTicker: data.tickerSymbol,
                 transactionType: "Buy",

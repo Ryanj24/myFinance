@@ -5,7 +5,7 @@ export const portfolioSlice = createSlice({
     name: 'portfolios',
     initialState: {
         portfolios: null,
-        holdings: []
+        holdings: null
     },
     reducers: {
         setPortfolios: (state, action) => {
@@ -17,8 +17,17 @@ export const portfolioSlice = createSlice({
         addPortfolio: (state, action) => {
             state.portfolios = [...state.portfolios, action.payload]
         },
+        addHolding: (state, action) => {
+            state.holdings = [...state.holdings, action.payload]
+        },
         updatePortfolio: (state, action) => {
             state.portfolios = state.portfolios.map(portfolio => portfolio.id === action.payload.id ? action.payload : portfolio)
+        },
+        increaseHoldingShares: (state, action) => {
+            state.holdings = state.holdings.map(holding => holding.company_name === action.payload.company_name ? {...holding, shares: holding.shares + action.payload.shareQuantity, avgPurchasePrice: ((holding.shares * holding.avgPurchasePrice) + (action.payload.shareQuantity * action.payload.pricePerShare)) / (holding.shares + action.payload.shareQuantity)}: holding)
+        },
+        decreaseHoldingShares: (state, action) => {
+            state.holdings = state.holdings.map(holding => holding.company_name === action.payload.company_name ? {...holding, shares: holding.shares - action.payload.shareQuantity, avgPurchasePrice: ((holding.shares - action.payload.shareQuantity) * holding.avgPurchasePrice) / (holding.shares - action.payload.shareQuantity)}: holding)
         },
         incrementPortfolioBalance: (state, action) => {
             state.portfolios = state.portfolios.map(portfolio => portfolio.id === action.payload.portfolio_id ? {...portfolio, balance: parseFloat(portfolio.balance) + parseFloat(action.payload.total_amount)} : portfolio)
@@ -74,6 +83,6 @@ export const portfolioSlice = createSlice({
     }
 })
 
-export const {setPortfolios, setHoldings, addPortfolio, updatePortfolio, incrementPortfolioBalance, decrementPortfolioBalance, deletePortfolio, sortPortfolios, sortHoldings} = portfolioSlice.actions
+export const {setPortfolios, setHoldings, addPortfolio, addHolding, updatePortfolio, increaseHoldingShares, decreaseHoldingShares, incrementPortfolioBalance, decrementPortfolioBalance, deletePortfolio, sortPortfolios, sortHoldings} = portfolioSlice.actions
 
 export default portfolioSlice.reducer
