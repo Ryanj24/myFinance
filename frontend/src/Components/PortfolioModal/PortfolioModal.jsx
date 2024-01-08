@@ -4,7 +4,7 @@ import { Close } from '@mui/icons-material'
 import PortfolioForm from '../PortfolioForm/PortfolioForm'
 import SharesForm from '../SharesForm/SharesForm'
 
-const PortfolioModal = ({modalType, toggleModal, portfolio, company}) => {
+const PortfolioModal = ({modalType, toggleModal, portfolio, company, activationPoint}) => {
 
   return (
     <div className='portfolio-modal-container'>
@@ -41,12 +41,14 @@ const PortfolioModal = ({modalType, toggleModal, portfolio, company}) => {
                 formType="Buy Shares"
                 toggleModal={toggleModal}
                 company={company}
+                activationPoint={activationPoint}
               />
             :
               <SharesForm 
                 formType="Sell Shares"
                 toggleModal={toggleModal}
                 company={company}
+                activationPoint={activationPoint}
               />
             }
         </div>

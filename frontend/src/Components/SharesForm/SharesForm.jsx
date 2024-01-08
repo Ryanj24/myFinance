@@ -5,13 +5,15 @@ import { Alert, Button } from '@mui/material'
 import { Cancel } from '@mui/icons-material'
 import { useSelector, useDispatch } from 'react-redux'
 import { addStockTransaction } from '../../redux/stockTransactionSlice'
-import { addHolding, increaseHoldingShares, decreaseHoldingShares, incrementPortfolioBalance, decrementPortfolioBalance } from '../../redux/portfolioSlice'
+import { addHolding, increaseHoldingShares, decreaseHoldingShares, incrementPortfolioBalance, decrementPortfolioBalance, deleteHolding } from '../../redux/portfolioSlice'
 import { validateSharesForm } from '../../utilityFunctions/validateSharesForm'
 import { sharesTransaction } from '../../utilityFunctions/sharesTransaction'
 import { calculateShareHolding } from '../../utilityFunctions/calculateShareHolding'
+import { useParams } from 'react-router-dom'
 
-const SharesForm = ({formType, toggleModal, company}) => {
+const SharesForm = ({formType, toggleModal, company, activationPoint}) => {
 
+    const {id} = useParams()
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("")
     const [holdingsID, setHoldingsID] = useState(1);
@@ -35,24 +37,23 @@ const SharesForm = ({formType, toggleModal, company}) => {
 
     const handleOnSubmit = async (data) => {
 
-        // Get the selected portfolio and the shares currently held of the company in that portfolio
+        // // Get the selected portfolio and the shares currently held of the company in that portfolio
         const selectedPortfolio = portfolios.filter(portfolio => portfolio.portfolio_name === data.portfolio_name)[0]
         const currentSharesHeld = calculateShareHolding(transactions, company.companyName, selectedPortfolio.id)
 
         const dataObj = {
             ...data,
-            logoSrc: company.image,
-            tickerSymbol: company.symbol,
+            logoSrc: activationPoint === "Holding Dropdown" ? "" : company.image,
+            tickerSymbol: activationPoint === "Holding Dropdown" ? company.companyTicker : company.symbol,
             pricePerShare: company.price,
             currentSharesHeld
         }
         
-        // Validate the form inputs
+        // // Validate the form inputs
         const validateInputs = validateSharesForm(formType, dataObj, selectedPortfolio)
 
         if (validateInputs.valid) {
             const response = await sharesTransaction(formType, dataObj, selectedPortfolio.id, token)
-
 
             dispatch(addStockTransaction(response.transaction))
 
@@ -67,18 +68,23 @@ const SharesForm = ({formType, toggleModal, company}) => {
 
                 } else {
 
-                    dispatch(increaseHoldingShares(response.holding))
+                    dispatch(increaseHoldingShares(response))
                 }
             } else {
                 dispatch(incrementPortfolioBalance(response.transaction))
 
-                dispatch(decreaseHoldingShares(response.holding))
+                if (!response.holding) {
+                    dispatch(deleteHolding(response))
+                } else {
+                    dispatch(decreaseHoldingShares(response))
+                }
             }
             toggleModal(false)
         } else {
             setError(true)
             setErrorMessage(validateInputs.reason)
         }
+
     }
 
   return (
@@ -103,19 +109,34 @@ const SharesForm = ({formType, toggleModal, company}) => {
                 <label htmlFor='portfolio_name'>Available Portfolios</label>
                 {formType === "Buy Shares"
                 ?
-                    <select id='portfolio_name' {...register("portfolio_name")}>
-                        <option value="">---</option>
-                        {portfolios.map(portfolio => (
-                            <option value={portfolio.portfolio_name} key={portfolio.id}>{portfolio.portfolio_name}</option>
-                        ))}
-                    </select>
+                    (activationPoint === "Holding Dropdown")
+                    ?
+                        <select id='portfolio_name' {...register("portfolio_name")}>
+                            {portfolios.filter(portfolio => portfolio.id == id).map(portfolio => (
+                                <option value={portfolio.portfolio_name} key={portfolio.id}>{portfolio.portfolio_name}</option>
+                            ))}
+                        </select>
+                    :
+                        <select id='portfolio_name' {...register("portfolio_name")}>
+                            {portfolios.map(portfolio => (
+                                <option value={portfolio.portfolio_name} key={portfolio.id}>{portfolio.portfolio_name}</option>
+                            ))}
+                        </select>
                 :
-                    <select id='portfolio_name' {...register("portfolio_name")}>
-                        <option value="">---</option>
-                        {availablePortfolios.map(portfolio => (
-                            <option value={portfolio.portfolio_name} key={portfolio.id}>{portfolio.portfolio_name}</option>
-                        ))}
-                    </select>
+                    (activationPoint === "Holding Dropdown")
+                    ?
+                        <select id='portfolio_name' {...register("portfolio_name")}>
+                            {portfolios.filter(portfolio => portfolio.id == id).map(portfolio => (
+                                <option value={portfolio.portfolio_name} key={portfolio.id}>{portfolio.portfolio_name}</option>
+                            ))}
+                        </select>
+                    :
+
+                        <select id='portfolio_name' {...register("portfolio_name")}>
+                            {availablePortfolios.map(portfolio => (
+                                <option value={portfolio.portfolio_name} key={portfolio.id}>{portfolio.portfolio_name}</option>
+                            ))}
+                        </select>
                 }
             </div>
 

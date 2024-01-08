@@ -14,9 +14,11 @@ const PortfolioHoldingsCard = ({companyLogoSrc, companyName, companyTicker, shar
         {companyName, companyTicker, price: 100}
     )
 
+    // console.log(company)
+
   return (
     <>
-        {sharesModalActive && <PortfolioModal modalType={modalType} toggleModal={setSharesModalActive} company={company}/>}
+        {sharesModalActive && <PortfolioModal modalType={modalType} toggleModal={setSharesModalActive} company={company} activationPoint="Holding Dropdown"/>}
         <Paper elevation={2} variant='elevation' className='holding-card'>
             {companyLogoSrc
             ?

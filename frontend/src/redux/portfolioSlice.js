@@ -24,16 +24,19 @@ export const portfolioSlice = createSlice({
             state.portfolios = state.portfolios.map(portfolio => portfolio.id === action.payload.id ? action.payload : portfolio)
         },
         increaseHoldingShares: (state, action) => {
-            state.holdings = state.holdings.map(holding => holding.company_name === action.payload.company_name ? {...holding, shares: holding.shares + action.payload.shareQuantity, avgPurchasePrice: ((holding.shares * holding.avgPurchasePrice) + (action.payload.shareQuantity * action.payload.pricePerShare)) / (holding.shares + action.payload.shareQuantity)}: holding)
+            state.holdings = state.holdings.map(holding => holding.company_name === action.payload.holding.company_name ? {...holding, quantity: holding.quantity + action.payload.transaction.quantity, avg_purchase_price: ((holding.quantity * holding.avg_purchase_price) + (action.payload.transaction.quantity * action.payload.transaction.price_per_share)) / (holding.quantity + action.payload.transaction.quantity) } : holding)
         },
         decreaseHoldingShares: (state, action) => {
-            state.holdings = state.holdings.map(holding => holding.company_name === action.payload.company_name ? {...holding, shares: holding.shares - action.payload.shareQuantity, avgPurchasePrice: ((holding.shares - action.payload.shareQuantity) * holding.avgPurchasePrice) / (holding.shares - action.payload.shareQuantity)}: holding)
+            state.holdings = state.holdings.map(holding => holding.company_name === action.payload.holding.company_name ? {...holding, quantity: holding.quantity - action.payload.transaction.quantity} : holding)
         },
         incrementPortfolioBalance: (state, action) => {
             state.portfolios = state.portfolios.map(portfolio => portfolio.id === action.payload.portfolio_id ? {...portfolio, balance: parseFloat(portfolio.balance) + parseFloat(action.payload.total_amount)} : portfolio)
         },
         decrementPortfolioBalance: (state, action) => {
             state.portfolios = state.portfolios.map(portfolio => portfolio.id === action.payload.portfolio_id ? {...portfolio, balance: parseFloat(portfolio.balance) - parseFloat(action.payload.total_amount)} : portfolio)
+        },
+        deleteHolding: (state, action) => {
+            state.holdings = state.holdings.filter(holding => !(holding.portfolio_id === action.payload.transaction.portfolio_id && holding.company_name === action.payload.transaction.company_name))
         },
         deletePortfolio: (state, action) => {
             state.portfolios = state.portfolios.filter(portfolio => portfolio.id != action.payload.id)
@@ -83,6 +86,6 @@ export const portfolioSlice = createSlice({
     }
 })
 
-export const {setPortfolios, setHoldings, addPortfolio, addHolding, updatePortfolio, increaseHoldingShares, decreaseHoldingShares, incrementPortfolioBalance, decrementPortfolioBalance, deletePortfolio, sortPortfolios, sortHoldings} = portfolioSlice.actions
+export const {setPortfolios, setHoldings, addPortfolio, addHolding, updatePortfolio, increaseHoldingShares, decreaseHoldingShares, incrementPortfolioBalance, decrementPortfolioBalance, deleteHolding, deletePortfolio, sortPortfolios, sortHoldings} = portfolioSlice.actions
 
 export default portfolioSlice.reducer
