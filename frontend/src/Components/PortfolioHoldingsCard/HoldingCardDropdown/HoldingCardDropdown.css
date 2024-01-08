@@ -1,7 +1,7 @@
 .holding-card-dropdown {
     position: absolute;
-    top: 60px;
-    right: 40px;
+    top: 65px;
+    right: 45px;
     background-color: #fff;
     box-shadow: 1px 2px 8px rgba(95, 95, 95, 0.948);
     border-radius: 10px;
@@ -11,19 +11,6 @@
     align-items: center;
     padding: 10px;
 }
-
-/* .holding-card-dropdown > .buy-shares-btn-container > button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-    background: none;
-    border: none;
-    color: #fff;
-    background-color: var(--primary-col);
-    font-size: medium;
-    border-radius: 10px;
-} */
 
 .holding-card-dropdown > .buy-shares-btn-container > button {
     background: none;

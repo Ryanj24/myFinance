@@ -11,9 +11,8 @@ const PortfolioHoldingsCard = ({companyLogoSrc, companyName, companyTicker, shar
     const [sharesModalActive, setSharesModalActive] = useState(false)
     const [modalType, setModalType] = useState("")
     const [company, setCompany] = useState(
-        {name: companyName, tickerSymbol: companyTicker, pricePerShare: "$100"}
+        {companyName, companyTicker, price: 100}
     )
-
 
   return (
     <>
@@ -43,7 +42,7 @@ const PortfolioHoldingsCard = ({companyLogoSrc, companyName, companyTicker, shar
                     <MoreHoriz sx={{rotate: "90deg"}} />
                 </button>
             </div>
-            {dropdownActive && <HoldingCardDropdown setDropdownActive={setDropdownActive} setSharesModalActive={setSharesModalActive} setModalType={setModalType}/>}
+            {dropdownActive && <HoldingCardDropdown companyTicker={companyTicker} company={company} setCompany={setCompany} setDropdownActive={setDropdownActive} setSharesModalActive={setSharesModalActive} setModalType={setModalType}/>}
         </Paper>
     </>
   )

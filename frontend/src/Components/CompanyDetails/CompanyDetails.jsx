@@ -12,9 +12,6 @@ const CompanyDetails = ({data}) => {
 
   const [sharesModalActive, setSharesModalActive] = useState(false)
   const [modalType, setModalType] = useState("");
-  // const [company, setCompany] = useState(
-  //   {name: data["overviewData"].companyName, tickerSymbol: data["overviewData"].symbol, pricePerShare: Intl.NumberFormat("en-US", {style: "currency", currency: "USD"}).format(data["overviewData"].price)}
-  // )
 
   const companyData = [
     <CompanyOverview company={data["overviewData"]}/>, 
@@ -27,7 +24,6 @@ const CompanyDetails = ({data}) => {
 
   return (
     <>
-      {/* {sharesModalActive && <PortfolioModal modalType={modalType} toggleModal={setSharesModalActive} company={company}/>} */}
       {sharesModalActive && <PortfolioModal modalType={modalType} toggleModal={setSharesModalActive} company={data["overviewData"]}/>}
       <section className='company-details-container'>
           <header>

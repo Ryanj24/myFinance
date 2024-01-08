@@ -1,7 +1,7 @@
 .holding-card {
     display: grid;
     align-items: center;
-    grid-template-columns: 1fr 3fr 2fr 2fr;
+    grid-template-columns: 0.5fr 4fr 2fr 3fr;
     margin: 20px 0;
     padding: 20px;
     width: 70%;
@@ -12,8 +12,8 @@
 .holding-card > .holding-logo {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-    max-height: 75px;
-    max-width: 75px;
+    max-height: 50px;
+    max-width: 50px;
     background-color: rgba(72, 136, 255, 0.893);
 }
 
@@ -24,6 +24,7 @@
 
 .holding-card > .holding-name {
     grid-column: 2 / 3;
+    padding-left: 10px;
 }
 
 .holding-card > .holding-share-quantity {
@@ -83,6 +84,7 @@
     .holding-card > .holding-name {
         grid-column: 2 / 3;
         grid-row: 1 / 2;
+        padding-left: 0;
     }
     
     .holding-card > .holding-share-quantity {

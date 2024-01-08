@@ -5,6 +5,7 @@ import PortfolioForm from '../PortfolioForm/PortfolioForm'
 import SharesForm from '../SharesForm/SharesForm'
 
 const PortfolioModal = ({modalType, toggleModal, portfolio, company}) => {
+
   return (
     <div className='portfolio-modal-container'>
         <div className="portfolio-modal">

@@ -1,10 +1,17 @@
 import React from 'react'
 import './HoldingCardDropdown.css'
 import { AttachMoney, Sell } from '@mui/icons-material'
+import { useSelector } from 'react-redux'
+import { currentStockPrice } from '../../../utilityFunctions/currentStockPrice.js'
 
-const HoldingCardDropdown = ({setDropdownActive, setSharesModalActive, setModalType}) => {
+const HoldingCardDropdown = ({companyTicker, company, setCompany, setDropdownActive, setSharesModalActive, setModalType}) => {
 
-    const handleOnClick = (type) => {
+    const {token} = useSelector(state => state.user.user)
+
+    const handleOnClick = async (type) => {
+
+        const currentPrice = await currentStockPrice(companyTicker, token)
+        setCompany({...company, price: currentPrice.price})
         setModalType(type)
         setSharesModalActive(true)
         setDropdownActive(false)
