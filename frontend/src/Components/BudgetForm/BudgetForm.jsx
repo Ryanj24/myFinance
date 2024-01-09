@@ -64,9 +64,9 @@ const BudgetForm = ({formType, toggleModal, budget}) => {
                 ))}
           </select>
       </div> 
-        {budgetCategories.map(category => (
+        {budgetCategories.map((category, index) => (
           <div className={`${category.name.replaceAll(" ", "").replaceAll("&", "-").toLowerCase()}-budget`} key={category.id}>
-            <label htmlFor={`${category.name.replaceAll(" ", "").replaceAll("&", "-").toLowerCase()}_budget`}>{category.name}</label>
+            <label htmlFor={`${category.name.replaceAll(" ", "").replaceAll("&", "-").toLowerCase()}_budget`}>{budgetIconArray[index]}{category.name}</label>
             <input type="number" id={`${category.name.replaceAll(" ", "").replaceAll("&", "-").toLowerCase()}_budget`} {...register(`${category.name.replaceAll(" ", "").replaceAll("&", "").toLowerCase()}_budget`)} min={0} required/>
           </div>  
         ))}

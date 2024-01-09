@@ -18,6 +18,13 @@
 #budget-modal-form > div > label {
     font-size: larger;
     margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+
+#budget-modal-form > div > label > svg {
+    margin-right: 5px;
 }
 
 #budget-modal-form > div > input {
