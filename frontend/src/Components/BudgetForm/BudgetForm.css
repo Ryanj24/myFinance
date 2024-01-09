@@ -1,0 +1,97 @@
+#budget-modal-form {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+#budget-modal-form > div:not(.save-btn-container) {
+    display: flex;
+    flex-direction: column;
+}
+
+#budget-modal-form > div{
+    margin: 10px 0;
+}
+
+
+#budget-modal-form > div > label {
+    font-size: larger;
+    margin-bottom: 5px;
+}
+
+#budget-modal-form > div > input {
+    padding: 5px 0 5px 5px;
+    font-size: larger;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #e3e3e3;
+}
+
+
+#budget-modal-form > .month-selection > select,
+#budget-modal-form > .year-selection > select {
+    padding: 5px;
+    font-size: medium;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #e3e3e3;
+}
+
+#budget-modal-form > .month-selection {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+}
+
+#budget-modal-form > .year-selection {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+}
+
+#budget-modal-form > .housing-budget {
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+}
+
+#budget-modal-form > .transportation-budget {
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+}
+
+#budget-modal-form > .food-budget {
+    grid-row: 3 / 4;
+    grid-column: 3 / 4;
+}
+
+#budget-modal-form > .utilities-budget {
+    grid-row: 4 / 5;
+    grid-column: 1 / 2;
+}
+
+#budget-modal-form > .medical-healthcare-budget {
+    grid-row: 4 / 5;
+    grid-column: 2 / 3;
+}
+
+#budget-modal-form > .personal-budget {
+    grid-row: 4 / 5;
+    grid-column: 3 / 4;
+}
+
+#budget-modal-form > .entertainment-budget {
+    grid-row: 5 / 6;
+    grid-column: 1 / 2;
+}
+
+#budget-modal-form > .other-budget {
+    grid-row: 5 / 6;
+    grid-column: 2 / 3;
+}
+
+#budget-modal-form > .save-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    grid-row: 6 / 7;
+    grid-column: 2 / 3;
+}

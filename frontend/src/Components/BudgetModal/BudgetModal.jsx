@@ -1,6 +1,7 @@
 import React from 'react'
 import './BudgetModal.css'
 import { Close } from '@mui/icons-material'
+import BudgetForm from '../BudgetForm/BudgetForm'
 
 const BudgetModal = ({modalType, toggleModal}) => {
   return (
@@ -17,6 +18,7 @@ const BudgetModal = ({modalType, toggleModal}) => {
                     </button>
                 </div>
             </header>
+            <BudgetForm formType={modalType} toggleModal={toggleModal}/>
         </div>
     </div>
   )
