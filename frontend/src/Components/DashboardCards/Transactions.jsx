@@ -33,7 +33,12 @@ const Transactions = () => {
                   key={obj.id}
                   icon={budgetIconArray[obj.iconIndex]}
                   name={obj.description === null ? "No Description": obj.description}
-                  amount={obj.type === "Expense" || obj.type === "Withdrawl" ? <p style={{color: "#FF1B1B"}}>-£{obj.amount}</p> : <p style={{color: "#09FF05"}}>+£{obj.amount}</p>}
+                  amount={
+                    obj.type === "Expense" || obj.type === "Withdrawl" 
+                    ? 
+                      <p style={{color: "#FF1B1B"}}>-{Intl.NumberFormat("en", {style:"currency", currency: "GBP"}).format(obj.amount)}</p> 
+                    : <p style={{color: "#09FF05"}}>+{Intl.NumberFormat("en", {style:"currency", currency: "GBP"}).format(obj.amount)}</p>
+                  }
                 />
             ))}
           </ul>

@@ -19,7 +19,7 @@ const CustomLabel = ({viewBox, budget}) => {
         Total Spent:
       </text>
       <text x={cx} y={cy + 10} textAnchor='middle'>
-        £{budget}
+        {Intl.NumberFormat("en-UK", {style:"currency", currency: "GBP"}).format(budget)}
       </text>
     </g>
   )
@@ -81,7 +81,7 @@ const Budget = () => {
                 key={obj.category} 
                 icon={budgetIconArray[index]}
                 name={obj.category}
-                amount={"£" + obj.amountSpent}
+                amount={Intl.NumberFormat("en", {style:"currency", currency: "GBP"}).format(obj.amountSpent)}
               />
             ))}
           </ul>

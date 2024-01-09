@@ -14,7 +14,6 @@ const PortfolioHoldingsCard = ({companyLogoSrc, companyName, companyTicker, shar
         {companyName, companyTicker, price: 100}
     )
 
-    // console.log(company)
 
   return (
     <>

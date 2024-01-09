@@ -55,7 +55,7 @@ const IncomeChart = () => {
             >
                 <XAxis dataKey="month"/>
                 <YAxis domain={[0, 5000]} ticks={[0, 1000, 2000, 3000, 4000, 5000]} label={{value: "GBP (£)", angle: -90, position: "insideLeft"}}/>
-                <Tooltip />
+                <Tooltip formatter={(val) => Intl.NumberFormat("en", {style:"currency", currency: "GBP"}).format(val)}/>
                 <Bar dataKey="amount" fill="#407BFF" activeBar={<Rectangle/>} />
             </BarChart>
         </ResponsiveContainer>

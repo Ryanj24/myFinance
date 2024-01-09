@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './CompanyDetails.css'
-import { AttachMoney, Sell, HolidayVillage, Home, Cabin } from '@mui/icons-material'
+import { AttachMoney, Sell } from '@mui/icons-material'
 import GridCarousel from '../GridCarousel/GridCarousel'
 import CompanyOverview from './CompanyOverview/CompanyOverview'
 import CompanyMetrics from './CompanyMetrics/CompanyMetrics'

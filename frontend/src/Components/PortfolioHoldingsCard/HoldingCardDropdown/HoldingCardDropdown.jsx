@@ -15,7 +15,6 @@ const HoldingCardDropdown = ({companyTicker, company, setCompany, setDropdownAct
         setModalType(type)
         setSharesModalActive(true)
         setDropdownActive(false)
-        // console.log(type)
     }
   return (
     <div className='holding-card-dropdown'>
