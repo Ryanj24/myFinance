@@ -10,15 +10,21 @@ import ListCard from '../ListCard/ListCard.jsx';
 
 const budgetIconArray = [<Home sx={{color: '#FD3C17'}}/>, <Commute sx={{color: '#407BFF'}}/>, <Fastfood sx={{color: '#FFA500'}}/>, <HomeRepairService sx={{color: '#17FDE0'}}/>, <HealthAndSafety sx={{color: '#4EFD17'}}/>, <DevicesOther sx={{color: '#808080'}}/>, <ConfirmationNumber sx={{color: '#FD17F6'}}/>, <MoreHoriz sx={{color: '#C0C0C0'}}/>]
 
-const CustomLabel = ({viewBox, budget}) => {
+const CustomLabel = ({viewBox, spent, budget}) => {
   const {cx, cy} = viewBox;
 
   return (
     <g>
-      <text x={cx} y={cy - 10} textAnchor='middle'>
+      <text x={cx} y={cy - 30} textAnchor='middle'>
         Total Spent:
       </text>
-      <text x={cx} y={cy + 10} textAnchor='middle'>
+      <text x={cx} y={cy - 10} textAnchor='middle'>
+        {Intl.NumberFormat("en-UK", {style:"currency", currency: "GBP"}).format(spent)}
+      </text>
+      <text x={cx} y={cy + 20} textAnchor='middle'>
+        Total Budget:
+      </text>
+      <text x={cx} y={cy + 40} textAnchor='middle'>
         {Intl.NumberFormat("en-UK", {style:"currency", currency: "GBP"}).format(budget)}
       </text>
     </g>
@@ -46,6 +52,8 @@ const Budget = () => {
 
   const joinedData = joinArraysOfObjects(categoryTotalBudget, categoryAmountSpent)
 
+  console.log(joinedData)
+
   return (
     <div className='budget'>
         <header className='budget-header'>
@@ -57,13 +65,20 @@ const Budget = () => {
             ?
               <PieChart width="100%" height="80%">
                 <Pie data={[{category: "No Data", amountSpent: 1}]} dataKey="amountSpent" nameKey="category" cx="50%" cy="50%" innerRadius={80} outerRadius={110} fill="#8884d8">
-                  <Label content={<CustomLabel budget={0}/>} position="center"/>
+                  <Label content={<CustomLabel spent={0} budget={categoryTotalBudget.reduce((acc, currVal) => acc + currVal.total, 0)}/>} position="center"/>
                 </Pie>
               </PieChart>
             :
               <PieChart width="100%" height="80%">
                 <Pie data={joinedData} dataKey="amountSpent" nameKey="category" cx="50%" cy="50%" innerRadius={80} outerRadius={110} fill="#8884d8">
-                  <Label content={<CustomLabel budget={categoryAmountSpent.reduce((acc, currVal) => acc + currVal.amountSpent, 0)}/>} position="center"/>
+                  <Label 
+                    content={
+                      <CustomLabel 
+                        spent={categoryAmountSpent.reduce((acc, currVal) => acc + currVal.amountSpent, 0)}
+                        budget={categoryTotalBudget.reduce((acc, currVal) => acc + currVal.total, 0)}/>
+                    } 
+                    position="center"
+                  />
                   {joinedData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={chartColours[index]}/>
                   ))}
@@ -72,7 +87,7 @@ const Budget = () => {
             }
         </ResponsiveContainer>
         <section className='budget-breakdown'>
-          <h3>
+          <h3 style={{color: "var(--primary-col)"}}>
             Budget Breakdown
           </h3>
           <ul className='budget-categories'>
@@ -82,6 +97,7 @@ const Budget = () => {
                 icon={budgetIconArray[index]}
                 name={obj.category}
                 amount={Intl.NumberFormat("en", {style:"currency", currency: "GBP"}).format(obj.amountSpent)}
+                total={Intl.NumberFormat("en", {style:"currency", currency: "GBP"}).format(obj.total)}
               />
             ))}
           </ul>
