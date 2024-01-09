@@ -1,0 +1,29 @@
+.budgets-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.budgets-header > h1{
+    color: var(--primary-col);
+}
+
+.budgets-header > .budgets-action-btn{
+    padding-right: 30px;
+}
+
+.budgets-header > .budgets-action-btn > button {
+    background: none;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: var(--primary-col);
+    box-shadow: 2px 2px 3px #737373;
+}
+
+.budgets-header > .budgets-action-btn > button:hover {
+    cursor: pointer;
+}

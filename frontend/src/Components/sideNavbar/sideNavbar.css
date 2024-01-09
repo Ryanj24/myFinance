@@ -62,11 +62,11 @@
 }
 
 .side-navbar > .nav-links {
-    grid-row: 2 / 3;
+    grid-row: 2 / 4;
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .side-navbar > .nav-links > .nav-link {
@@ -76,6 +76,10 @@
 
 .side-navbar > .nav-links > .nav-link:hover {
     background-color: #88adfe;
+}
+
+.side-navbar > .nav-links > .nav-link:last-child {
+    border-radius: 0 0 20px 0;
 }
 
 

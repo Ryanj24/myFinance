@@ -1,0 +1,50 @@
+.budget-modal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    pointer-events: all;
+}
+
+.budget-modal-container > .budget-modal {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 40px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.budget-modal > .modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
+.budget-modal > .modal-header > .modal-close-btn-container {
+    position: absolute;
+    right: 0;
+    padding-right: 20px;
+}
+
+.budget-modal > .modal-header > .modal-close-btn-container > button {
+    border: none;
+    background: none;
+}
+
+.budget-modal > .modal-header > .modal-close-btn-container > button:hover {
+    cursor: pointer;
+}
+.budget-modal > .modal-header > .modal-close-btn-container > button > svg {
+    color: var(--primary-col);
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Dashboard, AccountCircle, AccountBalance, CandlestickChart, EmojiEvents, Logout} from '@mui/icons-material/'
+import {Dashboard, AccountCircle, AccountBalance, CurrencyPound, CandlestickChart, EmojiEvents, Logout} from '@mui/icons-material/'
 import { useDispatch } from 'react-redux'
 import { removeUser } from '../../redux/userSlice.js'
 import { setAccounts } from '../../redux/accountSlice.js'
@@ -42,6 +42,12 @@ const NavLinks = () => {
           <Link to="/home/accounts">
             <AccountBalance />
             <p>Accounts</p>
+          </Link>
+        </li>
+        <li className='nav-link'>
+          <Link to="/home/budgets">
+            <CurrencyPound />
+            <p>Budgets</p>
           </Link>
         </li>
         <li className='nav-link'>
