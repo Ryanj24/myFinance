@@ -1,0 +1,35 @@
+.budget-details {
+    height: 400px;
+    width: 100%;
+    background-color: #ffff;
+    margin-top: 20px;
+    padding: 1.5rem;
+}
+
+.budget-details > #budget-date-selector-form {
+    display: flex;
+    padding: 10px 0;
+}
+
+.budget-details > #budget-date-selector-form > select {
+    padding: 5px;
+    font-size: medium;
+    border-radius: 5px;
+}
+
+.budget-details > #budget-date-selector-form > select:nth-child(2) {
+    margin: 0 10px;
+}
+
+.budget-details > #budget-date-selector-form > button {
+    background: none;
+    border: none;
+}
+
+.budget-details > #budget-date-selector-form > button:hover {
+    cursor: pointer;
+}
+
+.budget-details > #budget-date-selector-form > button > svg{
+    color: var(--primary-col);
+}

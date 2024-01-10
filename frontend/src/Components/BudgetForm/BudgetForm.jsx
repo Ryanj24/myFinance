@@ -13,6 +13,7 @@ const BudgetForm = ({formType, toggleModal, budget}) => {
 
   const yearOptions = populateYears();
   const monthOptions = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  
   const budgetCategories = [
     {id: 1, name: "Housing"}, 
     {id: 2, name: "Transportation"}, 

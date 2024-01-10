@@ -1,37 +1,15 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import DashboardBudgetForm from '../DashboardBudgetForm/DashboardBudgetForm';
-import { ResponsiveContainer, PieChart, Pie, Tooltip, Label, Cell } from 'recharts';
+// import { ResponsiveContainer, PieChart, Pie, Tooltip, Label, Cell } from 'recharts';
 import { budgetDataPreprocessor } from '../../utilityFunctions/budgetDataPreprocessor.js';
 import { transactionDataPreprocessor } from '../../utilityFunctions/transactionDataPreprocessor.js';
 import { Home, Commute, Fastfood, HomeRepairService, HealthAndSafety, DevicesOther, ConfirmationNumber, MoreHoriz } from '@mui/icons-material';
 import { joinArraysOfObjects } from '../../utilityFunctions/joinArraysOfObjects.js';
 import ListCard from '../ListCard/ListCard.jsx';
+import BudgetChart from '../BudgetChart/BudgetChart.jsx';
 
 export const budgetIconArray = [<Home sx={{color: '#FD3C17'}}/>, <Commute sx={{color: '#407BFF'}}/>, <Fastfood sx={{color: '#FFA500'}}/>, <HomeRepairService sx={{color: '#17FDE0'}}/>, <HealthAndSafety sx={{color: '#4EFD17'}}/>, <DevicesOther sx={{color: '#808080'}}/>, <ConfirmationNumber sx={{color: '#FD17F6'}}/>, <MoreHoriz sx={{color: '#C0C0C0'}}/>]
-
-const CustomLabel = ({viewBox, spent, budget}) => {
-  const {cx, cy} = viewBox;
-
-  return (
-    <g>
-      <text x={cx} y={cy - 30} textAnchor='middle'>
-        Total Spent:
-      </text>
-      <text x={cx} y={cy - 10} textAnchor='middle'>
-        {Intl.NumberFormat("en-UK", {style:"currency", currency: "GBP"}).format(spent)}
-      </text>
-      <text x={cx} y={cy + 20} textAnchor='middle'>
-        Total Budget:
-      </text>
-      <text x={cx} y={cy + 40} textAnchor='middle'>
-        {Intl.NumberFormat("en-UK", {style:"currency", currency: "GBP"}).format(budget)}
-      </text>
-    </g>
-  )
-}
-
-const chartColours = ['#FD3C17', '#407BFF', '#FFA500', '#17FDE0', '#4EFD17', '#808080', '#FD17F6', '#C0C0C0'];
 
 const Budget = () => {
 
@@ -60,32 +38,7 @@ const Budget = () => {
           <h3>Budget</h3>
         </header>
         <DashboardBudgetForm setSelectedMonth={setSelectedMonth} setSelectedYear={setSelectedYear}/>
-        <ResponsiveContainer maxHeight="80%">
-            {categoryAmountSpent.reduce((acc, currVal) => acc + currVal.amountSpent, 0) === 0
-            ?
-              <PieChart width="100%" height="80%">
-                <Pie data={[{category: "No Data", amountSpent: 1}]} dataKey="amountSpent" nameKey="category" cx="50%" cy="50%" innerRadius={80} outerRadius={110} fill="#8884d8">
-                  <Label content={<CustomLabel spent={0} budget={categoryTotalBudget.reduce((acc, currVal) => acc + currVal.total, 0)}/>} position="center"/>
-                </Pie>
-              </PieChart>
-            :
-              <PieChart width="100%" height="80%">
-                <Pie data={joinedData} dataKey="amountSpent" nameKey="category" cx="50%" cy="50%" innerRadius={80} outerRadius={110} fill="#8884d8">
-                  <Label 
-                    content={
-                      <CustomLabel 
-                        spent={categoryAmountSpent.reduce((acc, currVal) => acc + currVal.amountSpent, 0)}
-                        budget={categoryTotalBudget.reduce((acc, currVal) => acc + currVal.total, 0)}/>
-                    } 
-                    position="center"
-                  />
-                  {joinedData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={chartColours[index]}/>
-                  ))}
-                </Pie>
-              </PieChart>
-            }
-        </ResponsiveContainer>
+        <BudgetChart categorySpend={categoryAmountSpent} categoryTotals={categoryTotalBudget} formattedData={joinedData}/>
         <section className='budget-breakdown'>
           <h3 style={{color: "var(--primary-col)"}}>
             Budget Breakdown
