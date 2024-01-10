@@ -4,8 +4,12 @@ import { useForm } from 'react-hook-form'
 import { Button } from '@mui/material'
 import { populateYears } from '../../utilityFunctions/populateYears'
 import { budgetIconArray } from '../DashboardCards/Budget'
+import { budgetFormRequests } from '../../utilityFunctions/budgetFormRequests'
+import { useSelector } from 'react-redux'
 
 const BudgetForm = ({formType, toggleModal, budget}) => {
+
+  const {token} = useSelector(state => state.user.user)
 
   const yearOptions = populateYears();
   const monthOptions = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -38,6 +42,16 @@ const BudgetForm = ({formType, toggleModal, budget}) => {
 
   const handleOnSubmit = async (data) => {
     console.log(data);
+
+    if (formType === "Set Budget") {
+      const request = await budgetFormRequests(data, "POST", token)
+
+      console.log(request)
+    } else {
+      const request = await budgetFormRequests(data, "PATCH", token)
+
+      console.log(request)
+    }
   }
 
   useEffect(() => {
