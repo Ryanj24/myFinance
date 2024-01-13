@@ -1,0 +1,15 @@
+.budget-detail-categories {
+    list-style: none;
+    overflow-y: scroll;
+    height: 300px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+    padding: 20px;
+}
+
+.budget-detail-categories::-webkit-scrollbar {
+    display: none;
+}

@@ -30,7 +30,7 @@ const Budget = () => {
 
   const joinedData = joinArraysOfObjects(categoryTotalBudget, categoryAmountSpent)
 
-  console.log(joinedData)
+  // console.log(joinedData)
 
   return (
     <div className='budget'>
@@ -38,7 +38,7 @@ const Budget = () => {
           <h3>Budget</h3>
         </header>
         <DashboardBudgetForm setSelectedMonth={setSelectedMonth} setSelectedYear={setSelectedYear}/>
-        <BudgetChart categorySpend={categoryAmountSpent} categoryTotals={categoryTotalBudget} formattedData={joinedData}/>
+        <BudgetChart categorySpend={categoryAmountSpent} categoryTotals={categoryTotalBudget} formattedData={joinedData} viewingPage="Dashboard"/>
         <section className='budget-breakdown'>
           <h3 style={{color: "var(--primary-col)"}}>
             Budget Breakdown

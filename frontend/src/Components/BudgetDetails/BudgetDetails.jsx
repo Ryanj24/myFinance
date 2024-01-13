@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './BudgetDetails.css'
 import DashboardBudgetForm from '../DashboardBudgetForm/DashboardBudgetForm';
 import BudgetChart from '../BudgetChart/BudgetChart';
+import BudgetCategoryDetails from '../BudgetCategoryDetails/BudgetCategoryDetails';
 import { useSelector } from 'react-redux';
 import { budgetDataPreprocessor } from '../../utilityFunctions/budgetDataPreprocessor';
 import { transactionDataPreprocessor } from '../../utilityFunctions/transactionDataPreprocessor';
@@ -29,7 +30,8 @@ const BudgetDetails = () => {
   return (
     <section className='budget-details'>
         <DashboardBudgetForm setSelectedMonth={setSelectedMonth} setSelectedYear={setSelectedYear}/>
-        <BudgetChart categorySpend={categoryAmountSpent} categoryTotals={categoryTotalBudget} formattedData={joinedData}/>
+        <BudgetChart categorySpend={categoryAmountSpent} categoryTotals={categoryTotalBudget} formattedData={joinedData} viewingPage="Budget Details"/>
+        <BudgetCategoryDetails budgetData={joinedData}/>
     </section>
   )
 }
