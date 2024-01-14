@@ -5,7 +5,7 @@ import BudgetModal from '../BudgetModal/BudgetModal';
 
 const BudgetHeader = () => {
 
-    const [budgetModalActive, setBudgetModalActive] = useState(false);
+  const [budgetModalActive, setBudgetModalActive] = useState(false);
 
   return (
     <>

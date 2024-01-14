@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import './BudgetForm.css'
 import { useForm } from 'react-hook-form'
 import { Button } from '@mui/material'
@@ -7,9 +7,11 @@ import { budgetIconArray } from '../DashboardCards/Budget'
 import { budgetFormRequests } from '../../utilityFunctions/budgetFormRequests'
 import { useSelector } from 'react-redux'
 
-const BudgetForm = ({formType, toggleModal, budget}) => {
+const BudgetForm = ({formType, toggleModal}) => {
+
 
   const {token} = useSelector(state => state.user.user)
+  const {budgets} = useSelector(state => state.budgets)
 
   const yearOptions = populateYears();
   const monthOptions = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -26,18 +28,18 @@ const BudgetForm = ({formType, toggleModal, budget}) => {
   ]
 
 
-  const {register, handleSubmit, formState: {isSubmitSuccessful}} = useForm({
+  const {register, handleSubmit, formState: {isSubmitSuccessful}, watch, setValue} = useForm({
     defaultValues: {
-      month_selection: formType === "Set Budget" ? monthOptions[0] : budget.month, 
-      year_selection: formType === "Set Budget" ? yearOptions[0] : budget.year,
-      housing_budget: formType === "Set Budget" ? 0 : budget.housing,
-      transportation_budget: formType === "Set Budget" ? 0 : budget.transportation,
-      food_budget: formType === "Set Budget" ? 0 : budget.food,
-      utilities_budget: formType === "Set Budget" ? 0 : budget.utilities,
-      medicalhealthcare_budget: formType === "Set Budget" ? 0 : budget.medical_healthcare,
-      personal_budget: formType === "Set Budget" ? 0 : budget.personal,
-      entertainment_budget: formType === "Set Budget" ? 0 : budget.entertainment,
-      other_budget: formType === "Set Budget" ? 0 : budget.other,
+      month_selection: monthOptions[0] , 
+      year_selection: yearOptions[0],
+      housing_budget: 0,
+      transportation_budget: 0,
+      food_budget: 0,
+      utilities_budget: 0,
+      medicalhealthcare_budget: 0,
+      personal_budget: 0,
+      entertainment_budget: 0,
+      other_budget:  0
     }
   });
 
@@ -54,6 +56,20 @@ const BudgetForm = ({formType, toggleModal, budget}) => {
       console.log(request)
     }
   }
+
+  useEffect(() => {
+    const bud = budgets.filter(budget => budget.month === watch("month_selection") && budget.year == watch("year_selection"))[0]
+    setValue("housing_budget", bud === undefined ? 0 : +bud.housing)
+    setValue("transportation_budget", bud === undefined ? 0 : +bud.transportation)
+    setValue("food_budget", bud === undefined ? 0 : +bud.food)
+    setValue("utilities_budget", bud === undefined ? 0 : +bud.utilities)
+    setValue("medicalhealthcare_budget", bud === undefined ? 0 : +bud.medical_healthcare)
+    setValue("personal_budget", bud === undefined ? 0 : +bud.personal)
+    setValue("entertainment_budget", bud === undefined ? 0 : +bud.entertainment)
+    setValue("other_budget", bud === undefined ? 0 : +bud.other)
+
+  }, [watch("month_selection"), watch("year_selection")])
+
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -86,13 +102,8 @@ const BudgetForm = ({formType, toggleModal, budget}) => {
           </div>  
         ))}
       <div className="save-btn-container">
-          {formType === "Set Budget"
-          ?
-            <Button variant='contained' sx={{textTransform: "none", borderRadius: "10px"}} type='submit'>Set Budget</Button>
-          :
-            <Button variant='contained' sx={{textTransform: "none", borderRadius: "10px"}} type='submit'>Update Budget</Button>
-          }
-        </div>
+        <Button variant='contained' sx={{textTransform: "none", borderRadius: "10px"}} type='submit'>Set Budget</Button>
+      </div>
     </form>
   )
 }

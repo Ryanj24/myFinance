@@ -8,10 +8,7 @@ const BudgetModal = ({modalType, toggleModal}) => {
     <div className='budget-modal-container'>
         <div className="budget-modal">
             <header className='modal-header'>
-                {modalType === "Set Budget"
-                ? <h2>Set Budget</h2>
-                : <h2>Edit Budget</h2>
-                }
+                <h2>Set Budget</h2>
                 <div className="modal-close-btn-container">
                     <button onClick={() => toggleModal(false)}>
                         <Close />
