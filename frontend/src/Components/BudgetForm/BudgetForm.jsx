@@ -5,13 +5,16 @@ import { Button } from '@mui/material'
 import { populateYears } from '../../utilityFunctions/populateYears'
 import { budgetIconArray } from '../DashboardCards/Budget'
 import { budgetFormRequests } from '../../utilityFunctions/budgetFormRequests'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { addBudget, updateBudget } from '../../redux/budgetSlice'
 
 const BudgetForm = ({formType, toggleModal}) => {
 
 
   const {token} = useSelector(state => state.user.user)
   const {budgets} = useSelector(state => state.budgets)
+  const dispatch = useDispatch()
+  let selectedBudget;
 
   const yearOptions = populateYears();
   const monthOptions = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -44,29 +47,29 @@ const BudgetForm = ({formType, toggleModal}) => {
   });
 
   const handleOnSubmit = async (data) => {
-    console.log(data);
 
-    if (formType === "Set Budget") {
+    if (selectedBudget === undefined) {
       const request = await budgetFormRequests(data, "POST", token)
 
-      console.log(request)
+      dispatch(addBudget(request))
     } else {
       const request = await budgetFormRequests(data, "PATCH", token)
 
-      console.log(request)
+      dispatch(updateBudget(request))
     }
   }
 
   useEffect(() => {
-    const bud = budgets.filter(budget => budget.month === watch("month_selection") && budget.year == watch("year_selection"))[0]
-    setValue("housing_budget", bud === undefined ? 0 : +bud.housing)
-    setValue("transportation_budget", bud === undefined ? 0 : +bud.transportation)
-    setValue("food_budget", bud === undefined ? 0 : +bud.food)
-    setValue("utilities_budget", bud === undefined ? 0 : +bud.utilities)
-    setValue("medicalhealthcare_budget", bud === undefined ? 0 : +bud.medical_healthcare)
-    setValue("personal_budget", bud === undefined ? 0 : +bud.personal)
-    setValue("entertainment_budget", bud === undefined ? 0 : +bud.entertainment)
-    setValue("other_budget", bud === undefined ? 0 : +bud.other)
+    selectedBudget = budgets.filter(budget => budget.month === watch("month_selection") && budget.year == watch("year_selection"))[0]
+
+    setValue("housing_budget", selectedBudget === undefined ? 0 : +selectedBudget.housing)
+    setValue("transportation_budget", selectedBudget === undefined ? 0 : +selectedBudget.transportation)
+    setValue("food_budget", selectedBudget === undefined ? 0 : +selectedBudget.food)
+    setValue("utilities_budget", selectedBudget === undefined ? 0 : +selectedBudget.utilities)
+    setValue("medicalhealthcare_budget", selectedBudget === undefined ? 0 : +selectedBudget.medical_healthcare)
+    setValue("personal_budget", selectedBudget === undefined ? 0 : +selectedBudget.personal)
+    setValue("entertainment_budget", selectedBudget === undefined ? 0 : +selectedBudget.entertainment)
+    setValue("other_budget", selectedBudget === undefined ? 0 : +selectedBudget.other)
 
   }, [watch("month_selection"), watch("year_selection")])
 
