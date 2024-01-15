@@ -1,0 +1,29 @@
+.goals-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.goals-header > h1{
+    color: var(--primary-col);
+}
+
+.goals-header > .goals-action-btn{
+    padding-right: 30px;
+}
+
+.goals-header > .goals-action-btn > button {
+    background: none;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: var(--primary-col);
+    box-shadow: 2px 2px 3px #737373;
+}
+
+.goals-header > .goals-action-btn > button:hover {
+    cursor: pointer;
+}

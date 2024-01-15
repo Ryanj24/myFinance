@@ -1,8 +1,12 @@
 import React from 'react'
+import './GoalsPage.css'
+import GoalsHeader from '../../Components/GoalsHeader/GoalsHeader'
 
 const GoalsPage = () => {
   return (
-    <div>Goals</div>
+    <section className='goals-container'>
+        <GoalsHeader />
+    </section>
   )
 }
 

@@ -1,0 +1,38 @@
+#goal-modal-form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#goal-modal-form > div:not(.save-btn-container) {
+    display: flex;
+    flex-direction: column;
+}
+
+#goal-modal-form > div:not(.goal-name) {
+    margin: 10px 0;
+}
+
+
+#goal-modal-form > div > label {
+    font-size: larger;
+    margin-bottom: 5px;
+}
+
+#goal-modal-form > div > input {
+    padding: 5px 0 5px 5px;
+    font-size: larger;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #e3e3e3;
+}
+
+#goal-modal-form > .goal-name {
+    margin-bottom: 10px;
+}
+
+
+#goal-modal-form > .save-btn-container {
+    margin-top: 30px;
+}
