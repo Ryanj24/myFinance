@@ -33,8 +33,6 @@ const CompanyFinancials = ({company, selectedChart}) => {
 
   const smallerScreen = useMediaQuery({ query: '(max-width: 800px)' })
 
-  console.log(data)
-
   return (
     <div className='company-financials'>
       <header>

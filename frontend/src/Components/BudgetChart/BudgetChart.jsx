@@ -1,6 +1,7 @@
 import React from 'react'
 import './BudgetChart.css'
 import { ResponsiveContainer, PieChart, Pie, Tooltip, Label, Cell, Legend } from 'recharts';
+import { useMediaQuery } from 'react-responsive';
 import BudgetChartLabel from '../BudgetChartLabel/BudgetChartLabel';
 import BudgetChartPercentages from '../BudgetChartPercentages/BudgetChartPercentages'
 
@@ -11,8 +12,10 @@ const BudgetChart = ({categorySpend, categoryTotals, formattedData, viewingPage}
   const totalSpend = categorySpend.reduce((acc, currVal) => acc + currVal.amountSpent, 0)
   const totalBudget = categoryTotals.reduce((acc, currVal) => acc + currVal.total, 0)
 
+  const smallerScreen = useMediaQuery({ query: '(max-width: 800px)' })
+
   return (
-    <ResponsiveContainer maxHeight={viewingPage === "Dashboard" ? "80%" : "50%"} style={ viewingPage === "Budget Details" ? {margin: "0 auto"} : null} width={viewingPage === "Budget Details" ? "50%" : "100%"}>
+    <ResponsiveContainer maxHeight={viewingPage === "Dashboard" ? "80%" : "50%"} style={ viewingPage === "Budget Details" ? {margin: "0 auto"} : null} width={viewingPage === "Budget Details" ? (smallerScreen) ? "100%" : "50%" : "100%"}>
         {viewingPage === "Dashboard" && totalSpend === 0
         ?
           <PieChart width="100%" height="80%">
@@ -62,7 +65,7 @@ const BudgetChart = ({categorySpend, categoryTotals, formattedData, viewingPage}
                 <Cell key={`cell-${index}`} fill={chartColours[index]}/>
               ))}
             </Pie>
-            <Legend verticalAlign='middle' align='right' layout='vertical' />
+            {!smallerScreen &&  <Legend verticalAlign='middle' align='right' layout='vertical' />}
           </PieChart>
         }
     </ResponsiveContainer>

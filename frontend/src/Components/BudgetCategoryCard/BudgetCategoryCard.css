@@ -31,6 +31,7 @@
 
 .budget-category > .category-name {
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .budget-category > .category-name > p{

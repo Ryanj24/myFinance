@@ -13,3 +13,11 @@
 .budget-detail-categories::-webkit-scrollbar {
     display: none;
 }
+
+@media screen and (max-width: 800px) {
+    .budget-detail-categories {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
