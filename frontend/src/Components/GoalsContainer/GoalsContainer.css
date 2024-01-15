@@ -1,0 +1,11 @@
+.goal-cards-container {
+    padding: 1rem;
+    height: 550px;
+    overflow-y: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+}
+
+.goal-cards-container::-webkit-scrollbar {
+    display: none;
+}

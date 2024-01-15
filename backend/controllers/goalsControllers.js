@@ -23,10 +23,10 @@ export const createGoal = async (req, res) => {
 
     try {
         const query = await db.query(
-            `INSERT INTO goals (user_id, goal_name, goal_desc, current_progress, end_goal) VALUES (?, ?, ?, ?, ?)`, [id, req.body.goalName, req.body.goalDesc, req.body.currProg, req.body.endGoal]
+            `INSERT INTO goals (user_id, goal_name, goal_desc, current_progress, end_goal, end_date) VALUES (?, ?, ?, ?, ?, ?)`, [id, req.body.goalName, req.body.goalDesc, req.body.currProg, req.body.endGoal, req.body.endDate]
         )
 
-        const newGoal = await db.query(`SELECT * FROM goals WHERE goal_name = ?`, [req.body.goalName])
+        const newGoal = await db.query(`SELECT * FROM goals WHERE user_id = ? AND goal_name = ?`, [id, req.body.goalName])
 
         return res.json(newGoal[0][0])
     } catch (error) {
@@ -50,8 +50,8 @@ export const updateGoal = async (req, res) => {
     try {
         // Update the goal in the database
         const query = await db.query(
-            `UPDATE goals SET goal_name = ?, goal_desc = ?, current_progress = ?, end_goal = ? WHERE id = ?`,
-            [req.body.goalName, req.body.goalDesc, req.body.currProg, req.body.endGoal, req.params.id]
+            `UPDATE goals SET goal_name = ?, goal_desc = ?, current_progress = ?, end_goal = ?, end_date = ? WHERE id = ?`,
+            [req.body.goalName, req.body.goalDesc, req.body.currProg, req.body.endGoal, req.body.endDate, req.params.id]
         )
 
         // Retrieve the updated goal

@@ -94,6 +94,7 @@ CREATE TABLE goals (
     `goal_desc` TEXT,
     `current_progress` DECIMAL(10, 2),
     `end_goal` DECIMAL(10, 2),
+    `end_date` DATE,
     PRIMARY KEY(`id`),
     FOREIGN KEY(`user_id`) REFERENCES `users`(`id`)
 );

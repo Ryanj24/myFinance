@@ -1,0 +1,16 @@
+.goal-progress-bar-container {
+    background-color: rgb(205, 205, 205);
+    width: 100%;
+    border-radius: 20px;
+}
+
+.goal-progress-bar-container > .current-progress {
+    background-color: var(--primary-col);
+    width: 20%;
+    height: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+    color: #fff;
+    min-height: 40px;
+}

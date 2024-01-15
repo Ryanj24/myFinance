@@ -1,0 +1,89 @@
+.goal-card {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 2fr 1fr 0.5fr;
+    margin: 20px 0;
+    padding: 20px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.goal-card > div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.goal-card > .goal-name {
+    grid-column: 1 / 2;
+}
+
+.goal-card > .goal-progress {
+    grid-column: 2 / 4;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 1rem;
+}
+
+.goal-card > .goal-progress > .goal-progress-bar-container{
+    grid-row: 1 / 2;
+    grid-column: 1 / 5;
+}
+
+.goal-card > .goal-progress > .progress-start{
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    font-size: large;
+}
+
+.goal-card > .goal-progress > .progress-end{
+    grid-row: 2 / 3;
+    grid-column: 4 / 5;
+    font-size: large;
+}
+
+.goal-card > .goal-options {
+    grid-column: 4 / 5;
+    justify-content: center;
+}
+
+
+.goal-card > .goal-options > button {
+    background: none;
+    border: none;
+    color: var(--primary-col);
+}
+
+.goal-card > .goal-options > button:hover {
+    cursor: pointer;
+}
+
+.goal-card > .goal-options > button > svg{
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 800px) {
+    .goal-card {
+        grid-template-columns: 1fr 2fr 1fr 0.5fr;
+        grid-template-rows: 0.5fr 1fr;
+    }
+
+    .goal-card > .goal-name {
+        grid-row: 1 / 2;
+        grid-column: 1 / 4;
+    }
+    
+    .goal-card > .goal-progress {
+        grid-row: 2 / 3;
+        grid-column: 1 / 5;
+    }
+    
+    .goal-card > .goal-options {
+        grid-row: 1 / 2;
+        grid-column: 4 / 5;
+    }
+}

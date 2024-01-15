@@ -1,0 +1,30 @@
+.goals-nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.goals-nav-links > .goals-nav-link {
+    list-style: none;
+}
+
+.goals-nav-links > .goals-nav-link >  button {
+    background: none;
+    border: none;
+    font-size: large;
+}
+
+.goals-nav-links > .goals-nav-link > button:hover {
+    cursor: pointer;
+}
+
+.goals-nav-links > .goals-nav-link > button:first-child {
+    margin-right: 40px;
+}
+
+.goals-nav-links > .goals-nav-link >  button.selected {
+    color: var(--primary-col);
+    border-bottom: 3px solid var(--primary-col);
+}
