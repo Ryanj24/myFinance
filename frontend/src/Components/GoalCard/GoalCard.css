@@ -66,6 +66,46 @@
     font-size: 2rem;
 }
 
+/* Expanded card styles */
+
+.goal-card.expanded {
+    grid-template-rows: 0.5fr 0.5fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr 0.5fr;
+}
+.goal-card.expanded > .goal-name {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.goal-card.expanded > .goal-progress {
+    grid-column: 2 / 4;
+    grid-row: 1 / 2;
+}
+
+.goal-card.goal-card.expanded > .goal-options {
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
+}
+
+.goal-card.goal-card.expanded > .goal-date {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.goal-card.goal-card.expanded > .goal-description {
+    grid-column: 1 / 5;
+    grid-row: 3 / 4;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+
 @media screen and (max-width: 800px) {
     .goal-card {
         grid-template-columns: 1fr 2fr 1fr 0.5fr;
