@@ -1,8 +1,5 @@
 #goal-modal-form {
     margin-top: 30px;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 0.5fr 0.5fr 0.5fr;
@@ -14,11 +11,6 @@
     flex-direction: column;
     width: 100%;
 }
-/* 
-#goal-modal-form > div:not(.goal-name) {
-    margin: 10px 0;
-} */
-
 
 #goal-modal-form > div > label {
     font-size: larger;
@@ -34,7 +26,6 @@
 }
 
 #goal-modal-form > .goal-name {
-    /* margin-bottom: 10px; */
     grid-column: 1 / 2;
     grid-row: 1 / 2;
 }
@@ -62,11 +53,53 @@
     border: 1px solid #e3e3e3;
 }
 
-
 #goal-modal-form > .save-btn-container {
     display: flex;
     align-items: center;
     justify-content: center;
     grid-column: 1 / 3;
     grid-row: 3 / 4;
+}
+
+
+/* Update form */
+
+#goal-update-form {
+    margin-top: 50px;
+    width: 100%;
+}
+
+#goal-update-form > div{
+    width: 100%;
+}
+
+#goal-update-form > .amount-slider{
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#goal-update-form > .amount-slider > .slider-control-btns {
+    background: none;
+    border: none;
+}
+
+#goal-update-form > .amount-slider > button:hover {
+    cursor: pointer;
+}
+
+#goal-update-form > .amount-slider > .slider-control-btns > svg {
+    font-size: xx-large;
+    color: var(--primary-col);
+}
+
+#goal-update-form > .amount-slider > #amount-slider-component {
+    margin: 0 30px;
+    font-size: xx-large;
+}
+
+#goal-update-form > .save-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

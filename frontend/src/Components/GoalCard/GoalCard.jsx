@@ -2,13 +2,22 @@ import React, { useRef, useState, useEffect } from 'react'
 import './GoalCard.css'
 import { Link } from 'react-router-dom'
 import { Typography } from '@mui/material'
-import { ExpandMore } from '@mui/icons-material'
+import { Article, ExpandMore, CalendarMonth, MoreVert } from '@mui/icons-material'
 import ProgressBar from './ProgressBar/ProgressBar'
 import {dateFormatter} from '../../utilityFunctions/dateFormatter.js'
+import GoalCardDropdown from './GoalCardDropdown/GoalCardDropdown.jsx'
+import GoalModal from '../GoalModal/GoalModal.jsx'
+import { useSelector } from 'react-redux'
 
-const GoalCard = ({name, desc, currentProg, endGoal, endDate, status}) => {
+const GoalCard = ({id, name, desc, currentProg, endGoal, endDate, status}) => {
 
     const [expanded, setExpanded] = useState(false)
+    const [dropdown, setDropdown] = useState(false)
+    const [modalActive, setModalActive] = useState(false)
+    const [modalType, setModalType] = useState("")
+    const [selectedGoal, setSelectedGoal] = useState(null)
+
+    const {goals} = useSelector(state => state.goals)
 
     const cardRef = useRef(null)
 
@@ -23,9 +32,14 @@ const GoalCard = ({name, desc, currentProg, endGoal, endDate, status}) => {
         } else {
           cardRef.current.style.height = "fit-content"
         }
-      }, [expanded])
+    }, [expanded])
+
+    useEffect(() => {
+        setSelectedGoal(goals.filter(goal => goal.id === id)[0])
+    }, [modalActive])
     return (
         <>
+        {modalActive && <GoalModal modalType={modalType} toggleModal={setModalActive} goal={selectedGoal}/>}
         {expanded
         ?
             <div className='goal-card expanded' ref={cardRef}>
@@ -38,17 +52,33 @@ const GoalCard = ({name, desc, currentProg, endGoal, endDate, status}) => {
                     <p className='progress-end'>{Intl.NumberFormat("en", {style: "currency", currency: "GBP"}).format(endGoal)}</p>
                 </div>
                 <div className="goal-options">
+                    <button onClick={() => setDropdown(!dropdown)}>
+                        <MoreVert/>
+                    </button>
+                    {dropdown && <GoalCardDropdown setDropdown={setDropdown} setModalActive={setModalActive} setModalType={setModalType}/>}
+                </div>
+                <div className="goal-details">
                     <button onClick={() => setExpanded(!expanded)}>
                         <ExpandMore sx={{rotate: "180deg"}}/>
                     </button>
                 </div>
                 <div className="goal-date">
-                    <Typography variant='h5' component="h5" gutterBottom>Achieve By</Typography>
-                    <Typography variant='h5' component="h5" sx={{paddingLeft: "20px"}}>{dateFormatter(endDate, "full date")} (Days remaining: {remainingDays > 0 ? Math.round(remainingDays) : 0})</Typography>
+                    <Typography variant='h5' component="h5" gutterBottom><CalendarMonth />Target Date</Typography>
+                    {endDate
+                    ?
+                        <Typography variant='h5' component="h5" sx={{paddingLeft: "20px"}}>{dateFormatter(endDate, "full date")} (Days remaining: {remainingDays > 0 ? Math.round(remainingDays) : 0})</Typography>
+                    :
+                        <Typography variant='body1' component="p" sx={{paddingLeft: "20px"}}>No end date specified</Typography>
+                    }
                 </div>
                 <div className="goal-description">
-                    <Typography variant='h5' component="h5" gutterBottom>Description</Typography>
-                    <Typography variant='body1' component="p" sx={{paddingLeft: "20px", fontSize: "20px"}}>{desc}</Typography>
+                    <Typography variant='h5' component="h5" gutterBottom><Article />Description</Typography>
+                    {desc
+                    ?
+                        <Typography variant='body1' component="p" sx={{paddingLeft: "20px", fontSize: "20px"}}>{desc}</Typography>
+                    :
+                        <Typography variant='body1' component="p" sx={{paddingLeft: "20px", fontSize: "20px"}}>No goal description</Typography>
+                    }
                 </div>
             </div>
         :
@@ -62,8 +92,14 @@ const GoalCard = ({name, desc, currentProg, endGoal, endDate, status}) => {
                     <p className='progress-end'>{Intl.NumberFormat("en", {style: "currency", currency: "GBP"}).format(endGoal)}</p>
                 </div>
                 <div className="goal-options">
+                    <button onClick={() => setDropdown(!dropdown)}>
+                        <MoreVert/>
+                    </button>
+                    {dropdown && <GoalCardDropdown setDropdown={setDropdown} setModalActive={setModalActive} setModalType={setModalType}/>}
+                </div>
+                <div className="goal-details">
                     <button onClick={() => setExpanded(!expanded)}>
-                        <ExpandMore />
+                        <ExpandMore/>
                     </button>
                 </div>
             </div>
