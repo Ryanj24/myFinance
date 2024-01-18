@@ -2,8 +2,11 @@ import React from 'react'
 import './GoalModal.css'
 import GoalForm from '../GoalForm/GoalForm'
 import { Close } from '@mui/icons-material'
+import {useSelector} from 'react-redux'
 
 const GoalModal = ({modalType, toggleModal, goal}) => {
+
+    const {token} = useSelector(state => state.user.user)
   return (
     <div className='goal-modal-container'>
         <div className="goal-modal">
@@ -15,7 +18,12 @@ const GoalModal = ({modalType, toggleModal, goal}) => {
                     </button>
                 </div>
             </header>
-            <GoalForm formType={modalType} toggleModal={toggleModal} goal={goal}/>
+            <GoalForm 
+                formType={modalType} 
+                toggleModal={toggleModal} 
+                goal={goal} 
+                userToken={token}
+            />
         </div>
     </div>
   )

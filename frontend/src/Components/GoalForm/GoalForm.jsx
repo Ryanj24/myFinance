@@ -3,10 +3,13 @@ import './GoalForm.css'
 import {useForm} from 'react-hook-form'
 import { Button, Slider } from '@mui/material'
 import { Add, Remove } from '@mui/icons-material'
+import { createGoal, editGoalDetails, updateProgress } from '../../utilityFunctions/goalRequests'
+import { useDispatch } from 'react-redux'
+import { addGoal, editGoal, updateGoal } from '../../redux/goalSlice'
 
-const GoalForm = ({formType, toggleModal, goal}) => {
+const GoalForm = ({formType, toggleModal, goal, userToken}) => {
 
-    const [value, setValue] = useState(+goal.current_progress)
+    const [value, setValue] = useState(formType === "Add Goal" ? null : +goal.current_progress)
 
     const {register, handleSubmit, formState: {isSubmitSuccessful}} = useForm({defaultValues: {
         goal_name: formType === "Edit Goal" ? goal.goal_name : "",
@@ -15,13 +18,39 @@ const GoalForm = ({formType, toggleModal, goal}) => {
         goal_end_amount: formType === "Edit Goal" ? +goal.end_goal : "",
     }})
 
-    const onSubmit = (data) => {
-        console.log(data)
+    const dispatch = useDispatch()
+
+    const onSubmit = async (data) => {
+        if (formType === "Add Goal") {
+            const response = await createGoal(data, userToken)
+
+            console.log(response)
+
+            dispatch(addGoal(response))
+
+        } else if (formType === "Edit Goal") {
+            const response = await editGoalDetails(data, goal.id, userToken)
+
+            console.log(response)
+
+            dispatch(editGoal(response))
+        }
+
         toggleModal(false)
     }
 
-    const progressUpdateSubmit = () => {
-        console.log(value)
+    const progressUpdateSubmit = async () => {
+
+        if (formType === "Update Goal") {
+            const response = await updateProgress({updatedProgress: value}, goal.id, userToken)
+
+            console.log(response)
+
+            dispatch(updateGoal(response))
+
+        }
+        
+        toggleModal(false)
     }
 
     const handleChange = (e, newVal) => {
@@ -34,11 +63,12 @@ const GoalForm = ({formType, toggleModal, goal}) => {
     ?
         <form id='goal-update-form' onSubmit={handleSubmit(progressUpdateSubmit)}>
             <div className="amount-slider">
-                <button className='slider-control-btns' onClick={() => setValue(value - 1)}><Remove /></button>
+                <button className='slider-control-btns' onClick={() => setValue(value - 1)} type='button'><Remove /></button>
                 <Slider 
                     id="amount-slider-component"
                     size='medium' 
                     valueLabelDisplay='on' 
+                    valueLabelFormat={(val) => Intl.NumberFormat("en", {style: "currency", currency: "GBP"}).format(val)}
                     defaultValue={+goal.current_progress}
                     min={0}
                     max={+goal.end_goal}
@@ -47,7 +77,7 @@ const GoalForm = ({formType, toggleModal, goal}) => {
                     onChange={handleChange} 
                     sx={{width: 200}} 
                 />
-                <button className='slider-control-btns' onClick={() => setValue(value + 1)}><Add /></button>
+                <button className='slider-control-btns' onClick={() => setValue(value + 1)} type='button'><Add /></button>
             </div>
             <div className="save-btn-container">
                 <Button variant='contained' sx={{textTransform: "none", borderRadius: "10px"}} type='submit'>Update Goal</Button>

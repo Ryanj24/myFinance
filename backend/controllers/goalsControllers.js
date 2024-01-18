@@ -45,13 +45,34 @@ export const getSingleGoal = async (req, res) => {
 }
 
 
+export const editGoal = async (req, res) => {
+
+    try {
+        // Update the goal in the database
+        const query = await db.query(
+            `UPDATE goals SET goal_name = ?, goal_desc = ?, end_goal = ?, end_date = ? WHERE id = ?`,
+            [req.body.goalName, req.body.goalDesc, req.body.endGoal, req.body.endDate, req.params.id]
+        )
+
+        // Retrieve the updated goal
+        const editedGoal = await db.query(`SELECT * FROM goals WHERE id = ?`, [req.params.id])
+
+        // Return the updated goal
+        return res.json(editedGoal[0][0]);
+
+    } catch (error) {
+        // Return any errors
+        return res.json(error)
+    }
+}
+
 export const updateGoal = async (req, res) => {
 
     try {
         // Update the goal in the database
         const query = await db.query(
-            `UPDATE goals SET goal_name = ?, goal_desc = ?, current_progress = ?, end_goal = ?, end_date = ? WHERE id = ?`,
-            [req.body.goalName, req.body.goalDesc, req.body.currProg, req.body.endGoal, req.body.endDate, req.params.id]
+            `UPDATE goals SET current_progress = ? WHERE id = ?`,
+            [req.body.currentProgress, req.params.id]
         )
 
         // Retrieve the updated goal
@@ -64,6 +85,7 @@ export const updateGoal = async (req, res) => {
         // Return any errors
         return res.json(error)
     }
+
 }
 
 export const deleteGoal = async (req, res) => {

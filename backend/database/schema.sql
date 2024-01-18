@@ -92,9 +92,10 @@ CREATE TABLE goals (
     `user_id` INT unsigned,
     `goal_name` VARCHAR(64),
     `goal_desc` TEXT,
-    `current_progress` DECIMAL(10, 2),
+    `current_progress` DECIMAL(10, 2) DEFAULT 0,
     `end_goal` DECIMAL(10, 2),
     `end_date` DATE,
+    `status` ENUM("Active", "Completed") DEFAULT "Active"
     PRIMARY KEY(`id`),
     FOREIGN KEY(`user_id`) REFERENCES `users`(`id`)
 );

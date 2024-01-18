@@ -1,8 +1,21 @@
 import React from 'react'
 import './GoalCardDropdown.css'
 import { Add, Edit, Delete } from '@mui/icons-material'
+import { useSelector, useDispatch } from 'react-redux'
+import { removeGoal } from '../../../utilityFunctions/goalRequests'
+import { deleteGoal } from '../../../redux/goalSlice'
 
-const GoalCardDropdown = ({setDropdown, setModalActive, setModalType}) => {
+const GoalCardDropdown = ({setDropdown, setModalActive, setModalType, goal}) => {
+
+  const {token} = useSelector(state => state.user.user)
+  const dispatch = useDispatch()
+
+  const handleDelete = async () => {
+    const response = await removeGoal(goal.id, token)
+
+    dispatch(deleteGoal(response))
+  }
+
   return (
     <div className='goal-card-dropdown'>
         <button className='goal-card-update-btn' onClick={() => {
@@ -19,7 +32,7 @@ const GoalCardDropdown = ({setDropdown, setModalActive, setModalType}) => {
             }}>
             <Edit /> Edit Goal
         </button>
-        <button className='goal-card-delete-btn'>
+        <button className='goal-card-delete-btn' onClick={() => handleDelete()}>
             <Delete /> Delete Goal
         </button>
     </div>
