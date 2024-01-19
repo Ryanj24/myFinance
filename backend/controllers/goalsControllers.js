@@ -68,11 +68,14 @@ export const editGoal = async (req, res) => {
 
 export const updateGoal = async (req, res) => {
 
+    const token = req.headers.authorization.split(" ")[1]
+    const {id} = jwt.decode(token)
+
     try {
         // Update the goal in the database
         const query = await db.query(
-            `UPDATE goals SET current_progress = ? WHERE id = ?`,
-            [req.body.currentProgress, req.params.id]
+            `CALL update_goal_progress_procedure(?, ?, ?)`,
+            [id, req.params.id, req.body.currentProgress]
         )
 
         // Retrieve the updated goal

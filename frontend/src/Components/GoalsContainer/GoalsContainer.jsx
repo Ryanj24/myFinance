@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './GoalsContainer.css'
 import {useSelector} from 'react-redux'
 import GoalCard from '../GoalCard/GoalCard'
@@ -7,8 +7,15 @@ const GoalsContainer = ({selectedTab}) => {
 
     const {goals} = useSelector(state => state.goals)
 
-    const activeGoals = goals.filter(goal => goal.status === "Active")
-    const completedGoals = goals.filter(goal => goal.status === "Completed")
+    let activeGoals = goals.filter(goal => goal.status === "Active")
+    let completedGoals = goals.filter(goal => goal.status === "Completed")
+
+    useEffect(() => {
+        activeGoals = goals.filter(goal => goal.status === "Active")
+        completedGoals = goals.filter(goal => goal.status === "Completed")
+    }, [goals])
+
+
   return (
     <section className='goal-cards-container'>
         {selectedTab === "Active"

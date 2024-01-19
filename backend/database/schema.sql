@@ -310,6 +310,30 @@ END//
 DELIMITER ;
 
 DELIMITER //
+CREATE PROCEDURE update_goal_progress_procedure(
+    IN user_id INT,
+    IN goal_id INT,
+    IN new_progress_amount DECIMAL(10, 2)
+)
+BEGIN
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+    END;
+
+    SET @endGoalAmount = (SELECT `end_goal` FROM `goals` WHERE `id` = goal_id AND `user_id` = user_id);
+
+    IF new_progress_amount = (SELECT @endGoalAmount) THEN
+        UPDATE `goals` SET `current_progress` = new_progress_amount, `status` = "Completed" WHERE `id` = goal_id AND `user_id` = user_id;
+    ELSE
+        UPDATE `goals` SET `current_progress` = new_progress_amount WHERE `id` = goal_id AND `user_id` = user_id;
+    END IF;
+
+END//
+DELIMITER ;
+
+DELIMITER //
 CREATE TRIGGER deleteBankAccount
 BEFORE DELETE ON bank_accounts
 FOR EACH ROW

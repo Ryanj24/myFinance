@@ -16,7 +16,7 @@ export const goalSlice = createSlice({
             state.goals = state.goals.map(goal => goal.id === action.payload.id ? action.payload : goal)
         },
         updateGoal: (state, action) => {
-            state.goals = state.goals.map(goal => goal.id === action.payload.id ? {...goal, current_progress: action.payload.current_progress} : goal)
+            state.goals = state.goals.map(goal => goal.id === action.payload.id ? {...goal, current_progress: action.payload.current_progress, status: action.payload.status} : goal)
         },
         deleteGoal: (state, action) => {
             state.goals = state.goals.filter(goal => goal.id != action.payload.id)
