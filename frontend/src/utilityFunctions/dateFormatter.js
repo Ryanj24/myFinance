@@ -37,6 +37,8 @@ const dateSuffixes = (dateNumber) => {
             return "nd"
         case 3:
             return "rd"
+        default:
+            return "th"
     }
 }
 

@@ -57,13 +57,21 @@ const GoalForm = ({formType, toggleModal, goal, userToken}) => {
         setValue(newVal)
     }
 
+    const handleSliderButtonChange = (type) => {
+        if (type === "decrement") {
+            value > 0 ? setValue(value - 1) : 0
+        } else {
+            value < +goal.end_goal ? setValue(value + 1) : +goal.end_goal
+        }
+    }
+
   return (
     <>
     {formType === "Update Goal" 
     ?
         <form id='goal-update-form' onSubmit={handleSubmit(progressUpdateSubmit)}>
             <div className="amount-slider">
-                <button className='slider-control-btns' onClick={() => setValue(value - 1)} type='button'><Remove /></button>
+                <button className='slider-control-btns' onClick={() => handleSliderButtonChange("decrement")} type='button'><Remove /></button>
                 <Slider 
                     id="amount-slider-component"
                     size='medium' 
@@ -77,7 +85,7 @@ const GoalForm = ({formType, toggleModal, goal, userToken}) => {
                     onChange={handleChange} 
                     sx={{width: 200}} 
                 />
-                <button className='slider-control-btns' onClick={() => setValue(value + 1)} type='button'><Add /></button>
+                <button className='slider-control-btns' onClick={() => handleSliderButtonChange("increment")} type='button'><Add /></button>
             </div>
             <div className="save-btn-container">
                 <Button variant='contained' sx={{textTransform: "none", borderRadius: "10px"}} type='submit'>Update Goal</Button>
