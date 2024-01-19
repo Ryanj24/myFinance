@@ -67,7 +67,7 @@ const CompanyFinancials = ({company, selectedChart}) => {
             <LineChart height="100%" width="100%" data={data} margin={{left: 10, right: 40, bottom: 50, top: 10}}>
               <XAxis dataKey="date" angle={-45} tick={{dy: 35}}/>
               <YAxis domain={['dataMin - 2', 'auto']} label={{value: "Price per Share ($USD)", angle: -90, position: "insideLeft", dy: 70}}/>
-              <Tooltip />
+              <Tooltip formatter={(val) => Intl.NumberFormat("en", {style: "currency", currency: "USD"}).format(val)}/>
               <Line dataKey="Share Price" stroke="#407BFF" strokeWidth={2} dot={false}/>
             </LineChart>
           :
@@ -79,7 +79,7 @@ const CompanyFinancials = ({company, selectedChart}) => {
                 <XAxis dataKey="year" />
               }
               <YAxis label={{value: "Millions ($USD)", angle: -90, position: "insideLeft", dy: 40, dx: -20}} />
-              <Tooltip />
+              <Tooltip formatter={(val) => Intl.NumberFormat("en", {style: "currency", currency: "USD"}).format(val)}/>
               {selectedChart === "Revenues"
               ? 
                 <Bar dataKey="Revenue" fill="#407BFF" activeBar={<Rectangle />}/>

@@ -38,3 +38,15 @@
 .company-search-container > #company-search-form > button > svg{
     color: #fff;
 }
+
+.data-attribution {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.data-attribution > p > a{
+    color: var(--primary-col);
+}

@@ -32,7 +32,7 @@ const PortfolioCard = ({portfolio}) => {
             <Typography variant='h5' component="h5">{portfolio.portfolio_name}</Typography>
         </div>
         <div className="portfolio-value">
-            <Typography variant='h6' component="h6" gutterBottom>Total Value</Typography>
+            <Typography variant='h6' component="h6" gutterBottom>Available Funds</Typography>
             <Typography variant='body2' component="p">{Intl.NumberFormat("en-US", {style: "currency", currency: "GBP"}).format(portfolio.balance)}</Typography>
         </div>
         <div className="view-portfolio-icon-container">
