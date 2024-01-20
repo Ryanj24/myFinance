@@ -47,23 +47,6 @@ export const createPortfolio = async (req, res) => {
     }
 }
 
-// export const getSinglePortoflio = async (req, res) => {
-    
-//     // Get the name and balance of the portfolio along with all transactions related to that portfolio
-//     const portfolio = await db.query(`SELECT portfolio_name, balance FROM stock_portfolio WHERE id = ?`, [req.params.id])
-//     const portfolioTransactions = await db.query(
-//         `SELECT company_name, company_ticker, type, transaction_date, quantity, price_per_share, total_amount FROM stock_transactions WHERE portfolio_id = ?`,
-//         [req.params.id]
-//     )
-
-//     // If no portfolio is returned then alert the user that no portfolio exists with the id provided
-//     if (!portfolio[0][0]) {
-//         return res.json({error: true, message: `No portfolio exists with the id ${req.params.id}`})
-//     }
-
-//     // Return the portfolio and all transactions
-//     return res.json({portfolio: portfolio[0][0], transactions: portfolioTransactions[0]})
-// }
 
 export const stockTransaction = async (req, res) => {
     

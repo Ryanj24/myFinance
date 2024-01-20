@@ -41,16 +41,6 @@ export const createGoal = async (req, res) => {
     }
 }
 
-// export const getSingleGoal = async (req, res) => {
-
-//     // Get the goal from the db
-//     const goal = await db.query(`SELECT * FROM goals WHERE id = ?`, [req.params.id])
-
-
-//     // Return the goal
-//     return res.json(goal[0][0])
-// }
-
 
 export const editGoal = async (req, res) => {
 
@@ -113,7 +103,7 @@ export const deleteGoal = async (req, res) => {
         return res.json(deletedGoal[0][0])
 
     } catch (error) {
-        
+
         // Return any errors
         return res.json(error)
     }
