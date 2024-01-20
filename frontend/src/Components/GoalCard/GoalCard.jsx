@@ -55,7 +55,7 @@ const GoalCard = ({id, name, desc, currentProg, endGoal, endDate, status}) => {
                     <button onClick={() => setDropdown(!dropdown)}>
                         <MoreVert/>
                     </button>
-                    {dropdown && <GoalCardDropdown setDropdown={setDropdown} setModalActive={setModalActive} setModalType={setModalType} goal={selectedGoal}/>}
+                    {dropdown && <GoalCardDropdown setDropdown={setDropdown} setModalActive={setModalActive} setModalType={setModalType} goalID={id}/>}
                 </div>
                 <div className="goal-details">
                     <button onClick={() => setExpanded(!expanded)}>
@@ -95,7 +95,7 @@ const GoalCard = ({id, name, desc, currentProg, endGoal, endDate, status}) => {
                     <button onClick={() => setDropdown(!dropdown)}>
                         <MoreVert/>
                     </button>
-                    {dropdown && <GoalCardDropdown setDropdown={setDropdown} setModalActive={setModalActive} setModalType={setModalType} goal={selectedGoal}/>}
+                    {dropdown && <GoalCardDropdown setDropdown={setDropdown} setModalActive={setModalActive} setModalType={setModalType} goalID={id}/>}
                 </div>
                 <div className="goal-details">
                     <button onClick={() => setExpanded(!expanded)}>

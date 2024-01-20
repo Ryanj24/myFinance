@@ -5,13 +5,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { removeGoal } from '../../../utilityFunctions/goalRequests'
 import { deleteGoal } from '../../../redux/goalSlice'
 
-const GoalCardDropdown = ({setDropdown, setModalActive, setModalType, goal}) => {
+const GoalCardDropdown = ({setDropdown, setModalActive, setModalType, goalID}) => {
 
   const {token} = useSelector(state => state.user.user)
   const dispatch = useDispatch()
 
   const handleDelete = async () => {
-    const response = await removeGoal(goal.id, token)
+
+    const response = await removeGoal(goalID, token)
 
     dispatch(deleteGoal(response))
   }

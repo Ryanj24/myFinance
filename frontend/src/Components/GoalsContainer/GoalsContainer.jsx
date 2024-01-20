@@ -41,6 +41,7 @@ const GoalsContainer = ({selectedTab}) => {
             completedGoals.map(goal => (
                 <GoalCard 
                     key={goal.id}
+                    id={goal.id}
                     name={goal.goal_name}
                     desc={goal.goal_desc}
                     currentProg={goal.current_progress}
