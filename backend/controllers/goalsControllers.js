@@ -22,27 +22,34 @@ export const createGoal = async (req, res) => {
     const {id} = jwt.decode(token)
 
     try {
+
+        // Insert the new goal into the database with the data provided in the request body
         const query = await db.query(
             `INSERT INTO goals (user_id, goal_name, goal_desc, current_progress, end_goal, end_date) VALUES (?, ?, ?, ?, ?, ?)`, [id, req.body.goalName, req.body.goalDesc, req.body.currProg, req.body.endGoal, req.body.endDate]
         )
 
+        // Retrieve the newly created goal
         const newGoal = await db.query(`SELECT * FROM goals WHERE user_id = ? AND goal_name = ?`, [id, req.body.goalName])
 
+
+        // Return the new goal object
         return res.json(newGoal[0][0])
     } catch (error) {
+
+        // Return any error
         return res.json(error)
     }
 }
 
-export const getSingleGoal = async (req, res) => {
+// export const getSingleGoal = async (req, res) => {
 
-    // Get the goal from the db
-    const goal = await db.query(`SELECT * FROM goals WHERE id = ?`, [req.params.id])
+//     // Get the goal from the db
+//     const goal = await db.query(`SELECT * FROM goals WHERE id = ?`, [req.params.id])
 
 
-    // Return the goal
-    return res.json(goal[0][0])
-}
+//     // Return the goal
+//     return res.json(goal[0][0])
+// }
 
 
 export const editGoal = async (req, res) => {
@@ -68,6 +75,7 @@ export const editGoal = async (req, res) => {
 
 export const updateGoal = async (req, res) => {
 
+    // Get the users' id from the jwt provided in the request headers
     const token = req.headers.authorization.split(" ")[1]
     const {id} = jwt.decode(token)
 
@@ -95,15 +103,17 @@ export const deleteGoal = async (req, res) => {
     
     try {
 
-        // Before deletion, get the portfolio that is to be deleted
+        // Before deletion, get the goal that is to be deleted
         const deletedGoal = await db.query(`SELECT * FROM goals WHERE id = ?`, [req.params.id])
 
-        // Delete the portfolio
+        // Delete the goal from the database
         const deleteRequest = await db.query(`DELETE FROM goals WHERE id = ?`, [req.params.id])
 
-        // Return the deleted portfolio object
+        // Return the deleted goal object
         return res.json(deletedGoal[0][0])
+
     } catch (error) {
+        
         // Return any errors
         return res.json(error)
     }

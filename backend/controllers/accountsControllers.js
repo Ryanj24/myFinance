@@ -10,9 +10,10 @@ export const getUserAccounts = async (req, res) => {
     // Get all bank accounts belonging to the user making the request
     const accounts = await db.query(`SELECT id, account_name, account_number, account_provider,balance FROM bank_accounts WHERE account_owner_id = ?`, [id])
 
+    // Get all the transactions the user has made
     const transactions = await db.query(`SELECT * FROM bank_transactions WHERE account_id IN (SELECT id FROM bank_accounts WHERE account_owner_id = ?)`, [id])
 
-    // Return the array of accounts
+    // Return the arrays of accounts and transactions 
     return res.json({bankAccounts: accounts[0], bankTransactions: transactions[0]})
 }
 
@@ -23,7 +24,7 @@ export const createNewAccount = async (req, res) => {
     const {id} = jwt.decode(token)
 
     try {
-        // Insert the account name and number into the bank accounts table and specify the owner of the account is the user making the request
+        // Insert the account name,number and initial balance into the bank accounts table
         const query = await db.query(
             `INSERT INTO bank_accounts (account_name, account_number, balance, account_provider, account_owner_id)
              VALUES (?, ?, ?, ?, ?)
@@ -138,11 +139,11 @@ export const updateTransaction = async (req, res) => {
             ]
         )
 
-        // Retrieve that account that has been updated
+        // Retrieve the updated transaction and the account where that transaction belongs that has had its balance updated
         const updatedTransaction = await db.query(`SELECT * FROM bank_transactions WHERE id = ? AND account_id = ?`, [req.params.transactionID, req.params.id])
         const updatedAccount = await db.query(`SELECT * FROM bank_accounts WHERE id = ?`, [req.params.id])
 
-        // Return the newly updated account to the user
+        // Return the newly updated transaction along with the account to the user
         return res.json({account: updatedAccount[0][0], transaction: updatedTransaction[0][0]});
 
     } catch (error) {
