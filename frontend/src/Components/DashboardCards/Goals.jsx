@@ -5,6 +5,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { useSelector } from 'react-redux'
 import { roundNumbers} from '../../utilityFunctions/roundNumbers.js';
+import ProgressBar from '../GoalCard/ProgressBar/ProgressBar.jsx';
 
 const Goals = () => {
 
@@ -38,7 +39,7 @@ const Goals = () => {
                 <TableCell component="th" scope="row">
                   {goal.goal_name}
                 </TableCell>
-                <TableCell align="right">{roundNumbers(goal.current_progress / goal.end_goal, 3) * 100}%</TableCell>
+                <TableCell align='right'><ProgressBar currentProg={goal.current_progress} endGoal={goal.end_goal}/></TableCell>
               </TableRow>
             ))}
           </TableBody>

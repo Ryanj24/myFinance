@@ -63,18 +63,14 @@
     background: none;
     border: none;
     background-color: #fff;
-    /* color: #fff; */
     font-size: medium;
 }
 
 .transaction-card > .transaction-action-btns > .edit-transaction-btn {
-    /* background-color: var(--primary-col); */
     color: var(--primary-col);
-    /* background-color: #fff; */
 }
 
 .transaction-card > .transaction-action-btns > .delete-transaction-btn {
-    /* background-color: #FF0000; */
     color: #FF0000;
 }
 

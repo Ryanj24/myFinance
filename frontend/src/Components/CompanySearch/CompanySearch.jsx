@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import './CompanySearch.css'
 import {useForm} from 'react-hook-form'
 import { useSelector } from 'react-redux'
-import { Button, Typography } from '@mui/material'
-import { Search } from '@mui/icons-material'
+import { Alert, Button, Typography } from '@mui/material'
+import { Search, Cancel } from '@mui/icons-material'
 import CompanyDetails from '../CompanyDetails/CompanyDetails'
 import { companyInfo } from '../../companyExampleData'
 import { getCompanyData } from '../../utilityFunctions/getCompanyData'
@@ -15,14 +15,27 @@ const CompanySearch = () => {
     const [companyData, setCompanyData] = useState(testData);
     const [searchSubmitted, setSearchSubmitted] = useState(false)
     const {register, handleSubmit, formState: {isSubmitSuccessful}} = useForm()
+    const [error, setError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState("")
 
     const userToken = useSelector((state) => state.user.user.token)
 
     const handleOnSubmit = async (data) => {
 
-        const response = await getCompanyData(data["company-ticker"], userToken)
+        if (!data["company-ticker"]) {
+            setError(true)
+            setErrorMessage("Please enter a valid company ticker")
+            return
+        }
 
-        // console.log(response)
+        const response = await getCompanyData(data["company-ticker"].toLowerCase().trim().replaceAll(" ", ""), userToken)
+
+        if (!("overviewData" in response)) {
+            setError(true)
+            setErrorMessage("Company not found")
+            return
+        }
+
         setCompanyData(response)
         setSearchSubmitted(true)
     }
@@ -33,13 +46,18 @@ const CompanySearch = () => {
         ?
             <>
             <section className='company-search-container'>
+                {error && 
+                    <Alert variant='filled' severity='error' icon={<Cancel fontSize='inherit' />} sx={{marginTop: "20px", marginBottom: "20px"}}>
+                        {errorMessage}
+                    </Alert>
+                }
                 <header>
                     <h2>
                         Enter Company Ticker
                     </h2>
                 </header>
                 <form id='company-search-form' onSubmit={handleSubmit(handleOnSubmit)}>
-                    <input type="text" id='company-ticker' required {...register("company-ticker")} placeholder='Example: MSFT'/>
+                    <input type="text" id='company-ticker'  {...register("company-ticker")} placeholder='Example: MSFT'/>
                     <button type='submit'><Search /></button>
                 </form>
             </section>

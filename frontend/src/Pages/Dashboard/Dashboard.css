@@ -30,11 +30,8 @@
 
 
 .dashboard-grid > .income-chart {
-    /* background-color: yellow; */
     grid-row: 1 / 4;
     grid-column: 1 / 5;
-    /* display: flex;
-    flex-direction: column; */
 }
 
 .dashboard-grid > .income-chart > #income-year-selector-form {
@@ -63,10 +60,8 @@
 }
 
 .dashboard-grid > .goals {
-    /* background-color: red; */
     grid-row: 1 / 4;
     grid-column: 5 / -1;
-    /* height: 330px; */
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -75,7 +70,6 @@
 
 
 .dashboard-grid > .budget {
-    /* background-color: green; */
     grid-row: 4 / -1;
     grid-column: 1 / 3;
     overflow-y: scroll;
@@ -119,14 +113,12 @@
 }
 
 .dashboard-grid > .transactions {
-    /* background-color: blueviolet; */
     grid-row: 4 / -1;
     grid-column: 3 / 5;
     overflow-y: scroll;
 }
 
 .dashboard-grid > .accounts {
-    /* background-color: darkorange; */
     grid-row: 4 / -1;
     grid-column: 5 / -1;
     overflow-y: scroll;

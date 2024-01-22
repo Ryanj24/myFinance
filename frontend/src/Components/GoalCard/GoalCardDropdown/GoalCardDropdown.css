@@ -19,6 +19,7 @@
     width: 100%;
     padding: 10px;
     font-size: medium;
+    color: var(--primary-col);
 }
 
 .goal-card-dropdown > button:hover {
@@ -27,6 +28,7 @@
 
 .goal-card-dropdown > button > svg {
     margin-right: 5px;
+    color: var(--primary-col);
 }
 
 .goal-card-dropdown > .goal-card-update-btn {
