@@ -1,0 +1,23 @@
+.accounts-count-sort {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 1.5rem;
+}
+
+.accounts-count-sort > p{
+    font-size: large;
+}
+
+.accounts-count-sort > .accounts-sort > label{
+    font-size: large;
+    margin-right: 10px;
+}
+
+.accounts-count-sort > .accounts-sort > select {
+    padding: 5px;
+    font-size: medium;
+    margin: 0 10px;
+    border-radius: 5px;
+}

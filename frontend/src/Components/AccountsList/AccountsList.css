@@ -1,0 +1,15 @@
+.accounts-list {
+    padding: 1rem;
+    overflow-y: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+    max-height: 450px;
+}
+
+.accounts-list > p{
+    text-align: center;
+}
+
+.accounts-list::-webkit-scrollbar {
+    display: none;
+}

@@ -28,7 +28,7 @@ const Accounts = () => {
       )
     }
 
-    const updatedAccounts = accounts.slice().map(obj => accountIcon(obj))
+    const updatedAccounts = accounts.map(obj => accountIcon(obj))
 
   return (
     <div className="accounts">

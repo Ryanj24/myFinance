@@ -6,7 +6,7 @@
     background-color: #e9e9e9;
 }
 
-.accounts-container > .accounts-header {
+/* .accounts-container > .accounts-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -35,7 +35,7 @@
 
 .accounts-container > .accounts-header > .accounts-action-btn > button:hover {
     cursor: pointer;
-}
+} */
 
 .accounts-container > .accounts-count-sort {
     display: flex;
