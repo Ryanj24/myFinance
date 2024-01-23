@@ -19,6 +19,12 @@
     max-width: 100%;
 }
 
+.details-section > .provider-logo-container > svg{
+    font-size: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
 .details-section > .account-info {
     display: flex;
     align-items: center;

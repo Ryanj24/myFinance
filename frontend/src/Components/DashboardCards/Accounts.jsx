@@ -43,7 +43,12 @@ const Accounts = () => {
             {updatedAccounts.map((account, index) => (
               <ListCard 
                 key={account.id}
-                icon={<Icon><img src={bankIcons[account.iconIndex]} alt={account.account_provider + " Logo"} height="100%" width="100%"/></Icon>}
+                icon={account.iconIndex === 9
+                  ?
+                    <Icon>{bankIcons[account.iconIndex]}</Icon>
+                  :
+                    <Icon><img src={bankIcons[account.iconIndex]} alt={account.account_provider + " Logo"} height="100%" width="100%"/></Icon>
+                }
                 name={account.account_name}
                 amount={Intl.NumberFormat("en", {style:"currency", currency: "GBP"}).format(account.balance)}
               />

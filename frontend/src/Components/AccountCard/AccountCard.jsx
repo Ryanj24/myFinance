@@ -10,7 +10,12 @@ const AccountCard = ({account}) => {
   return (
     <div className='account-card'>
         <div className="account-logo-container">
-            <Icon><img src={bankIcons[account.iconIndex]} alt="Account Logo" height="100%" width="100%"/></Icon>
+            {account.iconIndex === 9
+                ?
+                    <Icon>{bankIcons[account.iconIndex]}</Icon>
+                :
+                    <Icon><img src={bankIcons[account.iconIndex]} alt="Account Logo" height="100%" width="100%"/></Icon>
+            }
         </div>
         <div className="account-name-number">
             <Typography variant='h5' component="h5">{account.account_name}</Typography>

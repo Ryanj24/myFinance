@@ -2,7 +2,7 @@ import React from 'react'
 import './AccountOverview.css'
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Typography } from '@mui/material';
+import { Typography, Icon } from '@mui/material';
 import { AccountBalance } from '@mui/icons-material';
 
 import Barclays from '../../assets/bank-logos-full/Barclays_full.svg'
@@ -15,6 +15,7 @@ import Santander from '../../assets/bank-logos-full/Santander_full.svg'
 import Starling from '../../assets/bank-logos-full/Starling_Bank_full.svg'
 import VirginMoney from '../../assets/bank-logos-full/Virgin_Money_full.svg'
 import { accountIcon } from '../../utilityFunctions/accountIcon.js'
+import { bankIcons } from '../DashboardCards/Accounts.jsx'
 
 const fullBankLogos = [Barclays, HSBC, Lloyds, Monzo, NatWest, RBS, Santander, Starling, VirginMoney, <AccountBalance />]
 
@@ -27,7 +28,12 @@ const AccountOverview = () => {
   return (
     <section className='details-section'>
         <div className="provider-logo-container">
-            <img src={fullBankLogos[account.iconIndex]} alt={account.account_provider + " Logo"} height="100%" width="100%"/>
+          {account.iconIndex === 9
+              ?
+                <>{bankIcons[account.iconIndex]}</>
+              :
+                <img src={fullBankLogos[account.iconIndex]} alt={account.account_provider + " Logo"} height="100%" width="100%"/>
+          }
         </div>
         <div className="account-info">
           <div className="account-name">
