@@ -34,7 +34,7 @@ const GoalsContainer = ({selectedTab}) => {
                 />
             ))
             :
-            <p>No current goals</p>
+            <p style={{textAlign:"center", marginTop: "20px", fontSize: "large"}}>No current goals</p>
         :
             (completedGoals.length > 0)
             ?
@@ -50,7 +50,7 @@ const GoalsContainer = ({selectedTab}) => {
                 />
             ))
             :
-            <p>No goals completed</p>
+            <p style={{textAlign:"center", marginTop: "20px", fontSize: "large"}}>No completed goals</p>
         }
     </section>
   )

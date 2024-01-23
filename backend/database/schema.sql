@@ -323,9 +323,13 @@ BEGIN
     END;
 
     SET @endGoalAmount = (SELECT `end_goal` FROM `goals` WHERE `id` = goal_id AND `user_id` = user_id);
+    SET @currentGoalAmount = (SELECT `current_progress` FROM `goals` WHERE `id` = goal_id AND `user_id` = user_id);
+    SET @currentGoalStatus = (SELECT `status` FROM `goals` WHERE `id` = goal_id AND `user_id` = user_id);
 
     IF new_progress_amount = (SELECT @endGoalAmount) THEN
         UPDATE `goals` SET `current_progress` = new_progress_amount, `status` = "Completed" WHERE `id` = goal_id AND `user_id` = user_id;
+    ELSEIF new_progress_amount < (SELECT @endGoalAmount) AND (SELECT @currentGoalStatus) = "Completed" THEN
+        UPDATE `goals` SET `current_progress` = new_progress_amount, `status` = "Active" WHERE `id` = goal_id AND `user_id` = user_id;
     ELSE
         UPDATE `goals` SET `current_progress` = new_progress_amount WHERE `id` = goal_id AND `user_id` = user_id;
     END IF;
