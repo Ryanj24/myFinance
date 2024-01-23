@@ -12,7 +12,7 @@ const Profile = () => {
   const user = useSelector(state => state.user.user.user)
 
   const [editing, setEditing] = useState(false);
-  const [profileImage, setProfileImage] = useState(user.profile_img ? user.profile_img : defaultUserImg);
+  const [profileImage, setProfileImage] = useState(user.profile_img);
 
   return (
     <section className='profile-container'>

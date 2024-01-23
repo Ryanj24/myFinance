@@ -13,7 +13,7 @@ export const addTransaction = async (accountID, data, userToken) => {
                 transaction_category: data.transaction_category,
                 transaction_type: data.transaction_type,
                 transaction_date: data.transaction_date,
-                transaction_amount: parseInt(data.transaction_amount),
+                transaction_amount: data.transaction_amount,
                 transaction_desc: data.transaction_desc
             })
         })

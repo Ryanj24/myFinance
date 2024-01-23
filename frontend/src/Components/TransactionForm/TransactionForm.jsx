@@ -85,7 +85,7 @@ const TransactionForm = ({formType, transaction, toggleModal}) => {
 
         <div className="transaction-amount">
             <label htmlFor='transaction_amount'>Amount</label>
-            <input type="number" id='transaction_amount' {...register("transaction_amount")} min={0}/>
+            <input type="number" id='transaction_amount' {...register("transaction_amount")} min={0} step="0.01"/>
         </div>
 
         <div className="transaction-desc">
