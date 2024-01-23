@@ -27,7 +27,7 @@ const PortfolioOverview = () => {
           </div>
           <div className="portfolio-balance">
             <Typography variant='h5' component="h5" gutterBottom>
-              Portfolio Balance
+              Available Funds
             </Typography>
             <Typography variant='body1' component="p">
               {Intl.NumberFormat("en-US", {style: "currency", currency: "GBP"}).format(portfolio.balance)}

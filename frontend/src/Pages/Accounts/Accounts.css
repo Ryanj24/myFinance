@@ -65,7 +65,7 @@
     overflow-y: scroll;
     -ms-overflow-style: none; 
     scrollbar-width: none;  
-    max-height: 500px;
+    max-height: 450px;
 }
 
 .accounts-container > .accounts-list > p{

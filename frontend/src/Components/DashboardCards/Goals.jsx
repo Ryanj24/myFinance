@@ -4,7 +4,6 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { useSelector } from 'react-redux'
-import { roundNumbers} from '../../utilityFunctions/roundNumbers.js';
 import ProgressBar from '../GoalCard/ProgressBar/ProgressBar.jsx';
 
 const Goals = () => {
@@ -20,7 +19,7 @@ const Goals = () => {
   return (
     <div className="goals">
       <header className='goals-header'>
-          <h3>Goals</h3>
+          <h3>Active Goals</h3>
       </header>
       {goals.length === 0
       ?
@@ -30,11 +29,11 @@ const Goals = () => {
           <TableHead>
             <TableRow>
               <TableCell>Goal Name</TableCell>
-              <TableCell align="right">Progress</TableCell>
+              <TableCell align="center">Progress</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {goals.map(goal => (
+            {goals.filter(goal => goal.status === "Active").map(goal => (
               <TableRow key={goal.goal_name}>
                 <TableCell component="th" scope="row">
                   {goal.goal_name}

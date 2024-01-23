@@ -31,7 +31,7 @@ const PortfolioDetailsHeader = () => {
         {editModal && <PortfolioModal modalType="Edit Portfolio" toggleModal={setEditModal} portfolio={selectedPortfolio}/>} 
         <header className='portfolio-header'>
             <h1>
-            Portfolio Overview
+                Portfolio Overview
             </h1>
             <div className="portfolio-action-btns">
             <button className='portfolio-edit-btn' onClick={() => setEditModal(true)}>
