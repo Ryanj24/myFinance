@@ -25,7 +25,6 @@ const LoginRegisterForm = ({formType}) => {
         setError(`${response.field}`, {message: response.message})
       }
 
-      console.log(response);
     } else {
       const response = await loginUser(data)
 

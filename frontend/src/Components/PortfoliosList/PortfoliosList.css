@@ -13,9 +13,3 @@
 .portfolios-list::-webkit-scrollbar {
     display: none;
 }
-
-@media screen and (max-width: 1224px) {
-    .accounts-container {
-        height: fit-content;
-    }
-}

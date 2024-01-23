@@ -5,13 +5,14 @@ import { Edit } from '@mui/icons-material'
 import UserProfileForm from '../../Components/UserProfileForm/UserProfileForm'
 import UserProfilePicture from '../../Components/UserProfilePicture/UserProfilePicture'
 import UserProfileDetails from '../../Components/UserProfileDetails/UserProfileDetails'
+import defaultUserImg from '../../assets/user.png'
 
 const Profile = () => {
 
   const user = useSelector(state => state.user.user.user)
 
   const [editing, setEditing] = useState(false);
-  const [profileImage, setProfileImage] = useState(user.profile_img);
+  const [profileImage, setProfileImage] = useState(user.profile_img ? user.profile_img : defaultUserImg);
 
   return (
     <section className='profile-container'>
