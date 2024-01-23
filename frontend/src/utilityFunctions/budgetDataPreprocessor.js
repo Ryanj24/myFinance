@@ -32,7 +32,7 @@ export const budgetDataPreprocessor = (data, month, year) => {
 
     for (const [key, value] of Object.entries(filteredData)) {
         if (dataMap.has(formatColumnNames(key))) {
-            dataMap.set(formatColumnNames(key), parseInt(value))
+            dataMap.set(formatColumnNames(key), +value)
         }
     }
 

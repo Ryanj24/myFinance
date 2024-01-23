@@ -101,7 +101,7 @@ const BudgetForm = ({formType, toggleModal}) => {
         {budgetCategories.map((category, index) => (
           <div className={`${category.name.replaceAll(" ", "").replaceAll("&", "-").toLowerCase()}-budget`} key={category.id}>
             <label htmlFor={`${category.name.replaceAll(" ", "").replaceAll("&", "-").toLowerCase()}_budget`}>{budgetIconArray[index]}{category.name}</label>
-            <input type="number" id={`${category.name.replaceAll(" ", "").replaceAll("&", "-").toLowerCase()}_budget`} {...register(`${category.name.replaceAll(" ", "").replaceAll("&", "").toLowerCase()}_budget`)} min={0} required/>
+            <input type="number" step="0.01" id={`${category.name.replaceAll(" ", "").replaceAll("&", "-").toLowerCase()}_budget`} {...register(`${category.name.replaceAll(" ", "").replaceAll("&", "").toLowerCase()}_budget`)} min={0} required/>
           </div>  
         ))}
       <div className="save-btn-container">
