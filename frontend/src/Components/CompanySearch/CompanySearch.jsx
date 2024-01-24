@@ -35,6 +35,8 @@ const CompanySearch = () => {
             setErrorMessage("Company not found")
             return
         }
+        
+        console.log(response)
 
         setCompanyData(response)
         setSearchSubmitted(true)

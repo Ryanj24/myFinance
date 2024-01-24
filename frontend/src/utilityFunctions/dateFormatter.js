@@ -14,13 +14,13 @@ export const dateFormatter = (dateInput, dateFormat) => {
 }
 
 export const quarterDateFormatter = (obj) => {
-    if (obj.fiscalDateEnding.slice(5, 7) === "03") {
+    if (obj.fiscalDateEnding.slice(5, 7) >= "01" && obj.fiscalDateEnding.slice(5, 7) <= "03") {
         return {...obj, fiscalDateEnding: "Q1 '" + obj.fiscalDateEnding.slice(2, 4)}
-    } else if (obj.fiscalDateEnding.slice(5, 7) === "06") {
+    } else if (obj.fiscalDateEnding.slice(5, 7) >= "04" && obj.fiscalDateEnding.slice(5, 7) <= "06") {
         return {...obj, fiscalDateEnding: "Q2 '" + obj.fiscalDateEnding.slice(2, 4)}
-    } else if (obj.fiscalDateEnding.slice(5, 7) === "09") {
+    } else if (obj.fiscalDateEnding.slice(5, 7) >= "07" && obj.fiscalDateEnding.slice(5, 7) <= "09") {
         return {...obj, fiscalDateEnding: "Q3 '" + obj.fiscalDateEnding.slice(2, 4)}
-    } else if (obj.fiscalDateEnding.slice(5, 7) === "12") {
+    } else if (obj.fiscalDateEnding.slice(5, 7) >= "10" && obj.fiscalDateEnding.slice(5, 7) <= "12") {
         return {...obj, fiscalDateEnding: "Q4 '" + obj.fiscalDateEnding.slice(2, 4)}
     }
 }

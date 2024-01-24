@@ -55,7 +55,7 @@ const CompanyMetrics = ({companyRatios, companyBalanceSheet, companyIncomeStatem
         <div className="roa">
             <h3>
                 Return on Assets (TTM)
-                <Tooltip title="A company's return on assets measures how profitable the company is in relation to its total assets. \n In other words, how efficient the company is at managing its balance sheet to generate profits.">
+                <Tooltip title="A company's return on assets measures how profitable the company is in relation to its total assets. In other words, how efficient the company is at managing its balance sheet to generate profits.">
                     <Help />
                 </Tooltip>
             </h3>

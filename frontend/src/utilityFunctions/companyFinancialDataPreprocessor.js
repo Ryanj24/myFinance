@@ -110,6 +110,7 @@ export const AssetsVsLiabilities = (data, type) => {
     } else {
         reports = data.quarterlyReports.map(obj => quarterDateFormatter(obj));
 
+
         reports.forEach(obj => {
             if (!dataMap.has(obj.fiscalDateEnding)) {
                 dataMap.set(obj.fiscalDateEnding, {totalAssets: obj.totalAssets / 1000000, totalLiabilities: obj.totalLiabilities / 1000000})
