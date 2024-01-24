@@ -37,7 +37,13 @@ const SharesForm = ({formType, toggleModal, company, activationPoint}) => {
 
     const handleOnSubmit = async (data) => {
 
-        // // Get the selected portfolio and the shares currently held of the company in that portfolio
+        if (!data.portfolio_name) {
+            setError(true)
+            formType === "Buy Shares" ? setErrorMessage(`You must create a portfolio to buy shares`) : setErrorMessage(`You must create a portfolio and have a holding in the company to sell shares`)
+            return
+        }
+
+        // Get the selected portfolio and the shares currently held of the company in that portfolio
         const selectedPortfolio = portfolios.filter(portfolio => portfolio.portfolio_name === data.portfolio_name)[0]
         const currentSharesHeld = calculateShareHolding(transactions, company.companyName, selectedPortfolio.id)
 
@@ -49,7 +55,7 @@ const SharesForm = ({formType, toggleModal, company, activationPoint}) => {
             currentSharesHeld
         }
         
-        // // Validate the form inputs
+        // Validate the form inputs
         const validateInputs = validateSharesForm(formType, dataObj, selectedPortfolio)
 
         if (validateInputs.valid) {
@@ -90,7 +96,7 @@ const SharesForm = ({formType, toggleModal, company, activationPoint}) => {
   return (
     <>
         {error && 
-            <Alert variant='filled' severity='error' icon={<Cancel fontSize='inherit' />} sx={{marginTop: "30px"}}>
+            <Alert variant='filled' severity='error' icon={<Cancel fontSize='inherit' />} sx={{marginTop: "30px", maxWidth: "350px", display:"flex", alignItems: "center", justifyContent:"center"}}>
                 {errorMessage}
             </Alert>
         }
