@@ -4,6 +4,8 @@ export const validateSharesForm = (transactionType, data, selectedPortfolio) => 
     if (transactionType === "Buy Shares") {
         if (selectedPortfolio.balance < data.pricePerShare * data.shares_amount) {
             returnObj = {valid: false, reason: `Portfolio balance of $${selectedPortfolio.balance} is too low`, stop: 1}
+        } else if (data.shares_amount == 0) {
+            returnObj = {valid: false, reason: `Cannot buy 0 shares`}
         } else {
             returnObj = {valid: true, stop: 2}
         }
