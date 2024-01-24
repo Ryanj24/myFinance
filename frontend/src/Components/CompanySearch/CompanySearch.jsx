@@ -6,12 +6,11 @@ import { Alert, Typography } from '@mui/material'
 import { Search, Cancel } from '@mui/icons-material'
 import CompanyDetails from '../CompanyDetails/CompanyDetails'
 import { getCompanyData } from '../../utilityFunctions/getCompanyData'
-import { testData } from '../../testData'
 import { Link } from 'react-router-dom'
 
 const CompanySearch = () => {
 
-    const [companyData, setCompanyData] = useState(testData);
+    const [companyData, setCompanyData] = useState(null);
     const [searchSubmitted, setSearchSubmitted] = useState(false)
     const {register, handleSubmit, formState: {isSubmitSuccessful}} = useForm()
     const [error, setError] = useState(false)
