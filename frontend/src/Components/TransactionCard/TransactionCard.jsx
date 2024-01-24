@@ -29,14 +29,13 @@ const TransactionCard = ({id, icon, desc, date, amount, toggleModal, setCurrentT
     const handleDeleteClick = async () => {
         const response = await removeTransaction(id, accountID, token)
 
-        console.log(response)
-        // dispatch(deleteBankTransaction(response))
+        dispatch(deleteBankTransaction(response))
 
-        // if (response.type === "Deposit" || response.type === "Income") {
-        //     dispatch(decrementAccountBalance(response))
-        // } else {
-        //     dispatch(incrementAccountBalance(response))
-        // }
+        if (response.type === "Deposit" || response.type === "Income") {
+            dispatch(decrementAccountBalance(response))
+        } else {
+            dispatch(incrementAccountBalance(response))
+        }
 
     }
   return (

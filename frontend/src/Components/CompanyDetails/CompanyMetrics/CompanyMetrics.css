@@ -20,7 +20,6 @@
 }
 
 .company-metrics > div > h3{
-    /* padding: 0 10px; */
     margin-bottom: 10px;
     position: relative;
     color: var(--primary-col);

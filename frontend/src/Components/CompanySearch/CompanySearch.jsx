@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import './CompanySearch.css'
 import {useForm} from 'react-hook-form'
 import { useSelector } from 'react-redux'
-import { Alert, Button, Typography } from '@mui/material'
+import { Alert, Typography } from '@mui/material'
 import { Search, Cancel } from '@mui/icons-material'
 import CompanyDetails from '../CompanyDetails/CompanyDetails'
-import { companyInfo } from '../../companyExampleData'
 import { getCompanyData } from '../../utilityFunctions/getCompanyData'
 import { testData } from '../../testData'
 import { Link } from 'react-router-dom'
@@ -35,8 +34,6 @@ const CompanySearch = () => {
             setErrorMessage("Company not found")
             return
         }
-        
-        console.log(response)
 
         setCompanyData(response)
         setSearchSubmitted(true)

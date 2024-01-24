@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
 import './GoalCard.css'
-import { Link } from 'react-router-dom'
 import { Typography } from '@mui/material'
 import { Article, ExpandMore, CalendarMonth, MoreVert } from '@mui/icons-material'
 import ProgressBar from './ProgressBar/ProgressBar'

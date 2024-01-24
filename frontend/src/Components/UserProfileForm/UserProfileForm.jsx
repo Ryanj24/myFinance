@@ -27,15 +27,14 @@ const UserProfileForm = ({profileImg}) => {
     const dispatch = useDispatch()
 
     const onSubmit = async (data) => {
-        const response = await updateUserDetails(data, profileImg, token)
+      const response = await updateUserDetails(data, profileImg, token)
 
-        if (response.error) {
-            setError(`${response.field}`, {message: response.message})
-            return
-        }
-        
-        dispatch(setUser({user: response, token}))
-        // console.log({...data, profileImg})
+      if (response.error) {
+          setError(`${response.field}`, {message: response.message})
+          return
+      }
+      
+      dispatch(setUser({user: response, token}))
     }
 
     useEffect(() => {

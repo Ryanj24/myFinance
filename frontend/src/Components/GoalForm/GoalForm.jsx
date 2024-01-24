@@ -11,7 +11,7 @@ const GoalForm = ({formType, toggleModal, goal, userToken}) => {
 
     const [value, setValue] = useState(formType === "Add Goal" ? null : +goal.current_progress)
 
-    const {register, handleSubmit, formState: {isSubmitSuccessful}} = useForm({defaultValues: {
+    const {register, handleSubmit} = useForm({defaultValues: {
         goal_name: formType === "Edit Goal" ? goal.goal_name : "",
         goal_desc: formType === "Edit Goal" ? goal.goal_desc : "",
         goal_end_date: formType === "Edit Goal" ? goal.end_date.slice(0, 10) : "",

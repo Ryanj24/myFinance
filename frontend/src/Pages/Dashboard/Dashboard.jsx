@@ -23,7 +23,6 @@ const Dashboard = () => {
 
   const userToken = useSelector((state) => state.user.user.token)
   const accounts = useSelector((state) => state.accounts.accounts)
-  const portfolios = useSelector((state) => state.portfolios)
 
 
   useEffect(() => {

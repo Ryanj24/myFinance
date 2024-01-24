@@ -5,7 +5,6 @@ import { Edit } from '@mui/icons-material'
 import UserProfileForm from '../../Components/UserProfileForm/UserProfileForm'
 import UserProfilePicture from '../../Components/UserProfilePicture/UserProfilePicture'
 import UserProfileDetails from '../../Components/UserProfileDetails/UserProfileDetails'
-import defaultUserImg from '../../assets/user.png'
 
 const Profile = () => {
 

@@ -6,7 +6,7 @@ import AccountModal from '../../Components/AccountModal/AccountModal.jsx'
 import { removeAccount } from '../../utilityFunctions/removeAccount.js'
 import { deleteAccount } from '../../redux/accountSlice.js'
 
-import { Add, Delete, Edit } from '@mui/icons-material'
+import { Delete, Edit } from '@mui/icons-material'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 

@@ -2,7 +2,7 @@ import React from 'react'
 import './AccountOverview.css'
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Typography, Icon } from '@mui/material';
+import { Typography } from '@mui/material';
 import { AccountBalance } from '@mui/icons-material';
 
 import Barclays from '../../assets/bank-logos-full/Barclays_full.svg'

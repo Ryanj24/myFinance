@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import DashboardBudgetForm from '../DashboardBudgetForm/DashboardBudgetForm';
-// import { ResponsiveContainer, PieChart, Pie, Tooltip, Label, Cell } from 'recharts';
 import { budgetDataPreprocessor } from '../../utilityFunctions/budgetDataPreprocessor.js';
 import { transactionDataPreprocessor } from '../../utilityFunctions/transactionDataPreprocessor.js';
 import { Home, Commute, Fastfood, HomeRepairService, HealthAndSafety, DevicesOther, ConfirmationNumber, MoreHoriz } from '@mui/icons-material';
@@ -29,8 +28,6 @@ const Budget = () => {
   const categoryAmountSpent = transactionDataPreprocessor(transactions, selectedMonth, selectedYear)
 
   const joinedData = joinArraysOfObjects(categoryTotalBudget, categoryAmountSpent)
-
-  // console.log(joinedData)
 
   return (
     <div className='budget'>

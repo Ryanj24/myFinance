@@ -6,9 +6,8 @@ import PortfolioCard from '../PortfolioCard/PortfolioCard'
 
 const PortfoliosList = () => {
 
-    const {portfolios} = useSelector(state => state.portfolios)
+  const {portfolios} = useSelector(state => state.portfolios)
 
-    // console.log("Portfolio List re-render")
   return (
     <section className='portfolios-list'>
         {portfolios.length > 0

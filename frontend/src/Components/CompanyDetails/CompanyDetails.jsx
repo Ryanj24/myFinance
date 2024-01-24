@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './CompanyDetails.css'
 import { AttachMoney, Sell } from '@mui/icons-material'
 import GridCarousel from '../GridCarousel/GridCarousel'

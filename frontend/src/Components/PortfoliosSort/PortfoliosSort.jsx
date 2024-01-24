@@ -12,7 +12,6 @@ const PortfoliosSort = () => {
         dispatch(sortPortfolios(e.target.value))
     }
 
-    // console.log("Portfolio Sort re-render")
   return (
     <section className='portfolios-count-sort'>
         <p>You currently have {portfolios.length} portfolios</p>

@@ -18,7 +18,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: green; */
     height: 350px;
     padding-right: 20px;
     overflow-y: scroll;
