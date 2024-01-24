@@ -14,7 +14,12 @@ const PortfolioOverview = () => {
   return (
     <section className='details-section'>
         <div className="provider-logo-container">
-            <img src={portfolioIcons[portfolio.iconIndex]} alt={portfolio.provider + " Logo"} height="100%" width="100%"/>
+            {portfolio.iconIndex === 14
+              ?
+                <>{portfolioIcons[portfolio.iconIndex]}</>
+              :
+                <img src={portfolioIcons[portfolio.iconIndex]} alt={portfolio.provider + " Logo"} height="100%" width="100%"/>
+            }
         </div>
         <div className="portfolio-info">
           <div className="portfolio-name">

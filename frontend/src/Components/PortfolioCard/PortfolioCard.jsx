@@ -18,15 +18,21 @@ import RBS from '../../assets/bank-logo-icons/RBS_icon.svg'
 import Santander from '../../assets/bank-logo-icons/Santander_icon.svg'
 import Trading212 from '../../assets/portfolio-logo-icons/Trading212-icon-logo.svg'
 import Vanguard from '../../assets/portfolio-logo-icons/Vanguard-icon-logo.svg'
+import { AccountBalance } from '@mui/icons-material'
 
 
-export const portfolioIcons = [AJBell, Barclays, Fidelity, Freetrade, HL, HSBC, Lloyds, JPMorgan, MorganStanley, NatWest, RBS, Santander, Trading212, Vanguard]
+export const portfolioIcons = [AJBell, Barclays, Fidelity, Freetrade, HL, HSBC, Lloyds, JPMorgan, MorganStanley, NatWest, RBS, Santander, Trading212, Vanguard, <AccountBalance />]
 
 const PortfolioCard = ({portfolio}) => {
   return (
     <div className='portfolio-card'>
         <div className="portfolio-logo-container">
-            <Icon><img src={portfolioIcons[portfolio.iconIndex]} alt="portfolio Logo" height="100%" width="100%"/></Icon>
+            {portfolio.iconIndex === 14
+                ?
+                    <Icon>{portfolioIcons[portfolio.iconIndex]}</Icon>
+                :
+                    <Icon><img src={portfolioIcons[portfolio.iconIndex]} alt="Portfolio Provider Logo" height="100%" width="100%"/></Icon>
+            }
         </div>
         <div className="portfolio-name">
             <Typography variant='h5' component="h5">{portfolio.portfolio_name}</Typography>

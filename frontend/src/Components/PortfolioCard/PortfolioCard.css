@@ -29,6 +29,9 @@
 
 .portfolio-card > .portfolio-logo-container > span{
     font-size: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .portfolio-card > .portfolio-value {
