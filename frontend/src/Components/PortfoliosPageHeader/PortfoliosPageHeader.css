@@ -1,0 +1,30 @@
+.portfolios-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.portfolios-page-header > h1{
+    color: var(--primary-col);
+}
+
+.portfolios-page-header > .portfolios-action-btn{
+    padding-right: 30px;
+}
+
+.portfolios-page-header > .portfolios-action-btn > button {
+    background: none;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: var(--primary-col);
+    box-shadow: 2px 2px 3px #737373;
+}
+
+.portfolios-page-header > .portfolios-action-btn > button:hover {
+    cursor: pointer;
+}
