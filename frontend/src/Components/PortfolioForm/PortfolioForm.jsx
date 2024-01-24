@@ -23,7 +23,6 @@ const PortfolioForm = ({formType, toggleModal, portfolio}) => {
     const onSubmit = async (data) => {
         if (formType === "Add Portfolio") {
             const response = await createPortfolio(data, token)
-            console.log(response)
 
             dispatch(addPortfolio(response))
         } else {

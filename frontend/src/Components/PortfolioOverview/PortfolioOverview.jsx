@@ -11,14 +11,24 @@ const PortfolioOverview = () => {
 
     const portfolio = useSelector(state => state.portfolios.portfolios).filter(portfolio => portfolio.id == id).map(portfolio => portfolioIcon(portfolio))[0];
 
+    if (!portfolio) {
+      return (
+        <h1>Loading...</h1>
+      )
+    }
+
   return (
     <section className='details-section'>
         <div className="provider-logo-container">
-            {portfolio.iconIndex === 14
+            {portfolio && portfolio.iconIndex === 14
               ?
                 <>{portfolioIcons[portfolio.iconIndex]}</>
-              :
+              : 
+              (portfolio && portfolio.iconIndex !== 14)
+              ?
                 <img src={portfolioIcons[portfolio.iconIndex]} alt={portfolio.provider + " Logo"} height="100%" width="100%"/>
+              :
+                null
             }
         </div>
         <div className="portfolio-info">

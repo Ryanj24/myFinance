@@ -25,8 +25,9 @@ const AccountDetails = () => {
   const handleDelete = async () => {
     const response = await removeAccount(id, token);
 
-    dispatch(deleteAccount(response))
     nav("/home/accounts")
+    dispatch(deleteAccount(response))
+
   }
 
   return (

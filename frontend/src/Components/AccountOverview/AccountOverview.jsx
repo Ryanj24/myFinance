@@ -22,9 +22,16 @@ const fullBankLogos = [Barclays, HSBC, Lloyds, Monzo, NatWest, RBS, Santander, S
 
 const AccountOverview = () => {
 
-    const {id} = useParams();
+  const {id} = useParams();
 
   const account = useSelector(state => state.accounts.accounts).filter(acc => acc.id == id).map(acc => accountIcon(acc))[0];
+
+  if (!account) {
+    return (
+      <h1>Loading...</h1>
+    )
+  }
+
   return (
     <section className='details-section'>
         <div className="provider-logo-container">
