@@ -1,4 +1,4 @@
-.details-section {
+.portfolio-details-section {
     display: flex;
     align-items: center;
     padding: 20px;
@@ -8,49 +8,55 @@
     background-color: #fff;
 }
 
-.details-section > .provider-logo-container {
+.portfolio-details-section > .provider-logo-container {
     height: 100px;
     width: 250px;
     margin-right: 20px;
 }
 
-.details-section > .provider-logo-container > img{
+.portfolio-details-section > .provider-logo-container > svg{
+    font-size: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
+.portfolio-details-section > .provider-logo-container > img{
     max-height: 100%;
     max-width: 100%;
 }
 
-.details-section > .portfolio-info {
+.portfolio-details-section > .portfolio-info {
     display: flex;
     align-items: center;
     justify-content: space-around;
     width: 80%;
 }
 
-.details-section > .portfolio-info > div{
+.portfolio-details-section > .portfolio-info > div{
     margin: 10px 0;
     width: 100%;
 }
 
-.details-section > .portfolio-info > div > p{
+.portfolio-details-section > .portfolio-info > div > p{
     font-size: large;
 }
 
 @media screen and (max-width: 900px) {
-    .details-section {
+    .portfolio-details-section {
         flex-direction: column;
     }
 
-    .details-section > .portfolio-info {
+    .portfolio-details-section > .portfolio-info {
         justify-content: space-between;
     }
 
-    .details-section > .provider-logo-container {
+    .portfolio-details-section > .provider-logo-container {
         margin-right: 0;
     }
 }
 
 @media screen and (max-width: 800px) {
-    .details-section > .portfolio-info {
+    .portfolio-details-section > .portfolio-info {
         flex-direction: column;
         justify-content: center;
         align-items: center;
