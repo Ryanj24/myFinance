@@ -38,7 +38,7 @@ const PortfolioTransactions = () => {
             </TableHead>
             {portfolioTransactions.length > 0
             ?
-                <TableBody>
+                <TableBody key="transactions-table">
                     {portfolioTransactions.map(transaction => (
                         <TableRow key={transaction.id}>
                             <TableCell align="center">{transaction.company_ticker}</TableCell>
