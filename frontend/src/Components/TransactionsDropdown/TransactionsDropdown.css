@@ -12,9 +12,8 @@
     padding: 10px;
 }
 
-.transactions-dropdown > .add-transaction-btn-container > button {
+.transactions-dropdown > .transaction-btns-container > button {
     display: flex;
-    justify-content: center;
     align-items: center;
     padding: 10px 20px;
     background: none;
@@ -23,10 +22,16 @@
     background-color: var(--primary-col);
     font-size: medium;
     border-radius: 10px;
+    margin: 10px 0;
+    width: 100%;
 }
 
-.transactions-dropdown > .add-transaction-btn-container > button:hover {
+.transactions-dropdown > .transaction-btns-container > button:hover {
     cursor: pointer;
+}
+
+.transactions-dropdown > .transaction-btns-container > button > svg{
+    margin-right: 5px;
 }
 
 .transactions-dropdown > .transactions-sort {

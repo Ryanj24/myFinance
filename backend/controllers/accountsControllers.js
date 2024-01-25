@@ -171,3 +171,33 @@ export const deleteTransaction = async (req, res) => {
     }
     
 }
+
+export const transferAccountFunds = async (req, res) => {
+
+    // Get the user object from the request headers
+    const token = req.headers.authorization.split(" ")[1]
+    const {id} = jwt.decode(token)
+
+    // Get the date of the transaction in the format yyyy-mm-dd
+    let currentDate = new Date();
+    currentDate = currentDate.toISOString().split("T")[0];
+
+    try {
+        // Call the bank_transaction_procedure, passing in the relevant arguments
+        const procedureCall = await db.query(
+            `CALL bank_transfer_procedure(?, ?, ?, ?)`, 
+            [req.body.senderAccountID, req.body.receiverAccountID, req.body.amount, currentDate]
+        )
+
+        // Select the account where the transaction was made
+        const senderTransaction = await db.query(`SELECT * FROM bank_transactions WHERE account_id = ? ORDER BY id DESC LIMIT 1`, [req.body.senderAccountID])
+        const receiverTransaction = await db.query(`SELECT * FROM bank_transactions WHERE account_id = ? ORDER BY id DESC LIMIT 1`, [req.body.receiverAccountID])
+
+        // Return the account
+        return res.json({senderAccTransaction: senderTransaction[0][0], receiverAccTransaction: receiverTransaction[0][0]});
+
+    } catch (error) {
+        // Return any errors
+        return res.json(error);
+    }
+}

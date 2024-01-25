@@ -303,8 +303,8 @@ BEGIN
         SET `balance` = `balance` - amount_to_transfer
         WHERE `id` = sender_account_id;
 
-        INSERT INTO `bank_transactions` (account_id, type, category, transaction_date, amount) 
-        VALUES (receiver_account_id, "Deposit", "Personal", transaction_date, amount_to_transfer), (sender_account_id, "Withdrawl", "Personal", transaction_date, amount_to_transfer);
+        INSERT INTO `bank_transactions` (account_id, type, category, description, transaction_date, amount) 
+        VALUES (receiver_account_id, "Deposit", "Personal", "Funds Transfer", transaction_date, amount_to_transfer), (sender_account_id, "Withdrawl", "Personal", "Funds Transfer", transaction_date, amount_to_transfer);
     COMMIT;
 END//
 DELIMITER ;

@@ -1,18 +1,27 @@
 import React from 'react'
 import './TransactionsDropdown.css'
-import { Add } from '@mui/icons-material'
+import { Add, SwapHoriz } from '@mui/icons-material'
 
-const TransactionsDropdown = ({addTransactionModalActive, setAddTransactionModalActive, handleSortChange, setDropdownActive}) => {
+const TransactionsDropdown = ({addTransactionModalActive, setAddTransactionModalActive, transferFundsModalActive, setTransferFundsModalActive, handleSortChange, setDropdownActive}) => {
 
-    const handleClick = () => {
+    const handleAddTransactionClick = () => {
         setAddTransactionModalActive(!addTransactionModalActive)
         setDropdownActive(false)
     }
+
+    const handleTransferFundsClick = () => {
+        setTransferFundsModalActive(!transferFundsModalActive)
+        setDropdownActive(false)
+    }
+
   return (
     <div className='transactions-dropdown'>
-        <div className="add-transaction-btn-container">
-            <button className='add-transaction-btn' onClick={handleClick}>
+        <div className="transaction-btns-container">
+            <button className='add-transaction-btn' onClick={handleAddTransactionClick}>
                 <Add /> Add Transaction
+            </button>
+            <button className='transfer-funds-btn' onClick={handleTransferFundsClick}>
+                <SwapHoriz /> Transfer Funds
             </button>
         </div>        
         <div className="transactions-sort">

@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import './AccountTransactions.css'
-import { Typography } from '@mui/material'
-import { Add, MoreHoriz } from '@mui/icons-material'
+import { MoreHoriz } from '@mui/icons-material'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { budgetIconArray } from '../DashboardCards/Transactions'
@@ -15,6 +14,7 @@ const AccountTransactions = () => {
 
   const [addTransactionModalActive, setAddTransactionModalActive] = useState(false);
   const [editTransactionModalActive, setEditTransactionModalActive] = useState(false);
+  const [transferFundsModalActive, setTransferFundsModalActive] = useState(false);
   const [dropdownActive, setDropdownActive] = useState(false);
 
   const [currentTransactionID, setCurrentTransactionID] = useState(null); 
@@ -38,6 +38,7 @@ const AccountTransactions = () => {
     <>
       {addTransactionModalActive && <AccountModal modalType="Add Transaction" toggleModal={setAddTransactionModalActive}/>}
       {editTransactionModalActive && <AccountModal modalType="Edit Transaction" toggleModal={setEditTransactionModalActive} transaction={clickedTransaction}/>}
+      {transferFundsModalActive && <AccountModal modalType="Transfer" toggleModal={setTransferFundsModalActive}/>}
       <section className='account-transactions-section'>
           <header className='account-transactions-header'>
               <h2>
@@ -50,6 +51,8 @@ const AccountTransactions = () => {
                 <TransactionsDropdown 
                   addTransactionModalActive={addTransactionModalActive}
                   setAddTransactionModalActive={setAddTransactionModalActive}
+                  transferFundsModalActive={transferFundsModalActive}
+                  setTransferFundsModalActive={setTransferFundsModalActive}
                   handleSortChange={handleOnChange}
                   toggleDropdown={setDropdownActive}
                   setDropdownActive={setDropdownActive}
